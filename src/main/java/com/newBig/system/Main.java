@@ -1,4 +1,4 @@
-package com.newBig.system;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+package com.newBig.system;
 
 import com.newBig.system.application.usecase.RegisterProductUseCase;
 import com.newBig.system.domain.repository.ProductRepository;
