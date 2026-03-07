@@ -77,7 +77,7 @@ public class Verificacoes {
                 System.out.println("Id: ");
                 id = sc.nextInt();
                 limparBuffer();
-                if(id > DadosUsuario.usuario.size() || id < 0){
+                if(id > DadosUsuario.usuario.size() || id <= 0){
                     System.out.println("Erro usuario não disponivel!!");
                 }
                 else{

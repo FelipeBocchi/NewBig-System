@@ -80,7 +80,7 @@ public class OperacaoUsuario {
             util.limpar();
             print.printUsarios();
             if(resultadoVerificacao == 1){
-                System.out.println("Digite o id do usario ou 0 para sair. ");
+                System.out.println("Digite o id do usario. ");
                 int op = verificar.id();
                 print.dadosComplementares(op);
             }
