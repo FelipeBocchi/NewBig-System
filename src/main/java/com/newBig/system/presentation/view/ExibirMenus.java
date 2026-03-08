@@ -46,6 +46,7 @@ public class ExibirMenus {
             System.out.println(((Funcionario) aux).toString());
             System.out.println(((Funcionario) aux).getDadosFuncionario());
         }
+        util.limparBuffer();
     }
     public void printOpAtualizar(int opId){
         System.out.println("--Alterar dados Usuario--");
