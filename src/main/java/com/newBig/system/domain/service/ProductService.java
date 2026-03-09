@@ -21,6 +21,8 @@ public class ProductService {
         return repository.findAll();
     }
 
-
+    public List<Product> getProductsByCategory(String category){
+        return repository.findByCategory(category);
+    }
 
 }
