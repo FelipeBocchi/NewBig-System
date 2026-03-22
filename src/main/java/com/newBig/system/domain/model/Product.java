@@ -15,20 +15,20 @@ public class Product {
     private String department;
     private String category;
 
-    private String sku;
+    private String sku; // delete
     private int barcode;
 
     private BigDecimal costPrice;
     private BigDecimal salePrice;
 
-    private int stock;
-    private int minimumStock;
+    private int stock;  // batch
+    private int minimumStock; // batch
 
     private ProductType type;
     private UnitType  unit;
     // lote para validade
-    private LocalDate expirationDate;
-    private String batch;
+    private LocalDate expirationDate; // batch
+    private String batch; // batch
 
     public Product(String productName, String description, String department, String category, String sku, int barcode, BigDecimal costPrice, BigDecimal salePrice, int stock, int minimumStock, ProductType type, UnitType unit) {
 
@@ -147,8 +147,16 @@ public class Product {
         return barcode;
     }
 
+    public BigDecimal getSalePrice() { return salePrice; }
+
+    public BigDecimal getCostPrice() { return salePrice; }
 
     public int getStock() {
         return stock;
     }
+
+    public ProductType getType() { return type; }
+
 }
+
+

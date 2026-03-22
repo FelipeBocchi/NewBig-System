@@ -23,7 +23,9 @@ public interface ProductRepository {
     List<Product> findByCategory(String category);
     List<Product> findByType(Product.ProductType type);
     List<Product> findLowStock ();
-    List<Product> findByPrice(BigDecimal price);
+    List<Product> findBySalePrice(BigDecimal price);
+    List<Product> findByCostPrice(BigDecimal price);
+    List<Product> findByEqualPrice(BigDecimal price);
     List<Product> findByUnit(Product.UnitType type);
 
 

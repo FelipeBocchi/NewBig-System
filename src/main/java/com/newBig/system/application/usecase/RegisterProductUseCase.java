@@ -28,4 +28,16 @@ public class RegisterProductUseCase {
         return service.getProductsByCategory(category);
     }
 
+    public List<Product> findType(Product.ProductType type) { return service.getProductByType(type); }
+
+    public List<Product> findLowStock() { return  service.getProductLowStock(); }
+
+    public List<Product> findSalePrice(BigDecimal price) { return  service.getProductBySalePrice(price); }
+
+    public List<Product> findCostPrice(BigDecimal price) { return  service.getProductByCostPrice(price); }
+
+    public List<Product> findEqualPrice(BigDecimal price) { return  service.getProductByEqualPrice(price); }
+
+    public List<Product> findUnit(Product.UnitType unit) { return  service.getProductByUnit(unit); }
+
 }
