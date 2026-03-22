@@ -47,6 +47,8 @@ public class ProductMemoryRepository implements ProductRepository {
         return List.of();
     }
 
+    // == Filtos ==
+
     @Override
     public List<Product> findByCategory(String category) {
 
@@ -57,21 +59,51 @@ public class ProductMemoryRepository implements ProductRepository {
 
     @Override
     public List<Product> findByType(Product.ProductType type) {
-        return List.of();
+
+        return products.stream()
+                .filter(p -> p.getType().equals(type))
+                .toList();
     }
+
+    // diferença de equals e equalsIgnoreCase?
 
     @Override
     public List<Product> findLowStock() {
-        return List.of();
+
+        return products.stream()
+                .filter( p -> p.isLowStock() == true)
+                .toList();
     }
 
     @Override
-    public List<Product> findByPrice(BigDecimal price) {
-        return List.of();
+    public List<Product> findBySalePrice(BigDecimal price) {
+
+        return products.stream()
+                .filter(p -> p.getSalePrice() != null && p.getSalePrice().compareTo(price) <= 0)
+                .toList();
     }
 
     @Override
-    public List<Product> findByUnit(Product.UnitType type) {
-        return List.of();
+    public List<Product> findByCostPrice(BigDecimal price) {
+
+        return products.stream()
+                .filter(p -> p.getCostPrice() != null && p.getSalePrice().compareTo(price) <= 0)
+                .toList();
+    }
+
+    @Override
+    public List<Product> findByEqualPrice(BigDecimal price) {
+
+        return products.stream()
+                .filter(p -> p.getSalePrice() != null && p.getSalePrice().compareTo(price) == 0)
+                .toList();
+    }
+
+    @Override
+    public List<Product> findByUnit(Product.UnitType unit) {
+
+        return products.stream()
+                .filter(p -> p.getType().equals(unit))
+                .toList();
     }
 }

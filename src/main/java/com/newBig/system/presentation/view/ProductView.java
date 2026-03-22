@@ -37,6 +37,23 @@ public class ProductView {
                     listFindCategory();
                     break;
 
+                case 4:
+                    listFindType();
+                    break;
+
+                case 5:
+                    listProductsLowStock();
+                    break;
+
+                case 6:
+                    listFindPrice();
+                    break;
+
+                case 7:
+                    listFindUnit();
+                    break;
+
+
                 case 0:
                     System.out.println("\nEncerrando sistema...");
                     break;
@@ -56,6 +73,10 @@ public class ProductView {
         System.out.println("1 - Cadastrar Produto");
         System.out.println("2 - Listar Produtos");
         System.out.println("3 - Filtar por Categoria");
+        System.out.println("4 - Filtar por Type");
+        System.out.println("5 - Filtar por Estoque baixo");
+        System.out.println("6 - Filtar por Preço");
+        System.out.println("7 - Filtar por Unit");
         System.out.println("0 - Sair");
         System.out.println("===============================");
         System.out.print("Escolha uma opção: ");
@@ -141,6 +162,102 @@ public class ProductView {
         controller.listFindByCategory(category).forEach(p ->
                 System.out.println(
                         p.getProductName() + " | " + p.calculateMargin()
+                )
+        );
+    }
+
+    private void listFindType() {
+        System.out.println(" == Qual tipo de produto quer achar: ");
+        for(Product.ProductType t : Product.ProductType.values()){
+            System.out.println("- " + t);
+        }
+
+        String type = sc.nextLine();
+        Product.ProductType typeP = Product.ProductType.valueOf(type.toUpperCase());
+
+        System.out.println("\n=== Tipo " + type + " ===");
+
+        controller.listFindByType(typeP).forEach(p ->
+                System.out.println(
+                        p.getProductName()
+                )
+        );
+    }
+
+    private void listProductsLowStock() {
+
+        System.out.println("\n=== Produtos com Estoque baixo ===");
+
+        controller.listFindLowStock().forEach(p ->
+                System.out.println(
+                        p.getDepartment() + " | " +
+                                p.getCategory() + " | " +
+                                p.getProductName() + " | " +
+                                p.getSku() + " | " +
+                                p.getBarcode()
+                )
+        );
+    }
+
+    private void listFindPrice() {
+        System.out.println(" == Qual parametro de preço quer achar: ");
+        System.out.println(" == :1: valor de custo ");
+        System.out.println(" == :2: valor de venda ");
+        System.out.println(" == :3: valor de venda especifico");
+        int op = sc.nextInt();
+
+        switch (op){
+            case 1:
+                System.out.println("\n=== Até qual valor de custo quer filtar: ");
+                BigDecimal price = sc.nextBigDecimal();
+
+                controller.listFindByCostPrice(price).forEach( p ->
+                        System.out.println(
+                                p.getProductName()
+                        ));
+                break;
+
+            case 2:
+                System.out.println("\n=== Até qual valor de venda quer filtar: ");
+                price = sc.nextBigDecimal();
+
+                controller.listFindBySalePrice(price).forEach( p ->
+                        System.out.println(
+                                p.getProductName()
+                        ));
+                break;
+
+            case 3:
+                System.out.println("\n=== Até qual valor especifico quer filtar: ");
+                price = sc.nextBigDecimal();
+
+                controller.listFindByEqualPrice(price).forEach( p ->
+                        System.out.println(
+                                p.getProductName()
+                        ));
+                break;
+
+            default:
+                System.out.println(" === opção invalida!!! ");
+
+        }
+
+    }
+
+    private void listFindUnit() {
+        System.out.println(" == Qual tipo de unidade de produto quer achar: ");
+        for(Product.UnitType t : Product.UnitType.values()){
+            System.out.println("- " + t);
+        }
+
+        String unit = sc.nextLine();
+        Product.UnitType unitP = Product.UnitType.valueOf(unit.toUpperCase());
+
+        System.out.println("\n=== Tipo " + unit + " ===");
+
+        controller.listFindByUnit(unitP).forEach(p ->
+                System.out.println(
+                        p.getProductName()
                 )
         );
     }

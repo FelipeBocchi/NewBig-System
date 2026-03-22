@@ -25,4 +25,16 @@ public class ProductController {
     public List<Product> listFindByCategory(String category) {
         return useCase.findCategory(category);
     }
+
+    public List<Product> listFindByType(Product.ProductType type) { return useCase.findType(type); }
+
+    public List<Product> listFindLowStock() { return useCase.findLowStock(); }
+
+    public List<Product> listFindBySalePrice(BigDecimal price) { return  useCase.findSalePrice(price); }
+
+    public List<Product> listFindByCostPrice(BigDecimal price) { return  useCase.findCostPrice(price); }
+
+    public List<Product> listFindByEqualPrice(BigDecimal price) { return  useCase.findEqualPrice(price); }
+
+    public List<Product> listFindByUnit(Product.UnitType unit) { return useCase.findUnit(unit); }
 }
