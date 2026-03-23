@@ -9,6 +9,7 @@ import java.util.UUID;
 public class Stock {
 
     private List<Batch> batchs = new ArrayList<>();
+    private List<Batch> batchesBuy = new ArrayList<>();
 
     public void saveBatch(Batch batch) {
         batchs.add(batch);
@@ -22,6 +23,8 @@ public class Stock {
     public List<Batch> findAll() { return batchs; }
 
     public void buy(UUID idProduct, int amount) {
+
+        batchesBuy = null;
 
         // == FEFO - vai organizar os lotes por validade para poder vender o com a validade mais próxima
         List<Batch> batchProduct = batchs.stream()
@@ -43,12 +46,16 @@ public class Stock {
             if( amountProduct <= amountBuy) {
                 amountBuy -= amountProduct;
                 b.setAmount(0);
+                batchesBuy.add(b);
             }else {
                 b.setAmount( amountProduct - amountBuy);
                 amountBuy = 0;
+                batchesBuy.add(b);
             }
         }
     }
+
+    public List<Batch> getBatchesBuy() { return batchesBuy; }
 
     public int getTotalQuantity(UUID idProduct) {
 
