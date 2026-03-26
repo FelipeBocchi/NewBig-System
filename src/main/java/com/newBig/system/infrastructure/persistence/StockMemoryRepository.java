@@ -9,7 +9,7 @@ public class StockMemoryRepository implements StockRepository {
 
     @Override
     public Stock get() {
-        return null;
+        return stock;
     }
 
     @Override

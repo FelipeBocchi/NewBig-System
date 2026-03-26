@@ -30,9 +30,6 @@ public class ProductService {
         return repository.findByType(type);
     }
 
-    public List<Product> getProductLowStock() {
-        return repository.findLowStock();
-    }
 
     public List<Product> getProductBySalePrice(BigDecimal price) { return repository.findBySalePrice(price); }
 

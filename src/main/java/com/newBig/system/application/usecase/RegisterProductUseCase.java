@@ -15,8 +15,8 @@ public class RegisterProductUseCase {
         this.service = service;
     }
 
-    public void execute(String productName, String description, String department, String category, String sku, int barcode, BigDecimal costPrice, BigDecimal salePrice, int stock, int minimumStock, Product.ProductType type, Product.UnitType unit) {
-        Product product = new Product(productName, description, department, category, sku, barcode, costPrice, salePrice, stock, minimumStock, type,  unit);
+    public void execute(String productName, String description, String department, String category, int barcode, BigDecimal costPrice, BigDecimal salePrice, int minimumStock, Product.ProductType type, Product.UnitType unit) {
+        Product product = new Product(productName, description, department, category, barcode, costPrice, salePrice, minimumStock, type,  unit);
         service.register(product);
     }
 
@@ -29,8 +29,6 @@ public class RegisterProductUseCase {
     }
 
     public List<Product> findType(Product.ProductType type) { return service.getProductByType(type); }
-
-    public List<Product> findLowStock() { return  service.getProductLowStock(); }
 
     public List<Product> findSalePrice(BigDecimal price) { return  service.getProductBySalePrice(price); }
 

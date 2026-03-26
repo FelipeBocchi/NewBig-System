@@ -67,13 +67,6 @@ public class ProductMemoryRepository implements ProductRepository {
 
     // diferença de equals e equalsIgnoreCase?
 
-    @Override
-    public List<Product> findLowStock() {
-
-        return products.stream()
-                .filter( p -> p.isLowStock() == true)
-                .toList();
-    }
 
     @Override
     public List<Product> findBySalePrice(BigDecimal price) {

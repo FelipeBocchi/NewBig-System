@@ -20,13 +20,14 @@ public class Batch {
 
     private ProductRepository repository;
 
-    public Batch(UUID idProduct, LocalDate validity, int amount, char series) {
+    public Batch(UUID idProduct, LocalDate validity, int amount, char series, ProductRepository repository) {
         if( amount <= 0) throw new IllegalArgumentException("Quantidade de produtos não poder ser igual ou menor que zero!!!");
 
         this.series = series;
         this.idProduct = idProduct;
         this.amount = amount;
         this.validity = validity;
+        this.repository = repository;
     }
 
     public boolean isExpired() {
@@ -38,9 +39,12 @@ public class Batch {
     }
 
     public BigDecimal calcTotal(UUID idProduct) {
-
         List<Product> products = repository.findAll();
-        Product product = (Product) products.stream().filter(p -> p.getId().equals(idProduct)).toList();
+
+        Product product = products.stream()
+                .filter(p -> p.getId().equals(idProduct))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Produto não encontrado"));
 
         return product.getSalePrice();
     }

@@ -14,8 +14,8 @@ public class ProductController {
         this.useCase = useCase;
     }
 
-    public void register(String productName, String description, String department, String category, String sku, int barcode, BigDecimal costPrice, BigDecimal salePrice, int stock, int minimumStock, Product.ProductType type, Product.UnitType unit){
-        useCase.execute(productName, description, department, category, sku, barcode, costPrice, salePrice, stock, minimumStock, type, unit);
+    public void register(String productName, String description, String department, String category, int barcode, BigDecimal costPrice, BigDecimal salePrice, int minimumStock, Product.ProductType type, Product.UnitType unit){
+        useCase.execute(productName, description, department, category, barcode, costPrice, salePrice, minimumStock, type, unit);
     }
 
     public List<Product> list(){
@@ -27,8 +27,6 @@ public class ProductController {
     }
 
     public List<Product> listFindByType(Product.ProductType type) { return useCase.findType(type); }
-
-    public List<Product> listFindLowStock() { return useCase.findLowStock(); }
 
     public List<Product> listFindBySalePrice(BigDecimal price) { return  useCase.findSalePrice(price); }
 

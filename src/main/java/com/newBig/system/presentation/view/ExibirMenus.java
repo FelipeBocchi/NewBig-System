@@ -67,6 +67,33 @@ public class ExibirMenus {
             atualizar.atualizarFuncionario(opId);
         }
     }
+
+    public void principal(){
+        util.limpar();
+        System.out.println("\n===============================");
+        System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
+        System.out.println("===============================");
+        System.out.println("1 - Cadastrar");
+        System.out.println("2 - Vender");
+        System.out.println("0 - Sair");
+        System.out.println("===============================");
+        System.out.print("Escolha uma opção: ");
+
+    }
+
+    public void cadastro(){
+        System.out.println("\n===============================");
+        System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
+        System.out.println("===============================");
+        System.out.println("            Cadastro          ");
+        System.out.println("===============================");
+        System.out.println("1 - Usuário");
+        System.out.println("2 - Produto ");
+        System.out.println("3 - Entrada/Lote");
+        System.out.println("0 - Voltar");
+        System.out.println("===============================");
+    }
+
     public void usuarios(){
         System.out.println("\n===============================");
         System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
@@ -79,17 +106,7 @@ public class ExibirMenus {
         System.out.println("0 - Voltar");
         System.out.println("===============================");
     }
-    public void principal(){
-        util.limpar();
-        System.out.println("\n===============================");
-        System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
-        System.out.println("===============================");
-        System.out.println("1 - Usuarios");
-        System.out.println("2 - Produtos");
-        System.out.println("0 - Sair");
-        System.out.println("===============================");
-        System.out.print("Escolha uma opção: ");
 
-    }
+
 
 }

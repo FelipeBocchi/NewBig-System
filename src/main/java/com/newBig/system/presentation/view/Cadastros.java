@@ -1,0 +1,76 @@
+package com.newBig.system.presentation.view;
+
+import com.newBig.system.application.usecase.RegisterArrivalBatch;
+import com.newBig.system.application.usecase.RegisterProductUseCase;
+import com.newBig.system.domain.repository.ProductRepository;
+import com.newBig.system.domain.repository.StockRepository;
+import com.newBig.system.domain.service.ProductService;
+import com.newBig.system.infrastructure.persistence.MovementMemoryRepository;
+import com.newBig.system.infrastructure.persistence.ProductMemoryRepository;
+import com.newBig.system.infrastructure.persistence.StockMemoryRepository;
+import com.newBig.system.presentation.controller.ProductController;
+import com.newBig.system.presentation.controller.RegisterArrivalController;
+
+import java.util.Scanner;
+
+public class Cadastros {
+
+    private ExibirMenus menu = new ExibirMenus();
+    private Scanner sc = new Scanner(System.in);
+
+    public void execute(ProductRepository repository, StockRepository stockRepository) {
+
+        int op;
+
+        do {
+
+            menu.cadastro();
+            op = sc.nextInt();
+            sc.nextLine();
+
+            switch (op) {
+
+                case 1:
+                    IniciarUsuario iniciarUsuario = new IniciarUsuario();
+                    iniciarUsuario.iniciar();
+                    break;
+
+                case 2:
+                     // jogar para fora pq só cria uma vez
+
+                    ProductService service = new ProductService(repository);
+
+                    RegisterProductUseCase useCase = new RegisterProductUseCase(service);
+
+                    ProductController controller = new ProductController(useCase);
+
+                    ProductView view = new ProductView(controller);
+
+                    view.start();
+                    break;
+
+                case 3:
+                    MovementMemoryRepository movementMemoryRepository = new MovementMemoryRepository();
+
+                    RegisterArrivalBatch registerArrivalBatch =  new RegisterArrivalBatch(stockRepository, movementMemoryRepository);
+
+                    RegisterArrivalController registerArrivalController = new RegisterArrivalController(registerArrivalBatch);
+
+                    RegisterArrivalBatchView registerArrivalBatchView = new RegisterArrivalBatchView(registerArrivalController, repository);
+
+                    registerArrivalBatchView.start();
+
+                    break;
+
+                case 0:
+                    System.out.println("\nEncerrando cadastros...");
+                    break;
+
+                default:
+                    System.out.println("\nOpção inválida!");
+            }
+
+        } while (op != 0 );
+
+    }
+}

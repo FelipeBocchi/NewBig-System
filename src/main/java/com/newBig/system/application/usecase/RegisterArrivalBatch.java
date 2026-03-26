@@ -3,6 +3,7 @@ package com.newBig.system.application.usecase;
 import com.newBig.system.domain.model.Batch;
 import com.newBig.system.domain.model.Stock;
 import com.newBig.system.domain.model.StockMovement;
+import com.newBig.system.domain.repository.ProductRepository;
 import com.newBig.system.domain.repository.StockMovementRepository;
 import com.newBig.system.domain.repository.StockRepository;
 
@@ -20,7 +21,7 @@ public class RegisterArrivalBatch {
         this.movementRepository = movementRepository;
     }
 
-    public void execute(UUID idProduct, LocalDate validity, int amount, char series) {
+    public void execute(UUID idProduct, LocalDate validity, int amount, char series, ProductRepository productRepository) {
 
         Stock stock = repository.get();
 
@@ -30,7 +31,7 @@ public class RegisterArrivalBatch {
             if(b.getSeries() == series) { throw new IllegalArgumentException("Caractere já existe"); }
         }
 
-        Batch batch = new Batch(idProduct, validity, amount, series);
+        Batch batch = new Batch(idProduct, validity, amount, series, productRepository);
         stock.saveBatch(batch);
 
         /*String type, UUID idBatch, UUID idProduct, int quantity, BigDecimal value
