@@ -9,7 +9,6 @@ import com.newBig.system.infrastructure.persistence.DadosUsuario;
 public class IniciarUsuario {
     public void iniciar(){
         System.out.println("--Sorveteria New big--");
-        /*Iniciar com o admin*/DadosUsuario.usuario.add(new Funcionario("Admin", "000000000000", 1, "100", 1000));
         OperacaoUsuario operacaoUsuario = new OperacaoUsuario();
         ExibirMenus print = new ExibirMenus();
         AtualizarUsuario atualizar = new AtualizarUsuario();
