@@ -1,10 +1,14 @@
 package com.newBig.system.presentation.view;
 
 import com.newBig.system.application.usecase.RegisterArrivalBatch;
+import com.newBig.system.domain.model.Batch;
 import com.newBig.system.domain.model.Product;
+import com.newBig.system.domain.model.StockMovement;
 import com.newBig.system.domain.repository.ProductRepository;
+import com.newBig.system.domain.repository.StockMovementRepository;
+import com.newBig.system.domain.repository.StockRepository;
 import com.newBig.system.infrastructure.persistence.ProductMemoryRepository;
-import com.newBig.system.presentation.controller.RegisterArrivalController;
+import com.newBig.system.presentation.controller.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -16,12 +20,23 @@ import java.util.UUID;
 public class RegisterArrivalBatchView {
 
     private ProductRepository repository;
-    private RegisterArrivalController controller;
+    private StockRepository stockRepository;
+    private StockMovementRepository stockMovementRepository;
     private Scanner sc = new Scanner(System.in);
 
-    public RegisterArrivalBatchView(RegisterArrivalController controller, ProductRepository repository) {
+    private RegisterArrivalController controller;
+    private ListAllBatchController listAllBatchController = new ListAllBatchController();
+    private ListAllMovementController listAllMovementController = new ListAllMovementController();
+    private FindBatchExpiredController findBatchExpiredController = new FindBatchExpiredController(stockRepository);
+    private DeleteExpiredBatchController deleteExpiredBatchController = new DeleteExpiredBatchController(stockRepository);
+    private FilterBatchByStockController filterBatchByStockController = new FilterBatchByStockController(stockRepository, repository);
+    private SearchMovementByTimeController searchMovementByTimeController = new SearchMovementByTimeController(stockMovementRepository);
+
+    public RegisterArrivalBatchView(RegisterArrivalController controller, ProductRepository repository, StockRepository stockRepository, StockMovementRepository stockMovementRepository) {
         this.controller = controller;
         this.repository = repository;
+        this.stockRepository = stockRepository;
+        this.stockMovementRepository = stockMovementRepository;
     }
 
     public void start() {
@@ -36,6 +51,26 @@ public class RegisterArrivalBatchView {
             switch (option) {
                 case 1:
                     registerProduct();
+                    break;
+
+                case 2:
+                    listAllBatch();
+                    break;
+
+                case 3:
+                    listAllMovement();
+                    break;
+
+                case 4:
+                    findExpiredBatch();
+                    break;
+
+                case 5:
+                    filterBatchByStock();
+                    break;
+
+                case 6:
+                    searchMovementByTime();
                     break;
 
                 case 0:
@@ -55,6 +90,11 @@ public class RegisterArrivalBatchView {
         System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
         System.out.println("===============================");
         System.out.println("1 - Cadastrar lote");
+        System.out.println("2 - Listar Lotes no estoque");
+        System.out.println("3 - Listar Movimentação de estoque");
+        System.out.println("4 - Lotes vencidos");
+        System.out.println("5 - Lotes com Estoque baixo");
+        System.out.println("6 - Pesquisar movimentação por dia");
         System.out.println("0 - Sair");
         System.out.println("===============================");
         System.out.print("Escolha uma opção: ");
@@ -111,5 +151,81 @@ public class RegisterArrivalBatchView {
         controller.register(idProduct, validity, quantity, serie, repository);
 
         System.out.println("\n✅ Lote cadastrado com sucesso!");
+    }
+
+    public void listAllBatch() {
+        System.out.println("\n===============================");
+        System.out.println("\n=== LISTA DE LOTE ===");
+        System.out.println("\n===============================");
+
+        int i = 1;
+        for(Batch b : listAllBatchController.execute(stockRepository)) {
+        System.out.println("\n " + i + "= " + b.getSeries() + " | " + b.getIdProduct() + " | " + b.getAmount() + " | " + b.getValidity());
+        i++;
+        }
+        System.out.println("\n===============================");
+    }
+
+    public void listAllMovement() {
+        System.out.println("\n===============================");
+        System.out.println("\n=== LISTA DE MOVIMENTAÇÕES ===");
+        System.out.println("\n===============================");
+
+        int i = 1;
+        for(StockMovement s : listAllMovementController.execute(stockMovementRepository)) {
+            System.out.println("\n " + i + "= " + s.getIdBatch() + " | " + s.getType() + " | " + s.getDate() + " | " + s.getQuantity() + " | " + s.getValue());
+            i++;
+        }
+        System.out.println("\n===============================");
+    }
+
+    public void findExpiredBatch() {
+        System.out.println("\n===============================");
+        System.out.println("\n=== LOTES VENCIDOS ===");
+        System.out.println("\n===============================");
+
+        System.out.println("\n\n===============================");
+        int i = 1;
+        for(Batch b : findBatchExpiredController.execute()) {
+            System.out.println("\n " + i + "= " + b.getSeries() + " | " + b.getId() + " | " + b.getValidity() + " | " + b.getAmount() + " | " + b.calcTotal(b.getIdProduct()));
+            i++;
+        }
+        System.out.println("\n===============================");
+
+        char op;
+        do {
+            System.out.println("\n\n= Deseja deletar os lotes vencidos(Y/N): ");
+            op = sc.next().charAt(0);
+
+            if (Character.toUpperCase(op) == 'Y') {
+                deleteExpiredBatchController.execute();
+            } else if(Character.toUpperCase(op) != 'N' && Character.toUpperCase(op) != 'Y')
+                System.out.println(" OPÇÃO INVALIDA!!!");
+
+        }while (Character.toUpperCase(op) != 'N' && Character.toUpperCase(op) != 'Y');
+
+        System.out.println("\n\n===============================");
+    }
+
+    public void filterBatchByStock() {
+        System.out.println("\n===============================");
+        System.out.println("\n===  LOTES COM ESTOQUE BAIXO ===");
+        System.out.println("\n===============================");
+
+        int i = 1;
+        for(Batch b : filterBatchByStockController.execute()) {
+            System.out.println("\n " + i + "= " + b.getSeries() + " | " + b.getId() + " | " + b.getValidity() + " | " + b.getAmount() + " | " + b.calcTotal(b.getIdProduct()));
+            i++;
+        }
+        System.out.println("\n===============================");
+    }
+
+    public void searchMovementByTime() {
+        System.out.println("\n===============================");
+        System.out.println("\n===  MOVIMENTAÇÃO NESSE DIA ===");
+        System.out.println("\n===============================");
+
+        searchMovementByTimeController.execute();
+        System.out.println("\n===============================");
     }
 }

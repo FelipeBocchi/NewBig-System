@@ -12,7 +12,8 @@ public class CreateStockMovement {
     public void execute(Batch batch, String typo, UUID idProduct, int amount, StockMovementRepository movementRepository) {
 
         UUID idBatch = batch.getId();
-        BigDecimal total = batch.calcTotal(idProduct);
+        BigDecimal subtotal = batch.calcTotal(idProduct);
+        BigDecimal total = subtotal.multiply(BigDecimal.valueOf(amount));
         StockMovement movement = new StockMovement(typo, idBatch, idProduct, amount, total);
         movementRepository.saveMovement(movement);
     }

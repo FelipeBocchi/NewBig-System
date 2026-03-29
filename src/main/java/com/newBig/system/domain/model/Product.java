@@ -110,6 +110,7 @@ public class Product {
 
     public BigDecimal getCostPrice() { return salePrice; }
 
+    public int getMinimumStock() { return minimumStock; }
 
     public ProductType getType() { return type; }
 

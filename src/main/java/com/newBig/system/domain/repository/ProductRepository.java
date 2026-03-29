@@ -16,7 +16,7 @@ public interface ProductRepository {
     List<Product> searchByName (String name);
     List<Product> searchBySku (String sku);
     List<Product> searchByBarcode (int barcode);
-    List<Product> searchById (UUID id);
+    Product searchById (UUID id);
 
     // == Listagem no sistema
     List<Product> findAll();

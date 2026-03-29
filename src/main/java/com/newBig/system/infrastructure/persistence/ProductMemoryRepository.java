@@ -43,8 +43,12 @@ public class ProductMemoryRepository implements ProductRepository {
     }
 
     @Override
-    public List<Product> searchById(UUID id) {
-        return List.of();
+    public Product searchById(UUID id) {
+
+        return products.stream().
+                filter( p -> p.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
     // == Filtos ==

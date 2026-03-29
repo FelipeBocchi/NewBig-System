@@ -3,6 +3,7 @@ package com.newBig.system.presentation.view;
 import com.newBig.system.application.usecase.RegisterArrivalBatch;
 import com.newBig.system.application.usecase.RegisterProductUseCase;
 import com.newBig.system.domain.repository.ProductRepository;
+import com.newBig.system.domain.repository.StockMovementRepository;
 import com.newBig.system.domain.repository.StockRepository;
 import com.newBig.system.domain.service.ProductService;
 import com.newBig.system.infrastructure.persistence.MovementMemoryRepository;
@@ -18,7 +19,7 @@ public class Cadastros {
     private ExibirMenus menu = new ExibirMenus();
     private Scanner sc = new Scanner(System.in);
 
-    public void execute(ProductRepository repository, StockRepository stockRepository) {
+    public void execute(ProductRepository repository, StockRepository stockRepository, StockMovementRepository stockMovementRepository) {
 
         int op;
 
@@ -50,13 +51,13 @@ public class Cadastros {
                     break;
 
                 case 3:
-                    MovementMemoryRepository movementMemoryRepository = new MovementMemoryRepository();
 
-                    RegisterArrivalBatch registerArrivalBatch =  new RegisterArrivalBatch(stockRepository, movementMemoryRepository);
+
+                    RegisterArrivalBatch registerArrivalBatch =  new RegisterArrivalBatch(stockRepository, stockMovementRepository);
 
                     RegisterArrivalController registerArrivalController = new RegisterArrivalController(registerArrivalBatch);
 
-                    RegisterArrivalBatchView registerArrivalBatchView = new RegisterArrivalBatchView(registerArrivalController, repository);
+                    RegisterArrivalBatchView registerArrivalBatchView = new RegisterArrivalBatchView(registerArrivalController, repository, stockRepository, stockMovementRepository);
 
                     registerArrivalBatchView.start();
 
