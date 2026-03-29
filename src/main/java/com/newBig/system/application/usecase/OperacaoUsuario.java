@@ -89,7 +89,6 @@ public class OperacaoUsuario {
         }
     }
     public String getNomeById(int id){
-        System.out.println("ID: " + id);
         return DadosUsuario.usuario.get(id).getNome();
     }
 

@@ -181,8 +181,26 @@ public class Verificacoes {
     public String getNomeLogado(){
         return nomeLogado;
     };
+
     public int getIdLogado(){
         return idLogado;
+    };
+
+    public float valor(){
+        boolean passou = false;
+        float n = 0;
+        while (!passou) {
+            System.out.print("Digite o valor: ");
+            try {
+                n = sc.nextFloat();
+                passou = true;
+            } catch (Exception e) {
+                System.out.println("Numero invalido tente novamente");
+                sc.nextLine();
+            }
+        }
+        return n;
+
     };
 
 

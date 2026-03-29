@@ -8,13 +8,13 @@ public class Caixa {
     public static ArrayList<DadosCaixa> caixa = new ArrayList<>();
     static DadosCaixa dados;
     public static float valorAtual = 0;
+    public static float sangria = 0;
     public void abrirCaixa(int idUsuario, float valorAbertura){
         if(valorAtual == 0){
             dados = new DadosCaixa();
             dados.salvarAbertura(idUsuario, valorAbertura);
             addValor(valorAbertura);
             caixa.add(dados);
-            System.out.println(caixa.toString());
         }
         else{
             System.out.println("Existe um caixa em aberto!!!");
@@ -23,9 +23,9 @@ public class Caixa {
 
     public void fecharCaixa(int idUsuario){
         if(valorAtual > 0.0){
-            caixa.get(caixa.size() - 1).salvarFechamento(idUsuario, valorAtual); /*Salva depois de fechar*/
+            caixa.get(caixa.size() - 1).salvarFechamento(idUsuario, valorAtual, sangria); /*Salva depois de fechar*/
             valorAtual = 0; //limpa o caixa
-            System.out.println(caixa.toString());
+            sangria = 0;
         }
         else{
             System.out.println("Caixa não aberto!!!!");
@@ -50,9 +50,17 @@ public class Caixa {
             System.out.println("Valor invalido!!!!!");
         }
     }
+
     public float getValorAtual(){
         return valorAtual;
     }
+
+    public float getSangria(){
+        return sangria;
+    }
+    public void addSangria(float valor){
+      sangria += valor;
+    };
 
     public DadosCaixa dadosCaixaAberto(){
         if(valorAtual > 0.0){
@@ -63,5 +71,10 @@ public class Caixa {
         }
         return null;
     }
+
+    public ArrayList<DadosCaixa> arrayCaixa(){
+        return caixa;
+    };
+
 
 }

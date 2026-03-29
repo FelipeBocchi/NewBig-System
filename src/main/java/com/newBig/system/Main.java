@@ -1,5 +1,7 @@
 package com.newBig.system;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 
+import com.newBig.system.application.usecase.OperacaoCaixa;
+import com.newBig.system.application.usecase.Pagamentos;
 import com.newBig.system.application.usecase.RegisterProductUseCase;
 import com.newBig.system.domain.model.Funcionario;
 import com.newBig.system.domain.repository.ProductRepository;
@@ -23,6 +25,7 @@ public class Main {
         OperacaoCaixa caixa = new OperacaoCaixa();
         IniciarUsuario iniciarUsuario = new IniciarUsuario();
         LoginUsuario login = new LoginUsuario();
+        Pagamentos pagar = new Pagamentos(); /*testando se vai funcionar, tirar antes da entrega*/
 
         if(!rodou){/*Gerar o Admin sempre na primeira vez, e fazer login*/
             DadosUsuario.usuario.add(new Funcionario("Admin", "000000000000", 1, "100", 1000)); /*Admin para ter um usuario para fazer o login*/
@@ -69,6 +72,9 @@ public class Main {
             case 4:
                 login.login();
                 main(null);
+                break;
+            case 5:
+                pagar.pagamento(10);
                 break;
             case 0:
                 /*Sair*/
