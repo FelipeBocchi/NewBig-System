@@ -18,7 +18,7 @@ public class MovementMemoryRepository implements StockMovementRepository {
 
     @Override
     public List<StockMovement> searchByTime(LocalDate day) {
-        return stockMovements.stream().filter( s -> s.getDate().equals(day))
+        return stockMovements.stream().filter( s -> s.getDate().toLocalDate().equals(day))
                 .toList();
     }
 

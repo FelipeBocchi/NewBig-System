@@ -6,6 +6,7 @@ import com.newBig.system.domain.repository.StockMovementRepository;
 import com.newBig.system.presentation.view.AskDate;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class SearchMovementByTimeController {
@@ -27,10 +28,13 @@ public class SearchMovementByTimeController {
 
                 view.showMovement(result);
                 break;
+            } catch (DateTimeParseException e) {
+                view.showError("Formato inválido! Use YYYY-MM-DD");
             } catch (IllegalArgumentException e) {
                 view.showError(e.getMessage());
             } catch (Exception e){
                 view.showError("Erro inesperado.");
+                e.printStackTrace();
             }
         }
     }

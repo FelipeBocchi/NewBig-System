@@ -5,10 +5,6 @@ import com.newBig.system.application.usecase.RegisterProductUseCase;
 import com.newBig.system.domain.repository.ProductRepository;
 import com.newBig.system.domain.repository.StockMovementRepository;
 import com.newBig.system.domain.repository.StockRepository;
-import com.newBig.system.domain.service.ProductService;
-import com.newBig.system.infrastructure.persistence.MovementMemoryRepository;
-import com.newBig.system.infrastructure.persistence.ProductMemoryRepository;
-import com.newBig.system.infrastructure.persistence.StockMemoryRepository;
 import com.newBig.system.presentation.controller.ProductController;
 import com.newBig.system.presentation.controller.RegisterArrivalController;
 
@@ -39,9 +35,7 @@ public class Cadastros {
                 case 2:
                      // jogar para fora pq só cria uma vez
 
-                    ProductService service = new ProductService(repository);
-
-                    RegisterProductUseCase useCase = new RegisterProductUseCase(service);
+                    RegisterProductUseCase useCase = new RegisterProductUseCase(repository);
 
                     ProductController controller = new ProductController(useCase);
 

@@ -12,7 +12,7 @@ public class AskDate {
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Digite a data (YYYY-MM-DD): ");
-        String input = sc.nextLine();
+        String input = sc.nextLine().trim();
 
         return LocalDate.parse(input);
     }

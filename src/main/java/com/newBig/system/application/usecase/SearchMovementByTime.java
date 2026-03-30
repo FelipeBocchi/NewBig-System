@@ -10,8 +10,9 @@ public class SearchMovementByTime {
 
     private StockMovementRepository repository;
 
-    public SearchMovementByTime(StockMovementRepository repository) {
-        this.repository = repository;
+    public SearchMovementByTime(StockMovementRepository stockMovementRepository) {
+        System.out.println("Repository: " + stockMovementRepository);
+        this.repository = stockMovementRepository;
     }
 
     public List<StockMovement> execute(LocalDate day) {

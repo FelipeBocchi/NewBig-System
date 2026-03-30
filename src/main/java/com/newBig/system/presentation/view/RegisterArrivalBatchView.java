@@ -27,16 +27,20 @@ public class RegisterArrivalBatchView {
     private RegisterArrivalController controller;
     private ListAllBatchController listAllBatchController = new ListAllBatchController();
     private ListAllMovementController listAllMovementController = new ListAllMovementController();
-    private FindBatchExpiredController findBatchExpiredController = new FindBatchExpiredController(stockRepository);
-    private DeleteExpiredBatchController deleteExpiredBatchController = new DeleteExpiredBatchController(stockRepository);
-    private FilterBatchByStockController filterBatchByStockController = new FilterBatchByStockController(stockRepository, repository);
-    private SearchMovementByTimeController searchMovementByTimeController = new SearchMovementByTimeController(stockMovementRepository);
+    private FindBatchExpiredController findBatchExpiredController;
+    private DeleteExpiredBatchController deleteExpiredBatchController;
+    private FilterBatchByStockController filterBatchByStockController;
+    private SearchMovementByTimeController searchMovementByTimeController;
 
     public RegisterArrivalBatchView(RegisterArrivalController controller, ProductRepository repository, StockRepository stockRepository, StockMovementRepository stockMovementRepository) {
         this.controller = controller;
         this.repository = repository;
         this.stockRepository = stockRepository;
         this.stockMovementRepository = stockMovementRepository;
+        this.findBatchExpiredController = new FindBatchExpiredController(stockRepository);
+        this.deleteExpiredBatchController = new DeleteExpiredBatchController(stockRepository);
+        this.filterBatchByStockController = new FilterBatchByStockController(stockRepository, repository);
+        this.searchMovementByTimeController = new SearchMovementByTimeController(stockMovementRepository);
     }
 
     public void start() {
