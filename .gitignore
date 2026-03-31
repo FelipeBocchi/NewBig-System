@@ -1,0 +1,14 @@
+# Configurações do IntelliJ (O que causou seu erro)
+.idea/
+*.iml
+out/
+gen/
+
+# Compilação e dependências
+target/
+build/
+.gradle/
+
+# Arquivos do Sistema Operacional
+.DS_Store
+Thumbs.db
