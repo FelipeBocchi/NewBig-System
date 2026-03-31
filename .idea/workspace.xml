@@ -4,54 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e0feb9e-0ffc-493d-b620-33c7e93a8446" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/NewBig-System-main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/newBig/system/application/usecase/OperacaoCaixa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/newBig/system/application/usecase/Pagamentos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/newBig/system/domain/model/DadosCaixa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/newBig/system/infrastructure/persistence/Caixa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/newBig/system/presentation/view/LoginUsuario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/newBig/system/presentation/view/OperacaoCaixa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/application/usecase/AtualizarUsuario.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/application/usecase/CadastroUsuario.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/application/usecase/OperacaoCaixa.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/application/usecase/OperacaoUsuario.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/application/usecase/Pagamentos.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/application/usecase/RegisterProductUseCase.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/application/usecase/Utilidades.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/application/usecase/Verificacoes.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/domain/model/Cliente.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/domain/model/DadosCaixa.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/domain/model/Funcionario.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/domain/model/Product$ProductType.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/domain/model/Product$UnitType.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/domain/model/Product.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/domain/model/Usuario.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/domain/repository/ProductRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/domain/service/ProductService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/infrastructure/persistence/Caixa.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/infrastructure/persistence/DadosUsuario.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/infrastructure/persistence/ProductMemoryRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/presentation/controller/ProductController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/presentation/view/ExibirMenus.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/presentation/view/IniciarUsuario.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/presentation/view/LoginUsuario.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/presentation/view/OperacaoCaixa.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/out/production/NewBig-System-main/com/newBig/system/presentation/view/ProductView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newBig/system/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newBig/system/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newBig/system/application/usecase/AtualizarUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newBig/system/application/usecase/AtualizarUsuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newBig/system/application/usecase/CadastroUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newBig/system/application/usecase/CadastroUsuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newBig/system/application/usecase/OperacaoUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newBig/system/application/usecase/OperacaoUsuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newBig/system/application/usecase/Utilidades.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newBig/system/application/usecase/Utilidades.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newBig/system/application/usecase/Verificacoes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newBig/system/application/usecase/Verificacoes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newBig/system/presentation/view/ExibirMenus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newBig/system/presentation/view/ExibirMenus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/newBig/system/presentation/view/IniciarUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/newBig/system/presentation/view/IniciarUsuario.java" afterDir="false" />
-    </list>
+    <list default="true" id="9e0feb9e-0ffc-493d-b620-33c7e93a8446" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,7 +38,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
