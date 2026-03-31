@@ -11,6 +11,7 @@ public class ProductView {
     private ProductController controller;
     private Scanner sc = new Scanner(System.in);
 
+
     public ProductView(ProductController controller) {
         this.controller = controller;
     }
@@ -41,9 +42,6 @@ public class ProductView {
                     listFindType();
                     break;
 
-                case 5:
-                    listProductsLowStock();
-                    break;
 
                 case 6:
                     listFindPrice();
@@ -74,7 +72,6 @@ public class ProductView {
         System.out.println("2 - Listar Produtos");
         System.out.println("3 - Filtar por Categoria");
         System.out.println("4 - Filtar por Type");
-        System.out.println("5 - Filtar por Estoque baixo");
         System.out.println("6 - Filtar por Preço");
         System.out.println("7 - Filtar por Unit");
         System.out.println("0 - Sair");
@@ -98,9 +95,6 @@ public class ProductView {
         System.out.print("Categoria: ");
         String category = sc.nextLine();
 
-        System.out.print("SKU: ");
-        String sku = sc.nextLine();
-
         System.out.print("Código de Barras: ");
         int barcode = sc.nextInt();
 
@@ -109,9 +103,6 @@ public class ProductView {
 
         System.out.print("Preço de venda: ");
         BigDecimal salePrice = sc.nextBigDecimal();
-
-        System.out.print("Estoque: ");
-        int stock = sc.nextInt();
 
         System.out.print("Estoque minimo: ");
         int minimumStock = sc.nextInt();
@@ -132,7 +123,7 @@ public class ProductView {
         input = sc.nextLine();
         Product.UnitType unit = Product.UnitType.valueOf(input.toUpperCase());
 
-        controller.register(productName, description, department, category, sku, barcode, costPrice, salePrice, stock, minimumStock, type, unit);
+        controller.register(productName, description, department, category, barcode, costPrice, salePrice, minimumStock, type, unit);
 
         System.out.println("\n✅ Produto cadastrado com sucesso!");
     }
@@ -146,9 +137,9 @@ public class ProductView {
                         p.getDepartment() + " | " +
                                 p.getCategory() + " | " +
                                 p.getProductName() + " | " +
-                                p.getSku() + " | " +
-                                p.getBarcode() + " | R$ "
-                              //  p.getPrice()
+                                p.getBarcode() + " [ " +
+                                p.getId()
+
                 )
         );
     }
@@ -184,20 +175,6 @@ public class ProductView {
         );
     }
 
-    private void listProductsLowStock() {
-
-        System.out.println("\n=== Produtos com Estoque baixo ===");
-
-        controller.listFindLowStock().forEach(p ->
-                System.out.println(
-                        p.getDepartment() + " | " +
-                                p.getCategory() + " | " +
-                                p.getProductName() + " | " +
-                                p.getSku() + " | " +
-                                p.getBarcode()
-                )
-        );
-    }
 
     private void listFindPrice() {
         System.out.println(" == Qual parametro de preço quer achar: ");

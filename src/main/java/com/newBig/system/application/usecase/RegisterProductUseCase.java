@@ -1,43 +1,40 @@
 package com.newBig.system.application.usecase;
 
 import com.newBig.system.domain.model.Product;
-import com.newBig.system.domain.service.ProductService;
+import com.newBig.system.domain.repository.ProductRepository;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 
 public class RegisterProductUseCase {
 
-    private ProductService service;
+    private ProductRepository repository;
 
-    public RegisterProductUseCase(ProductService service) {
-        this.service = service;
+    public RegisterProductUseCase(ProductRepository repository) {
+        this.repository = repository;
     }
 
-    public void execute(String productName, String description, String department, String category, String sku, int barcode, BigDecimal costPrice, BigDecimal salePrice, int stock, int minimumStock, Product.ProductType type, Product.UnitType unit) {
-        Product product = new Product(productName, description, department, category, sku, barcode, costPrice, salePrice, stock, minimumStock, type,  unit);
-        service.register(product);
+    public void execute(String productName, String description, String department, String category, int barcode, BigDecimal costPrice, BigDecimal salePrice, int minimumStock, Product.ProductType type, Product.UnitType unit) {
+        Product product = new Product(productName, description, department, category, barcode, costPrice, salePrice, minimumStock, type,  unit);
+        repository.save(product);
     }
 
     public List<Product> listar(){
-        return service.list();
+        return repository.findAll();
     }
 
     public List<Product> findCategory(String category) {
-        return service.getProductsByCategory(category);
+        return repository.findByCategory(category);
     }
 
-    public List<Product> findType(Product.ProductType type) { return service.getProductByType(type); }
+    public List<Product> findType(Product.ProductType type) { return repository.findByType(type); }
 
-    public List<Product> findLowStock() { return  service.getProductLowStock(); }
+    public List<Product> findSalePrice(BigDecimal price) { return repository.findBySalePrice(price); }
 
-    public List<Product> findSalePrice(BigDecimal price) { return  service.getProductBySalePrice(price); }
+    public List<Product> findCostPrice(BigDecimal price) { return repository.findByCostPrice(price); }
 
-    public List<Product> findCostPrice(BigDecimal price) { return  service.getProductByCostPrice(price); }
+    public List<Product> findEqualPrice(BigDecimal price) { return repository.findByEqualPrice(price); }
 
-    public List<Product> findEqualPrice(BigDecimal price) { return  service.getProductByEqualPrice(price); }
-
-    public List<Product> findUnit(Product.UnitType unit) { return  service.getProductByUnit(unit); }
+    public List<Product> findUnit(Product.UnitType unit) { return repository.findByUnit(unit); }
 
 }

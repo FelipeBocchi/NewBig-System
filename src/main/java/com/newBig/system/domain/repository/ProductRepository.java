@@ -16,13 +16,12 @@ public interface ProductRepository {
     List<Product> searchByName (String name);
     List<Product> searchBySku (String sku);
     List<Product> searchByBarcode (int barcode);
-    List<Product> searchById (UUID id);
+    Product searchById (UUID id);
 
     // == Listagem no sistema
     List<Product> findAll();
     List<Product> findByCategory(String category);
     List<Product> findByType(Product.ProductType type);
-    List<Product> findLowStock ();
     List<Product> findBySalePrice(BigDecimal price);
     List<Product> findByCostPrice(BigDecimal price);
     List<Product> findByEqualPrice(BigDecimal price);

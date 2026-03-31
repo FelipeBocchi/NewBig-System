@@ -2,23 +2,23 @@ package com.newBig.system;//TIP To <b>Run</b> code, press <shortcut actionId="Ru
 
 import com.newBig.system.application.usecase.OperacaoCaixa;
 import com.newBig.system.application.usecase.Pagamentos;
-import com.newBig.system.application.usecase.RegisterProductUseCase;
 import com.newBig.system.domain.model.Funcionario;
 import com.newBig.system.domain.repository.ProductRepository;
-import com.newBig.system.domain.service.ProductService;
+import com.newBig.system.domain.repository.StockMovementRepository;
+import com.newBig.system.domain.repository.StockRepository;
+import com.newBig.system.infrastructure.persistence.MovementMemoryRepository;
 import com.newBig.system.infrastructure.persistence.DadosUsuario;
 import com.newBig.system.infrastructure.persistence.ProductMemoryRepository;
-import com.newBig.system.presentation.controller.ProductController;
+import com.newBig.system.infrastructure.persistence.StockMemoryRepository;
+import com.newBig.system.presentation.view.Cadastros;
 import com.newBig.system.presentation.view.*;
 
-import com.newBig.system.presentation.view.ProductView;
-
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-import com.newBig.system.application.usecase.Utilidades;
 import com.newBig.system.presentation.view.IniciarUsuario;
 import com.newBig.system.presentation.view.ExibirMenus;
 
 import java.util.Scanner;
+
 
 public class Main {
     static Scanner sc = new Scanner(System.in);
@@ -26,6 +26,12 @@ public class Main {
     static boolean rodou = false; /*Gerar o Admin sempre na primeira vez, e fazer login*/
 
     public static void main(String[] args) {
+
+        ProductRepository repository = new ProductMemoryRepository();
+        StockRepository stockRepository = new StockMemoryRepository();
+        StockMovementRepository stockMovementRepository = new MovementMemoryRepository();
+
+        Cadastros cadastros = new Cadastros();
         ExibirMenus menu = new ExibirMenus();
         OperacaoCaixa caixa = new OperacaoCaixa();
         IniciarUsuario iniciarUsuario = new IniciarUsuario();
@@ -53,22 +59,10 @@ public class Main {
         sc.nextLine();
         switch (op){
             case 1:
-                iniciarUsuario.iniciar();
+                cadastros.execute(repository, stockRepository, stockMovementRepository, iniciarUsuario);
                 break;
             case 2:
-                ProductRepository repository = new ProductMemoryRepository();
 
-                //
-                ProductService service = new ProductService(repository);
-
-                //useCase
-                RegisterProductUseCase useCase = new RegisterProductUseCase(service);
-
-                ProductController controller = new ProductController(useCase);
-
-                ProductView view = new ProductView(controller);
-
-                view.start();
                 break;
 
             case 3:
