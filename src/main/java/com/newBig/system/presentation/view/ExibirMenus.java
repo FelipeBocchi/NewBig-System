@@ -1,17 +1,18 @@
 package com.newBig.system.presentation.view;
 
-import com.newBig.system.applicaation.usercase.Utilidades;
+import com.newBig.system.application.usecase.Utilidades;
+import com.newBig.system.application.usecase.Verificacoes;
 import com.newBig.system.domain.model.Cliente;
 import com.newBig.system.domain.model.Funcionario;
 import com.newBig.system.domain.model.Usuario;
-import com.newBig.system.applicaation.usercase.AtualizarUsuario;
+import com.newBig.system.application.usecase.AtualizarUsuario;
 import com.newBig.system.infrastructure.persistence.DadosUsuario;
 
 
 public class ExibirMenus {
     AtualizarUsuario atualizar;
     Utilidades util = new Utilidades();
-
+    Verificacoes verificar = new Verificacoes();
     //    Pegar outras classes
     public void setAtualizar(AtualizarUsuario atualizar){
         this.atualizar = atualizar;
@@ -86,8 +87,13 @@ public class ExibirMenus {
         System.out.println("===============================");
         System.out.println("1 - Usuarios");
         System.out.println("2 - Produtos");
+        System.out.println("3 - Caixa");
+        System.out.println("4 - Trocar Usuario");
         System.out.println("0 - Sair");
         System.out.println("===============================");
+        System.out.println("Usuario Logado: " + verificar.getIdLogado() + " - " + verificar.getNomeLogado());
+        System.out.println("===============================");
+
         System.out.print("Escolha uma opção: ");
 
     }

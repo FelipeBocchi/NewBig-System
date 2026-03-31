@@ -1,5 +1,6 @@
-package com.newBig.system.applicaation.usercase;
+package com.newBig.system.application.usecase;
 import com.newBig.system.Main;
+import com.newBig.system.infrastructure.persistence.DadosUsuario;
 import com.newBig.system.presentation.view.ExibirMenus;
 
 import java.util.Scanner;
@@ -87,7 +88,9 @@ public class OperacaoUsuario {
             iniciar();
         }
     }
-
+    public String getNomeById(int id){
+        return DadosUsuario.usuario.get(id).getNome();
+    }
 
 
 

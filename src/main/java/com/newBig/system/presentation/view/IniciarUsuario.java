@@ -1,15 +1,14 @@
 package com.newBig.system.presentation.view;
 
-import com.newBig.system.applicaation.usercase.AtualizarUsuario;
-import com.newBig.system.applicaation.usercase.CadastroUsuario;
-import com.newBig.system.applicaation.usercase.OperacaoUsuario;
+import com.newBig.system.application.usecase.AtualizarUsuario;
+import com.newBig.system.application.usecase.CadastroUsuario;
+import com.newBig.system.application.usecase.OperacaoUsuario;
 import com.newBig.system.domain.model.Funcionario;
 import com.newBig.system.infrastructure.persistence.DadosUsuario;
 
 public class IniciarUsuario {
     public void iniciar(){
         System.out.println("--Sorveteria New big--");
-        DadosUsuario.usuario.add(new Funcionario("Admin", "000000000000", 1, "100", 1000));
         OperacaoUsuario operacaoUsuario = new OperacaoUsuario();
         ExibirMenus print = new ExibirMenus();
         AtualizarUsuario atualizar = new AtualizarUsuario();

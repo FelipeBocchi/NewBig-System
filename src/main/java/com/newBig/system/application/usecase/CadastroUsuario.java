@@ -1,4 +1,4 @@
-package com.newBig.system.applicaation.usercase;
+package com.newBig.system.application.usecase;
 
 import com.newBig.system.domain.model.Cliente;
 import com.newBig.system.domain.model.Funcionario;
@@ -7,9 +7,9 @@ import com.newBig.system.infrastructure.persistence.DadosUsuario;
 import java.util.Scanner;
 
 public class CadastroUsuario {
-    com.newBig.system.applicaation.usercase.OperacaoUsuario operacao;
-    com.newBig.system.applicaation.usercase.Verificacoes verificar = new com.newBig.system.applicaation.usercase.Verificacoes();
-    public void setOperacao(com.newBig.system.applicaation.usercase.OperacaoUsuario operacao){this.operacao = operacao;}
+    OperacaoUsuario operacao;
+    Verificacoes verificar = new com.newBig.system.application.usecase.Verificacoes();
+    public void setOperacao(com.newBig.system.application.usecase.OperacaoUsuario operacao){this.operacao = operacao;}
     Scanner sc = new Scanner(System.in);
     public void novo(){
         System.out.println("--Novo--");
