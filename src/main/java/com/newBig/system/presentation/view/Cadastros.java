@@ -15,7 +15,7 @@ public class Cadastros {
     private ExibirMenus menu = new ExibirMenus();
     private Scanner sc = new Scanner(System.in);
 
-    public void execute(ProductRepository repository, StockRepository stockRepository, StockMovementRepository stockMovementRepository) {
+    public void execute(ProductRepository repository, StockRepository stockRepository, StockMovementRepository stockMovementRepository, IniciarUsuario iniciarUsuario) {
 
         int op;
 
@@ -28,7 +28,6 @@ public class Cadastros {
             switch (op) {
 
                 case 1:
-                    IniciarUsuario iniciarUsuario = new IniciarUsuario();
                     iniciarUsuario.iniciar();
                     break;
 

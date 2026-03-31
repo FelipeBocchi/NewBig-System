@@ -1,4 +1,4 @@
-package com.newBig.system.applicaation.usercase;
+package com.newBig.system.application.usecase;
 
 import com.newBig.system.domain.model.Cliente;
 import com.newBig.system.presentation.view.ExibirMenus;
