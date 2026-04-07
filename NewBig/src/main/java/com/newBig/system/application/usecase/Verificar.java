@@ -1,12 +1,18 @@
 package com.newBig.system.application.usecase;
 
 import com.newBig.system.Main;
+import com.newBig.system.domain.repository.CustomizerFactory;
+import com.newBig.system.domain.repository.FuncionarioRepo;
+import jakarta.persistence.EntityManager;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Verificar {
     Scanner sc = new Scanner(System.in);
+    EntityManager em = CustomizerFactory.getEntityManager(); /*Pegar objeto que conecta com o banco*/
+    FuncionarioRepo funcionarioRepo = new FuncionarioRepo(em);
+
     public int opcao(){
         try{
             int op;
@@ -26,7 +32,9 @@ public class Verificar {
             System.out.println("Erro ao escolher opcao");
             return 0;
         }
-    }
+    } /*Opcao para switch*/
+
+
     public int senha(){
         int senha = -1;
         while(senha < 1000 || senha > 9999){
@@ -38,8 +46,57 @@ public class Verificar {
                 System.out.println("Senha invalida, Tente Novamente");
                 sc.nextLine();
             }
-
         }
         return senha;
+    } /*senha do funcionario*/
+
+    public Long login(){
+        System.out.println("--Verificar Usuario--");
+        System.out.println("Login: ");
+        String login = sc.nextLine();
+        System.out.println("Senha: ");
+        int senha = senha();
+        var funcionarios = funcionarioRepo.BuscaFuncionarios();
+        for (int i = 0; i < funcionarios.size(); i++) {
+            if (login.equals(funcionarios.get(i).getLogin()) && senha == funcionarios.get(i).getSenha()){
+                String continuar;
+                do {
+                    System.out.println("Usuario: " + funcionarios.get(i).getNome() + " (s/n)");
+                    continuar = sc.nextLine().toLowerCase();
+                    if (continuar.equals("s")) {
+                        return funcionarios.get(i).getId();
+                    } else if (!continuar.equals("n")) {
+                        System.out.println("Erro!!! Responda somente com s/n");
+                    }
+                } while (!continuar.equals("n"));
+                if(continuar.equals("n")){
+                    System.out.println("Tente novamente!!!");
+                    Main.main(null);
+                }
+            }
+            else{
+                System.out.println("Login e senha não encontrados");
+                break;
+            }
+        }
+        return 0L;
+    }
+
+    public boolean acesso(Long id, int nivel){
+        var funcionario = funcionarioRepo.SelecionarFuncionario(id);
+        if(id != 0){
+            if(funcionario.getAcesso() == nivel){
+                return true;
+            }
+            else{
+                System.out.println("Funcionario sem acesso!!!");
+                return false;
+            }
+        }
+        else{
+            System.out.println("Erro ao buscar!!");
+            Main.main(null);
+        }
+        return false;
     }
 }

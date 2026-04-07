@@ -17,6 +17,7 @@ public class CadastroUsuario {
     ClienteRepo cliRepo = new ClienteRepo(em);
     Verificar verificar = new Verificar();
     public void novo(){
+        verificar.acesso(verificar.login(), 1);
         System.out.println("--Novo--");
         String nome = "";
         String cpf = "";

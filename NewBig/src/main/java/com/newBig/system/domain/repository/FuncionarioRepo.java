@@ -49,10 +49,24 @@ public class FuncionarioRepo {
     }
 
     public Funcionario SelecionarFuncionario(Long id) {
-        return em.createQuery( /*Query cria uma consulta no banco*/
-                "SELECT f FROM Funcionario f WHERE f.id = :id", Funcionario.class
-        )
-                .setParameter("id", id)
-                .getSingleResult(); /*Executa a consulta*/
+        try{
+            return em.createQuery( /*Query cria uma consulta no banco*/
+                            "SELECT f FROM Funcionario f WHERE f.id = :id", Funcionario.class
+                    )
+                    .setParameter("id", id)
+                    .getSingleResult(); /*Executa a consulta*/
+        }
+        catch (jakarta.persistence.NoResultException e){
+            System.out.println("Funcionario não encontrado");
+            return null;
+        }
+    }
+
+    public List<Funcionario> BuscaPorNome(String nome){
+        return em.createQuery(/*Query cria uma consulta no banco*/
+                        "SELECT f FROM Funcionario f WHERE f.nome LIKE :nome", Funcionario.class /*Define o retorno*/
+                )
+                .setParameter("nome", "%" + nome + "%") /*Define o valor do parametro :nome*/
+                .getResultList(); /*Retorna a lista*/
     }
 }

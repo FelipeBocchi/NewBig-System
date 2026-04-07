@@ -9,9 +9,9 @@
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">1212</property>
 
-        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.show_sql">false</property> <!--false tirar mensagem-->
         <property name="hibernate.format_sql">true</property>
-        <property name="hibernate.hbm2ddl.auto">none</property>
+        <property name="hibernate.hbm2ddl.auto">none</property> <!--none para usar o flyway -->
 
         <mapping class="com.newBig.system.domain.model.DadosCaixa"/>
         <mapping class="com.newBig.system.domain.model.Funcionario"/>
