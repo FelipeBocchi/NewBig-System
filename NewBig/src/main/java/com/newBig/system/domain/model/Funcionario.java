@@ -13,7 +13,7 @@ public class Funcionario{
     @Column(name = "nome", nullable = false, length = 100)
     private String nome;
 
-    @Column(name = "cpf", nullable = false, unique = true, length = 15)
+    @Column(name = "cpf", nullable = false, unique = true, length = 11)
     private String cpf;
 
     @Column(name = "acesso", nullable = false)
@@ -69,6 +69,14 @@ public class Funcionario{
 
 
     /*--------------------setters-----------------------*/
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
     public void setAcesso(int acesso) {
         this.acesso = acesso;

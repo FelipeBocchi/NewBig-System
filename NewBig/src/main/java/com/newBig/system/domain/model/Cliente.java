@@ -13,22 +13,22 @@ public class Cliente{
     @Column(name = "nome", nullable = false, length = 100)
     private String nome;
 
-    @Column(name = "cpf", nullable = false, unique = true, length = 15)
+    @Column(name = "cpf", nullable = false, unique = true, length = 11)
     private String cpf;
 
-    @Column(name = "cep", nullable = false)
+    @Column(name = "cep", nullable = false, length = 8)
     private String cep;
 
-    @Column(name = "rua", nullable = false)
+    @Column(name = "rua", nullable = false, length = 100)
     private String rua;
 
-    @Column(name = "numero", nullable = false)
+    @Column(name = "numero")
     private int numero;
 
-    @Column(name = "bairro", nullable = false)
+    @Column(name = "bairro", nullable = false, length = 100)
     private String bairro;
 
-    @Column(name = "telefone", nullable = false)
+    @Column(name = "telefone", nullable = false, length = 11)
     private String telefone;
 
     public Cliente(){};
@@ -77,18 +77,16 @@ public class Cliente{
         return telefone;
     }
 
-    public String getDadosCliente(){
-        return String.format(
-                "\n CEP: %-20s" +
-                        "\n Rua: %-20s" +
-                        "\n Numero: %-20d" +
-                        "\n Bairro: %-20s" +
-                        "\n Telefone: %-20s",
-                cep, rua, numero, bairro, telefone
-        );
-    }
 //  Setters
 
+
+    public void setNome(String nome)  {
+        this.nome = nome;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
     public void setCep(String cep) {
         this.cep = cep;

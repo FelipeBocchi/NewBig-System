@@ -44,7 +44,15 @@ public class FuncionarioRepo {
 
     public List<Funcionario> BuscaFuncionarios() {
         return em.createQuery( /*Query cria uma consulta no banco*/
-                "SELECT c FROM Funcionario c", Funcionario.class
+                "SELECT f FROM Funcionario f", Funcionario.class
         ).getResultList(); /*Executa a consulta*/
+    }
+
+    public Funcionario SelecionarFuncionario(Long id) {
+        return em.createQuery( /*Query cria uma consulta no banco*/
+                "SELECT f FROM Funcionario f WHERE f.id = :id", Funcionario.class
+        )
+                .setParameter("id", id)
+                .getSingleResult(); /*Executa a consulta*/
     }
 }

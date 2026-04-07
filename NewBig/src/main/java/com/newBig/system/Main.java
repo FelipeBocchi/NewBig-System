@@ -1,5 +1,6 @@
 package com.newBig.system;
 
+import com.newBig.system.application.usecase.AtualizarUsuario;
 import com.newBig.system.application.usecase.CadastroUsuario;
 import com.newBig.system.domain.model.Funcionario;
 import com.newBig.system.domain.repository.CustomizerFactory;
@@ -13,6 +14,8 @@ public class Main {
         CadastroUsuario cadastroUsuario = new CadastroUsuario();
         FuncionarioView funcionarioView = new FuncionarioView();
         ClienteView clienteView = new ClienteView();
+        AtualizarUsuario atualizarUsuario = new AtualizarUsuario();
+        atualizarUsuario.iniciar();
 //        cadastroUsuario.novo();
 //        funcionarioView.print();
 //        clienteView.print();

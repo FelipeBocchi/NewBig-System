@@ -48,11 +48,19 @@ public class ClienteRepo {
         ).getResultList(); /*Executa a consulta*/
     }
 
-    public List<Cliente> BuscaPorNome(String nome){
+    public List<Cliente> BuscaPorNome(String nome){ /*Terminar isso depois*/
         return em.createQuery(/*Query cria uma consulta no banco*/
                 "SELECT c FROM Cliente c WHERE c.nome LIKE :nome", Cliente.class /*Define o retorno*/
         )
                 .setParameter("nome", "%" + nome + "%") /*Define o valor do parametro :nome*/
                 .getResultList(); /*Retorna a lista*/
+    }
+
+    public Cliente SelecionarCliente(Long id) {
+        return em.createQuery( /*Query cria uma consulta no banco*/
+                        "SELECT c FROM Cliente c WHERE c.id = :id", Cliente.class
+                )
+                .setParameter("id", id)
+                .getSingleResult(); /*Executa a consulta*/
     }
 }

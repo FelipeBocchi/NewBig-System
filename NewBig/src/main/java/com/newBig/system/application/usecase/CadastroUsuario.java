@@ -15,6 +15,7 @@ public class CadastroUsuario {
     EntityManager em = CustomizerFactory.getEntityManager();
     FuncionarioRepo funRepo = new FuncionarioRepo(em);
     ClienteRepo cliRepo = new ClienteRepo(em);
+    Verificar verificar = new Verificar();
     public void novo(){
         System.out.println("--Novo--");
         String nome = "";
@@ -82,8 +83,7 @@ public class CadastroUsuario {
                     System.out.println("Login: ");
                     login = sc.nextLine();
                     System.out.println("senha:");
-                    senha = sc.nextInt();
-                    limparBuffer();
+                    senha = verificar.senha();
                     Funcionario funcionario = new Funcionario(nome, cpf, acesso, login, senha);
                     funRepo.create(funcionario);
                     Main.main(null);
