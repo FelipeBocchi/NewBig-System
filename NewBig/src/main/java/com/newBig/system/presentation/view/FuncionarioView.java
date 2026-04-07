@@ -1,5 +1,6 @@
 package com.newBig.system.presentation.view;
 
+import com.newBig.system.Main;
 import com.newBig.system.domain.repository.CustomizerFactory;
 import com.newBig.system.domain.repository.FuncionarioRepo;
 import jakarta.persistence.EntityManager;
@@ -37,8 +38,12 @@ public class FuncionarioView {
 
     public void nome(){
         try{
-            System.out.println("Nome: ");
-            var lista = dados.BuscaPorNome(sc.nextLine());
+            System.out.println("Nome(Enter para sair): ");
+            String nome = sc.nextLine();
+            if(nome.isEmpty()){
+                Main.main(null);
+            }
+            var lista = dados.BuscaPorNome(nome);
             System.out.println("-------------------------------------------------------------------");
             System.out.printf("%-4s %-15s %-15s %-12s\n", "ID", "Nome", "CPF", "Acesso");
             System.out.println("-------------------------------------------------------------------");

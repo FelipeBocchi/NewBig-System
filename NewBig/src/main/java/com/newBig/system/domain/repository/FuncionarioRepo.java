@@ -57,7 +57,7 @@ public class FuncionarioRepo {
                     .getSingleResult(); /*Executa a consulta*/
         }
         catch (jakarta.persistence.NoResultException e){
-            System.out.println("Funcionario não encontrado");
+            System.out.println("Funcionario não encontrado no Banco de Dados");
             return null;
         }
     }

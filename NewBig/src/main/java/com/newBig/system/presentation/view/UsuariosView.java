@@ -9,7 +9,7 @@ public class UsuariosView {
     Verificar verificar = new Verificar();
     CadastroUsuario cadastroUsuario = new CadastroUsuario();
     AtualizarUsuario atualizarUsuario = new AtualizarUsuario();
-    RelatorioUsuario relatorioUsuario = new RelatorioUsuario();
+    RelatorioUsuarioView relatorioUsuario = new RelatorioUsuarioView();
     public void print(){
         System.out.println("\n===============================");
         System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM ");

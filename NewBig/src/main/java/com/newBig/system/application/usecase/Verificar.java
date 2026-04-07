@@ -74,18 +74,18 @@ public class Verificar {
                     Main.main(null);
                 }
             }
-            else{
-                System.out.println("Login e senha não encontrados");
-                break;
-            }
         }
-        return 0L;
+        System.out.println("Login e senha invalidos!!");
+        return null;
     }
 
     public boolean acesso(Long id, int nivel){
         var funcionario = funcionarioRepo.SelecionarFuncionario(id);
-        if(id != 0){
-            if(funcionario.getAcesso() == nivel){
+        if(id == null){
+            return false;
+        }
+        else{
+            if(funcionario.getAcesso() <= nivel){
                 return true;
             }
             else{
@@ -93,10 +93,15 @@ public class Verificar {
                 return false;
             }
         }
-        else{
-            System.out.println("Erro ao buscar!!");
-            Main.main(null);
+    }
+
+    public String nomeLogado(Long id){
+        var funcionarios = funcionarioRepo.BuscaFuncionarios();
+        for (int i = 0; i < funcionarios.size(); i++) {
+            if(funcionarios.get(i).getId().equals(id)){
+                return funcionarios.get(i).getNome();
+            }
         }
-        return false;
+        return "Não encontrado";
     }
 }
