@@ -1,5 +1,6 @@
 package com.newBig.system.presentation.view;
 
+import com.newBig.system.Main;
 import com.newBig.system.domain.repository.ClienteRepo;
 import com.newBig.system.domain.repository.CustomizerFactory;
 import jakarta.persistence.EntityManager;
@@ -29,17 +30,24 @@ public class ClienteView {
 
     public void nome(){
         try{
-            System.out.println("Nome: ");
-            var lista = dados.BuscaPorNome(sc.nextLine());
+            System.out.println("Nome (Enter para sair): ");
+            String nome = sc.nextLine();
+            if(nome.isEmpty()){
+                Main.main(null);
+            }
+            var lista = dados.BuscaPorNome(nome);
             System.out.println("------------------------------------------------------------------------------------------------------------");
             System.out.printf("%-4s %-15s %-15s %-10s %-15s %-8s %-15s %-15s\n", "ID", "Nome", "CPF", "CEP", "Rua", "Num", "Bairro", "Telefone");
             System.out.println("------------------------------------------------------------------------------------------------------------");
+            if(lista.isEmpty()){
+                System.out.println("Nenhum cliente encontrado!! Verifique o nome");
+            }
             for (int i = 0; i < lista.size(); i++) {
                 System.out.printf("%-4d %-15s %-15s %-10s %-15s %-8d %-15s %-15s\n", lista.get(i).getId(), lista.get(i).getNome(), lista.get(i).getCpf(), lista.get(i).getCep(), lista.get(i).getRua(), lista.get(i).getNumero(), lista.get(i).getBairro(), lista.get(i).getTelefone());
             }
         }
         catch (PersistenceException e){
-            System.out.println("Cliente não encontrado!!!");
+            System.out.println("Erro ao consultar o banco!!!");
         }
     }
 }

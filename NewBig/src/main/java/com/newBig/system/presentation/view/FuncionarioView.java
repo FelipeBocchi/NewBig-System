@@ -38,7 +38,7 @@ public class FuncionarioView {
 
     public void nome(){
         try{
-            System.out.println("Nome(Enter para sair): ");
+            System.out.println("Nome (Enter para sair): ");
             String nome = sc.nextLine();
             if(nome.isEmpty()){
                 Main.main(null);
@@ -47,6 +47,9 @@ public class FuncionarioView {
             System.out.println("-------------------------------------------------------------------");
             System.out.printf("%-4s %-15s %-15s %-12s\n", "ID", "Nome", "CPF", "Acesso");
             System.out.println("-------------------------------------------------------------------");
+            if(lista.isEmpty()) { /*lista vazia*/
+                System.out.println("Nenhum funcionario encontrado!!");
+            }
             for (int i = 0; i < lista.size(); i++) {
                 if(lista.get(i).getAcesso() == 1){ /*Verificar se é administrador*/
                     System.out.printf("%-4s %-15s %-15s %-12s\n", lista.get(i).getId(), lista.get(i).getNome(), lista.get(i).getCpf(), "Administrador");
@@ -60,7 +63,7 @@ public class FuncionarioView {
             }
         }
         catch (PersistenceException e){
-            System.out.println("Cliente não encontrado!!!");
+            System.out.println("Erro ao consultar o banco!!!");
         }
     }
 }

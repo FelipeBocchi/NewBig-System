@@ -1,12 +1,13 @@
 package com.newBig.system.domain.model;
 
+import com.newBig.system.domain.repository.FuncionarioRepo;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "DadosCaixa")
+@Table(name = "dados_caixa")
 public class DadosCaixa {
 
     @Id
@@ -14,19 +15,21 @@ public class DadosCaixa {
     private Long id;
 
     @Column(name = "valorAbertura", nullable = false)
-    private float valorAbertura;
+    private double valorAbertura;
 
     @Column(name = "valorFechamento")
-    private Float valorFechamento;
+    private double valorFechamento;
 
-    @Column(name = "idUsuarioAbertura", nullable = false)
-    private int idUsuarioAbertura;
+    @ManyToOne
+    @JoinColumn(name = "usuarioAbertura", nullable = false)
+    private Funcionario usuarioAbertura;
 
-    @Column(name = "idUsuarioFechamento")
-    private int idUsuarioFechamento;
+    @ManyToOne
+    @JoinColumn(name = "usuarioFechamento")
+    private Funcionario usuarioFechamento;
 
     @Column(name = "valorSangria")
-    private Float valorSangria;
+    private double valorSangria;
 
     @Column(name = "dataAbertura", nullable = false)
     private LocalDate dataAbertura;
@@ -40,12 +43,15 @@ public class DadosCaixa {
     @Column(name = "horaFechamento")
     private LocalTime horaFechamento;
 
+    @Column(name = "status", nullable = false)
+    private int status;
+
     public DadosCaixa(){};
 
-    public DadosCaixa(LocalTime horaAbertura, LocalDate dataAbertura, int idUsuarioAbertura, float valorAbertura) {
+    public DadosCaixa(LocalTime horaAbertura, LocalDate dataAbertura, Funcionario funcionario, float valorAbertura) {
         this.horaAbertura = horaAbertura;
         this.dataAbertura = dataAbertura;
-        this.idUsuarioAbertura = idUsuarioAbertura;
+        this.usuarioAbertura = funcionario;
         this.valorAbertura = valorAbertura;
     }
 
@@ -53,12 +59,12 @@ public class DadosCaixa {
         return id;
     }
 
-    public float getValorAbertura() {
-        return valorAbertura;
+    public Funcionario getUsuarioAbertura() {
+        return usuarioAbertura;
     }
 
-    public int getIdUsuarioAbertura() {
-        return idUsuarioAbertura;
+    public double getValorAbertura() {
+        return valorAbertura;
     }
 
     public LocalDate getDataAbertura() {
@@ -69,34 +75,21 @@ public class DadosCaixa {
         return horaAbertura;
     }
 
-    public void salvarAbertura(int id, float valor){
-        this.idUsuarioAbertura = id;
+    public void salvarAbertura(Funcionario funcionario, double valor){
+        this.usuarioAbertura = funcionario;
         this.valorAbertura= valor;
         this.dataAbertura = LocalDate.now();
         this.horaAbertura = LocalTime.now();
+        this.status = 0;
     }
 
-    public void salvarFechamento(int id, float valor, float sangria){
-        this.idUsuarioFechamento = id;
+    public void salvarFechamento(Funcionario funcionario, double valor, double sangria){
+        this.usuarioFechamento = funcionario;
         this.valorFechamento = valor;
         this.valorSangria = sangria;
         this.dataFechamento = LocalDate.now();
         this.horaFechamento = LocalTime.now();
+        this.status = 1;
     }
 
-    @Override
-    public String toString() {
-        return "      ---DadosCaixa---   \n" +
-                "  ID do caixa: " + id + "\n" +
-                "  Valor de Abertura: " + valorAbertura + "\n" +
-                "  Valor de Fechamento: " + valorFechamento + "\n" +
-                "  ID Usuario de Abertura: " + idUsuarioAbertura + "\n" +
-                "  ID Usuario de Fechamento: " + idUsuarioFechamento + "\n" +
-                "  Data de Abertura: " + dataAbertura + "\n" +
-                "  Data de Fechamento: " + dataFechamento + "\n" +
-                "  Hora de Abertura: " + horaAbertura + "\n" +
-                "  Hora de Fechamento: " + horaFechamento + "\n" +
-                "}";
-
-    }
 }

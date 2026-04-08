@@ -15,10 +15,6 @@ public class FuncionarioRepo {
         this.em = em;
     }
 
-    public Funcionario findById(Long id){ /*SELECT * FROM usuario WHERE id = (id que envia) */
-        return em.find(Funcionario.class, id);
-    }
-
     public void create(Funcionario dados){
         try {
             em.getTransaction().begin(); /*Comeca o banco*/
@@ -31,9 +27,16 @@ public class FuncionarioRepo {
     }
 
     public void update(Funcionario dados) {
-        em.getTransaction().begin();
-        em.merge(dados);
-        em.getTransaction().commit();
+        try{
+            em.getTransaction().begin();
+            em.merge(dados);
+            em.getTransaction().commit();
+        }
+        catch (Exception e){
+            em.getTransaction().rollback(); /* Não deixa salvar se dar erro */
+            System.out.println("Erro ao salvar!! Nada foi salvo no Banco de dados");
+        }
+
     }
 
     public void delete(Funcionario dados) {
@@ -50,11 +53,7 @@ public class FuncionarioRepo {
 
     public Funcionario SelecionarFuncionario(Long id) {
         try{
-            return em.createQuery( /*Query cria uma consulta no banco*/
-                            "SELECT f FROM Funcionario f WHERE f.id = :id", Funcionario.class
-                    )
-                    .setParameter("id", id)
-                    .getSingleResult(); /*Executa a consulta*/
+            return em.find(Funcionario.class, id); /*Busca pelo id*/
         }
         catch (jakarta.persistence.NoResultException e){
             System.out.println("Funcionario não encontrado no Banco de Dados");

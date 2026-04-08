@@ -10,6 +10,7 @@ public class UsuariosView {
     CadastroUsuario cadastroUsuario = new CadastroUsuario();
     AtualizarUsuario atualizarUsuario = new AtualizarUsuario();
     RelatorioUsuarioView relatorioUsuario = new RelatorioUsuarioView();
+    DeletarUsuarioView deletarUsuarioView = new DeletarUsuarioView();
     public void print(){
         System.out.println("\n===============================");
         System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM ");
@@ -19,6 +20,7 @@ public class UsuariosView {
         System.out.println("1 - Cadastrar");
         System.out.println("2 - Atualizar");
         System.out.println("3 - Buscar");
+        System.out.println("4 - Deletar");
         System.out.println("0 - Voltar");
         System.out.println("===============================");
         switch (verificar.opcao()){
@@ -30,6 +32,9 @@ public class UsuariosView {
                 break;
             case 3:
                 relatorioUsuario.iniciar();
+                break;
+            case 4:
+                deletarUsuarioView.iniciar();
                 break;
             case 0:
                 Main.main(null);

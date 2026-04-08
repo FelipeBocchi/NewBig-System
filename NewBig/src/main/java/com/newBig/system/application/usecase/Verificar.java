@@ -76,7 +76,7 @@ public class Verificar {
             }
         }
         System.out.println("Login e senha invalidos!!");
-        return null;
+        return login();
     }
 
     public boolean acesso(Long id, int nivel){
@@ -103,5 +103,21 @@ public class Verificar {
             }
         }
         return "Não encontrado";
+    }
+
+    public Long id(){
+        Long id = 0L;
+        while (true){
+            try {
+                System.out.print("Digite o ID: ");
+                id = sc.nextLong();
+                sc.nextLine();
+                return id;
+            }
+            catch (java.util.InputMismatchException e){
+                System.out.println("Digite apenas numeros!!");
+                sc.nextLine();
+            }
+        }
     }
 }

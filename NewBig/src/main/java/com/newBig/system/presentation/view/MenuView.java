@@ -13,6 +13,7 @@ public class MenuView {
         System.out.println("2 - Produtos");
         System.out.println("3 - Caixa");
         System.out.println("4 - Trocar Usuario");
+        System.out.println("5 - Vendas");
         System.out.println("0 - Sair");
         System.out.println("===============================");
         System.out.println("Usuario Logado: " + id + " - " + verificar.nomeLogado(id));

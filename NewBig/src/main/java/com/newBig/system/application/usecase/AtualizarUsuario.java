@@ -20,6 +20,7 @@ public class AtualizarUsuario {
     EntityManager em = CustomizerFactory.getEntityManager(); /*Pegar objeto que conecta com o banco*/
     FuncionarioRepo funcionarioRepo = new FuncionarioRepo(em);
     ClienteRepo clienteRepo = new ClienteRepo(em);
+
     public void iniciar(){
         System.out.println("\n===============================");
         System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
@@ -128,6 +129,7 @@ public class AtualizarUsuario {
             } while (!continuar.equals("n"));
             if(continuar.equals("n")){
                 funcionarioRepo.update(escolhido);
+                Main.main(null);
             }
         } catch (Exception e) {
             System.out.println("Erro ao Atualizar Funcionario!!!");
@@ -227,6 +229,7 @@ public class AtualizarUsuario {
             } while (!continuar.equals("n"));
             if(continuar.equals("n")){
                 clienteRepo.update(escolhido);
+                Main.main(null);
             }
         } catch (Exception e) {
             System.out.println("Erro ao Atualizar Funcionario!!!");
