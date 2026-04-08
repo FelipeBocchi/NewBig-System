@@ -1,26 +1,40 @@
 package com.newBig.system.domain.model;
 
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Entity
+@Table(name = "stock_movement")
 public class StockMovement {
 
-    private final String type;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
-    private final UUID idBatch;
-    private final UUID idProduct;
+    @OneToOne
+    @JoinColumn(name = "id_batch")
+    private Batch batch;
 
-    private final int quantity;
+    @Column(name = "type")
+    private String type;
 
-    private final BigDecimal value;
+    @Column(name = "quantity")
+    private int quantity;
 
-    private final LocalDateTime date;
+    @Column(name = "value")
+    private BigDecimal value;
 
-    public StockMovement(String type, UUID idBatch, UUID idProduct, int quantity, BigDecimal value) {
+    @Column(name = "date")
+    private LocalDateTime date;
+
+    //  = Construtor protegido para o JPA
+    protected StockMovement() {}
+
+    public StockMovement(String type, Batch idBatch, int quantity, BigDecimal value) {
         this.type = type;
-        this.idBatch = idBatch;
-        this.idProduct = idProduct;
+        this.batch = idBatch;
         this.quantity = quantity;
         this.value = value;
         this.date = LocalDateTime.now();
@@ -30,12 +44,8 @@ public class StockMovement {
         return type;
     }
 
-    public UUID getIdBatch() {
-        return idBatch;
-    }
-
-    public UUID getIdProduct() {
-        return idProduct;
+    public Batch getIdBatch() {
+        return batch;
     }
 
     public int getQuantity() {

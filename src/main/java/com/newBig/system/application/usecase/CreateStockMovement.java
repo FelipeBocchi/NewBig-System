@@ -9,12 +9,11 @@ import java.util.UUID;
 
 public class CreateStockMovement {
 
-    public void execute(Batch batch, String typo, UUID idProduct, int amount, StockMovementRepository movementRepository) {
+    public void execute(Batch batch, String typo, int amount, StockMovementRepository movementRepository) {
 
-        UUID idBatch = batch.getId();
-        BigDecimal subtotal = batch.calcTotal(idProduct);
+        BigDecimal subtotal = batch.getProduct().getSalePrice();
         BigDecimal total = subtotal.multiply(BigDecimal.valueOf(amount));
-        StockMovement movement = new StockMovement(typo, idBatch, idProduct, amount, total);
+        StockMovement movement = new StockMovement(typo, batch, amount, total);
         movementRepository.saveMovement(movement);
     }
 }

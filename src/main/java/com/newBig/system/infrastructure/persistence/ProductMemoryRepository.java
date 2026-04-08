@@ -33,11 +33,6 @@ public class ProductMemoryRepository implements ProductRepository {
     }
 
     @Override
-    public List<Product> searchBySku(String sku) {
-        return List.of();
-    }
-
-    @Override
     public List<Product> searchByBarcode(int barcode) {
         return List.of();
     }

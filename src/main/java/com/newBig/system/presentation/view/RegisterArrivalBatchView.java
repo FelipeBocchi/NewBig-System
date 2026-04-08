@@ -164,7 +164,7 @@ public class RegisterArrivalBatchView {
 
         int i = 1;
         for(Batch b : listAllBatchController.execute(stockRepository)) {
-        System.out.println("\n " + i + "= " + b.getSeries() + " | " + b.getIdProduct() + " | " + b.getAmount() + " | " + b.getValidity());
+        System.out.println("\n " + i + "= " + b.getSeries() + " | " + b.getProduct().getId() + " | " + b.getAmount() + " | " + b.getValidity());
         i++;
         }
         System.out.println("\n===============================");
@@ -191,7 +191,7 @@ public class RegisterArrivalBatchView {
         System.out.println("\n\n===============================");
         int i = 1;
         for(Batch b : findBatchExpiredController.execute()) {
-            System.out.println("\n " + i + "= " + b.getSeries() + " | " + b.getId() + " | " + b.getValidity() + " | " + b.getAmount() + " | " + b.calcTotal(b.getIdProduct()));
+            System.out.println("\n " + i + "= " + b.getSeries() + " | " + b.getId() + " | " + b.getValidity() + " | " + b.getAmount() + " | " + b.getProduct().getSalePrice().multiply(BigDecimal.valueOf(b.getAmount())));
             i++;
         }
         System.out.println("\n===============================");
@@ -218,7 +218,7 @@ public class RegisterArrivalBatchView {
 
         int i = 1;
         for(Batch b : filterBatchByStockController.execute()) {
-            System.out.println("\n " + i + "= " + b.getSeries() + " | " + b.getId() + " | " + b.getValidity() + " | " + b.getAmount() + " | " + b.calcTotal(b.getIdProduct()));
+            System.out.println("\n " + i + "= " + b.getSeries() + " | " + b.getId() + " | " + b.getValidity() + " | " + b.getAmount() + " | " + b.getProduct().getSalePrice().multiply(BigDecimal.valueOf(b.getAmount())));
             i++;
         }
         System.out.println("\n===============================");

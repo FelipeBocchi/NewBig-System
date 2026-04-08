@@ -16,7 +16,8 @@ public class FindBatchExpired {
 
     public List<Batch> execute() {
 
-        Stock stock = repository.get();
+        List<Batch> findAllBatch = repository.findAll();
+        Stock stock = new Stock(findAllBatch);
 
         return stock.batchesExpired();
     }

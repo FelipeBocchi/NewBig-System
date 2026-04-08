@@ -6,10 +6,15 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 
+
 public class Stock {
 
     private List<Batch> batchs = new ArrayList<>();
     private List<Batch> batchesBuy = new ArrayList<>();
+
+    public Stock(List<Batch> batchsFromDatabase) {
+        this.batchs = batchsFromDatabase;
+    }
 
     public void saveBatch(Batch batch) {
         batchs.add(batch);
@@ -28,7 +33,7 @@ public class Stock {
 
         // == FEFO - vai organizar os lotes por validade para poder vender o com a validade mais próxima
         List<Batch> batchProduct = batchs.stream()
-                .filter(l -> l.getIdProduct().equals(idProduct))
+                .filter(l -> l.getProduct().getId().equals(idProduct))
                 .filter(l -> !l.isExpired())
                 .sorted(Comparator.comparing(Batch::getValidity))
                 .toList();
@@ -61,7 +66,7 @@ public class Stock {
 
         int total = 0;
         for( Batch b: batchs) {
-            if (b.getIdProduct().equals(idProduct)) total += b.getAmount();
+            if (b.getProduct().getId().equals(idProduct)) total += b.getAmount();
         }
 
         return total;
@@ -71,7 +76,7 @@ public class Stock {
 
         int quantity = 0;
         for( Batch b : batchs){
-            if(b.getIdProduct().equals(idProduct)) quantity += b.getAmount();
+            if(b.getProduct().getId().equals(idProduct)) quantity += b.getAmount();
         }
 
         return quantity <= minimumStock;
@@ -81,7 +86,7 @@ public class Stock {
 
         int quantity = 0;
         for( Batch b : batchs){
-            if(b.getIdProduct().equals(idProduct)) quantity += b.getAmount();
+            if(b.getProduct().getId().equals(idProduct)) quantity += b.getAmount();
         }
 
         return quantity == 0;

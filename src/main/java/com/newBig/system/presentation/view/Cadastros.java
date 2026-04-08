@@ -46,7 +46,7 @@ public class Cadastros {
                 case 3:
 
 
-                    RegisterArrivalBatch registerArrivalBatch =  new RegisterArrivalBatch(stockRepository, stockMovementRepository);
+                    RegisterArrivalBatch registerArrivalBatch =  new RegisterArrivalBatch(stockRepository, stockMovementRepository, repository);
 
                     RegisterArrivalController registerArrivalController = new RegisterArrivalController(registerArrivalBatch);
 

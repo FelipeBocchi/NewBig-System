@@ -16,8 +16,8 @@ public class ListAllBatch {
 
     public List<Batch> execute( StockRepository stockRepository) {
 
-        Stock stock = stockRepository.get();
+        //Stock stock = stockRepository.get();
 
-        return stock.findAll();
+        return stockRepository.findAll();
     }
 }

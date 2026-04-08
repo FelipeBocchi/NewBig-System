@@ -6,16 +6,17 @@ import com.newBig.system.domain.model.Funcionario;
 import com.newBig.system.domain.repository.ProductRepository;
 import com.newBig.system.domain.repository.StockMovementRepository;
 import com.newBig.system.domain.repository.StockRepository;
-import com.newBig.system.infrastructure.persistence.MovementMemoryRepository;
-import com.newBig.system.infrastructure.persistence.DadosUsuario;
-import com.newBig.system.infrastructure.persistence.ProductMemoryRepository;
-import com.newBig.system.infrastructure.persistence.StockMemoryRepository;
+import com.newBig.system.infrastructure.persistence.*;
 import com.newBig.system.presentation.view.Cadastros;
 import com.newBig.system.presentation.view.*;
 
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 import com.newBig.system.presentation.view.IniciarUsuario;
 import com.newBig.system.presentation.view.ExibirMenus;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import org.hibernate.Hibernate;
 
 import java.util.Scanner;
 
@@ -27,9 +28,16 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ProductRepository repository = new ProductMemoryRepository();
-        StockRepository stockRepository = new StockMemoryRepository();
-        StockMovementRepository stockMovementRepository = new MovementMemoryRepository();
+        //  = Conecção com o banco e inicialização
+        EntityManager em = CustomizerFactory.getEntityManager();
+
+        StockRepository stockRepository = new StockRepositoryImpl(em);
+        StockMovementRepository movementRepository = new MovementRepositoryImpl(em);
+        ProductRepository productRepository = new ProductRepositoryImpl(em);
+
+        //ProductRepository repository = new ProductMemoryRepository();
+        //StockRepository stockRepository = new StockMemoryRepository();
+        //StockMovementRepository stockMovementRepository = new MovementMemoryRepository();
 
         Cadastros cadastros = new Cadastros();
         ExibirMenus menu = new ExibirMenus();
@@ -59,7 +67,7 @@ public class Main {
         sc.nextLine();
         switch (op){
             case 1:
-                cadastros.execute(repository, stockRepository, stockMovementRepository, iniciarUsuario);
+                cadastros.execute(productRepository, stockRepository, movementRepository, iniciarUsuario);
                 break;
             case 2:
 
@@ -77,6 +85,7 @@ public class Main {
                 break;
             case 0:
                 /*Sair*/
+                em.close();
                 break;
             default:
                 System.out.println("Escolha uma opcao valida!!");
