@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Pagamentos {
     Scanner sc = new Scanner(System.in);
-    Verificacoes verificar = new Verificacoes();
+    Verificar verificar = new Verificar();
     static float dinheiro = 0;
     static float cartao = 0;
     static float pix = 0;
@@ -52,7 +52,7 @@ public class Pagamentos {
         System.out.println("Valor: R$" + valor);
         float recebido = 0;
         System.out.println("Digite o valor recebido");
-        recebido = verificar.valor();;
+        //recebido = verificar.valor();;
         if(recebido < valor){
             float restante = valor - recebido;
             String continuar;

@@ -2,8 +2,6 @@ package com.newBig.system.presentation.controller;
 
 import com.newBig.system.application.usecase.RegisterArrivalBatch;
 import com.newBig.system.domain.repository.ProductRepository;
-import com.newBig.system.domain.repository.StockRepository;
-import com.newBig.system.infrastructure.persistence.MovementMemoryRepository;
 
 import java.time.LocalDate;
 import java.util.UUID;

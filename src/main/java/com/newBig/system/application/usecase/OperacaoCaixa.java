@@ -1,181 +1,127 @@
 package com.newBig.system.application.usecase;
 
 import com.newBig.system.Main;
-import com.newBig.system.infrastructure.persistence.Caixa;
+import com.newBig.system.domain.model.DadosCaixa;
+import com.newBig.system.domain.model.Funcionario;
+import com.newBig.system.infrastructure.persistence.CaixaRepo;
+import com.newBig.system.infrastructure.persistence.ClienteRepo;
+import com.newBig.system.infrastructure.persistence.CustomizerFactory;
+import com.newBig.system.infrastructure.persistence.FuncionarioRepo;
+import com.newBig.system.application.usecase.Caixa;
+import jakarta.persistence.EntityManager;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class OperacaoCaixa {
-    Caixa caixa = new Caixa();
-    Verificacoes verificar = new Verificacoes();
-    OperacaoUsuario operacaoUsuario = new OperacaoUsuario();
+    EntityManager em = CustomizerFactory.getEntityManager(); /*Pegar objeto que conecta com o banco*/
+    CaixaRepo caixaRepo = new CaixaRepo(em);
+    FuncionarioRepo funcionarioRepo = new FuncionarioRepo(em);
+    Verificar verificar = new Verificar();
     Scanner sc = new Scanner(System.in);
-    public void menuCaixa(){
+    DadosCaixa dados = new DadosCaixa();
+    Caixa caixa = new Caixa();
+
+    public void abrir(){
+        if(caixaRepo.CaixaAberto() != null){
+            System.out.println("Já tem um caixa aberto feche ele para continuar!!");
+            Main.main(null);
+        }
         System.out.println("\n===============================");
         System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
         System.out.println("===============================");
-        System.out.println("            $Caixa$            ");
+        System.out.println("          Abrir Caixa          ");
         System.out.println("===============================");
-        System.out.println("1 - Abrir Caixa");
-        System.out.println("2 - Fechar Caixa ");
-        System.out.println("3 - Consultar caixa atual");
-        System.out.println("4 - Sangria");
-        System.out.println("5 - Historico do dia");
-        System.out.println("0 - Voltar");
-        System.out.println("===============================");
-        System.out.println("Digite: ");
-        int op;
-        while(true){
-            if(sc.hasNextInt()){
-                op = sc.nextInt();
-                break;
-            }
-            else{
-                System.out.println("Digite algo valido!!!");
-                sc.nextLine();
-            }
-        }
-        sc.nextLine();
-        switch (op){
-            case 1:
+        System.out.println("Digite seu id: ");
+        try{
+            Long id = verificar.id();
+            Funcionario usuarioAbertura = funcionarioRepo.SelecionarFuncionario(id);
+            if(usuarioAbertura == null){
+                System.out.println("Id não encontrado!! Tente novamente");
                 abrir();
-                break;
-            case 2:
-                fechar();
-                break;
-            case 3:
-                consultar();
-                break;
-            case 4:
-                sangria();
-                break;
-            case 5:
-                historico();
-                break;
-            case 0:
-                Main.main(null);
-                break;
-            default:
-                System.out.println("Digite uma opcao valida");
-                menuCaixa();
-                break;
-        }
-    }
-
-    public void abrir(){
-        int resultadoVerificacao = verificar.acesso();
-        if(resultadoVerificacao == 1){
-            System.out.println("--Abertura do Caixa--");
-            int idUsuario = verificar.usuarioDisponivel();
+                return;
+            }
             System.out.println("Digite o valor de abertura: ");
-            float valorAbertura= verificar.valor();
-            caixa.abrirCaixa(idUsuario, valorAbertura);
-            Main.main(null);
+            double valor = sc.nextDouble();
+            sc.nextLine();
+            dados.salvarAbertura(usuarioAbertura, valor);
+            caixaRepo.create(dados);
+            caixa.addValor((float) valor);
+            System.out.println("Caixa Aberto com sucesso!! (Precione Enter)");
+            sc.nextLine();
         }
-        else{
-            System.out.println("Erro login ou senha invalidos!!");
-            Main.main(null);
+        catch (InputMismatchException e){
+            System.out.println("Valor digitado incorreto!! Tente novamente");
+            abrir();
         }
+        Main.main(null);
     }
 
     public void fechar(){
-        int resultadoVerificacao = verificar.acesso();
-        if(resultadoVerificacao == 1){
-            System.out.println("--Fechamento do Caixa--");
-            int idUsuario = verificar.usuarioDisponivel();
-            caixa.fecharCaixa(idUsuario);
+        if(caixaRepo.CaixaAberto() == null){
+            System.out.println("Nenhum caixa foi aberto!!");
             Main.main(null);
         }
-        else{
-            System.out.println("Erro login ou senha invalidos!!");
-            Main.main(null);
+        System.out.println("\n===============================");
+        System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
+        System.out.println("===============================");
+        System.out.println("         Fechar Caixa          ");
+        System.out.println("===============================");
+        System.out.println("Digite seu id: ");
+        try{
+            Long id = verificar.id();
+            Funcionario usuariofechamento = funcionarioRepo.SelecionarFuncionario(id);
+            if(usuariofechamento == null){
+                System.out.println("Id não encontrado!! Tente novamente");
+                abrir();
+                return;
+            }
+            DadosCaixa dadosFechamento = caixaRepo.CaixaAberto();
+            dadosFechamento.salvarFechamento(usuariofechamento, caixa.getValorAtual(), caixa.getSangria());
+            caixaRepo.update(dadosFechamento);
+            System.out.println("Caixa Fechado com sucesso!! (Precione Enter) ");
+            sc.nextLine();
+            caixa.zerarValor();
         }
+        catch (InputMismatchException e){
+            System.out.println("Valor digitado incorreto!! Tente novamente");
+            fechar();
+        }
+        Main.main(null);
     }
 
-    public void add(float valor){ /*Adiciona ao caixa*/
-        caixa.addValor(valor);
-    }
-    public void sub(float valor){ /*retira do caixa*/
-        caixa.retValor(valor);
+    public void consultar(){
+        if(caixaRepo.CaixaAberto() == null){
+            System.out.println("Nenhum caixa foi aberto!!");
+            Main.main(null);
+        }
+        DadosCaixa dadosConsulta = caixaRepo.CaixaAberto();
+        System.out.println("\n===============================");
+        System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
+        System.out.println("===============================");
+        System.out.println("         Caixa: R$" + caixa.getValorAtual());
+        System.out.println("===============================");
+        System.out.println("Id do caixa: " + dadosConsulta.getId());
+        System.out.println("Usuario abertura: " + dadosConsulta.getUsuarioAbertura().getId() + " - " + dadosConsulta.getUsuarioAbertura().getNome());
+        System.out.println("Valor de abertura: " + dadosConsulta.getValorAbertura());
+        System.out.println("Hora de Abertura: " + dadosConsulta.getHoraAbertura());
+        System.out.println("Data de Abertura: " + dadosConsulta.getDataAbertura());
+        System.out.println("--Enter para sair--");
+        sc.nextLine();
+        Main.main(null);
     }
 
     public void sangria(){
-        if(caixa.getValorAtual() == 0){
-            System.out.println("Caixa não aberto!!!!");
+        try{
+            System.out.println("Valor da Sangria: ");
+            double valor = sc.nextDouble();
+            caixa.sangria(valor);
+            System.out.println("Sangria no valor de R$" + valor + "Concluida com sucesso!!");
             Main.main(null);
         }
-        int resultadoVerificacao = verificar.acesso();
-        if(resultadoVerificacao == 1){
-            System.out.println("--Sangria do Caixa--");
-            int idUsuario = verificar.usuarioDisponivel();
-            System.out.println("Digite o valor de retirada: ");
-            float valorRetirado= verificar.valor();
-            if(valorRetirado > caixa.getValorAtual()){
-                System.out.println("Valor maior que valor em caixa!!!!");
-                System.out.println("--Enter para continuar--");
-                menuCaixa();
-            }
-            else{
-                caixa.addSangria(valorRetirado);
-                sub(valorRetirado);
-                Main.main(null);
-            }
-
-        }
-        else{
-            System.out.println("Erro login ou senha invalidos!!");
+        catch (InputMismatchException e){
+            System.out.println("Valor digitado incorreto!! Tente novamente");
             Main.main(null);
         }
-    };
-
-    public void consultar(){
-        int resultadoVerificacao = verificar.acesso();
-        if(resultadoVerificacao == 1){
-            System.out.println("\n===============================");
-            System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
-            System.out.println("===============================");
-            System.out.println("Valor em caixa R$" + caixa.getValorAtual());
-            System.out.println("===============================");
-            try{
-                System.out.println("Id do caixa: " + caixa.dadosCaixaAberto().getId());
-                System.out.println("ID Usuario abertura: "+ caixa.dadosCaixaAberto().getIdUsuarioAbertura() + " (" + operacaoUsuario.getNomeById(caixa.dadosCaixaAberto().getIdUsuarioAbertura()) +")");
-                System.out.println("Valor de abertura: " + caixa.dadosCaixaAberto().getValorAbertura());
-                System.out.println("Hora de Abertura: " + caixa.dadosCaixaAberto().getHoraAbertura());
-                System.out.println("Data de Abertura: " + caixa.dadosCaixaAberto().getDataAbertura());
-                System.out.println("Valor de Sangria: " + caixa.getSangria());
-            } catch (Exception e) {
-                System.out.println("Caixa nao aberto");
-                menuCaixa();
-            }
-            System.out.println("===============================");
-            System.out.println("--Precione enter para sair--");
-            sc.nextLine();
-            Main.main(null);
-        }
-        else{
-            System.out.println("Erro login ou senha invalidos!!");
-            Main.main(null);
-        }
-    };
-
-    public void historico(){
-        int resultadoVerificacao = verificar.acesso();
-        if(resultadoVerificacao == 1){
-            System.out.println("\n===============================");
-            System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
-            System.out.println("===============================");
-            System.out.println("    --Historico de Caixa--     ");
-            System.out.println("===============================");
-            for (int i = 0; i < caixa.arrayCaixa().size(); i++) {
-                System.out.println(caixa.arrayCaixa().get(i).toString());
-            }
-
-
-        }
-        else{
-            System.out.println("Erro login ou senha invalidos!!");
-            Main.main(null);
-        }
-    };
-
+    }
 }

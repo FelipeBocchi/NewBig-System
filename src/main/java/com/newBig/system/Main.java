@@ -1,30 +1,25 @@
 package com.newBig.system;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 
-import com.newBig.system.application.usecase.OperacaoCaixa;
-import com.newBig.system.application.usecase.Pagamentos;
-import com.newBig.system.domain.model.Funcionario;
+import com.newBig.system.application.usecase.BuscarUsuarioVenda;
+import com.newBig.system.application.usecase.Verificar;
 import com.newBig.system.domain.repository.ProductRepository;
 import com.newBig.system.domain.repository.StockMovementRepository;
 import com.newBig.system.domain.repository.StockRepository;
 import com.newBig.system.infrastructure.persistence.*;
 import com.newBig.system.presentation.view.Cadastros;
-import com.newBig.system.presentation.view.*;
 
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-import com.newBig.system.presentation.view.IniciarUsuario;
 import com.newBig.system.presentation.view.ExibirMenus;
 
+import com.newBig.system.presentation.view.Morv.CaixaView;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import org.hibernate.Hibernate;
 
 import java.util.Scanner;
 
 
 public class Main {
-    static Scanner sc = new Scanner(System.in);
-
-    static boolean rodou = false; /*Gerar o Admin sempre na primeira vez, e fazer login*/
+    static boolean aux;
+    static Long id = 0L;
 
     public static void main(String[] args) {
 
@@ -41,18 +36,22 @@ public class Main {
 
         Cadastros cadastros = new Cadastros();
         ExibirMenus menu = new ExibirMenus();
-        OperacaoCaixa caixa = new OperacaoCaixa();
-        IniciarUsuario iniciarUsuario = new IniciarUsuario();
-        LoginUsuario login = new LoginUsuario();
-        Pagamentos pagar = new Pagamentos(); /*testando se vai funcionar, tirar antes da entrega*/
+        //IniciarUsuario iniciarUsuario = new IniciarUsuario();
 
-        if(!rodou){/*Gerar o Admin sempre na primeira vez, e fazer login*/
-            DadosUsuario.usuario.add(new Funcionario("Admin", "000000000000", 1, "100", 1000)); /*Admin para ter um usuario para fazer o login*/
-            login.login();
-            rodou = true; /*Nao rodar mais*/
+        Verificar verificar = new Verificar();
+        CaixaView caixaView = new CaixaView();
+        Scanner sc = new Scanner(System.in);
+        BuscarUsuarioVenda buscarUsuarioVenda = new BuscarUsuarioVenda();
+        //FlyWayConfig.migrate();
+        if(!aux){
+            System.out.println("\n===============================");
+            System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
+            System.out.println("===============================");
+            id = verificar.login();
+            aux = verificar.acesso(id, 2);
         }
 
-        menu.principal();
+        menu.principal(id);
         int op;
         while(true){
             if(sc.hasNextInt()){
@@ -67,21 +66,23 @@ public class Main {
         sc.nextLine();
         switch (op){
             case 1:
-                cadastros.execute(productRepository, stockRepository, movementRepository, iniciarUsuario);
+                cadastros.execute(productRepository, stockRepository, movementRepository);
                 break;
             case 2:
-
+                // vendas
                 break;
 
             case 3:
-                caixa.menuCaixa();
+                caixaView.iniciar();
                 break;
             case 4:
-                login.login();
+                /*trocar usuario*/
+                aux = false;
                 main(null);
                 break;
             case 5:
-                pagar.pagamento(10);
+                buscarUsuarioVenda.cliente();
+                buscarUsuarioVenda.funcionario();
                 break;
             case 0:
                 /*Sair*/

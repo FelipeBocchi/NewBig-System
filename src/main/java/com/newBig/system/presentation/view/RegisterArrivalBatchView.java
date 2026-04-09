@@ -1,19 +1,15 @@
 package com.newBig.system.presentation.view;
 
-import com.newBig.system.application.usecase.RegisterArrivalBatch;
 import com.newBig.system.domain.model.Batch;
-import com.newBig.system.domain.model.Product;
 import com.newBig.system.domain.model.StockMovement;
 import com.newBig.system.domain.repository.ProductRepository;
 import com.newBig.system.domain.repository.StockMovementRepository;
 import com.newBig.system.domain.repository.StockRepository;
-import com.newBig.system.infrastructure.persistence.ProductMemoryRepository;
 import com.newBig.system.presentation.controller.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 

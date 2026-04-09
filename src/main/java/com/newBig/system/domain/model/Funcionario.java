@@ -1,17 +1,53 @@
 package com.newBig.system.domain.model;
 
-public class Funcionario extends Usuario {
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "funcionario")
+public class Funcionario{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "nome", nullable = false, length = 100)
+    private String nome;
+
+    @Column(name = "cpf", nullable = false, unique = true, length = 11)
+    private String cpf;
+
+    @Column(name = "acesso", nullable = false)
     private int acesso;
+
+    @Column(name = "login", nullable = false, length = 100)
     private String login;
+
+    @Column(name = "senha", nullable = false)
     private int senha;
 
+    public Funcionario(){};
+
     public Funcionario(String nome, String cpf, int acesso, String login, int senha) {
-        super(nome, cpf);
+        this.nome = nome;
+        this.cpf = cpf;
         this.acesso = acesso;
         this.login = login;
         this.senha = senha;
     }
+
     /*----------------------Geters------------------*/
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
 
     public int getAcesso() {
         return acesso;
@@ -33,6 +69,14 @@ public class Funcionario extends Usuario {
 
 
     /*--------------------setters-----------------------*/
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
     public void setAcesso(int acesso) {
         this.acesso = acesso;
