@@ -120,4 +120,20 @@ public class Verificar {
             }
         }
     }
+    public double valor(){
+        boolean passou = false;
+        double n = 0;
+        while (!passou) {
+            System.out.print("Digite o valor: ");
+            try {
+                n = sc.nextDouble();
+                passou = true;
+            } catch (Exception e) {
+                System.out.println("Numero invalido tente novamente");
+                sc.nextLine();
+            }
+        }
+        return n;
+
+    };
 }
