@@ -1,10 +1,13 @@
 package com.newBig.system.application.usecase;
 
+import com.newBig.system.infrastructure.persistence.Caixa;
+
 import java.util.Scanner;
 
 public class Pagamentos {
     Verificar verificar = new Verificar();
     Scanner sc = new Scanner(System.in);
+    Caixa caixa = new Caixa();
     static double dinheiro = 0;
     static double cartao = 0;
     static double pix = 0;
@@ -84,7 +87,7 @@ public class Pagamentos {
         }
         else{
             double troco = recebido - valor;
-
+            caixa.addValor(valor);
             dinheiro = valor;
 
             System.out.println("Troco: " + troco);
@@ -100,6 +103,7 @@ public class Pagamentos {
             continuar = sc.nextLine().toLowerCase();
             if (continuar.equals("s")) {
                 System.out.println("Pagamento concluido!!!");
+                caixa.addValor(valor);
                 cartao += valor;
                 break;
             } else if (!continuar.equals("n")) {
@@ -120,6 +124,7 @@ public class Pagamentos {
             continuar = sc.nextLine().toLowerCase();
             if (continuar.equals("s")) {
                 System.out.println("Pagamento concluido!!!");
+                caixa.addValor(valor);
                 pix += valor;
                 break;
             } else if (!continuar.equals("n")) {

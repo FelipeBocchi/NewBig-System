@@ -1,6 +1,7 @@
 package com.newBig.system;
 
 import com.newBig.system.application.usecase.BuscarUsuarioVenda;
+import com.newBig.system.application.usecase.Pagamentos;
 import com.newBig.system.application.usecase.Verificar;
 import com.newBig.system.config.FlyWayConfig;
 import com.newBig.system.presentation.view.CaixaView;
@@ -20,6 +21,7 @@ public class Main {
         CaixaView caixaView = new CaixaView();
         Scanner sc = new Scanner(System.in);
         BuscarUsuarioVenda buscarUsuarioVenda = new BuscarUsuarioVenda();
+        Pagamentos pagamentos = new Pagamentos();
         FlyWayConfig.migrate();
         if(!aux){
             System.out.println("\n===============================");
@@ -50,6 +52,11 @@ public class Main {
                     /*Vendas*/
                     buscarUsuarioVenda.cliente();
                     buscarUsuarioVenda.funcionario();
+                    break;
+                case 6:
+                    /*Teste do pagamento*/
+                    pagamentos.pagamento(100);
+                    caixaView.iniciar();
                     break;
                 case 0:
                     /*Sair*/

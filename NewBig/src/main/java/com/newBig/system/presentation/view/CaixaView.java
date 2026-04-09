@@ -17,6 +17,7 @@ public class CaixaView {
         System.out.println("2 - Fechar Caixa ");
         System.out.println("3 - Consultar caixa atual");
         System.out.println("4 - Sangria");
+        System.out.println("5 - Logs do caixa");
         System.out.println("0 - Voltar");
         System.out.println("===============================");
         System.out.println("Digite: ");
@@ -32,6 +33,9 @@ public class CaixaView {
                 break;
             case 4:
                 operacaoCaixa.sangria();
+                break;
+            case 5:
+                operacaoCaixa.log();
                 break;
             case 0:
                 Main.main(null);

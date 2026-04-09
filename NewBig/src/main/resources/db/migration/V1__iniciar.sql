@@ -5,7 +5,7 @@ CREATE TABLE funcionario(
     acesso int not null,
     login varchar(100) not null,
     senha int not null
-)
+);
 
 CREATE TABLE cliente(
     id serial primary key,
@@ -16,4 +16,4 @@ CREATE TABLE cliente(
     numero int,
     bairro varchar(100) not null,
     telefone varchar(11) not null
-)
+);

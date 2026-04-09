@@ -17,6 +17,7 @@
         <mapping class="com.newBig.system.domain.model.Funcionario"/>
         <mapping class="com.newBig.system.domain.model.Cliente"/>
         <mapping class="com.newBig.system.domain.model.LogUsuario"/>
+        <mapping class="com.newBig.system.domain.model.LogCaixa"/>
 
     </session-factory>
 </hibernate-configuration>

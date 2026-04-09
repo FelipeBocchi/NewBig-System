@@ -3,10 +3,8 @@ package com.newBig.system.application.usecase;
 import com.newBig.system.Main;
 import com.newBig.system.domain.model.DadosCaixa;
 import com.newBig.system.domain.model.Funcionario;
-import com.newBig.system.domain.repository.CaixaRepo;
-import com.newBig.system.domain.repository.ClienteRepo;
-import com.newBig.system.domain.repository.CustomizerFactory;
-import com.newBig.system.domain.repository.FuncionarioRepo;
+import com.newBig.system.domain.model.LogCaixa;
+import com.newBig.system.domain.repository.*;
 import com.newBig.system.infrastructure.persistence.Caixa;
 import jakarta.persistence.EntityManager;
 
@@ -46,7 +44,6 @@ public class OperacaoCaixa {
             sc.nextLine();
             dados.salvarAbertura(usuarioAbertura, valor);
             caixaRepo.create(dados);
-            caixa.addValor(valor);
             System.out.println("Caixa Aberto com sucesso!! (Precione Enter)");
             sc.nextLine();
         }
@@ -99,7 +96,7 @@ public class OperacaoCaixa {
         System.out.println("\n===============================");
         System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
         System.out.println("===============================");
-        System.out.println("         Caixa: R$" + caixa.getValorAtual());
+        System.out.println("         Caixa: R$" + dadosConsulta.getValorAtual());
         System.out.println("===============================");
         System.out.println("Id do caixa: " + dadosConsulta.getId());
         System.out.println("Usuario abertura: " + dadosConsulta.getUsuarioAbertura().getId() + " - " + dadosConsulta.getUsuarioAbertura().getNome());
@@ -123,5 +120,16 @@ public class OperacaoCaixa {
             System.out.println("Valor digitado incorreto!! Tente novamente");
             Main.main(null);
         }
+    }
+
+    public void log(){
+        LogCaixaRepo logCaixaRepo = new LogCaixaRepo(em);
+        var logs = logCaixaRepo.listasLog();
+        for (int i = 0; i < logs.size(); i++) {
+            System.out.println(logs.get(i).getId() + " - " + logs.get(i).getDescricao() + " - " + logs.get(i).getData());
+        }
+        System.out.println("--Enter para sair--");
+        sc.nextLine();
+        Main.main(null);
     }
 }
