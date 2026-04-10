@@ -18,42 +18,48 @@ public class DeletarUsuarioView {
     FuncionarioRepo funcionarioRepo = new FuncionarioRepo(em);
     ClienteRepo clienteRepo = new ClienteRepo(em);
     Long id = null;
+
     public void iniciar(){
-        System.out.println("\n===============================");
-        System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM ");
-        System.out.println("===============================");
-        System.out.println("        Deletar Usuarios       ");
-        System.out.println("===============================");
-        System.out.println("1 - Cliente");
-        System.out.println("2 - Funcionarios");
-        System.out.println("0 - Voltar");
-        System.out.println("===============================");
-        switch(verificar.opcao()) {
-            case 1:
-                clienteView.print();
-                System.out.println("--!! Ao deletar algum usuario essa alteração será permanente !!--");
-                id = verificar.id();
-                clienteRepo.delete(clienteRepo.SelecionarCliente(id));
-                System.out.println("Enter para voltar: ");
-                sc.nextLine();
-                iniciar();
-                break;
-            case 2:
-                funcionarioView.print();
-                System.out.println("--!! Ao deletar algum usuario essa alteração será permanente !!--");
-                id = verificar.id();
-                funcionarioRepo.delete(funcionarioRepo.SelecionarFuncionario(id));
-                System.out.println("Enter para voltar: ");
-                sc.nextLine();
-                iniciar();
-                break;
-            case 0:
-                Main.main(null);
-                break;
-            default:
-                System.out.println("Erro tente novamente");
-                iniciar();
-                break;
+        if(!verificar.acesso(verificar.login(), 1)){
+            Main.main(null);
+        }
+        else{
+            System.out.println("\n===============================");
+            System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM ");
+            System.out.println("===============================");
+            System.out.println("        Deletar Usuarios       ");
+            System.out.println("===============================");
+            System.out.println("1 - Cliente");
+            System.out.println("2 - Funcionarios");
+            System.out.println("0 - Voltar");
+            System.out.println("===============================");
+            switch(verificar.opcao()) {
+                case 1:
+                    clienteView.print();
+                    System.out.println("--!! Ao deletar algum usuario essa alteração será permanente !!--");
+                    id = verificar.id();
+                    clienteRepo.delete(clienteRepo.SelecionarCliente(id));
+                    System.out.println("Enter para voltar: ");
+                    sc.nextLine();
+                    iniciar();
+                    break;
+                case 2:
+                    funcionarioView.print();
+                    System.out.println("--!! Ao deletar algum usuario essa alteração será permanente !!--");
+                    id = verificar.id();
+                    funcionarioRepo.delete(funcionarioRepo.SelecionarFuncionario(id));
+                    System.out.println("Enter para voltar: ");
+                    sc.nextLine();
+                    iniciar();
+                    break;
+                case 0:
+                    Main.main(null);
+                    break;
+                default:
+                    System.out.println("Erro tente novamente");
+                    iniciar();
+                    break;
+            }
         }
     }
 

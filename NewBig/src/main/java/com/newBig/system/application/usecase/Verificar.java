@@ -120,6 +120,7 @@ public class Verificar {
             }
         }
     }
+
     public double valor(){
         boolean passou = false;
         double n = 0;

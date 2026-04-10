@@ -3,6 +3,7 @@ package com.newBig.system.domain.repository;
 import com.newBig.system.domain.model.LogCaixa;
 import com.newBig.system.domain.model.LogUsuario;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceException;
 
 import java.util.List;
 
@@ -14,8 +15,14 @@ public class LogCaixaRepo {
     }
 
     public List<LogCaixa> listasLog(){
-        return em.createQuery( /*Query cria uma consulta no banco*/
-                "SELECT l FROM LogCaixa l", LogCaixa.class
-        ).getResultList(); /*Executa a consulta*/
+        try{
+            return em.createQuery( /*Query cria uma consulta no banco*/
+                    "SELECT l FROM LogCaixa l", LogCaixa.class
+            ).getResultList(); /*Executa a consulta*/
+        }
+        catch (PersistenceException e){
+            System.out.println("Erro no banco!!!" + e.getMessage());
+            return null;
+        }
     }
 }

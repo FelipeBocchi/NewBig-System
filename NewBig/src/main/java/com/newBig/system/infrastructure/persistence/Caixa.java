@@ -39,7 +39,7 @@ public class Caixa {
         return valorAtual;
     }
 
-    public void upBanco(){
+    public void upBanco(){ /*atualiza o banco a cada mudança de caixa*/
         var banco = caixaRepo.CaixaAberto();
         banco.setValorAtual(valorAtual);
         caixaRepo.update(banco);

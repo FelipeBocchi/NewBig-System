@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "log_usuario")
-public class LogUsuario {
+public class LogUsuario { /*tabela que armazena a trigger de log do usuario*/
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

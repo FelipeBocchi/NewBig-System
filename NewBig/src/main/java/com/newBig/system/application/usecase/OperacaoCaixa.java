@@ -44,8 +44,11 @@ public class OperacaoCaixa {
                     return;
                 }
                 System.out.println("Digite o valor de abertura: ");
-                double valor = sc.nextDouble();
-                sc.nextLine();
+                double valor = verificar.valor();
+                if(valor <= 0){
+                    System.out.println("Erro valor tem que ser maior que zero!!");
+                    abrir();
+                }
                 dados.salvarAbertura(usuarioAbertura, valor);
                 caixaRepo.create(dados);
                 System.out.println("Caixa Aberto com sucesso!! (Precione Enter)");

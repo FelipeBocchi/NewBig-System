@@ -1,5 +1,6 @@
 package com.newBig.system.domain.repository;
 
+import com.newBig.system.Main;
 import com.newBig.system.domain.model.Cliente;
 import com.newBig.system.domain.model.Funcionario;
 import jakarta.persistence.EntityManager;
@@ -28,9 +29,15 @@ public class FuncionarioRepo {
 
     public void update(Funcionario dados) {
         try{
-            em.getTransaction().begin();
-            em.merge(dados);
-            em.getTransaction().commit();
+            if(dados == null){
+                System.out.println("funcionario nâo encontrado no banco");
+                Main.main(null);
+            }
+            else{
+                em.getTransaction().begin();
+                em.merge(dados);
+                em.getTransaction().commit();
+            }
         }
         catch (Exception e){
             em.getTransaction().rollback(); /* Não deixa salvar se dar erro */
@@ -40,9 +47,21 @@ public class FuncionarioRepo {
     }
 
     public void delete(Funcionario dados) {
-        em.getTransaction().begin();
-        em.remove(em.contains(dados) ? dados : em.merge(dados));
-        em.getTransaction().commit();
+        try{
+            if(dados == null){
+                System.out.println("funcionario nâo encontrado no banco");
+                Main.main(null);
+            }
+            else{
+                em.getTransaction().begin();
+                em.remove(em.contains(dados) ? dados : em.merge(dados));
+                em.getTransaction().commit();
+            }
+        } catch (Exception e) {
+            em.getTransaction().rollback(); /* Não deixa salvar se dar erro */
+            System.out.println("Erro ao salvar!! Nada foi salvo no Banco de dados");
+        }
+
     }
 
     public List<Funcionario> BuscaFuncionarios() {
