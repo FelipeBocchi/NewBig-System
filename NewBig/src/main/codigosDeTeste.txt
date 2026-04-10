@@ -24,3 +24,10 @@ INSERT INTO funcionario (nome, cpf, acesso, login, senha) VALUES
 
 DROP SCHEMA public CASCADE;
 CREATE SCHEMA public;
+
+
+------------acesso---------
+        if(!verificar.acesso(verificar.login(), 1)){
+            Main.main(null);
+        }
+        else{o codigo se passar}

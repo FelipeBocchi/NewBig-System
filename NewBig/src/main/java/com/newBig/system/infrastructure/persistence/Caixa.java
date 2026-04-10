@@ -35,6 +35,7 @@ public class Caixa {
     }
 
     public double getValorAtual() {
+        valorAtual = caixaRepo.CaixaAberto().getValorAtual();
         return valorAtual;
     }
 
