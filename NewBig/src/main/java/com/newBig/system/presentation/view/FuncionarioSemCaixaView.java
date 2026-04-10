@@ -11,8 +11,8 @@ import java.util.Scanner;
 public class FuncionarioSemCaixaView {
     EntityManager em = CustomizerFactory.getEntityManager();
     Scanner sc = new Scanner(System.in);
-
     FuncionarioSemCaixaJoin funcionarioSemCaixaJoin = new FuncionarioSemCaixaJoin(em);
+
     public void print(){
         try{
             var lista = funcionarioSemCaixaJoin.join();

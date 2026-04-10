@@ -67,4 +67,10 @@ public class ClienteRepo {
     public Cliente SelecionarCliente(Long id) { /*Busca pelo id do cliente*/
         return em.find(Cliente.class, id); /*busca no banco pelo id*/
     }
+
+    public boolean consultaId(Long id){
+        return em.createQuery(
+                "SELECT COUNT(e) > 0 FROM Cliente e WHERE e.id = :id", Boolean.class
+        ).setParameter("id", id).getSingleResult();
+    }
 }

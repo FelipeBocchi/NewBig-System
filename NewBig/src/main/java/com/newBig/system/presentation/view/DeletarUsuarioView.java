@@ -38,19 +38,25 @@ public class DeletarUsuarioView {
                     clienteView.print();
                     System.out.println("--!! Ao deletar algum usuario essa alteração será permanente !!--");
                     id = verificar.id();
+                    if(!verificar.existe_id_cliente(id)){
+                        iniciar();
+                    }
                     clienteRepo.delete(clienteRepo.SelecionarCliente(id));
                     System.out.println("Enter para voltar: ");
                     sc.nextLine();
-                    iniciar();
+                    Main.main(null);
                     break;
                 case 2:
                     funcionarioView.print();
                     System.out.println("--!! Ao deletar algum usuario essa alteração será permanente !!--");
                     id = verificar.id();
+                    if(!verificar.existe_id(id)){
+                        iniciar();
+                    }
                     funcionarioRepo.delete(funcionarioRepo.SelecionarFuncionario(id));
                     System.out.println("Enter para voltar: ");
                     sc.nextLine();
-                    iniciar();
+                    Main.main(null);
                     break;
                 case 0:
                     Main.main(null);

@@ -87,4 +87,10 @@ public class FuncionarioRepo {
                 .setParameter("nome", "%" + nome + "%") /*Define o valor do parametro :nome*/
                 .getResultList(); /*Retorna a lista*/
     }
+
+    public boolean consultaId(Long id){
+        return em.createQuery(
+                "SELECT COUNT(e) > 0 FROM Funcionario e WHERE e.id = :id", Boolean.class
+        ).setParameter("id", id).getSingleResult();
+    }
 }

@@ -43,7 +43,7 @@ public class OperacaoCaixa {
                     abrir();
                     return;
                 }
-                System.out.println("Digite o valor de abertura: ");
+                System.out.println("--Valor de abertura-- ");
                 double valor = verificar.valor();
                 if(valor <= 0){
                     System.out.println("Erro valor tem que ser maior que zero!!");

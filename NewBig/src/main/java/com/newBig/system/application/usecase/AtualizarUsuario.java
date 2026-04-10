@@ -53,9 +53,10 @@ public class AtualizarUsuario {
         funcionarioView.print();
         try{
             if(id == 0){
-                System.out.println("ID do Funcionario: ");
-                id = sc.nextLong();
-                sc.nextLine();
+                id = verificar.id();
+                if(!verificar.existe_id(id)){
+                    funcionario(0L);
+                }
             }
             Funcionario escolhido = funcionarioRepo.SelecionarFuncionario(id);
             System.out.println("===============================");
@@ -141,9 +142,10 @@ public class AtualizarUsuario {
         clienteView.print();
         try{
             if(id == 0){
-                System.out.println("ID do Cliente: ");
-                id = sc.nextLong();
-                sc.nextLine();
+                id = verificar.id();
+                if(!verificar.existe_id_cliente(id)){
+                    cliente(0L);
+                }
             }
             Cliente escolhido = clienteRepo.SelecionarCliente(id);
             System.out.println("===============================");
