@@ -2,12 +2,13 @@ package com.newBig.system.application.usecase;
 import com.newBig.system.Main;
 import com.newBig.system.infrastructure.persistence.DadosUsuario;
 import com.newBig.system.presentation.view.ExibirMenus;
+import com.newBig.system.application.usecase.Verificar;
 
 import java.util.Scanner;
 
 public class OperacaoUsuario {
     Scanner sc = new Scanner(System.in);
-    Verificacoes verificar = new Verificacoes();
+    Verificar verificar = new Verificar();
     Utilidades util = new Utilidades();
     ExibirMenus print;
     AtualizarUsuario atualizar;
@@ -72,8 +73,8 @@ public class OperacaoUsuario {
         if(continuar.equals("n")){
             iniciar();
         }
-        else{
-            int resultadoVerificacao = verificar.acesso();
+        /*else{
+            //int resultadoVerificacao = verificar.acesso();
             util.limpar();
             print.printUsarios();
             if(resultadoVerificacao == 1){
@@ -86,7 +87,7 @@ public class OperacaoUsuario {
                 relatoriosUsuarios();
             }
             iniciar();
-        }
+        }*/
     }
     public String getNomeById(int id){
         return DadosUsuario.usuario.get(id).getNome();

@@ -1,7 +1,10 @@
 package com.newBig.system.application.usecase;
 
+import com.newBig.system.domain.model.Batch;
 import com.newBig.system.domain.model.Stock;
 import com.newBig.system.domain.repository.StockRepository;
+
+import java.util.List;
 
 public class DeleteExpiredBatch {
 
@@ -15,11 +18,13 @@ public class DeleteExpiredBatch {
 
         //  = Primeiro acesso o estoque na memória, modifico o estoque por fim salvo e Estoque atual.
 
-        Stock stock = repository.get();
+        List<Batch> findAllBatch = repository.findAll();
+        Stock stock = new Stock(findAllBatch);
 
         stock.deleteBatchExpired();
 
-        repository.save(stock);
+        for (Batch b : stock.findAll())
+            repository.save(b);
     }
 
 }

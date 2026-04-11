@@ -1,7 +1,7 @@
 package com.newBig.system.presentation.view;
 
 import com.newBig.system.application.usecase.Utilidades;
-import com.newBig.system.application.usecase.Verificacoes;
+import com.newBig.system.application.usecase.Verificar;
 import com.newBig.system.domain.model.Cliente;
 import com.newBig.system.domain.model.Funcionario;
 import com.newBig.system.domain.model.Usuario;
@@ -12,7 +12,7 @@ import com.newBig.system.infrastructure.persistence.DadosUsuario;
 public class ExibirMenus {
     AtualizarUsuario atualizar;
     Utilidades util = new Utilidades();
-    Verificacoes verificar = new Verificacoes();
+    Verificar verificar = new Verificar();
     //    Pegar outras classes
     public void setAtualizar(AtualizarUsuario atualizar){
         this.atualizar = atualizar;
@@ -31,6 +31,7 @@ public class ExibirMenus {
         }
 
     }
+/*
     public void dadosComplementares(int id){
         id--;
         Usuario aux = DadosUsuario.usuario.get(id);
@@ -68,8 +69,8 @@ public class ExibirMenus {
             atualizar.atualizarFuncionario(opId);
         }
     }
-
-    public void principal(){
+*/
+    public void principal(Long id){
         util.limpar();
         System.out.println("\n===============================");
         System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
@@ -81,7 +82,7 @@ public class ExibirMenus {
         System.out.println("0 - Sair");
 
         System.out.println("===============================");
-        System.out.println("Usuario Logado: " + verificar.getIdLogado() + " - " + verificar.getNomeLogado());
+        System.out.println("Usuario Logado: " + id + " - " + verificar.nomeLogado(id));
         System.out.println("===============================");
         System.out.print("Escolha uma opção: ");
 
@@ -109,6 +110,17 @@ public class ExibirMenus {
         System.out.println("1 - Novo cadastro");
         System.out.println("2 - Atualizar ");
         System.out.println("3 - Relatorio");
+        System.out.println("0 - Voltar");
+        System.out.println("===============================");
+    }
+
+    public void saleMenu() {
+        System.out.println("\n===============================");
+        System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
+        System.out.println("===============================");
+        System.out.println("            Vendas          ");
+        System.out.println("===============================");
+        System.out.println("1 - vender");
         System.out.println("0 - Voltar");
         System.out.println("===============================");
     }

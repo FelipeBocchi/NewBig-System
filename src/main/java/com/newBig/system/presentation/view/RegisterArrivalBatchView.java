@@ -1,19 +1,15 @@
 package com.newBig.system.presentation.view;
 
-import com.newBig.system.application.usecase.RegisterArrivalBatch;
 import com.newBig.system.domain.model.Batch;
-import com.newBig.system.domain.model.Product;
 import com.newBig.system.domain.model.StockMovement;
 import com.newBig.system.domain.repository.ProductRepository;
 import com.newBig.system.domain.repository.StockMovementRepository;
 import com.newBig.system.domain.repository.StockRepository;
-import com.newBig.system.infrastructure.persistence.ProductMemoryRepository;
 import com.newBig.system.presentation.controller.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -164,7 +160,7 @@ public class RegisterArrivalBatchView {
 
         int i = 1;
         for(Batch b : listAllBatchController.execute(stockRepository)) {
-        System.out.println("\n " + i + "= " + b.getSeries() + " | " + b.getIdProduct() + " | " + b.getAmount() + " | " + b.getValidity());
+        System.out.println("\n " + i + "= " + b.getSeries() + " | " + b.getProduct().getId() + " | " + b.getAmount() + " | " + b.getValidity());
         i++;
         }
         System.out.println("\n===============================");
@@ -191,7 +187,7 @@ public class RegisterArrivalBatchView {
         System.out.println("\n\n===============================");
         int i = 1;
         for(Batch b : findBatchExpiredController.execute()) {
-            System.out.println("\n " + i + "= " + b.getSeries() + " | " + b.getId() + " | " + b.getValidity() + " | " + b.getAmount() + " | " + b.calcTotal(b.getIdProduct()));
+            System.out.println("\n " + i + "= " + b.getSeries() + " | " + b.getId() + " | " + b.getValidity() + " | " + b.getAmount() + " | " + b.getProduct().getSalePrice().multiply(BigDecimal.valueOf(b.getAmount())));
             i++;
         }
         System.out.println("\n===============================");
@@ -218,7 +214,7 @@ public class RegisterArrivalBatchView {
 
         int i = 1;
         for(Batch b : filterBatchByStockController.execute()) {
-            System.out.println("\n " + i + "= " + b.getSeries() + " | " + b.getId() + " | " + b.getValidity() + " | " + b.getAmount() + " | " + b.calcTotal(b.getIdProduct()));
+            System.out.println("\n " + i + "= " + b.getSeries() + " | " + b.getId() + " | " + b.getValidity() + " | " + b.getAmount() + " | " + b.getProduct().getSalePrice().multiply(BigDecimal.valueOf(b.getAmount())));
             i++;
         }
         System.out.println("\n===============================");

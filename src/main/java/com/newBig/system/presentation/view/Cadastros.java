@@ -7,15 +7,17 @@ import com.newBig.system.domain.repository.StockMovementRepository;
 import com.newBig.system.domain.repository.StockRepository;
 import com.newBig.system.presentation.controller.ProductController;
 import com.newBig.system.presentation.controller.RegisterArrivalController;
+import com.newBig.system.presentation.view.Morv.UsuariosView;
 
 import java.util.Scanner;
 
 public class Cadastros {
 
     private ExibirMenus menu = new ExibirMenus();
+    UsuariosView usuariosView = new UsuariosView();
     private Scanner sc = new Scanner(System.in);
 
-    public void execute(ProductRepository repository, StockRepository stockRepository, StockMovementRepository stockMovementRepository, IniciarUsuario iniciarUsuario) {
+    public void execute(ProductRepository repository, StockRepository stockRepository, StockMovementRepository stockMovementRepository) {
 
         int op;
 
@@ -28,7 +30,8 @@ public class Cadastros {
             switch (op) {
 
                 case 1:
-                    iniciarUsuario.iniciar();
+                    //iniciarUsuario.iniciar();
+                    usuariosView.print();
                     break;
 
                 case 2:
@@ -46,7 +49,7 @@ public class Cadastros {
                 case 3:
 
 
-                    RegisterArrivalBatch registerArrivalBatch =  new RegisterArrivalBatch(stockRepository, stockMovementRepository);
+                    RegisterArrivalBatch registerArrivalBatch =  new RegisterArrivalBatch(stockRepository, stockMovementRepository, repository);
 
                     RegisterArrivalController registerArrivalController = new RegisterArrivalController(registerArrivalBatch);
 

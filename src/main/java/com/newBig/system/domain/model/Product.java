@@ -1,28 +1,49 @@
 package com.newBig.system.domain.model;
 
+import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.UUID;
 
+@Entity
+@Table(name = "product")
 public class Product {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    @Column(name = "product_name", nullable = false)
     private String productName;
+    @Column(name = "description")
     private String description;
 
+    @Column(name = "department")
     private String department;
+    @Column(name = "category")
     private String category;
 
+    @Column(name = "bar_code")
     private int barcode;
 
+    @Column(name = "cost_price")
     private BigDecimal costPrice;
+    @Column(name = "sale_price")
     private BigDecimal salePrice;
 
+    @Column(name = "minimum_stock")
     private int minimumStock; // A quantidade minima para esse produto
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
     private ProductType type;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "unit")
     private UnitType  unit;
+
+    //  = Construtor protegido para o JPA
+    protected Product() {}
 
     public Product(String productName, String description, String department, String category, int barcode, BigDecimal costPrice, BigDecimal salePrice, int minimumStock, ProductType type, UnitType unit) {
 
@@ -34,7 +55,7 @@ public class Product {
         if (salePrice.compareTo(BigDecimal.ZERO) < 0) throw new IllegalArgumentException("Preço de venda não pode ser negativo!!!");
         if (minimumStock <= 0) throw new IllegalArgumentException("Estoque mínimo não pode ser negativo ou Zero!!!");
 
-        this.id = UUID.randomUUID();
+        //this.id = UUID.randomUUID(); // remove
         this.productName = productName;
         this.description = description;
         this.department = department;

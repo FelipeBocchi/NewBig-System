@@ -1,50 +1,68 @@
 package com.newBig.system;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 
-import com.newBig.system.application.usecase.OperacaoCaixa;
+import com.newBig.system.application.usecase.AddItemToSale;
+import com.newBig.system.application.usecase.BuscarUsuarioVenda;
 import com.newBig.system.application.usecase.Pagamentos;
-import com.newBig.system.domain.model.Funcionario;
+import com.newBig.system.application.usecase.Verificar;
 import com.newBig.system.domain.repository.ProductRepository;
 import com.newBig.system.domain.repository.StockMovementRepository;
 import com.newBig.system.domain.repository.StockRepository;
-import com.newBig.system.infrastructure.persistence.MovementMemoryRepository;
-import com.newBig.system.infrastructure.persistence.DadosUsuario;
-import com.newBig.system.infrastructure.persistence.ProductMemoryRepository;
-import com.newBig.system.infrastructure.persistence.StockMemoryRepository;
+import com.newBig.system.infrastructure.persistence.*;
+import com.newBig.system.presentation.controller.AddItemController;
+import com.newBig.system.presentation.controller.OpenSaleController;
 import com.newBig.system.presentation.view.Cadastros;
-import com.newBig.system.presentation.view.*;
 
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-import com.newBig.system.presentation.view.IniciarUsuario;
 import com.newBig.system.presentation.view.ExibirMenus;
+
+import com.newBig.system.presentation.view.Morv.CaixaView;
+import com.newBig.system.presentation.view.SaleMenuView;
+import jakarta.persistence.EntityManager;
 
 import java.util.Scanner;
 
 
 public class Main {
-    static Scanner sc = new Scanner(System.in);
-
-    static boolean rodou = false; /*Gerar o Admin sempre na primeira vez, e fazer login*/
+    static boolean aux;
+    static Long id = 0L;
 
     public static void main(String[] args) {
 
-        ProductRepository repository = new ProductMemoryRepository();
-        StockRepository stockRepository = new StockMemoryRepository();
-        StockMovementRepository stockMovementRepository = new MovementMemoryRepository();
+        //  = Conecção com o banco e inicialização
+        EntityManager em = CustomizerFactory.getEntityManager();
+
+        StockRepository stockRepository = new StockRepositoryImpl(em);
+        StockMovementRepository movementRepository = new MovementRepositoryImpl(em);
+        ProductRepository productRepository = new ProductRepositoryImpl(em);
+
+        SaleMenuView saleMenuView = new SaleMenuView();
+        AddItemToSale addItemToSale = new AddItemToSale(em);
+        AddItemController addItemController = new AddItemController(em);
+        OpenSaleController openSaleController = new OpenSaleController(em, addItemToSale);
+
+        //ProductRepository repository = new ProductMemoryRepository();
+        //StockRepository stockRepository = new StockMemoryRepository();
+        //StockMovementRepository stockMovementRepository = new MovementMemoryRepository();
 
         Cadastros cadastros = new Cadastros();
         ExibirMenus menu = new ExibirMenus();
-        OperacaoCaixa caixa = new OperacaoCaixa();
-        IniciarUsuario iniciarUsuario = new IniciarUsuario();
-        LoginUsuario login = new LoginUsuario();
-        Pagamentos pagar = new Pagamentos(); /*testando se vai funcionar, tirar antes da entrega*/
+        //IniciarUsuario iniciarUsuario = new IniciarUsuario();
 
-        if(!rodou){/*Gerar o Admin sempre na primeira vez, e fazer login*/
-            DadosUsuario.usuario.add(new Funcionario("Admin", "000000000000", 1, "100", 1000)); /*Admin para ter um usuario para fazer o login*/
-            login.login();
-            rodou = true; /*Nao rodar mais*/
+        Verificar verificar = new Verificar();
+        CaixaView caixaView = new CaixaView();
+        Pagamentos pagamentos = new Pagamentos();
+        Scanner sc = new Scanner(System.in);
+        BuscarUsuarioVenda buscarUsuarioVenda = new BuscarUsuarioVenda();
+        //FlyWayConfig.migrate();
+        if(!aux){
+            System.out.println("\n===============================");
+            System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
+            System.out.println("===============================");
+            id = verificar.login();
+            aux = verificar.acesso(id, 2);
         }
 
-        menu.principal();
+        menu.principal(id);
         int op;
         while(true){
             if(sc.hasNextInt()){
@@ -59,24 +77,33 @@ public class Main {
         sc.nextLine();
         switch (op){
             case 1:
-                cadastros.execute(repository, stockRepository, stockMovementRepository, iniciarUsuario);
+                cadastros.execute(productRepository, stockRepository, movementRepository);
                 break;
             case 2:
-
+                // vendas
+                saleMenuView.execute(openSaleController, addItemController);
                 break;
 
             case 3:
-                caixa.menuCaixa();
+                caixaView.iniciar();
                 break;
             case 4:
-                login.login();
+                /*trocar usuario*/
+                aux = false;
                 main(null);
                 break;
             case 5:
-                pagar.pagamento(10);
+                buscarUsuarioVenda.cliente();
+                buscarUsuarioVenda.funcionario();
+                break;
+            case 6:
+                /*Teste do pagamento*/
+                pagamentos.pagamento(100);
+                caixaView.iniciar();
                 break;
             case 0:
                 /*Sair*/
+                em.close();
                 break;
             default:
                 System.out.println("Escolha uma opcao valida!!");

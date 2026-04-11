@@ -22,12 +22,12 @@ public class FilterBatchByStock {
 
     public List<Batch> execute() {
 
-        Stock stock = repository.get();
+        Stock stock = new Stock(repository.findAll());
         List<Batch> list = stock.findAll();
         List<Batch> newList = new ArrayList<>();
 
         for (Batch b : list) {
-            Product product = productRepository.searchById(b.getIdProduct());
+            Product product = productRepository.searchById(b.getProduct().getId());
 
             if (stock.isLowStock(product.getId(), product.getMinimumStock()) || stock.isOutOfStock(product.getId()))
                 newList.add(b);
