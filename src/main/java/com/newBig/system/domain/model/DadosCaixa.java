@@ -1,6 +1,6 @@
 package com.newBig.system.domain.model;
 
-import com.newBig.system.infrastructure.persistence.FuncionarioRepo;
+import com.newBig.system.domain.repository.FuncionarioRepo;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

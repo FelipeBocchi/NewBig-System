@@ -3,12 +3,10 @@ package com.newBig.system.application.usecase;
 import com.newBig.system.domain.model.Batch;
 import com.newBig.system.domain.model.Product;
 import com.newBig.system.domain.model.Stock;
-import com.newBig.system.domain.model.StockMovement;
 import com.newBig.system.domain.repository.ProductRepository;
 import com.newBig.system.domain.repository.StockMovementRepository;
 import com.newBig.system.domain.repository.StockRepository;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;

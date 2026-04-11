@@ -1,10 +1,9 @@
 package com.newBig.system.infrastructure.persistence;
 
-import com.newBig.system.domain.model.Product;
 import com.newBig.system.domain.model.StockMovement;
 import com.newBig.system.domain.repository.StockMovementRepository;
-
 import jakarta.persistence.EntityManager;
+
 import java.time.LocalDate;
 import java.util.List;
 

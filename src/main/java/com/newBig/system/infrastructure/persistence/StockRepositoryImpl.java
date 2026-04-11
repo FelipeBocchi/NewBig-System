@@ -1,10 +1,9 @@
 package com.newBig.system.infrastructure.persistence;
 
 import com.newBig.system.domain.model.Batch;
-import com.newBig.system.domain.model.Stock;
 import com.newBig.system.domain.repository.StockRepository;
-
 import jakarta.persistence.EntityManager;
+
 import java.util.List;
 import java.util.UUID;
 

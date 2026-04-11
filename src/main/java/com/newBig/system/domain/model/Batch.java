@@ -1,12 +1,8 @@
 package com.newBig.system.domain.model;
 
-import com.newBig.system.domain.repository.ProductRepository;
-
 import jakarta.persistence.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.UUID;
 
 @Entity

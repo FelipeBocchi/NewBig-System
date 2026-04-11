@@ -1,12 +1,10 @@
 package com.newBig.system.infrastructure.persistence;
 
-import com.newBig.system.domain.model.Product;
 import com.newBig.system.domain.model.Sale;
 import com.newBig.system.domain.repository.SalesRepository;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
-import java.util.UUID;
 
 public class SaleRepositoryImpl implements SalesRepository {
 

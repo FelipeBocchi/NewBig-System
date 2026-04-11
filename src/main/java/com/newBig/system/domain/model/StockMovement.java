@@ -1,6 +1,7 @@
 package com.newBig.system.domain.model;
 
 import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;

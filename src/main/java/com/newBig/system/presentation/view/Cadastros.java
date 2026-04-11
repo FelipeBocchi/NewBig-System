@@ -1,5 +1,6 @@
 package com.newBig.system.presentation.view;
 
+import com.newBig.system.Main;
 import com.newBig.system.application.usecase.RegisterArrivalBatch;
 import com.newBig.system.application.usecase.RegisterProductUseCase;
 import com.newBig.system.domain.repository.ProductRepository;
@@ -7,7 +8,7 @@ import com.newBig.system.domain.repository.StockMovementRepository;
 import com.newBig.system.domain.repository.StockRepository;
 import com.newBig.system.presentation.controller.ProductController;
 import com.newBig.system.presentation.controller.RegisterArrivalController;
-import com.newBig.system.presentation.view.Morv.UsuariosView;
+import com.newBig.system.presentation.view.UsuariosView;
 
 import java.util.Scanner;
 
@@ -61,6 +62,7 @@ public class Cadastros {
 
                 case 0:
                     System.out.println("\nEncerrando cadastros...");
+                    Main.main(null);
                     break;
 
                 default:

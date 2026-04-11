@@ -2,8 +2,8 @@ package com.newBig.system.infrastructure.persistence;
 
 import com.newBig.system.domain.model.Product;
 import com.newBig.system.domain.repository.ProductRepository;
-
 import jakarta.persistence.EntityManager;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;

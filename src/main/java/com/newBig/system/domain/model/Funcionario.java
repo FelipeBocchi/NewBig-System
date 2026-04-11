@@ -2,6 +2,8 @@ package com.newBig.system.domain.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "funcionario")
 public class Funcionario{
@@ -25,6 +27,8 @@ public class Funcionario{
     @Column(name = "senha", nullable = false)
     private int senha;
 
+    @OneToMany(mappedBy = "usuarioAbertura")
+    private List<DadosCaixa> dadosCaixa;
     public Funcionario(){};
 
     public Funcionario(String nome, String cpf, int acesso, String login, int senha) {

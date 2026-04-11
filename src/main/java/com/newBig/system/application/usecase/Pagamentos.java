@@ -1,6 +1,6 @@
 package com.newBig.system.application.usecase;
 
-import com.newBig.system.infrastructure.persistence.DadosUsuario;
+import com.newBig.system.infrastructure.persistence.Caixa;
 
 import java.util.Scanner;
 

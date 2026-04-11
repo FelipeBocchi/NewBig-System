@@ -3,8 +3,9 @@ package com.newBig.system.application.usecase;
 import com.newBig.system.Main;
 import com.newBig.system.domain.model.DadosCaixa;
 import com.newBig.system.domain.model.Funcionario;
-import com.newBig.system.infrastructure.persistence.*;
-import com.newBig.system.application.usecase.Caixa;
+import com.newBig.system.domain.model.LogCaixa;
+import com.newBig.system.domain.repository.*;
+import com.newBig.system.infrastructure.persistence.Caixa;
 import jakarta.persistence.EntityManager;
 
 import java.util.InputMismatchException;

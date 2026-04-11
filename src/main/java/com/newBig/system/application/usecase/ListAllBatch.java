@@ -1,7 +1,6 @@
 package com.newBig.system.application.usecase;
 
 import com.newBig.system.domain.model.Batch;
-import com.newBig.system.domain.model.Stock;
 import com.newBig.system.domain.repository.StockRepository;
 
 import java.util.List;
