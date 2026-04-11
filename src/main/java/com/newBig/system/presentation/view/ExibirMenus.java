@@ -114,4 +114,15 @@ public class ExibirMenus {
         System.out.println("===============================");
     }
 
+    public void saleMenu() {
+        System.out.println("\n===============================");
+        System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
+        System.out.println("===============================");
+        System.out.println("            Vendas          ");
+        System.out.println("===============================");
+        System.out.println("1 - vender");
+        System.out.println("0 - Voltar");
+        System.out.println("===============================");
+    }
+
 }

@@ -28,10 +28,10 @@ public class Stock {
     public List<Batch> findAll() { return batchs; }
 
     public void buy(UUID idProduct, int amount) {
+        // 1. CORREÇÃO: Inicialize como uma lista vazia, nunca null
+        this.batchesBuy = new ArrayList<>();
 
-        batchesBuy = null;
-
-        // == FEFO - vai organizar os lotes por validade para poder vender o com a validade mais próxima
+        // Filtragem FEFO (First Expired, First Out)
         List<Batch> batchProduct = batchs.stream()
                 .filter(l -> l.getProduct().getId().equals(idProduct))
                 .filter(l -> !l.isExpired())
@@ -40,21 +40,29 @@ public class Stock {
 
         int amountBuy = amount;
         int available = 0;
-        for( Batch b : batchProduct)
+        for (Batch b : batchProduct) {
             available += b.getAmount();
-        if( available < amountBuy) { throw new RuntimeException("Estoque insuficiente! temos " + available + " desse produto no estoque."); }
+        }
 
-        for( Batch b : batchProduct) {
-            if(amountBuy >= 0) break;
+        if (available < amountBuy) {
+            throw new RuntimeException("Estoque insuficiente! temos " + available + " desse produto no estoque.");
+        }
+
+        for (Batch b : batchProduct) {
+            // 2. CORREÇÃO: Pare se a quantidade a comprar for 0 ou menor
+            if (amountBuy <= 0) break;
 
             int amountProduct = b.getAmount();
-            if( amountProduct <= amountBuy) {
+
+            if (amountProduct <= amountBuy) {
+                // Se o lote tem menos ou igual ao que eu preciso, esvazio o lote
                 amountBuy -= amountProduct;
                 b.setAmount(0);
                 batchesBuy.add(b);
-            }else {
-                b.setAmount( amountProduct - amountBuy);
-                amountBuy = 0;
+            } else {
+                // Se o lote tem mais do que eu preciso, tiro só o necessário
+                b.setAmount(amountProduct - amountBuy);
+                amountBuy = 0; // Compra satisfeita
                 batchesBuy.add(b);
             }
         }

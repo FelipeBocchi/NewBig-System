@@ -15,8 +15,11 @@
 
         <mapping class="com.newBig.system.domain.model.DadosCaixa"/>
         <mapping class="com.newBig.system.domain.model.Funcionario"/>
+        <mapping class="com.newBig.system.domain.model.Cliente"/>
         <mapping class="com.newBig.system.domain.model.Batch"/>
         <mapping class="com.newBig.system.domain.model.Product"/>
         <mapping class="com.newBig.system.domain.model.StockMovement"/>
+        <mapping class="com.newBig.system.domain.model.Sale"/>
+        <mapping class="com.newBig.system.domain.model.SalesMovement"/>
     </session-factory>
 </hibernate-configuration>

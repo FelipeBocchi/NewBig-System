@@ -13,8 +13,8 @@ public class StockMovement {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @OneToOne
-    @JoinColumn(name = "id_batch")
+    @ManyToOne
+    @JoinColumn(name = "id_batch", nullable = false)
     private Batch batch;
 
     @Column(name = "type")

@@ -1,17 +1,21 @@
 package com.newBig.system;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 
+import com.newBig.system.application.usecase.AddItemToSale;
 import com.newBig.system.application.usecase.BuscarUsuarioVenda;
 import com.newBig.system.application.usecase.Verificar;
 import com.newBig.system.domain.repository.ProductRepository;
 import com.newBig.system.domain.repository.StockMovementRepository;
 import com.newBig.system.domain.repository.StockRepository;
 import com.newBig.system.infrastructure.persistence.*;
+import com.newBig.system.presentation.controller.AddItemController;
+import com.newBig.system.presentation.controller.OpenSaleController;
 import com.newBig.system.presentation.view.Cadastros;
 
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 import com.newBig.system.presentation.view.ExibirMenus;
 
 import com.newBig.system.presentation.view.Morv.CaixaView;
+import com.newBig.system.presentation.view.SaleMenuView;
 import jakarta.persistence.EntityManager;
 
 import java.util.Scanner;
@@ -29,6 +33,11 @@ public class Main {
         StockRepository stockRepository = new StockRepositoryImpl(em);
         StockMovementRepository movementRepository = new MovementRepositoryImpl(em);
         ProductRepository productRepository = new ProductRepositoryImpl(em);
+
+        SaleMenuView saleMenuView = new SaleMenuView();
+        AddItemToSale addItemToSale = new AddItemToSale(em);
+        AddItemController addItemController = new AddItemController(em);
+        OpenSaleController openSaleController = new OpenSaleController(em, addItemToSale);
 
         //ProductRepository repository = new ProductMemoryRepository();
         //StockRepository stockRepository = new StockMemoryRepository();
@@ -70,6 +79,7 @@ public class Main {
                 break;
             case 2:
                 // vendas
+                saleMenuView.execute(openSaleController, addItemController);
                 break;
 
             case 3:
