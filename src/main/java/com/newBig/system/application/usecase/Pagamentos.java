@@ -5,13 +5,14 @@ import com.newBig.system.infrastructure.persistence.DadosUsuario;
 import java.util.Scanner;
 
 public class Pagamentos {
-    Scanner sc = new Scanner(System.in);
     Verificar verificar = new Verificar();
-    static float dinheiro = 0;
-    static float cartao = 0;
-    static float pix = 0;
+    Scanner sc = new Scanner(System.in);
+    Caixa caixa = new Caixa();
+    static double dinheiro = 0;
+    static double cartao = 0;
+    static double pix = 0;
 
-    public void pagamento(float valor){
+    public void pagamento(double valor){
         System.out.println("\n===============================");
         System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
         System.out.println("          --Pagamento--        ");
@@ -19,19 +20,7 @@ public class Pagamentos {
         System.out.println("1 - Dinheiro");
         System.out.println("2 - Cartão");
         System.out.println("3 - Pix");
-        int op;
-        while(true){
-            if(sc.hasNextInt()){
-                op = sc.nextInt();
-                break;
-            }
-            else{
-                System.out.println("Digite algo valido!!!");
-                sc.nextLine();
-            }
-        }
-        sc.nextLine();
-        switch (op){
+        switch (verificar.opcao()){
             case 1:
                 dinheiro(valor);
                 break;
@@ -46,15 +35,14 @@ public class Pagamentos {
                 break;
         }
     }
-
-    public void dinheiro(float valor){
+    public void dinheiro(double valor){
         System.out.println("--Dinheiro--");
         System.out.println("Valor: R$" + valor);
-        float recebido = 0;
+        double recebido = 0;
         System.out.println("Digite o valor recebido");
-        //recebido = verificar.valor();;
+        recebido = verificar.valor();
         if(recebido < valor){
-            float restante = valor - recebido;
+            double restante = valor - recebido;
             String continuar;
             do {
                 System.out.println("Valor faltando: R$" + restante);
@@ -98,16 +86,14 @@ public class Pagamentos {
             }
         }
         else{
-            float troco = recebido - valor;
-
+            double troco = recebido - valor;
+            caixa.addValor(valor);
             dinheiro = valor;
 
             System.out.println("Troco: " + troco);
         }
     }
-
-
-    public void cartao(float valor){
+    public void cartao(double valor){
         System.out.println("--Cartao--");
         System.out.println("Valor: R$" + valor);
 
@@ -117,6 +103,7 @@ public class Pagamentos {
             continuar = sc.nextLine().toLowerCase();
             if (continuar.equals("s")) {
                 System.out.println("Pagamento concluido!!!");
+                caixa.addValor(valor);
                 cartao += valor;
                 break;
             } else if (!continuar.equals("n")) {
@@ -126,9 +113,8 @@ public class Pagamentos {
         if(continuar.equals("n")){
             pagamento(valor);
         }
-    };
-
-    public void pix(float valor){
+    }
+    public void pix(double valor){
         System.out.println("--pix--");
         System.out.println("Valor: R$" + valor);
 
@@ -138,6 +124,7 @@ public class Pagamentos {
             continuar = sc.nextLine().toLowerCase();
             if (continuar.equals("s")) {
                 System.out.println("Pagamento concluido!!!");
+                caixa.addValor(valor);
                 pix += valor;
                 break;
             } else if (!continuar.equals("n")) {
@@ -147,7 +134,5 @@ public class Pagamentos {
         if(continuar.equals("n")){
             pagamento(valor);
         }
-    };
-
+    }
 }
-

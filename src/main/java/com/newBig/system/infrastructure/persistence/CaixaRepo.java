@@ -21,15 +21,26 @@ public class CaixaRepo {
     }
 
     public void create(DadosCaixa caixa){
-        em.getTransaction().begin();
-        em.merge(caixa);
-        em.getTransaction().commit();
+        try{
+            em.getTransaction().begin(); /*inicia*/
+            em.merge(caixa);
+            em.getTransaction().commit(); /*salva*/
+        } catch (Exception e) {
+            em.getTransaction().rollback(); /* Não deixa salvar se dar erro */
+            System.out.println("Erro ao salvar!! Nada foi salvo no Banco de dados");
+        }
+
     }
 
     public void update(DadosCaixa caixa) {
-        em.getTransaction().begin();
-        em.merge(caixa);
-        em.getTransaction().commit();
+        try{
+            em.getTransaction().begin(); /*inicia*/
+            em.merge(caixa);
+            em.getTransaction().commit(); /*salva*/
+        } catch (Exception e) {
+            em.getTransaction().rollback(); /* Não deixa salvar se dar erro */
+            System.out.println("Erro ao salvar!! Nada foi salvo no Banco de dados");
+        }
     }
 
     public DadosCaixa CaixaAberto(){ /*Busca caixa com status 0*/

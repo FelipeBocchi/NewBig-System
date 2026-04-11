@@ -1,12 +1,12 @@
 package com.newBig.system.infrastructure.persistence;
 
-import com.newBig.system.domain.model.Batch;
-import com.newBig.system.domain.model.Sale;
+import com.newBig.system.domain.model.Product;
 import com.newBig.system.domain.model.SalesMovement;
 import com.newBig.system.domain.repository.SalesMovementRepository;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
+import java.util.UUID;
 
 public class SalesMovementImpl implements SalesMovementRepository {
 
@@ -25,5 +25,10 @@ public class SalesMovementImpl implements SalesMovementRepository {
                         "SELECT b FROM SalesMovement b",
                         SalesMovement.class)
                 .getResultList();
+    }
+
+    @Override
+    public Product searchById(UUID id) {
+        return em.find(Product.class, id);
     }
 }

@@ -1,6 +1,7 @@
 package com.newBig.system.application.usecase;
 
 import com.newBig.system.Main;
+import com.newBig.system.infrastructure.persistence.ClienteRepo;
 import com.newBig.system.infrastructure.persistence.CustomizerFactory;
 import com.newBig.system.infrastructure.persistence.FuncionarioRepo;
 import jakarta.persistence.EntityManager;
@@ -12,6 +13,7 @@ public class Verificar {
     Scanner sc = new Scanner(System.in);
     EntityManager em = CustomizerFactory.getEntityManager(); /*Pegar objeto que conecta com o banco*/
     FuncionarioRepo funcionarioRepo = new FuncionarioRepo(em);
+    ClienteRepo clienteRepo = new ClienteRepo(em);
 
     public int opcao(){
         try{
@@ -120,4 +122,38 @@ public class Verificar {
             }
         }
     }
+
+    public double valor(){
+        boolean passou = false;
+        double n = 0;
+        while (!passou) {
+            System.out.print("Digite o valor: ");
+            try {
+                n = sc.nextDouble();
+                passou = true;
+            } catch (Exception e) {
+                System.out.println("Numero invalido tente novamente");
+                sc.nextLine();
+            }
+        }
+        return n;
+
+    };
+
+    public boolean existe_id(Long id){
+        if(!funcionarioRepo.consultaId(id)){
+            System.out.println("Id não encontrado no banco de dados!!!");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean existe_id_cliente(Long id){
+        if(!clienteRepo.consultaId(id)){
+            System.out.println("Id não encontrado no banco de dados!!!");
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -46,6 +46,9 @@ public class DadosCaixa {
     @Column(name = "status", nullable = false)
     private int status;
 
+    @Column(name = "valorAtual", nullable = false)
+    private double valorAtual = 0;
+
     public DadosCaixa(){};
 
     public DadosCaixa(LocalTime horaAbertura, LocalDate dataAbertura, Funcionario funcionario, float valorAbertura) {
@@ -75,12 +78,17 @@ public class DadosCaixa {
         return horaAbertura;
     }
 
+    public double getValorAtual() {
+        return valorAtual;
+    }
+
     public void salvarAbertura(Funcionario funcionario, double valor){
         this.usuarioAbertura = funcionario;
         this.valorAbertura= valor;
         this.dataAbertura = LocalDate.now();
         this.horaAbertura = LocalTime.now();
         this.status = 0;
+        this.valorAtual = valor;
     }
 
     public void salvarFechamento(Funcionario funcionario, double valor, double sangria){
@@ -92,4 +100,7 @@ public class DadosCaixa {
         this.status = 1;
     }
 
+    public void setValorAtual(double valorAtual) {
+        this.valorAtual = valorAtual;
+    }
 }

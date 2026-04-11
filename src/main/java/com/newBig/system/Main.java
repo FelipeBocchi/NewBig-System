@@ -2,6 +2,7 @@ package com.newBig.system;//TIP To <b>Run</b> code, press <shortcut actionId="Ru
 
 import com.newBig.system.application.usecase.AddItemToSale;
 import com.newBig.system.application.usecase.BuscarUsuarioVenda;
+import com.newBig.system.application.usecase.Pagamentos;
 import com.newBig.system.application.usecase.Verificar;
 import com.newBig.system.domain.repository.ProductRepository;
 import com.newBig.system.domain.repository.StockMovementRepository;
@@ -49,6 +50,7 @@ public class Main {
 
         Verificar verificar = new Verificar();
         CaixaView caixaView = new CaixaView();
+        Pagamentos pagamentos = new Pagamentos();
         Scanner sc = new Scanner(System.in);
         BuscarUsuarioVenda buscarUsuarioVenda = new BuscarUsuarioVenda();
         //FlyWayConfig.migrate();
@@ -93,6 +95,11 @@ public class Main {
             case 5:
                 buscarUsuarioVenda.cliente();
                 buscarUsuarioVenda.funcionario();
+                break;
+            case 6:
+                /*Teste do pagamento*/
+                pagamentos.pagamento(100);
+                caixaView.iniciar();
                 break;
             case 0:
                 /*Sair*/

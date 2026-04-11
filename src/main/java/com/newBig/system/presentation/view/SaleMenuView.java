@@ -1,5 +1,6 @@
 package com.newBig.system.presentation.view;
 
+import com.newBig.system.application.usecase.Pagamentos;
 import com.newBig.system.presentation.controller.AddItemController;
 import com.newBig.system.presentation.controller.OpenSaleController;
 
@@ -10,6 +11,7 @@ public class SaleMenuView {
     private Scanner sc = new Scanner(System.in);
     private ExibirMenus menu = new ExibirMenus();
     private SaleView saleView = new SaleView();
+    private Pagamentos pagamentos = new Pagamentos();
 
     public void execute(OpenSaleController openSaleController, AddItemController addItemController) {
 
@@ -25,7 +27,7 @@ public class SaleMenuView {
 
                 case 1:
                     saleView.execute(openSaleController, addItemController);
-
+                    pagamentos.pagamento(180);
                     break;
 
                 case 0:

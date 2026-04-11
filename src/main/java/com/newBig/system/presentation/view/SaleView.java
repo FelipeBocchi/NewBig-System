@@ -3,6 +3,7 @@ package com.newBig.system.presentation.view;
 import com.newBig.system.application.usecase.BuscarUsuarioVenda;
 import com.newBig.system.domain.model.Cliente;
 import com.newBig.system.domain.model.Funcionario;
+import com.newBig.system.domain.model.Sale;
 import com.newBig.system.presentation.controller.AddItemController;
 import com.newBig.system.presentation.controller.OpenSaleController;
 
@@ -17,6 +18,7 @@ public class SaleView {
     private Scanner sc = new Scanner(System.in);
     private Cliente cliente;
     private Funcionario funcionario;
+    private Sale sale = null;
 
     public void execute(OpenSaleController openSaleController, AddItemController addItemController) {
 
