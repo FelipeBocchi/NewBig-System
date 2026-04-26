@@ -34,6 +34,8 @@ public class Pagamentos {
                 System.out.println("Digite uma opcao disponivel!!!!");
                 break;
         }
+
+        // vai chamar a class que modifica o status e forma de pagamento
     }
     public void dinheiro(double valor){
         System.out.println("--Dinheiro--");

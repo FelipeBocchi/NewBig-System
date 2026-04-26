@@ -11,7 +11,7 @@
 
         <property name="hibernate.show_sql">false</property> <!--false tirar mensagem-->
         <property name="hibernate.format_sql">true</property>
-        <property name="hibernate.hbm2ddl.auto">update</property> <!--none para usar o flyway -->
+        <property name="hibernate.hbm2ddl.auto">none</property> <!--none para usar o flyway update-->
 
         <mapping class="com.newBig.system.domain.model.DadosCaixa"/>
         <mapping class="com.newBig.system.domain.model.Funcionario"/>
@@ -21,5 +21,7 @@
         <mapping class="com.newBig.system.domain.model.StockMovement"/>
         <mapping class="com.newBig.system.domain.model.Sale"/>
         <mapping class="com.newBig.system.domain.model.SalesMovement"/>
+        <mapping class="com.newBig.system.domain.model.LogCaixa"/>
+        <mapping class="com.newBig.system.domain.model.LogUsuario"/>
     </session-factory>
 </hibernate-configuration>

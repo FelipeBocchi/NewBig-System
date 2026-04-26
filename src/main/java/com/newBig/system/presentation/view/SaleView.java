@@ -49,7 +49,7 @@ public class SaleView {
         int quantity = sc.nextInt();
         System.out.println("\n===============================");
 
-        Long idSaleCurrent = openSaleController.execute(cliente.getId(), funcionario.getId(), idProduct, quantity, "NÃO FEITO");
+        Long idSaleCurrent = openSaleController.execute(cliente.getId(), funcionario.getId(), idProduct, quantity, "DINHEIRO");
 
         int op;
         while(true){
@@ -80,6 +80,8 @@ public class SaleView {
             addItemController.execute(idSaleCurrent, idProduct, quantity);
 
         }
+
+        // somatoria dos itens da compra
 
     }
 }

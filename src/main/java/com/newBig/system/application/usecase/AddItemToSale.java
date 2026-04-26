@@ -13,19 +13,19 @@ public class AddItemToSale {
         this.em = em;
     }
 
-    // Método que pode ser chamado individualmente pela View (cada bip novo)
+    // (cada bip novo)
     public void execute(Long saleId, UUID productId, int quantity) {
-        em.getTransaction().begin();
+        em.getTransaction().begin();  // inicializa uma transação
         try {
             adicionarLogica(saleId, productId, quantity);
-            em.getTransaction().commit();
+            em.getTransaction().commit(); // salva tudo ok
         } catch (Exception e) {
-            if (em.getTransaction().isActive()) em.getTransaction().rollback();
+            if (em.getTransaction().isActive()) em.getTransaction().rollback(); // desfaz tudo se hover erro
             throw e;
         }
     }
 
-    // A "mágica" do JOIN e FEFO acontece aqui
+    // A JOIN e FEFO
     public void adicionarLogica(Long saleId, UUID productId, int quantity) {
         Sale sale = em.find(Sale.class, saleId);
 
@@ -46,7 +46,7 @@ public class AddItemToSale {
             SalesMovement sMov = new SalesMovement(sale, mStock);
             em.persist(sMov);
 
-            // Atualize o total da Sale aqui se necessário
+
         }
     }
 }
