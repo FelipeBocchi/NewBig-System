@@ -14,7 +14,13 @@ import com.newBig.system.infrastructure.persistence.ProductRepositoryImpl;
 import com.newBig.system.infrastructure.persistence.StockRepositoryImpl;
 import com.newBig.system.presentation.controller.AddItemController;
 import com.newBig.system.presentation.controller.OpenSaleController;
-import com.newBig.system.presentation.view.*;
+import com.newBig.system.presentation.view.Cadastros;
+
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import com.newBig.system.presentation.view.ExibirMenus;
+
+import com.newBig.system.presentation.view.Morv.CaixaView;
+import com.newBig.system.presentation.view.SaleMenuView;
 import jakarta.persistence.EntityManager;
 
 import java.util.Scanner;
@@ -23,12 +29,10 @@ import java.util.Scanner;
 public class Main {
     static boolean aux;
     static Long id = 0L;
+
     public static void main(String[] args) {
-        UsuariosView usuariosView = new UsuariosView();
-        MenuView menuView = new MenuView();
-        Verificar verificar = new Verificar();
-        CaixaView caixaView = new CaixaView();
-        BuscarUsuarioVenda buscarUsuarioVenda = new BuscarUsuarioVenda();
+        FlyWayConfig.migrate();
+        //  = Conecção com o banco e inicialização
         EntityManager em = CustomizerFactory.getEntityManager();
 
         StockRepository stockRepository = new StockRepositoryImpl(em);
@@ -39,9 +43,16 @@ public class Main {
         AddItemToSale addItemToSale = new AddItemToSale(em);
         AddItemController addItemController = new AddItemController(em);
         OpenSaleController openSaleController = new OpenSaleController(em, addItemToSale);
-        Cadastros cadastros = new Cadastros();
 
-        FlyWayConfig.migrate();
+        Cadastros cadastros = new Cadastros();
+        ExibirMenus menu = new ExibirMenus();
+
+        Verificar verificar = new Verificar();
+        CaixaView caixaView = new CaixaView();
+        Pagamentos pagamentos = new Pagamentos();
+        Scanner sc = new Scanner(System.in);
+        BuscarUsuarioVenda buscarUsuarioVenda = new BuscarUsuarioVenda();
+
         if(!aux){
             System.out.println("\n===============================");
             System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
@@ -49,24 +60,48 @@ public class Main {
             id = verificar.login();
             aux = verificar.acesso(id, 2);
         }
-            menuView.principal(id);
-            switch (verificar.opcao()){
+
+        int op;
+
+        do {
+            menu.principal(id);
+
+            while(true){
+                if(sc.hasNextInt()){
+                    op = sc.nextInt();
+                    break;
+                }
+                else{
+                    System.out.println("Digite algo valido!!!");
+                    sc.nextLine();
+                }
+            }
+            sc.nextLine();
+            switch (op){
                 case 1:
-                    /*Usuario*/
                     cadastros.execute(productRepository, stockRepository, movementRepository);
                     break;
                 case 2:
-                    /*Caixa*/
+                    // vendas
+                    saleMenuView.execute(openSaleController, addItemController);
+                    break;
+
+                case 3:
                     caixaView.iniciar();
                     break;
-                case 3:
+                case 4:
                     /*trocar usuario*/
                     aux = false;
                     main(null);
                     break;
-                case 4:
-                    /*Vendas*/
-                    saleMenuView.execute(openSaleController, addItemController);
+                case 5:
+                    buscarUsuarioVenda.cliente();
+                    buscarUsuarioVenda.funcionario();
+                    break;
+                case 6:
+                    /*Teste do pagamento*/
+                    pagamentos.pagamento(100);
+                    caixaView.iniciar();
                     break;
                 case 0:
                     /*Sair*/
@@ -75,8 +110,10 @@ public class Main {
                 default:
                     System.out.println("Escolha uma opcao valida!!");
                     main(null);
-                    break;
             }
-        }
 
+        } while (op != 0);
+
+    }
 }
+

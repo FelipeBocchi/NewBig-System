@@ -8,7 +8,7 @@ public class SalesMovement {
     //  = Class criada para servir de intermediario entre venda e movimentação
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne

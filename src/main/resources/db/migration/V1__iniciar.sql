@@ -1,13 +1,19 @@
-CREATE TABLE product(
+CREATE TABLE funcionario(
     id serial primary key,
-    productName varchar(100) not null,
-    description varchar(100) not null,
-    department varchar(100) not null,
-    category varchar(100) not null ,
-    bar_code int not null ,
-    cost_price DECIMAL(10,2),
-    sale_price DECIMAL(10,2),
-    minimum_stock int not null ,
-    type varchar(100) not null ,
-    unit varchar(100) not null
-)
+    nome varchar(100) not null,
+    cpf varchar(11) not null unique,
+    acesso int not null,
+    login varchar(100) not null,
+    senha int not null
+);
+
+CREATE TABLE cliente(
+    id serial primary key,
+    nome varchar(100) not null,
+    cpf varchar(11) not null unique,
+    cep varchar(8) not null,
+    rua varchar(100) not null,
+    numero int,
+    bairro varchar(100) not null,
+    telefone varchar(11) not null
+);

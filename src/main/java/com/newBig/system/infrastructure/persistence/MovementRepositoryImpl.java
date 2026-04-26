@@ -26,7 +26,7 @@ public class MovementRepositoryImpl implements StockMovementRepository {
     @Override
     public List<StockMovement> searchByTime(LocalDate day) {
         return em.createQuery(
-                        "SELECT s FROM Stock_movement s WHERE s.date = :day",
+                        "SELECT s FROM StockMovement s WHERE s.date = :day",
                         StockMovement.class)
                 .setParameter("day", day)
                 .getResultList();
@@ -35,7 +35,7 @@ public class MovementRepositoryImpl implements StockMovementRepository {
     @Override
     public List<StockMovement> findAll() {
         return em.createQuery(
-                "SELECT s FROM Stock_movement s",
+                "SELECT s FROM StockMovement s",
                 StockMovement.class)
                 .getResultList();
     }

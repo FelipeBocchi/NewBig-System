@@ -74,7 +74,7 @@ public class RegisterArrivalBatchView {
                     break;
 
                 case 0:
-                    System.out.println("\nEncerrando sistema...");
+                    System.out.println("\nVoltando...");
                     break;
 
                 default:

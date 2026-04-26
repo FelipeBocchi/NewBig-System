@@ -11,7 +11,7 @@ import java.util.List;
 public class Sale {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.AUTO)
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "start_time", nullable = false)
@@ -36,6 +36,7 @@ public class Sale {
     @Column(name = "status", nullable = false)
     private String status;
 
+                //fk na salesMovement    salva automaticamento tudo dentro da list
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SalesMovement> movements;
 

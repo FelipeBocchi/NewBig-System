@@ -28,7 +28,7 @@ public class Stock {
     public List<Batch> findAll() { return batchs; }
 
     public void buy(UUID idProduct, int amount) {
-        // 1. CORREÇÃO: Inicialize como uma lista vazia, nunca null
+        // Inicialize como uma lista vazia
         this.batchesBuy = new ArrayList<>();
 
         // Filtragem FEFO (First Expired, First Out)
@@ -44,12 +44,13 @@ public class Stock {
             available += b.getAmount();
         }
 
+        // se meu usuario quer 50 e só tenho 40 vai cair aqui
         if (available < amountBuy) {
             throw new RuntimeException("Estoque insuficiente! temos " + available + " desse produto no estoque.");
         }
 
         for (Batch b : batchProduct) {
-            // 2. CORREÇÃO: Pare se a quantidade a comprar for 0 ou menor
+            // Pare se a quantidade a comprar for 0 ou menor
             if (amountBuy <= 0) break;
 
             int amountProduct = b.getAmount();

@@ -8,7 +8,7 @@ public class FlyWayConfig {
                 .dataSource(
                         "jdbc:postgresql://localhost:5432/postgres",
                         "postgres",
-                        "1212"
+                        "13052024"
                 )
                 .baselineOnMigrate(true) /*Começa a controlar apartir de agora, tirando o que já existe*/
                 .load(); /*Finaliza a configuração*/

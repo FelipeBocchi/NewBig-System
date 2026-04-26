@@ -7,22 +7,21 @@
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>
         <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">1212</property>
+        <property name="hibernate.connection.password">13052024</property>
 
         <property name="hibernate.show_sql">false</property> <!--false tirar mensagem-->
         <property name="hibernate.format_sql">true</property>
-        <property name="hibernate.hbm2ddl.auto">none</property> <!--none para usar o flyway -->
+        <property name="hibernate.hbm2ddl.auto">none</property> <!--none para usar o flyway update-->
 
         <mapping class="com.newBig.system.domain.model.DadosCaixa"/>
         <mapping class="com.newBig.system.domain.model.Funcionario"/>
         <mapping class="com.newBig.system.domain.model.Cliente"/>
-        <mapping class="com.newBig.system.domain.model.LogUsuario"/>
-        <mapping class="com.newBig.system.domain.model.LogCaixa"/>
         <mapping class="com.newBig.system.domain.model.Batch"/>
         <mapping class="com.newBig.system.domain.model.Product"/>
         <mapping class="com.newBig.system.domain.model.StockMovement"/>
         <mapping class="com.newBig.system.domain.model.Sale"/>
         <mapping class="com.newBig.system.domain.model.SalesMovement"/>
-
+        <mapping class="com.newBig.system.domain.model.LogCaixa"/>
+        <mapping class="com.newBig.system.domain.model.LogUsuario"/>
     </session-factory>
 </hibernate-configuration>

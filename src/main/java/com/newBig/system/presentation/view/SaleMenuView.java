@@ -27,6 +27,7 @@ public class SaleMenuView {
 
                 case 1:
                     saleView.execute(openSaleController, addItemController);
+                    //vai retornar o valor da compra e será passado para pagamento
                     pagamentos.pagamento(180);
                     break;
 

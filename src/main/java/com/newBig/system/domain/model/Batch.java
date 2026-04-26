@@ -27,15 +27,13 @@ public class Batch {
     @Column(name = "validity")
     private LocalDate validity;
 
-    // é meu array de produtos, para acessar o "banco"
-   // @Column(name = "product_repository")
-    //private ProductRepository repository;
+
 
     //  = Construtor protegido para o JPA
     protected Batch() {}
 
     public Batch(Product product, LocalDate validity, int amount, char series) {
-        if( amount >= 0) throw new IllegalArgumentException("Quantidade de produtos não poder ser igual ou menor que zero!!!");
+        if( amount <= 0) throw new IllegalArgumentException("Quantidade de produtos não poder ser igual ou menor que zero!!!");
 
         this.series = series;
         this.product = product;
