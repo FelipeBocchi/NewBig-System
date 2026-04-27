@@ -5,8 +5,8 @@ import com.newBig.system.domain.model.Funcionario;
 import com.newBig.system.domain.repository.ClienteRepo;
 import com.newBig.system.domain.repository.CustomizerFactory;
 import com.newBig.system.domain.repository.FuncionarioRepo;
-import com.newBig.system.presentation.view.ClienteView;
-import com.newBig.system.presentation.view.FuncionarioView;
+import com.newBig.system.presentation.view.Morv.ClienteView;
+import com.newBig.system.presentation.view.Morv.FuncionarioView;
 import jakarta.persistence.EntityManager;
 
 public class BuscarUsuarioVenda {

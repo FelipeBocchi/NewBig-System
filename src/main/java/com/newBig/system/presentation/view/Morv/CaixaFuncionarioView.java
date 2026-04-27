@@ -35,4 +35,5 @@ public class CaixaFuncionarioView {
             Main.main(null);
         }
     }
+
 }

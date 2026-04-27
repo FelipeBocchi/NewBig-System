@@ -21,4 +21,6 @@ public class LogUsuarioView {
         sc.nextLine();
         Main.main(null);
     };
+
+
 }

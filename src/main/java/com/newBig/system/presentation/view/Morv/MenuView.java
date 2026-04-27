@@ -22,4 +22,5 @@ public class MenuView {
         System.out.print("Escolha uma opção: ");
 
     }
+    
 }

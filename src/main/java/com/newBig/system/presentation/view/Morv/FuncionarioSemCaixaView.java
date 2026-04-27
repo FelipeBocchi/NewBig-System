@@ -34,4 +34,5 @@ public class FuncionarioSemCaixaView {
             Main.main(null);
         }
     }
+
 }

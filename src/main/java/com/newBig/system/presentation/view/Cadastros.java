@@ -8,14 +8,14 @@ import com.newBig.system.domain.repository.StockMovementRepository;
 import com.newBig.system.domain.repository.StockRepository;
 import com.newBig.system.presentation.controller.ProductController;
 import com.newBig.system.presentation.controller.RegisterArrivalController;
-import com.newBig.system.presentation.view.UsuariosView;
+import com.newBig.system.presentation.view.Morv.UsuariosView;
 
 import java.util.Scanner;
 
 public class Cadastros {
 
     private ExibirMenus menu = new ExibirMenus();
-    UsuariosView usuariosView = new UsuariosView();
+    private UsuariosView usuariosView = new UsuariosView();
     private Scanner sc = new Scanner(System.in);
 
     public void execute(ProductRepository repository, StockRepository stockRepository, StockMovementRepository stockMovementRepository) {
