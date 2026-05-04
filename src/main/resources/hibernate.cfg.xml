@@ -16,11 +16,6 @@
         <mapping class="com.newBig.system.model.DadosCaixa"/>
         <mapping class="com.newBig.system.model.Funcionario"/>
         <mapping class="com.newBig.system.model.Cliente"/>
-        <mapping class="com.newBig.system.domain.model.Batch"/>
-        <mapping class="com.newBig.system.domain.model.Product"/>
-        <mapping class="com.newBig.system.domain.model.StockMovement"/>
-        <mapping class="com.newBig.system.domain.model.Sale"/>
-        <mapping class="com.newBig.system.domain.model.SalesMovement"/>
         <mapping class="com.newBig.system.model.LogCaixa"/>
         <mapping class="com.newBig.system.model.LogUsuario"/>
     </session-factory>
