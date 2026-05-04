@@ -27,9 +27,9 @@ public class AddItemToSale {
 
     // A JOIN e FEFO
     public void adicionarLogica(Long saleId, UUID productId, int quantity) {
-        Sale sale = em.find(Sale.class, saleId);
+        Sale sale = em.find(Sale.class, saleId);   // repositorySale
 
-        // JOIN FETCH: Pega o lote e o produto de uma vez só (Performance!)
+        // JOIN FETCH: Pega o lote e o produto de uma vez só (Performance!)  // repositoryBatch
         List<Batch> batches = em.createQuery(
                         "SELECT b FROM Batch b JOIN FETCH b.product p WHERE p.id = :prodId AND b.amount > 0 ORDER BY b.validity ASC",
                         Batch.class)
@@ -37,7 +37,7 @@ public class AddItemToSale {
                 .getResultList();
 
         Stock stockManager = new Stock(batches);
-        stockManager.buy(productId, quantity);
+        stockManager.buy(productId, quantity);    //FEFO return List<batchvendidas>
 
         for (Batch b : stockManager.getBatchesBuy()) {
             StockMovement mStock = new StockMovement("SAIDA", b, quantity, b.getProduct().getSalePrice());
@@ -49,4 +49,7 @@ public class AddItemToSale {
 
         }
     }
+
+
+
 }
