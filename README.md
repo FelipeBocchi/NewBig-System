@@ -1,4 +1,4 @@
-<h1 align="center">🍦 SISTEMA DE SORVETERIA</h1>
+<h1 align="center">🍦 NewBig-System</h1>
 
 📖 Sobre o Projeto
 
