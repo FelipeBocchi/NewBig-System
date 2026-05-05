@@ -1,20 +1,47 @@
-<h1 align="center">🍦 NewBig-System</h1>
+<div align="center">
 
-📖 Sobre o Projeto
+# 🍦✨ NewBig-System ✨🍨
 
-Sistema para uma sorveteria.
+### 🚀 Sistema para uma sorveteria 🚀
 
-✨ Funcionalidades
-  - Cadastro de clientes e funcionarios
-  - Cadastro de produtos
-  - Controle de caixa
-  - Sistema de venda
-    
-🛠️ Tecnologias Utilizadas
-  - Java
-  - Hibernate/JPA
-  - PostgreSQL
-  - Maven
-  - GitHub
+</div>
 
-🍦 Obrigado por visitar o projeto!
+---
+
+# 📖 Sobre o Projeto
+
+🍨 Sistema para uma sorveteria.
+
+---
+
+# ✨ FUNCIONALIDADES ✨
+
+## ✅ Cadastro de clientes e funcionários
+
+## ✅ Cadastro de produtos
+
+## ✅ Controle de caixa
+
+## ✅ Sistema de venda
+
+---
+
+# 🛠️ TECNOLOGIAS UTILIZADAS 🛠️
+
+## ☕ Java
+
+## 🗄️ Hibernate/JPA
+
+## 🐘 PostgreSQL
+
+## 📦 Maven
+
+## 🌐 GitHub
+
+---
+
+<div align="center">
+
+# 🍦 Obrigado por visitar o projeto! 🍨
+
+</div>
