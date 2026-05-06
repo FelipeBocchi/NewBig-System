@@ -1,8 +1,5 @@
 package com.newBig.system.model;
 
-import com.newBig.system.domain.model.Cliente;
-import com.newBig.system.domain.model.Funcionario;
-import com.newBig.system.domain.model.SalesMovement;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
