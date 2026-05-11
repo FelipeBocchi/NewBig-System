@@ -20,8 +20,6 @@ public class TelaFuncionario extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaFuncionario.class.getName());
     TelaCadastroFuncionario telaCadastroFuncionario = new TelaCadastroFuncionario();
-    EntityManager em = CustomizerFactory.getEntityManager(); /*Pegar objeto que conecta com o banco*/
-    FuncionarioRepo dados = new FuncionarioRepo(em);
     TelaAtualizarFuncionarios telaAtualizarFuncionarios = new TelaAtualizarFuncionarios();
     /**
      * Creates new form TelaFuncionario
@@ -187,11 +185,26 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        telaCadastroFuncionario.setVisible(true);
+        int linha = TabelaFuncionarios.getSelectedRow();
+        if(linha == -1){
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Nenhum Funcionario selecionado!!"
+
+            );
+        }
+        else{
+            Long id = (Long) TabelaFuncionarios.getValueAt(linha, 0);
+            telaAtualizarFuncionarios.preencher(id);
+            telaAtualizarFuncionarios.setVisible(true);
+            preencherTabela();
+        }
 
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
+        EntityManager em = CustomizerFactory.getEntityManager(); /*Pegar objeto que conecta com o banco*/
+        FuncionarioRepo dados = new FuncionarioRepo(em);
         int linha = TabelaFuncionarios.getSelectedRow();
         Long id = (Long) TabelaFuncionarios.getValueAt(linha, 0);
         String nome = (String) TabelaFuncionarios.getValueAt(linha, 1);
@@ -215,6 +228,8 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDadosActionPerformed
+        EntityManager em = CustomizerFactory.getEntityManager(); /*Pegar objeto que conecta com o banco*/
+        FuncionarioRepo dados = new FuncionarioRepo(em);
         int linha = TabelaFuncionarios.getSelectedRow();
         if(linha == -1){
             JOptionPane.showMessageDialog(
@@ -241,6 +256,8 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
 
     public void preencherTabela(){
+        EntityManager em = CustomizerFactory.getEntityManager(); /*Pegar objeto que conecta com o banco*/
+        FuncionarioRepo dados = new FuncionarioRepo(em);
         DefaultTableModel linha = (DefaultTableModel) TabelaFuncionarios.getModel();
         linha.setRowCount(0);
         var lista = dados.BuscaFuncionarios();
@@ -273,6 +290,8 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }
 
     public void preencherNome(){
+        EntityManager em = CustomizerFactory.getEntityManager(); /*Pegar objeto que conecta com o banco*/
+        FuncionarioRepo dados = new FuncionarioRepo(em);
         DefaultTableModel linha = (DefaultTableModel) TabelaFuncionarios.getModel();
         linha.setRowCount(0);
         String nome = TxtBuscar.getText();

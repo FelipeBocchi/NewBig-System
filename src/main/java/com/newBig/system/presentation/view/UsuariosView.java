@@ -32,7 +32,7 @@ public class UsuariosView {
 //                cadastroUsuario.novo();
                 break;
             case 2:
-                atualizarUsuario.iniciar();
+//                atualizarUsuario.iniciar();
                 break;
             case 3:
                 relatorioUsuario.iniciar();

@@ -4,6 +4,10 @@
  */
 package com.newBig.system.view;
 
+import com.newBig.system.service.AtualizarUsuario;
+
+import javax.swing.*;
+
 /**
  *
  * @author MH
@@ -11,12 +15,15 @@ package com.newBig.system.view;
 public class TelaAtualizarFuncionarios extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaAtualizarFuncionarios.class.getName());
-
+    AtualizarUsuario atualizarUsuario = new AtualizarUsuario();
     /**
      * Creates new form TelaAtualizarFuncionarios
      */
     public TelaAtualizarFuncionarios() {
         initComponents();
+        txtId.setEnabled(false);
+        this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -28,6 +35,7 @@ public class TelaAtualizarFuncionarios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        acessoGroup = new javax.swing.ButtonGroup();
         fundo = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
@@ -122,6 +130,7 @@ public class TelaAtualizarFuncionarios extends javax.swing.JFrame {
         txtSenha.addActionListener(this::txtSenhaActionPerformed);
         fundo.add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 260, 30));
 
+        acessoGroup.add(rdSem);
         rdSem.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         rdSem.setText("Sem acesso");
         rdSem.addActionListener(this::rdSemActionPerformed);
@@ -131,11 +140,13 @@ public class TelaAtualizarFuncionarios extends javax.swing.JFrame {
         lblSenha1.setText("Senha");
         fundo.add(lblSenha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, -1, -1));
 
+        acessoGroup.add(rdAdm);
         rdAdm.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         rdAdm.setText("Administrador");
         rdAdm.addActionListener(this::rdAdmActionPerformed);
         fundo.add(rdAdm, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 150, 40));
 
+        acessoGroup.add(rdOperador);
         rdOperador.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         rdOperador.setSelected(true);
         rdOperador.setText("Operador");
@@ -157,7 +168,34 @@ public class TelaAtualizarFuncionarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-
+        try{
+            Long id = Long.parseLong(txtId.getText());
+            String nome = txtNome.getText();
+            String cpf = txtCpf.getText();
+            String login = txtLogin.getText();
+            int senha = Integer.parseInt(txtSenha.getText());
+            int acesso = 3;
+            if(rdAdm.isSelected()){
+                acesso = 1;
+            } else if (rdOperador.isSelected()) {
+                acesso = 2;
+            }
+            atualizarUsuario.funcionario(id,nome,cpf,login,senha,acesso);
+            if(nome.isEmpty() || cpf.isEmpty() || login.isEmpty()){
+                throw new Exception("Campo não preenchido!");
+            }
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Funcionario Atualizado com sucesso!!"
+            );
+            dispose();
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Erro ao atualizar Funcionario confira os dados!!!! " + e.getMessage()
+            );
+        }
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -180,6 +218,23 @@ public class TelaAtualizarFuncionarios extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rdOperadorActionPerformed
 
+
+
+    public void preencher(Long id){
+        var dados = atualizarUsuario.dadosFuncionario(id);
+        txtId.setText(dados.getId().toString());
+        txtNome.setText(dados.getNome());
+        txtCpf.setText(dados.getCpf());
+        txtLogin.setText(dados.getLogin());
+        txtSenha.setText(String.valueOf(dados.getSenha()));
+        if(dados.getAcesso() == 1){
+            rdAdm.setSelected(true);
+        } else if (dados.getAcesso() == 2){
+            rdOperador.setSelected(true);
+        } else if (dados.getAcesso() == 3) {
+            rdSem.setSelected(true);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -207,6 +262,7 @@ public class TelaAtualizarFuncionarios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Titulo;
+    private javax.swing.ButtonGroup acessoGroup;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEnviar;
     private javax.swing.JPanel divisa;
