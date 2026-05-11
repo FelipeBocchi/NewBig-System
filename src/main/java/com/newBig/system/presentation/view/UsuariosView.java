@@ -29,7 +29,7 @@ public class UsuariosView {
         System.out.println("===============================");
         switch (verificar.opcao()){
             case 1:
-                cadastroUsuario.novo();
+//                cadastroUsuario.novo();
                 break;
             case 2:
                 atualizarUsuario.iniciar();

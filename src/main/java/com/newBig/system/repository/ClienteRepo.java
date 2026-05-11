@@ -62,6 +62,19 @@ public class ClienteRepo {
                 .getResultList(); /*Retorna a lista*/
     }
 
+    public List<Cliente> BuscaPorCPF(String cpf){ /*Busca os clientes pelo cpf*/
+        return em.createQuery(/*Query cria uma consulta no banco*/
+                        "SELECT c FROM Cliente c WHERE c.cpf LIKE :cpf", Cliente.class /*Define o retorno*/
+                )
+                .setParameter("cpf", "%" + cpf + "%") /*Define o valor do parametro :cpf*/
+                .getResultList(); /*Retorna a lista*/
+    }
+
+    public Long ultimoId(){
+        String id = "SELECT MAX(c.id) FROM Cliente c";
+
+        return (Long) em.createQuery(id).getSingleResult();
+    }
     public Cliente SelecionarCliente(Long id) { /*Busca pelo id do cliente*/
         return em.find(Cliente.class, id); /*busca no banco pelo id*/
     }
