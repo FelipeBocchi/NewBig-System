@@ -4,6 +4,7 @@
  */
 package com.newBig.system.view;
 
+import com.newBig.system.service.AtualizarUsuario;
 import com.newBig.system.service.CadastroUsuario;
 
 import javax.swing.*;
@@ -12,19 +13,16 @@ import javax.swing.*;
  *
  * @author MH
  */
-public class TelaFormularioCliente extends javax.swing.JFrame {
+public class TelaClientesAtualizar extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaFormularioCliente.class.getName());
-    CadastroUsuario cadastroUsuario = new CadastroUsuario();
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaClientesAtualizar.class.getName());
+    AtualizarUsuario atualizarUsuario = new AtualizarUsuario();
     /**
-     * Creates new form TelaFormularioCliente
+     * Creates new form TelaClientesAtualizar
      */
-    public TelaFormularioCliente() {
+    public TelaClientesAtualizar() {
         initComponents();
         this.setLocationRelativeTo(null);
-        Long id = cadastroUsuario.ultimoId();
-        txtId.setText(String.valueOf(id + 1));
-        txtId.setEnabled(false);
     }
 
     /**
@@ -59,7 +57,7 @@ public class TelaFormularioCliente extends javax.swing.JFrame {
         txtId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Formulario-Clientes");
+        setTitle("Atualizar-Clientes");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -83,14 +81,14 @@ public class TelaFormularioCliente extends javax.swing.JFrame {
         divisa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         Titulo.setFont(new java.awt.Font("Unispace", 1, 18)); // NOI18N
-        Titulo.setText("Formulario Clientes");
+        Titulo.setText("Atualizar Clientes");
 
         javax.swing.GroupLayout divisaLayout = new javax.swing.GroupLayout(divisa);
         divisa.setLayout(divisaLayout);
         divisaLayout.setHorizontalGroup(
             divisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, divisaLayout.createSequentialGroup()
-                .addContainerGap(290, Short.MAX_VALUE)
+                .addContainerGap(301, Short.MAX_VALUE)
                 .addComponent(Titulo)
                 .addGap(283, 283, 283))
         );
@@ -150,7 +148,7 @@ public class TelaFormularioCliente extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 809, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,12 +158,9 @@ public class TelaFormularioCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        dispose();
-    }
-
-    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         try{
+            Long id = Long.parseLong(txtId.getText());
             String nome = txtNome.getText();
             String cpf = txtCpf.getText();
             String cep = txtCep.getText();
@@ -176,21 +171,37 @@ public class TelaFormularioCliente extends javax.swing.JFrame {
             if(nome.isEmpty() || cpf.isEmpty() || cep.isEmpty() || rua.isEmpty() || numero <= 0|| bairro.isEmpty() || telefone.isEmpty()){
                 throw new Exception("Campo não preenchido!");
             }
-            cadastroUsuario.novoCliente(nome,cpf,cep,rua,numero, bairro, telefone);
+            atualizarUsuario.cliente(id, nome,cpf,cep,rua,numero, bairro, telefone);
             JOptionPane.showMessageDialog(
                     this,
-                    "Cliente cadastrado com sucesso!!"
+                    "Cliente Atualizado com sucesso!!"
             );
             dispose();
         }
         catch (Exception e){
             JOptionPane.showMessageDialog(
                     this,
-                    "Erro ao cadastrar cliente confira os dados!!!! " + e.getMessage()
+                    "Erro ao atualizar cliente confira os dados!!!! " + e.getMessage()
             );
         }
-    }
+    }//GEN-LAST:event_btnEnviarActionPerformed
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    public void preencher(Long id){
+        var dados = atualizarUsuario.dadosCliente(id);
+        txtId.setText(dados.getId().toString());
+        txtId.setEnabled(false);
+        txtNome.setText(dados.getNome());
+        txtCpf.setText(dados.getCpf());
+        txtCep.setText(dados.getCep());
+        txtRua.setText(dados.getRua());
+        txtBairro.setText(dados.getBairro());
+        txtTelefone.setText(dados.getTelefone());
+        spiNumero.setValue(dados.getNumero());
+    }
     /**
      * @param args the command line arguments
      */
@@ -213,7 +224,7 @@ public class TelaFormularioCliente extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaFormularioCliente().setVisible(false));
+        java.awt.EventQueue.invokeLater(() -> new TelaClientesAtualizar().setVisible(false));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

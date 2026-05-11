@@ -18,12 +18,15 @@ import javax.swing.table.DefaultTableModel;
 public class TelaCliente extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaCliente.class.getName());
-
+    TelaClientesAtualizar telaClientesAtualizar = new TelaClientesAtualizar();
+    TelaFormularioCliente telaFormularioCliente = new TelaFormularioCliente();
+    TelaDadosCliente telaDadosCliente = new TelaDadosCliente();
     /**
      * Creates new form TelaCliente
      */
     public TelaCliente() {
         initComponents();
+        this.setLocationRelativeTo(null);
         rdNome.setSelected(true);
         preencherTabela();
     }
@@ -71,7 +74,7 @@ public class TelaCliente extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 534, Short.MAX_VALUE)
         );
 
         fundo.setBackground(new java.awt.Color(255, 255, 255));
@@ -116,7 +119,7 @@ public class TelaCliente extends javax.swing.JFrame {
         btnDeletar.setText("Deletar");
         btnDeletar.addActionListener(this::btnDeletarActionPerformed);
 
-        TxtBuscar.setText("Nome");
+        TxtBuscar.setToolTipText("");
         TxtBuscar.addActionListener(this::TxtBuscarActionPerformed);
 
         btnBuscar.setText("Buscar");
@@ -146,7 +149,7 @@ public class TelaCliente extends javax.swing.JFrame {
                     .addGroup(fundoLayout.createSequentialGroup()
                         .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(fundoLayout.createSequentialGroup()
-                                .addComponent(tituloclientes, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tituloclientes, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(rdNome)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -186,7 +189,7 @@ public class TelaCliente extends javax.swing.JFrame {
                         .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 27, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jMenu1.setText("File");
@@ -210,18 +213,32 @@ public class TelaCliente extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(fundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(fundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        // TODO add your handling code here:
+        telaFormularioCliente.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        // TODO add your handling code here:
+        int linha = TabelaClientes.getSelectedRow();
+        if(linha == -1){
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Nenhum cliente selecionado!!"
+
+            );
+        }
+        else{
+            Long id = (Long) TabelaClientes.getValueAt(linha, 0);
+            telaClientesAtualizar.preencher(id);
+            telaClientesAtualizar.setVisible(true);
+        }
+
+
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -229,7 +246,7 @@ public class TelaCliente extends javax.swing.JFrame {
         Long id = (Long) TabelaClientes.getValueAt(linha, 0);
         String nome = (String) TabelaClientes.getValueAt(linha, 1);
         int resposta = JOptionPane.showConfirmDialog(
-                null,
+                this,
                 "Deseja mesmo apagar o cliente " + nome +"?"
         );
         if(resposta == JOptionPane.YES_OPTION){
@@ -247,7 +264,19 @@ public class TelaCliente extends javax.swing.JFrame {
 
 
     private void btnDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDadosActionPerformed
-        // TODO add your handling code here:
+        int linha = TabelaClientes.getSelectedRow();
+        if(linha == -1){
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Nenhum cliente selecionado!!"
+
+            );
+        }
+        else{
+            Long id = (Long) TabelaClientes.getValueAt(linha, 0);
+            telaDadosCliente.setVisible(true);
+            telaDadosCliente.dadosCliente(id);
+        }
     }//GEN-LAST:event_btnDadosActionPerformed
 
     private void rdNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdNomeActionPerformed
