@@ -37,19 +37,15 @@ public class Verificar {
     } /*Opcao para switch*/
 
 
-    public int senha(){
-        int senha = -1;
-        while(senha < 1000 || senha > 9999){
+    public boolean senha(int senha){
+        if(senha < 1000 || senha > 9999){
             try{
-                System.out.println("Digite a senha (somente numeros de 4 digitos): ");
-                senha = sc.nextInt();
-                sc.nextLine();
+                return true;
             }catch (InputMismatchException e){
-                System.out.println("Senha invalida, Tente Novamente");
-                sc.nextLine();
+                return false;
             }
         }
-        return senha;
+        return false;
     } /*senha do funcionario*/
 
     public Long login(){
@@ -57,26 +53,26 @@ public class Verificar {
         System.out.println("Login: ");
         String login = sc.nextLine();
         System.out.println("Senha: ");
-        int senha = senha();
-        var funcionarios = funcionarioRepo.BuscaFuncionarios();
-        for (int i = 0; i < funcionarios.size(); i++) {
-            if (login.equals(funcionarios.get(i).getLogin()) && senha == funcionarios.get(i).getSenha()){
-                String continuar;
-                do {
-                    System.out.println("Usuario: " + funcionarios.get(i).getNome() + " (s/n)");
-                    continuar = sc.nextLine().toLowerCase();
-                    if (continuar.equals("s")) {
-                        return funcionarios.get(i).getId();
-                    } else if (!continuar.equals("n")) {
-                        System.out.println("Erro!!! Responda somente com s/n");
-                    }
-                } while (!continuar.equals("n"));
-                if(continuar.equals("n")){
-                    System.out.println("Tente novamente!!!");
-                    Main.main(null);
-                }
-            }
-        }
+//        int senha = senha();
+//        var funcionarios = funcionarioRepo.BuscaFuncionarios();
+//        for (int i = 0; i < funcionarios.size(); i++) {
+//            if (login.equals(funcionarios.get(i).getLogin()) && senha == funcionarios.get(i).getSenha()){
+//                String continuar;
+//                do {
+//                    System.out.println("Usuario: " + funcionarios.get(i).getNome() + " (s/n)");
+//                    continuar = sc.nextLine().toLowerCase();
+//                    if (continuar.equals("s")) {
+//                        return funcionarios.get(i).getId();
+//                    } else if (!continuar.equals("n")) {
+//                        System.out.println("Erro!!! Responda somente com s/n");
+//                    }
+//                } while (!continuar.equals("n"));
+//                if(continuar.equals("n")){
+//                    System.out.println("Tente novamente!!!");
+//                    Main.main(null);
+//                }
+//            }
+//        }
         System.out.println("Login e senha invalidos!!");
         return login();
     }

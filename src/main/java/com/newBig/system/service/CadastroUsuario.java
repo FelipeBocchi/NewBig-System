@@ -22,8 +22,18 @@ public class CadastroUsuario {
         cliRepo.create(dados);
     }
 
+    public void novoFuncionario(String nome, String cpf, int acesso, String login, int senha){
+        Funcionario dados = new Funcionario(nome, cpf,acesso,login,senha);
+        funRepo.create(dados);
+    }
+
+
     public Long ultimoId(){
         return cliRepo.ultimoId();
+    }
+
+    public Long ultimoIdFun(){
+        return funRepo.ultimoId();
     }
 
     public void limparBuffer(){sc.nextLine();}

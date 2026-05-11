@@ -106,7 +106,7 @@ public class AtualizarUsuario {
 
                 case 6:
                     System.out.println("Senha: ");
-                    escolhido.setSenha(verificar.senha());
+//                    escolhido.setSenha(verificar.senha());
                     break;
 
                 case 0:
