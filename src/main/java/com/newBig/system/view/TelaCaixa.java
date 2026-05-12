@@ -4,8 +4,13 @@
  */
 package com.newBig.system.view;
 
+import com.newBig.system.repository.CustomizerFactory;
+import com.newBig.system.repository.FuncionarioRepo;
 import com.newBig.system.service.Caixa;
-import com.newBig.system.service.OperacaoCaixa;
+import com.newBig.system.service.LogsDeCaixaService;
+import jakarta.persistence.EntityManager;
+
+import javax.swing.*;
 
 /**
  *
@@ -15,12 +20,17 @@ public class TelaCaixa extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaCaixa.class.getName());
     Caixa caixa = new Caixa();
+    EntityManager em = CustomizerFactory.getEntityManager(); /*Pegar objeto que conecta com o banco*/
+    FuncionarioRepo funcionarioRepo = new FuncionarioRepo(em);
     /**
      * Creates new form TelaCaixa
      */
     public TelaCaixa() {
         initComponents();
+        this.setLocationRelativeTo(null);
         preencherValores();
+        preencherLog();
+
     }
 
     /**
@@ -44,17 +54,19 @@ public class TelaCaixa extends javax.swing.JFrame {
         subtitulo2 = new javax.swing.JLabel();
         valorEntrada = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        logs = new javax.swing.JTextArea();
         titulocaixa = new javax.swing.JLabel();
-        topicos = new javax.swing.JLabel();
-        topicos1 = new javax.swing.JLabel();
-        topicos2 = new javax.swing.JLabel();
         btnFechar = new javax.swing.JButton();
-        btnAbrir1 = new javax.swing.JButton();
-        topicos3 = new javax.swing.JLabel();
+        btnAbrir = new javax.swing.JButton();
+        logsDoCaixa = new javax.swing.JLabel();
+        fundoDados = new javax.swing.JPanel();
+        topicos = new javax.swing.JLabel();
         txtdata = new javax.swing.JLabel();
+        topicos1 = new javax.swing.JLabel();
         txthora = new javax.swing.JLabel();
-        taxtuser = new javax.swing.JLabel();
+        topicos2 = new javax.swing.JLabel();
+        txtuser = new javax.swing.JLabel();
+        topicos3 = new javax.swing.JLabel();
         txtsangria = new javax.swing.JLabel();
         btnSangria = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -64,6 +76,7 @@ public class TelaCaixa extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         fundo.setBackground(new java.awt.Color(255, 255, 255));
+        fundo.setToolTipText("");
         fundo.setPreferredSize(new java.awt.Dimension(760, 498));
         fundo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -71,7 +84,8 @@ public class TelaCaixa extends javax.swing.JFrame {
         titulo.setText("Caixa");
         fundo.add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 0, 78, 54));
 
-        fundoValorAtual.setBackground(new java.awt.Color(102, 102, 255));
+        fundoValorAtual.setBackground(new java.awt.Color(102, 153, 255));
+        fundoValorAtual.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         fundoValorAtual.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         subtitulo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -83,9 +97,10 @@ public class TelaCaixa extends javax.swing.JFrame {
         valorAtual.setText("R$10.009,00");
         fundoValorAtual.add(valorAtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 64));
 
-        fundo.add(fundoValorAtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 225, 106));
+        fundo.add(fundoValorAtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 225, 106));
 
         fundoAbertura.setBackground(new java.awt.Color(255, 255, 51));
+        fundoAbertura.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         fundoAbertura.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         valorAbertura.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
@@ -100,6 +115,7 @@ public class TelaCaixa extends javax.swing.JFrame {
         fundo.add(fundoAbertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 225, 106));
 
         jPanel3.setBackground(new java.awt.Color(102, 255, 0));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         subtitulo2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -110,66 +126,130 @@ public class TelaCaixa extends javax.swing.JFrame {
         valorEntrada.setText("R$10.009,00");
         jPanel3.add(valorEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 210, 64));
 
-        fundo.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, 225, 106));
+        fundo.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, 225, 106));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        logs.setColumns(20);
+        logs.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        logs.setRows(5);
+        logs.setBorder(null);
+        logs.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jScrollPane1.setViewportView(logs);
 
-        fundo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 355, 305));
+        fundo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, 355, 290));
 
         titulocaixa.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        titulocaixa.setText("Caixa atual:");
-        fundo.add(titulocaixa, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 199, 120, 43));
+        titulocaixa.setText("Caixa atual");
+        fundo.add(titulocaixa, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 120, 43));
 
-        topicos.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        topicos.setText("Data:");
-        fundo.add(topicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 248, 48, 30));
-
-        topicos1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        topicos1.setText("Hora:");
-        fundo.add(topicos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 284, -1, 30));
-
-        topicos2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        topicos2.setText("Usuario:");
-        fundo.add(topicos2, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 320, -1, 30));
-
-        btnFechar.setBackground(new java.awt.Color(255, 153, 153));
+        btnFechar.setBackground(new java.awt.Color(255, 102, 102));
         btnFechar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnFechar.setText("Fechar");
+        btnFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnFechar.addActionListener(this::btnFecharActionPerformed);
         fundo.add(btnFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 459, 114, 45));
 
-        btnAbrir1.setBackground(new java.awt.Color(102, 255, 102));
-        btnAbrir1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnAbrir1.setText("Abrir");
-        btnAbrir1.addActionListener(this::btnAbrir1ActionPerformed);
-        fundo.add(btnAbrir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 459, 114, 45));
+        btnAbrir.setBackground(new java.awt.Color(102, 255, 102));
+        btnAbrir.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnAbrir.setText("Abrir");
+        btnAbrir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAbrir.addActionListener(this::btnAbrirActionPerformed);
+        fundo.add(btnAbrir, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 459, 114, 45));
 
-        topicos3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        topicos3.setText("Valor Sangria:");
-        fundo.add(topicos3, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 356, 134, 30));
+        logsDoCaixa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        logsDoCaixa.setText("Logs do Caixa");
+        fundo.add(logsDoCaixa, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, -1, -1));
+
+        fundoDados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        topicos.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        topicos.setText("Data:");
 
         txtdata.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtdata.setText("jLabel1");
-        fundo.add(txtdata, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 256, 272, -1));
+
+        topicos1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        topicos1.setText("Hora:");
 
         txthora.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txthora.setText("jLabel1");
-        fundo.add(txthora, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 292, 272, -1));
 
-        taxtuser.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        taxtuser.setText("jLabel1");
-        fundo.add(taxtuser, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 328, 244, -1));
+        topicos2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        topicos2.setText("Usuario:");
+
+        txtuser.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtuser.setText("jLabel1");
+
+        topicos3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        topicos3.setText("Valor Sangria:");
 
         txtsangria.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtsangria.setText("jLabel1");
-        fundo.add(txtsangria, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 364, 186, -1));
 
         btnSangria.setBackground(new java.awt.Color(255, 204, 204));
         btnSangria.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnSangria.setText("Sangria");
-        fundo.add(btnSangria, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 392, -1, -1));
+        btnSangria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSangria.addActionListener(this::btnSangriaActionPerformed);
+
+        javax.swing.GroupLayout fundoDadosLayout = new javax.swing.GroupLayout(fundoDados);
+        fundoDados.setLayout(fundoDadosLayout);
+        fundoDadosLayout.setHorizontalGroup(
+            fundoDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fundoDadosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(fundoDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(fundoDadosLayout.createSequentialGroup()
+                        .addComponent(topicos, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(fundoDadosLayout.createSequentialGroup()
+                        .addComponent(topicos1)
+                        .addGap(6, 6, 6)
+                        .addComponent(txthora, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(fundoDadosLayout.createSequentialGroup()
+                        .addComponent(topicos2)
+                        .addGap(6, 6, 6)
+                        .addComponent(txtuser, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(fundoDadosLayout.createSequentialGroup()
+                        .addComponent(topicos3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(txtsangria, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSangria))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        fundoDadosLayout.setVerticalGroup(
+            fundoDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fundoDadosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(fundoDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(topicos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(fundoDadosLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(txtdata)))
+                .addGap(6, 6, 6)
+                .addGroup(fundoDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(topicos1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(fundoDadosLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(txthora)))
+                .addGap(6, 6, 6)
+                .addGroup(fundoDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(topicos2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(fundoDadosLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(txtuser)))
+                .addGap(6, 6, 6)
+                .addGroup(fundoDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(topicos3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(fundoDadosLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(txtsangria)))
+                .addGap(6, 6, 6)
+                .addComponent(btnSangria)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        fundo.add(fundoDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 300, 190));
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -196,18 +276,84 @@ public class TelaCaixa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
-
+        int resposta = JOptionPane.showConfirmDialog(
+                this,
+                "Deseja mesmo fechar o caixa?"
+        );
+        if(resposta == JOptionPane.YES_OPTION){
+            caixa.fechar(funcionarioRepo.SelecionarFuncionario(3L)); /*alterar depois de fazer o login*/
+            preencherValores();
+        }
     }//GEN-LAST:event_btnFecharActionPerformed
 
-    private void btnAbrir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrir1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAbrir1ActionPerformed
+    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
+        JSpinner input = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 10000.0, 0.50));
+
+        int opcao = JOptionPane.showConfirmDialog(
+                null,
+                input,
+                "Digite o valor de abertura",
+                JOptionPane.OK_CANCEL_OPTION
+        );
+
+        if (opcao == JOptionPane.OK_OPTION) {
+            double valor = (double) input.getValue();
+            caixa.abrirCaixa(funcionarioRepo.SelecionarFuncionario(3L), valor); /*Alterar depois de fazer o login*/
+            preencherValores();
+        }
+    }//GEN-LAST:event_btnAbrirActionPerformed
+
+    private void btnSangriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSangriaActionPerformed
+        JSpinner input = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 10000.0, 0.50));
+
+        int opcao = JOptionPane.showConfirmDialog(
+                null,
+                input,
+                "Digite o valor de Sangria",
+                JOptionPane.OK_CANCEL_OPTION
+        );
+
+        if (opcao == JOptionPane.OK_OPTION) {
+            double valor = (double) input.getValue();
+            caixa.sangria(valor);
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Sangria de R$" + valor + "Concluida!!!"
+            );
+            preencherValores();
+        }
+    }//GEN-LAST:event_btnSangriaActionPerformed
 
 
     public void preencherValores(){
-        valorAtual.setText("R$" + caixa.getValorAtual());
-        valorAbertura.setText("R$" + caixa.getValorAbertura());
-        valorEntrada.setText("R$" + (caixa.getValorAtual() - caixa.getValorAbertura()));
+        try{
+            valorAtual.setText("R$" + caixa.getValorAtual());
+            valorAbertura.setText("R$" + caixa.getValorAbertura());
+            valorEntrada.setText("R$" + (caixa.getValorAtual() - caixa.getValorAbertura()));
+            var dados = caixa.getObjeto();
+            txtuser.setText(dados.getUsuarioAbertura().getNome());
+            txtdata.setText(dados.getDataAbertura().toString());
+            txthora.setText(dados.getHoraAbertura().toString());
+            txtsangria.setText("R$" + caixa.getSangria());
+        }catch (Exception e){
+            valorAtual.setText("R$" + 0.00);
+            valorAbertura.setText("R$" + 0.00);
+            valorEntrada.setText("R$" + 0.00);
+            txtuser.setText("null");
+            txtdata.setText("null");
+            txthora.setText("null");
+            txtsangria.setText("R$" + 0.0);
+        }
+    }
+
+    public void preencherLog(){
+        LogsDeCaixaService logsDeCaixaService = new LogsDeCaixaService();
+        var lista = logsDeCaixaService.lista();
+        logs.setEditable(false);
+        logs.setText("");
+        for (int i = 0; i < lista.size(); i++){
+            logs.setText(lista.get(i).getDescricao()+ " | " + lista.get(i).getData() + "\n" + logs.getText());
+        }
     }
 
     /**
@@ -236,22 +382,23 @@ public class TelaCaixa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAbrir1;
+    private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnSangria;
     private javax.swing.JPanel fundo;
     private javax.swing.JPanel fundoAbertura;
+    private javax.swing.JPanel fundoDados;
     private javax.swing.JPanel fundoValorAtual;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea logs;
+    private javax.swing.JLabel logsDoCaixa;
     private javax.swing.JLabel subtitulo;
     private javax.swing.JLabel subtitulo1;
     private javax.swing.JLabel subtitulo2;
-    private javax.swing.JLabel taxtuser;
     private javax.swing.JLabel titulo;
     private javax.swing.JLabel titulocaixa;
     private javax.swing.JLabel topicos;
@@ -261,6 +408,7 @@ public class TelaCaixa extends javax.swing.JFrame {
     private javax.swing.JLabel txtdata;
     private javax.swing.JLabel txthora;
     private javax.swing.JLabel txtsangria;
+    private javax.swing.JLabel txtuser;
     private javax.swing.JLabel valorAbertura;
     private javax.swing.JLabel valorAtual;
     private javax.swing.JLabel valorEntrada;

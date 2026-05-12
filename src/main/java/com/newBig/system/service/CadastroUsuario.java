@@ -15,7 +15,6 @@ public class CadastroUsuario {
     EntityManager em = CustomizerFactory.getEntityManager();
     FuncionarioRepo funRepo = new FuncionarioRepo(em);
     ClienteRepo cliRepo = new ClienteRepo(em);
-    Verificar verificar = new Verificar();
 
     public void novoCliente(String nome, String cpf, String cep, String rua, int numero, String bairro, String telefone){
         Cliente dados = new Cliente(nome,cpf,cep,rua,numero, bairro, telefone);

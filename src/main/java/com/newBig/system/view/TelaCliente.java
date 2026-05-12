@@ -27,6 +27,7 @@ public class TelaCliente extends javax.swing.JFrame {
     public TelaCliente() {
         initComponents();
         this.setLocationRelativeTo(null);
+        TabelaClientes.setRowHeight(22);
         rdNome.setSelected(true);
         preencherTabela();
     }
@@ -293,6 +294,7 @@ public class TelaCliente extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnBuscarActionPerformed
+
 
     /**
      * @param args the command line arguments

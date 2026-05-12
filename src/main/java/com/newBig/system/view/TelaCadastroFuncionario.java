@@ -5,7 +5,6 @@
 package com.newBig.system.view;
 
 import com.newBig.system.service.CadastroUsuario;
-import com.newBig.system.service.Verificar;
 
 import javax.swing.*;
 
@@ -17,7 +16,6 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaCadastroFuncionario.class.getName());
     CadastroUsuario cadastroUsuario = new CadastroUsuario();
-    Verificar verificar = new Verificar();
     /**
      * Creates new form TelaCadastroFuncionario
      */
