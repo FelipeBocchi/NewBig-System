@@ -80,9 +80,8 @@ public class TelaCliente extends javax.swing.JFrame {
 
         setTitle("NewBig-Cadastro-Cliente");
 
-        menuLateral.setBackground(new java.awt.Color(248, 174, 176));
+        menuLateral.setBackground(new java.awt.Color(251, 227, 228));
 
-        Lgfundo.setBackground(new java.awt.Color(204, 204, 204));
         Lgfundo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         LgNome.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -128,6 +127,7 @@ public class TelaCliente extends javax.swing.JFrame {
         menuLTitulo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         menuLTitulo.setText("NewBig-System");
 
+        btnClientes.setBackground(new java.awt.Color(253, 238, 239));
         btnClientes.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
         btnClientes.setText("Clientes");
         btnClientes.addActionListener(this::btnClientesActionPerformed);
@@ -187,7 +187,7 @@ public class TelaCliente extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        fundo.setBackground(new java.awt.Color(255, 255, 255));
+        fundo.setBackground(new java.awt.Color(255, 249, 249));
 
         tituloclientes.setFont(new java.awt.Font("Unispace", 1, 14)); // NOI18N
         tituloclientes.setText("Clientes");

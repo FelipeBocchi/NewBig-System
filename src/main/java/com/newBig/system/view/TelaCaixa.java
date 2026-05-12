@@ -6,9 +6,11 @@ package com.newBig.system.view;
 
 import com.newBig.system.service.Caixa;
 import com.newBig.system.service.DadosUsuario;
+import com.newBig.system.service.Login;
 import com.newBig.system.service.LogsDeCaixaService;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -19,11 +21,17 @@ public class TelaCaixa extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaCaixa.class.getName());
     Caixa caixa = new Caixa();
     DadosUsuario dadosUsuario = new DadosUsuario();
+    Login login = new Login();
+
     /**
      * Creates new form TelaCaixa
      */
     public TelaCaixa() {
         initComponents();
+        logoUsuario();
+        logoNewBig();
+        LgNome.setText(login.nomeLog());
+        LgAcesso.setText(login.acessoLog());
         this.setLocationRelativeTo(null);
         preencherValores();
         preencherLog();
@@ -44,12 +52,15 @@ public class TelaCaixa extends javax.swing.JFrame {
         fundoValorAtual = new javax.swing.JPanel();
         subtitulo = new javax.swing.JLabel();
         valorAtual = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         fundoAbertura = new javax.swing.JPanel();
         valorAbertura = new javax.swing.JLabel();
         subtitulo1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         subtitulo2 = new javax.swing.JLabel();
         valorEntrada = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         logs = new javax.swing.JTextArea();
         titulocaixa = new javax.swing.JLabel();
@@ -80,7 +91,7 @@ public class TelaCaixa extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
-        fundo.setBackground(new java.awt.Color(255, 255, 255));
+        fundo.setBackground(new java.awt.Color(255, 249, 249));
         fundo.setToolTipText("");
         fundo.setPreferredSize(new java.awt.Dimension(760, 498));
         fundo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -89,7 +100,7 @@ public class TelaCaixa extends javax.swing.JFrame {
         titulo.setText("Caixa");
         fundo.add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 0, 78, 54));
 
-        fundoValorAtual.setBackground(new java.awt.Color(102, 153, 255));
+        fundoValorAtual.setBackground(new java.awt.Color(255, 255, 255));
         fundoValorAtual.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         fundoValorAtual.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -102,9 +113,24 @@ public class TelaCaixa extends javax.swing.JFrame {
         valorAtual.setText("R$10.009,00");
         fundoValorAtual.add(valorAtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 64));
 
+        jPanel1.setBackground(new java.awt.Color(94, 110, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 220, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        fundoValorAtual.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 40));
+
         fundo.add(fundoValorAtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 225, 106));
 
-        fundoAbertura.setBackground(new java.awt.Color(255, 255, 51));
+        fundoAbertura.setBackground(new java.awt.Color(255, 255, 255));
         fundoAbertura.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         fundoAbertura.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -117,9 +143,24 @@ public class TelaCaixa extends javax.swing.JFrame {
         subtitulo1.setText("Valor de abertura");
         fundoAbertura.add(subtitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 0));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 220, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        fundoAbertura.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         fundo.add(fundoAbertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 225, 106));
 
-        jPanel3.setBackground(new java.awt.Color(102, 255, 0));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -130,6 +171,21 @@ public class TelaCaixa extends javax.swing.JFrame {
         valorEntrada.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         valorEntrada.setText("R$10.009,00");
         jPanel3.add(valorEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 210, 64));
+
+        jPanel4.setBackground(new java.awt.Color(102, 255, 102));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 220, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         fundo.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, 225, 106));
 
@@ -164,6 +220,7 @@ public class TelaCaixa extends javax.swing.JFrame {
         logsDoCaixa.setText("Logs do Caixa");
         fundo.add(logsDoCaixa, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, -1, -1));
 
+        fundoDados.setBackground(new java.awt.Color(253, 238, 239));
         fundoDados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         topicos.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -256,9 +313,8 @@ public class TelaCaixa extends javax.swing.JFrame {
 
         fundo.add(fundoDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 300, 190));
 
-        menuLateral.setBackground(new java.awt.Color(248, 174, 176));
+        menuLateral.setBackground(new java.awt.Color(251, 227, 228));
 
-        Lgfundo.setBackground(new java.awt.Color(204, 204, 204));
         Lgfundo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         LgNome.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -312,6 +368,7 @@ public class TelaCaixa extends javax.swing.JFrame {
         btnFuncionarios.setText("Funcionarios");
         btnFuncionarios.addActionListener(this::btnFuncionariosActionPerformed);
 
+        btnCaixa.setBackground(new java.awt.Color(253, 238, 239));
         btnCaixa.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
         btnCaixa.setText("Caixa");
         btnCaixa.addActionListener(this::btnCaixaActionPerformed);
@@ -358,7 +415,7 @@ public class TelaCaixa extends javax.swing.JFrame {
                 .addComponent(btnFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 230, Short.MAX_VALUE)
                 .addComponent(Lgfundo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -384,7 +441,7 @@ public class TelaCaixa extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(menuLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(fundo, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+            .addComponent(fundo, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
         );
 
         pack();
@@ -405,6 +462,7 @@ public class TelaCaixa extends javax.swing.JFrame {
             if(resposta == JOptionPane.YES_OPTION){
                 caixa.fechar(dadosUsuario.dadosCompletosFuncionario(3L)); /*alterar depois de fazer o login*/
                 preencherValores();
+                preencherLog();
             }
         }
     }//GEN-LAST:event_btnFecharActionPerformed
@@ -423,6 +481,7 @@ public class TelaCaixa extends javax.swing.JFrame {
             double valor = (double) input.getValue();
             caixa.abrirCaixa(dadosUsuario.dadosCompletosFuncionario(3L), valor); /*Alterar depois de fazer o login*/
             preencherValores();
+            preencherLog();
         }
     }//GEN-LAST:event_btnAbrirActionPerformed
 
@@ -505,6 +564,19 @@ public class TelaCaixa extends javax.swing.JFrame {
         }
     }
 
+    /*Funcões menu lateral*/
+
+    public void logoUsuario(){
+        ImageIcon icon = (ImageIcon) logo.getIcon();
+        Image imagem = icon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+        logo.setIcon(new ImageIcon(imagem));
+    }
+
+    public void logoNewBig(){
+        ImageIcon icon = (ImageIcon) NBLogo.getIcon();
+        Image imagem = icon.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        NBLogo.setIcon(new ImageIcon(imagem));
+    }
     /**
      * @param args the command line arguments
      */
@@ -548,7 +620,10 @@ public class TelaCaixa extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logo;
     private javax.swing.JTextArea logs;

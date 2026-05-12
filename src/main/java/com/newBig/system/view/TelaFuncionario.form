@@ -58,7 +58,7 @@
     <Container class="javax.swing.JPanel" name="fundo">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="f9" green="f9" red="ff" type="rgb"/>
         </Property>
       </Properties>
 
@@ -248,7 +248,7 @@
     <Container class="javax.swing.JPanel" name="menuLateral3">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="b0" green="ae" red="f8" type="rgb"/>
+          <Color blue="e4" green="e3" red="fb" type="rgb"/>
         </Property>
       </Properties>
 
@@ -314,9 +314,6 @@
       <SubComponents>
         <Container class="javax.swing.JPanel" name="Lgfundo3">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="cc" red="cc" type="rgb"/>
-            </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                 <BevelBorder/>
@@ -329,11 +326,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="logo3" min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="logo" min="-2" pref="37" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="LgAcesso3" alignment="0" min="-2" pref="81" max="-2" attributes="0"/>
-                          <Component id="LgNome3" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
+                          <Component id="LgAcesso" alignment="0" min="-2" pref="81" max="-2" attributes="0"/>
+                          <Component id="LgNome" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -344,11 +341,11 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="logo3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="logo" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="LgNome3" min="-2" pref="17" max="-2" attributes="0"/>
+                              <Component id="LgNome" min="-2" pref="17" max="-2" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="LgAcesso3" min="-2" pref="13" max="-2" attributes="0"/>
+                              <Component id="LgAcesso" min="-2" pref="13" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -357,7 +354,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="LgNome3">
+            <Component class="javax.swing.JLabel" name="LgNome">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="1"/>
@@ -365,7 +362,7 @@
                 <Property name="text" type="java.lang.String" value="Mourvan"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="LgAcesso3">
+            <Component class="javax.swing.JLabel" name="LgAcesso">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="12" style="0"/>
@@ -373,7 +370,7 @@
                 <Property name="text" type="java.lang.String" value="Administrador"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="logo3">
+            <Component class="javax.swing.JLabel" name="logo">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/avatar.png"/>
@@ -422,6 +419,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnFuncionarios">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ef" green="ee" red="fd" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Bahnschrift" size="14" style="1"/>
             </Property>

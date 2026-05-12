@@ -48,9 +48,9 @@ public class TelaDadosCliente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        fundo.setBackground(new java.awt.Color(255, 255, 255));
+        fundo.setBackground(new java.awt.Color(255, 249, 249));
 
-        divisa.setBackground(new java.awt.Color(248, 174, 176));
+        divisa.setBackground(new java.awt.Color(251, 227, 228));
         divisa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         Titulo.setFont(new java.awt.Font("Unispace", 1, 18)); // NOI18N

@@ -52,7 +52,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        fundoLogin.setBackground(new java.awt.Color(255, 255, 255));
+        fundoLogin.setBackground(new java.awt.Color(255, 249, 249));
         fundoLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         subtitulo.setBackground(new java.awt.Color(0, 0, 0));

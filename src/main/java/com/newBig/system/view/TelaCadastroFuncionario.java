@@ -63,7 +63,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        fundo.setBackground(new java.awt.Color(255, 255, 255));
+        fundo.setBackground(new java.awt.Color(255, 249, 249));
         fundo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblNome.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -81,7 +81,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         lblLogin.setText("Login");
         fundo.add(lblLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, -1, -1));
 
-        divisa.setBackground(new java.awt.Color(248, 174, 176));
+        divisa.setBackground(new java.awt.Color(251, 227, 228));
         divisa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         Titulo.setFont(new java.awt.Font("Unispace", 1, 18)); // NOI18N
@@ -92,9 +92,9 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         divisaLayout.setHorizontalGroup(
             divisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, divisaLayout.createSequentialGroup()
-                .addContainerGap(279, Short.MAX_VALUE)
+                .addContainerGap(300, Short.MAX_VALUE)
                 .addComponent(Titulo)
-                .addGap(283, 283, 283))
+                .addGap(292, 292, 292))
         );
         divisaLayout.setVerticalGroup(
             divisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -36,7 +36,7 @@
     <Container class="javax.swing.JPanel" name="fundo">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="f9" green="f9" red="ff" type="rgb"/>
         </Property>
       </Properties>
 
@@ -106,7 +106,7 @@
         <Container class="javax.swing.JPanel" name="divisa">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="b0" green="ae" red="f8" type="rgb"/>
+              <Color blue="e4" green="e3" red="fb" type="rgb"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">

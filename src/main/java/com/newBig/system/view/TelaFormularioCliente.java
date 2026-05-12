@@ -61,7 +61,7 @@ public class TelaFormularioCliente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Formulario-Clientes");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 249, 249));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblNome.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -79,7 +79,7 @@ public class TelaFormularioCliente extends javax.swing.JFrame {
         lblCep.setText("Cep");
         jPanel1.add(lblCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, -1, -1));
 
-        divisa.setBackground(new java.awt.Color(248, 174, 176));
+        divisa.setBackground(new java.awt.Color(251, 227, 228));
         divisa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         Titulo.setFont(new java.awt.Font("Unispace", 1, 18)); // NOI18N
@@ -89,10 +89,10 @@ public class TelaFormularioCliente extends javax.swing.JFrame {
         divisa.setLayout(divisaLayout);
         divisaLayout.setHorizontalGroup(
             divisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, divisaLayout.createSequentialGroup()
-                .addContainerGap(290, Short.MAX_VALUE)
+            .addGroup(divisaLayout.createSequentialGroup()
+                .addGap(304, 304, 304)
                 .addComponent(Titulo)
-                .addGap(283, 283, 283))
+                .addContainerGap(306, Short.MAX_VALUE))
         );
         divisaLayout.setVerticalGroup(
             divisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
