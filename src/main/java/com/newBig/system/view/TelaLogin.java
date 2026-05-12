@@ -4,6 +4,10 @@
  */
 package com.newBig.system.view;
 
+import com.newBig.system.service.Login;
+
+import javax.swing.*;
+
 /**
  *
  * @author MH
@@ -11,7 +15,7 @@ package com.newBig.system.view;
 public class TelaLogin extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaLogin.class.getName());
-
+    Login loginService = new Login();
     /**
      * Creates new form TelaLogin
      */
@@ -142,6 +146,30 @@ public class TelaLogin extends javax.swing.JFrame {
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {
         String vLogin = tLogin.getText(); /*Guarda o login*/
         int vSenha = Integer.parseInt(tSenha.getText()); /*Guarda a senha*/
+        Long id = loginService.verificar(vLogin, vSenha);
+        if(id == -1L){
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Funcionario não encontrado!!"
+            );
+        }
+        else{
+            int funAcesso = loginService.acesso(id);
+            if(funAcesso > 2){
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Funcionario sem acesso!!"
+                );
+            }
+            else{
+                loginService.salvar(id);
+                dispose();
+                /*Entra no sistema*/
+                /*teste na tela cliente deve ir para tela de abertura do sistema*/
+                TelaCliente telaCliente = new TelaCliente();
+                telaCliente.setVisible(true);
+            }
+        }
     }
 
     /**
