@@ -49,6 +49,16 @@ public class TelaFuncionario extends javax.swing.JFrame {
         TxtBuscar = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         btnDados = new javax.swing.JButton();
+        menuLateral3 = new javax.swing.JPanel();
+        Lgfundo3 = new javax.swing.JPanel();
+        LgNome3 = new javax.swing.JLabel();
+        LgAcesso3 = new javax.swing.JLabel();
+        logo3 = new javax.swing.JLabel();
+        NBLogo = new javax.swing.JLabel();
+        menuLTitulo = new javax.swing.JLabel();
+        btnClientes = new javax.swing.JButton();
+        btnFuncionarios = new javax.swing.JButton();
+        btnCaixa = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -125,7 +135,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnBuscar))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(30, Short.MAX_VALUE))
+                        .addContainerGap(47, Short.MAX_VALUE))
                     .addGroup(fundoLayout.createSequentialGroup()
                         .addComponent(btnNovo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -156,6 +166,113 @@ public class TelaFuncionario extends javax.swing.JFrame {
                 .addGap(0, 12, Short.MAX_VALUE))
         );
 
+        menuLateral3.setBackground(new java.awt.Color(248, 174, 176));
+
+        Lgfundo3.setBackground(new java.awt.Color(204, 204, 204));
+        Lgfundo3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        LgNome3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        LgNome3.setText("Mourvan");
+
+        LgAcesso3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        LgAcesso3.setText("Administrador");
+
+        logo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/avatar.png"))); // NOI18N
+        logo3.setMaximumSize(new java.awt.Dimension(40, 40));
+        logo3.setPreferredSize(new java.awt.Dimension(40, 40));
+
+        javax.swing.GroupLayout Lgfundo3Layout = new javax.swing.GroupLayout(Lgfundo3);
+        Lgfundo3.setLayout(Lgfundo3Layout);
+        Lgfundo3Layout.setHorizontalGroup(
+            Lgfundo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Lgfundo3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(logo3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Lgfundo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LgAcesso3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LgNome3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        Lgfundo3Layout.setVerticalGroup(
+            Lgfundo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Lgfundo3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(Lgfundo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(Lgfundo3Layout.createSequentialGroup()
+                        .addComponent(LgNome3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LgAcesso3, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+
+        NBLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        NBLogo.setMaximumSize(new java.awt.Dimension(80, 80));
+        NBLogo.setPreferredSize(new java.awt.Dimension(80, 80));
+
+        menuLTitulo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        menuLTitulo.setText("NewBig-System");
+
+        btnClientes.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnClientes.setText("Clientes");
+        btnClientes.addActionListener(this::btnClientesActionPerformed);
+
+        btnFuncionarios.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnFuncionarios.setText("Funcionarios");
+        btnFuncionarios.addActionListener(this::btnFuncionariosActionPerformed);
+
+        btnCaixa.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnCaixa.setText("Caixa");
+        btnCaixa.addActionListener(this::btnCaixaActionPerformed);
+
+        javax.swing.GroupLayout menuLateral3Layout = new javax.swing.GroupLayout(menuLateral3);
+        menuLateral3.setLayout(menuLateral3Layout);
+        menuLateral3Layout.setHorizontalGroup(
+            menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuLateral3Layout.createSequentialGroup()
+                .addGroup(menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(menuLateral3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Lgfundo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(menuLateral3Layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(NBLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateral3Layout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addGroup(menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateral3Layout.createSequentialGroup()
+                        .addComponent(menuLTitulo)
+                        .addGap(47, 47, 47))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateral3Layout.createSequentialGroup()
+                        .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))
+                    .addGroup(menuLateral3Layout.createSequentialGroup()
+                        .addGroup(menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19))))
+        );
+        menuLateral3Layout.setVerticalGroup(
+            menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateral3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(NBLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(menuLTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Lgfundo3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
 
@@ -169,12 +286,14 @@ public class TelaFuncionario extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 180, Short.MAX_VALUE)
-                .addComponent(fundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(menuLateral3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fundo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(fundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menuLateral3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -253,6 +372,24 @@ public class TelaFuncionario extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnDadosActionPerformed
+
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+        TelaCliente telaCliente = new TelaCliente();
+        dispose();
+        telaCliente.setVisible(true);
+    }//GEN-LAST:event_btnClientesActionPerformed
+
+    private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
+        TelaFuncionario telaFuncionario = new TelaFuncionario();
+        dispose();
+        telaFuncionario.setVisible(true);
+    }//GEN-LAST:event_btnFuncionariosActionPerformed
+
+    private void btnCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixaActionPerformed
+        TelaCaixa telaCaixa = new TelaCaixa();
+        dispose();
+        telaCaixa.setVisible(true);
+    }//GEN-LAST:event_btnCaixaActionPerformed
 
 
     public void preencherTabela(){
@@ -350,18 +487,43 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LgAcesso;
+    private javax.swing.JLabel LgAcesso1;
+    private javax.swing.JLabel LgAcesso2;
+    private javax.swing.JLabel LgAcesso3;
+    private javax.swing.JLabel LgNome;
+    private javax.swing.JLabel LgNome1;
+    private javax.swing.JLabel LgNome2;
+    private javax.swing.JLabel LgNome3;
+    private javax.swing.JPanel Lgfundo;
+    private javax.swing.JPanel Lgfundo1;
+    private javax.swing.JPanel Lgfundo2;
+    private javax.swing.JPanel Lgfundo3;
+    private javax.swing.JLabel NBLogo;
     private javax.swing.JTable TabelaFuncionarios;
     private javax.swing.JTextField TxtBuscar;
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCaixa;
+    private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnDados;
     private javax.swing.JButton btnDeletar;
+    private javax.swing.JButton btnFuncionarios;
     private javax.swing.JButton btnNovo;
     private javax.swing.JPanel fundo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel logo;
+    private javax.swing.JLabel logo1;
+    private javax.swing.JLabel logo2;
+    private javax.swing.JLabel logo3;
+    private javax.swing.JLabel menuLTitulo;
+    private javax.swing.JPanel menuLateral;
+    private javax.swing.JPanel menuLateral1;
+    private javax.swing.JPanel menuLateral2;
+    private javax.swing.JPanel menuLateral3;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

@@ -69,6 +69,16 @@ public class TelaCaixa extends javax.swing.JFrame {
         topicos3 = new javax.swing.JLabel();
         txtsangria = new javax.swing.JLabel();
         btnSangria = new javax.swing.JButton();
+        menuLateral = new javax.swing.JPanel();
+        Lgfundo = new javax.swing.JPanel();
+        LgNome = new javax.swing.JLabel();
+        LgAcesso = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
+        NBLogo = new javax.swing.JLabel();
+        menuLTitulo = new javax.swing.JLabel();
+        btnClientes = new javax.swing.JButton();
+        btnFuncionarios = new javax.swing.JButton();
+        btnCaixa = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -251,6 +261,113 @@ public class TelaCaixa extends javax.swing.JFrame {
 
         fundo.add(fundoDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 300, 190));
 
+        menuLateral.setBackground(new java.awt.Color(248, 174, 176));
+
+        Lgfundo.setBackground(new java.awt.Color(204, 204, 204));
+        Lgfundo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        LgNome.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        LgNome.setText("Mourvan");
+
+        LgAcesso.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        LgAcesso.setText("Administrador");
+
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/avatar.png"))); // NOI18N
+        logo.setMaximumSize(new java.awt.Dimension(40, 40));
+        logo.setPreferredSize(new java.awt.Dimension(40, 40));
+
+        javax.swing.GroupLayout LgfundoLayout = new javax.swing.GroupLayout(Lgfundo);
+        Lgfundo.setLayout(LgfundoLayout);
+        LgfundoLayout.setHorizontalGroup(
+            LgfundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LgfundoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(LgfundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LgAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LgNome, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        LgfundoLayout.setVerticalGroup(
+            LgfundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LgfundoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(LgfundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(LgfundoLayout.createSequentialGroup()
+                        .addComponent(LgNome, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LgAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+
+        NBLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        NBLogo.setMaximumSize(new java.awt.Dimension(80, 80));
+        NBLogo.setPreferredSize(new java.awt.Dimension(80, 80));
+
+        menuLTitulo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        menuLTitulo.setText("NewBig-System");
+
+        btnClientes.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnClientes.setText("Clientes");
+        btnClientes.addActionListener(this::btnClientesActionPerformed);
+
+        btnFuncionarios.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnFuncionarios.setText("Funcionarios");
+        btnFuncionarios.addActionListener(this::btnFuncionariosActionPerformed);
+
+        btnCaixa.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnCaixa.setText("Caixa");
+        btnCaixa.addActionListener(this::btnCaixaActionPerformed);
+
+        javax.swing.GroupLayout menuLateralLayout = new javax.swing.GroupLayout(menuLateral);
+        menuLateral.setLayout(menuLateralLayout);
+        menuLateralLayout.setHorizontalGroup(
+            menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuLateralLayout.createSequentialGroup()
+                .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(menuLateralLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Lgfundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(menuLateralLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(NBLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
+                        .addComponent(menuLTitulo)
+                        .addGap(47, 47, 47))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
+                        .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))
+                    .addGroup(menuLateralLayout.createSequentialGroup()
+                        .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19))))
+        );
+        menuLateralLayout.setVerticalGroup(
+            menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(NBLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(menuLTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Lgfundo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
 
@@ -264,12 +381,15 @@ public class TelaCaixa extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 180, Short.MAX_VALUE)
-                .addComponent(fundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(11, Short.MAX_VALUE)
+                .addComponent(menuLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fundo, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fundo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+            .addComponent(menuLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(fundo, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
         );
 
         pack();
@@ -323,6 +443,24 @@ public class TelaCaixa extends javax.swing.JFrame {
             preencherValores();
         }
     }//GEN-LAST:event_btnSangriaActionPerformed
+
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+        TelaCliente telaCliente = new TelaCliente();
+        dispose();
+        telaCliente.setVisible(true);
+    }//GEN-LAST:event_btnClientesActionPerformed
+
+    private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
+        TelaFuncionario telaFuncionario = new TelaFuncionario();
+        dispose();
+        telaFuncionario.setVisible(true);
+    }//GEN-LAST:event_btnFuncionariosActionPerformed
+
+    private void btnCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixaActionPerformed
+        TelaCaixa telaCaixa = new TelaCaixa();
+        dispose();
+        telaCaixa.setVisible(true);
+    }//GEN-LAST:event_btnCaixaActionPerformed
 
 
     public void preencherValores(){
@@ -382,8 +520,21 @@ public class TelaCaixa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LgAcesso;
+    private javax.swing.JLabel LgAcesso3;
+    private javax.swing.JLabel LgAcesso4;
+    private javax.swing.JLabel LgNome;
+    private javax.swing.JLabel LgNome3;
+    private javax.swing.JLabel LgNome4;
+    private javax.swing.JPanel Lgfundo;
+    private javax.swing.JPanel Lgfundo3;
+    private javax.swing.JPanel Lgfundo4;
+    private javax.swing.JLabel NBLogo;
     private javax.swing.JButton btnAbrir;
+    private javax.swing.JButton btnCaixa;
+    private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnFechar;
+    private javax.swing.JButton btnFuncionarios;
     private javax.swing.JButton btnSangria;
     private javax.swing.JPanel fundo;
     private javax.swing.JPanel fundoAbertura;
@@ -394,8 +545,15 @@ public class TelaCaixa extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel logo;
+    private javax.swing.JLabel logo3;
+    private javax.swing.JLabel logo4;
     private javax.swing.JTextArea logs;
     private javax.swing.JLabel logsDoCaixa;
+    private javax.swing.JLabel menuLTitulo;
+    private javax.swing.JPanel menuLateral;
+    private javax.swing.JPanel menuLateral3;
+    private javax.swing.JPanel menuLateral4;
     private javax.swing.JLabel subtitulo;
     private javax.swing.JLabel subtitulo1;
     private javax.swing.JLabel subtitulo2;
