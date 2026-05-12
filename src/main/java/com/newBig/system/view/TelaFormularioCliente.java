@@ -12,7 +12,7 @@ import javax.swing.*;
  *
  * @author MH
  */
-public class TelaFormularioCliente extends JFrame {
+public class TelaFormularioCliente extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaFormularioCliente.class.getName());
     CadastroUsuario cadastroUsuario = new CadastroUsuario();
@@ -36,29 +36,29 @@ public class TelaFormularioCliente extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new JPanel();
-        lblNome = new JLabel();
-        txtNome = new JTextField();
-        txtCpf = new JTextField();
-        lblCpf = new JLabel();
-        txtCep = new JTextField();
-        lblCep = new JLabel();
-        divisa = new JPanel();
-        Titulo = new JLabel();
-        btnEnviar = new JButton();
-        btnCancelar = new JButton();
-        lblNumero = new JLabel();
-        lblBairro = new JLabel();
-        txtBairro = new JTextField();
-        lblTelefone = new JLabel();
-        txtTelefone = new JTextField();
-        lblRua = new JLabel();
-        txtRua = new JTextField();
-        spiNumero = new JSpinner();
-        lblId = new JLabel();
-        txtId = new JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        lblNome = new javax.swing.JLabel();
+        txtNome = new javax.swing.JTextField();
+        txtCpf = new javax.swing.JTextField();
+        lblCpf = new javax.swing.JLabel();
+        txtCep = new javax.swing.JTextField();
+        lblCep = new javax.swing.JLabel();
+        divisa = new javax.swing.JPanel();
+        Titulo = new javax.swing.JLabel();
+        btnEnviar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        lblNumero = new javax.swing.JLabel();
+        lblBairro = new javax.swing.JLabel();
+        txtBairro = new javax.swing.JTextField();
+        lblTelefone = new javax.swing.JLabel();
+        txtTelefone = new javax.swing.JTextField();
+        lblRua = new javax.swing.JLabel();
+        txtRua = new javax.swing.JTextField();
+        spiNumero = new javax.swing.JSpinner();
+        lblId = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Formulario-Clientes");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -80,22 +80,22 @@ public class TelaFormularioCliente extends JFrame {
         jPanel1.add(lblCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, -1, -1));
 
         divisa.setBackground(new java.awt.Color(248, 174, 176));
-        divisa.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        divisa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         Titulo.setFont(new java.awt.Font("Unispace", 1, 18)); // NOI18N
         Titulo.setText("Formulario Clientes");
 
-        GroupLayout divisaLayout = new GroupLayout(divisa);
+        javax.swing.GroupLayout divisaLayout = new javax.swing.GroupLayout(divisa);
         divisa.setLayout(divisaLayout);
         divisaLayout.setHorizontalGroup(
-            divisaLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, divisaLayout.createSequentialGroup()
+            divisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, divisaLayout.createSequentialGroup()
                 .addContainerGap(290, Short.MAX_VALUE)
                 .addComponent(Titulo)
                 .addGap(283, 283, 283))
         );
         divisaLayout.setVerticalGroup(
-            divisaLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            divisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(divisaLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(Titulo)
@@ -146,15 +146,15 @@ public class TelaFormularioCliente extends JFrame {
         txtId.setActionCommand("<Not Set>");
         jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 260, 30));
 
-        GroupLayout layout = new GroupLayout(getContentPane());
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, 809, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 809, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
         );
 
         pack();
@@ -201,13 +201,13 @@ public class TelaFormularioCliente extends JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ReflectiveOperationException | UnsupportedLookAndFeelException ex) {
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -217,26 +217,26 @@ public class TelaFormularioCliente extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JLabel Titulo;
-    private JButton btnCancelar;
-    private JButton btnEnviar;
-    private JPanel divisa;
-    private JPanel jPanel1;
-    private JLabel lblBairro;
-    private JLabel lblCep;
-    private JLabel lblCpf;
-    private JLabel lblId;
-    private JLabel lblNome;
-    private JLabel lblNumero;
-    private JLabel lblRua;
-    private JLabel lblTelefone;
-    private JSpinner spiNumero;
-    private JTextField txtBairro;
-    private JTextField txtCep;
-    private JTextField txtCpf;
-    private JTextField txtId;
-    private JTextField txtNome;
-    private JTextField txtRua;
-    private JTextField txtTelefone;
+    private javax.swing.JLabel Titulo;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEnviar;
+    private javax.swing.JPanel divisa;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblBairro;
+    private javax.swing.JLabel lblCep;
+    private javax.swing.JLabel lblCpf;
+    private javax.swing.JLabel lblId;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblNumero;
+    private javax.swing.JLabel lblRua;
+    private javax.swing.JLabel lblTelefone;
+    private javax.swing.JSpinner spiNumero;
+    private javax.swing.JTextField txtBairro;
+    private javax.swing.JTextField txtCep;
+    private javax.swing.JTextField txtCpf;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtRua;
+    private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

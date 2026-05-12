@@ -15,9 +15,6 @@ public class Login {
             if (login.equals(funcionarios.get(i).getLogin()) && senha == funcionarios.get(i).getSenha()){
                 return funcionarios.get(i).getId();
             }
-            else{
-                return -1L;
-            }
         }
         return -1L;
     }

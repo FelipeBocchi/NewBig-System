@@ -4,10 +4,8 @@
  */
 package com.newBig.system.view;
 
-import com.newBig.system.repository.ClienteRepo;
-import com.newBig.system.repository.CustomizerFactory;
-import com.newBig.system.repository.FuncionarioRepo;
-import jakarta.persistence.EntityManager;
+import com.newBig.system.service.DadosUsuario;
+import com.newBig.system.service.DeletarUsuario;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -16,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author MH
  */
-public class TelaFuncionario extends JFrame {
+public class TelaFuncionario extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaFuncionario.class.getName());
     TelaCadastroFuncionario telaCadastroFuncionario = new TelaCadastroFuncionario();
@@ -39,31 +37,30 @@ public class TelaFuncionario extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        fundo = new JPanel();
-        titulo = new JLabel();
-        jScrollPane1 = new JScrollPane();
-        TabelaFuncionarios = new JTable();
-        btnNovo = new JButton();
-        btnAtualizar = new JButton();
-        btnDeletar = new JButton();
-        TxtBuscar = new JTextField();
-        btnBuscar = new JButton();
-        btnDados = new JButton();
-        menuLateral3 = new JPanel();
-        Lgfundo3 = new JPanel();
-        LgNome3 = new JLabel();
-        LgAcesso3 = new JLabel();
-        logo3 = new JLabel();
-        NBLogo = new JLabel();
-        menuLTitulo = new JLabel();
-        btnClientes = new JButton();
-        btnFuncionarios = new JButton();
-        btnCaixa = new JButton();
-        jMenuBar1 = new JMenuBar();
-        jMenu1 = new JMenu();
-        jMenu2 = new JMenu();
+        fundo = new javax.swing.JPanel();
+        titulo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TabelaFuncionarios = new javax.swing.JTable();
+        btnNovo = new javax.swing.JButton();
+        btnAtualizar = new javax.swing.JButton();
+        btnDeletar = new javax.swing.JButton();
+        TxtBuscar = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        btnDados = new javax.swing.JButton();
+        menuLateral3 = new javax.swing.JPanel();
+        Lgfundo3 = new javax.swing.JPanel();
+        LgNome3 = new javax.swing.JLabel();
+        LgAcesso3 = new javax.swing.JLabel();
+        logo3 = new javax.swing.JLabel();
+        NBLogo = new javax.swing.JLabel();
+        menuLTitulo = new javax.swing.JLabel();
+        btnClientes = new javax.swing.JButton();
+        btnFuncionarios = new javax.swing.JButton();
+        btnCaixa = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setName("Funcionarios"); // NOI18N
 
         fundo.setBackground(new java.awt.Color(255, 255, 255));
@@ -72,7 +69,7 @@ public class TelaFuncionario extends JFrame {
         titulo.setText("Funcionarios");
 
         TabelaFuncionarios.setFont(new java.awt.Font("Unispace", 0, 14)); // NOI18N
-        TabelaFuncionarios.setModel(new DefaultTableModel(
+        TabelaFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -84,7 +81,7 @@ public class TelaFuncionario extends JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                Long.class, String.class, String.class, String.class
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -119,57 +116,57 @@ public class TelaFuncionario extends JFrame {
         btnDados.setText("Dados Adicionais");
         btnDados.addActionListener(this::btnDadosActionPerformed);
 
-        GroupLayout fundoLayout = new GroupLayout(fundo);
+        javax.swing.GroupLayout fundoLayout = new javax.swing.GroupLayout(fundo);
         fundo.setLayout(fundoLayout);
         fundoLayout.setHorizontalGroup(
-            fundoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fundoLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(fundoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(fundoLayout.createSequentialGroup()
-                        .addGroup(fundoLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                        .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(fundoLayout.createSequentialGroup()
-                                .addComponent(titulo, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(TxtBuscar, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnBuscar))
-                            .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 703, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(47, Short.MAX_VALUE))
                     .addGroup(fundoLayout.createSequentialGroup()
                         .addComponent(btnNovo)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAtualizar)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnDeletar)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnDados)
                         .addGap(46, 46, 46))))
         );
         fundoLayout.setVerticalGroup(
-            fundoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fundoLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(fundoLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(titulo)
-                    .addComponent(TxtBuscar, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(fundoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDados, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-                    .addGroup(fundoLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnNovo, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnAtualizar, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnDeletar, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)))
+                .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 12, Short.MAX_VALUE))
         );
 
         menuLateral3.setBackground(new java.awt.Color(248, 174, 176));
 
         Lgfundo3.setBackground(new java.awt.Color(204, 204, 204));
-        Lgfundo3.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Lgfundo3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         LgNome3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         LgNome3.setText("Mourvan");
@@ -177,37 +174,37 @@ public class TelaFuncionario extends JFrame {
         LgAcesso3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         LgAcesso3.setText("Administrador");
 
-        logo3.setIcon(new ImageIcon(getClass().getResource("/images/avatar.png"))); // NOI18N
+        logo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/avatar.png"))); // NOI18N
         logo3.setMaximumSize(new java.awt.Dimension(40, 40));
         logo3.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        GroupLayout Lgfundo3Layout = new GroupLayout(Lgfundo3);
+        javax.swing.GroupLayout Lgfundo3Layout = new javax.swing.GroupLayout(Lgfundo3);
         Lgfundo3.setLayout(Lgfundo3Layout);
         Lgfundo3Layout.setHorizontalGroup(
-            Lgfundo3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, Lgfundo3Layout.createSequentialGroup()
+            Lgfundo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Lgfundo3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(logo3, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(Lgfundo3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(LgAcesso3, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LgNome3, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(logo3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Lgfundo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LgAcesso3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LgNome3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         Lgfundo3Layout.setVerticalGroup(
-            Lgfundo3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, Lgfundo3Layout.createSequentialGroup()
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(Lgfundo3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(logo3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+            Lgfundo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Lgfundo3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(Lgfundo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(Lgfundo3Layout.createSequentialGroup()
-                        .addComponent(LgNome3, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LgAcesso3, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(LgNome3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LgAcesso3, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
-        NBLogo.setIcon(new ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        NBLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
         NBLogo.setMaximumSize(new java.awt.Dimension(80, 80));
         NBLogo.setPreferredSize(new java.awt.Dimension(80, 80));
 
@@ -226,50 +223,50 @@ public class TelaFuncionario extends JFrame {
         btnCaixa.setText("Caixa");
         btnCaixa.addActionListener(this::btnCaixaActionPerformed);
 
-        GroupLayout menuLateral3Layout = new GroupLayout(menuLateral3);
+        javax.swing.GroupLayout menuLateral3Layout = new javax.swing.GroupLayout(menuLateral3);
         menuLateral3.setLayout(menuLateral3Layout);
         menuLateral3Layout.setHorizontalGroup(
-            menuLateral3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLateral3Layout.createSequentialGroup()
-                .addGroup(menuLateral3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(menuLateral3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(Lgfundo3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(Lgfundo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(menuLateral3Layout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addComponent(NBLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(NBLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(GroupLayout.Alignment.TRAILING, menuLateral3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateral3Layout.createSequentialGroup()
                 .addGap(0, 20, Short.MAX_VALUE)
-                .addGroup(menuLateral3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(GroupLayout.Alignment.TRAILING, menuLateral3Layout.createSequentialGroup()
+                .addGroup(menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateral3Layout.createSequentialGroup()
                         .addComponent(menuLTitulo)
                         .addGap(47, 47, 47))
-                    .addGroup(GroupLayout.Alignment.TRAILING, menuLateral3Layout.createSequentialGroup()
-                        .addComponent(btnClientes, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateral3Layout.createSequentialGroup()
+                        .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19))
                     .addGroup(menuLateral3Layout.createSequentialGroup()
-                        .addGroup(menuLateral3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(btnFuncionarios, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCaixa, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19))))
         );
         menuLateral3Layout.setVerticalGroup(
-            menuLateral3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, menuLateral3Layout.createSequentialGroup()
+            menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateral3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(NBLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NBLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(menuLTitulo)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnClientes, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnFuncionarios, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCaixa, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Lgfundo3, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Lgfundo3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -281,19 +278,19 @@ public class TelaFuncionario extends JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        GroupLayout layout = new GroupLayout(getContentPane());
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(menuLateral3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fundo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(menuLateral3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(fundo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(menuLateral3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(fundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menuLateral3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -322,8 +319,6 @@ public class TelaFuncionario extends JFrame {
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-        EntityManager em = CustomizerFactory.getEntityManager(); /*Pegar objeto que conecta com o banco*/
-        FuncionarioRepo dados = new FuncionarioRepo(em);
         int linha = TabelaFuncionarios.getSelectedRow();
         Long id = (Long) TabelaFuncionarios.getValueAt(linha, 0);
         String nome = (String) TabelaFuncionarios.getValueAt(linha, 1);
@@ -332,7 +327,8 @@ public class TelaFuncionario extends JFrame {
                 "Deseja mesmo apagar o funcionario " + nome +"?"
         );
         if(resposta == JOptionPane.YES_OPTION){
-            dados.delete(dados.SelecionarFuncionario(id));
+            DeletarUsuario deletarUsuario = new DeletarUsuario();
+            deletarUsuario.deleteFuncionario(id);
             preencherTabela();
 
         }
@@ -347,8 +343,7 @@ public class TelaFuncionario extends JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDadosActionPerformed
-        EntityManager em = CustomizerFactory.getEntityManager(); /*Pegar objeto que conecta com o banco*/
-        FuncionarioRepo dados = new FuncionarioRepo(em);
+        DadosUsuario dadosUsuario = new DadosUsuario();
         int linha = TabelaFuncionarios.getSelectedRow();
         if(linha == -1){
             JOptionPane.showMessageDialog(
@@ -359,7 +354,7 @@ public class TelaFuncionario extends JFrame {
         }
         else{
             Long id = (Long) TabelaFuncionarios.getValueAt(linha, 0);
-            var lista = dados.SelecionarFuncionario(id);
+            var lista = dadosUsuario.dadosCompletosFuncionario(id);
             JOptionPane.showMessageDialog(
                     this,
                     "ID: " + lista.getId() + "\n" +
@@ -393,11 +388,10 @@ public class TelaFuncionario extends JFrame {
 
 
     public void preencherTabela(){
-        EntityManager em = CustomizerFactory.getEntityManager(); /*Pegar objeto que conecta com o banco*/
-        FuncionarioRepo dados = new FuncionarioRepo(em);
+        DadosUsuario dadosUsuario = new DadosUsuario();
         DefaultTableModel linha = (DefaultTableModel) TabelaFuncionarios.getModel();
         linha.setRowCount(0);
-        var lista = dados.BuscaFuncionarios();
+        var lista = dadosUsuario.dadosFuncionario();
         for (int i = 0; i < lista.size() ; i++) {
             if(lista.get(i).getAcesso() == 1){ /*Verificar se é administrador*/
                 linha.addRow(new Object[]{
@@ -427,13 +421,12 @@ public class TelaFuncionario extends JFrame {
     }
 
     public void preencherNome(){
-        EntityManager em = CustomizerFactory.getEntityManager(); /*Pegar objeto que conecta com o banco*/
-        FuncionarioRepo dados = new FuncionarioRepo(em);
+        DadosUsuario dadosUsuario = new DadosUsuario();
         DefaultTableModel linha = (DefaultTableModel) TabelaFuncionarios.getModel();
         linha.setRowCount(0);
         String nome = TxtBuscar.getText();
         linha.setRowCount(0);
-        var lista = dados.BuscaPorNome(nome);
+        var lista = dadosUsuario.dadosFuncionarioNome(nome);
         for (int i = 0; i < lista.size() ; i++) {
             if(lista.get(i).getAcesso() == 1){ /*Verificar se é administrador*/
                 linha.addRow(new Object[]{
@@ -471,13 +464,13 @@ public class TelaFuncionario extends JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ReflectiveOperationException | UnsupportedLookAndFeelException ex) {
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -487,43 +480,28 @@ public class TelaFuncionario extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JLabel LgAcesso;
-    private JLabel LgAcesso1;
-    private JLabel LgAcesso2;
-    private JLabel LgAcesso3;
-    private JLabel LgNome;
-    private JLabel LgNome1;
-    private JLabel LgNome2;
-    private JLabel LgNome3;
-    private JPanel Lgfundo;
-    private JPanel Lgfundo1;
-    private JPanel Lgfundo2;
-    private JPanel Lgfundo3;
-    private JLabel NBLogo;
-    private JTable TabelaFuncionarios;
-    private JTextField TxtBuscar;
-    private JButton btnAtualizar;
-    private JButton btnBuscar;
-    private JButton btnCaixa;
-    private JButton btnClientes;
-    private JButton btnDados;
-    private JButton btnDeletar;
-    private JButton btnFuncionarios;
-    private JButton btnNovo;
-    private JPanel fundo;
-    private JMenu jMenu1;
-    private JMenu jMenu2;
-    private JMenuBar jMenuBar1;
-    private JScrollPane jScrollPane1;
-    private JLabel logo;
-    private JLabel logo1;
-    private JLabel logo2;
-    private JLabel logo3;
-    private JLabel menuLTitulo;
-    private JPanel menuLateral;
-    private JPanel menuLateral1;
-    private JPanel menuLateral2;
-    private JPanel menuLateral3;
-    private JLabel titulo;
+    private javax.swing.JLabel LgAcesso3;
+    private javax.swing.JLabel LgNome3;
+    private javax.swing.JPanel Lgfundo3;
+    private javax.swing.JLabel NBLogo;
+    private javax.swing.JTable TabelaFuncionarios;
+    private javax.swing.JTextField TxtBuscar;
+    private javax.swing.JButton btnAtualizar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCaixa;
+    private javax.swing.JButton btnClientes;
+    private javax.swing.JButton btnDados;
+    private javax.swing.JButton btnDeletar;
+    private javax.swing.JButton btnFuncionarios;
+    private javax.swing.JButton btnNovo;
+    private javax.swing.JPanel fundo;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel logo3;
+    private javax.swing.JLabel menuLTitulo;
+    private javax.swing.JPanel menuLateral3;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

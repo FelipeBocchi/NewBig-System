@@ -46,7 +46,7 @@ public class TelaDadosCliente extends javax.swing.JFrame {
         lblNumero = new javax.swing.JLabel();
         lblTelefone = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         fundo.setBackground(new java.awt.Color(255, 255, 255));
 

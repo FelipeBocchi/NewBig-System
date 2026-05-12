@@ -4,11 +4,9 @@
  */
 package com.newBig.system.view;
 
-import com.newBig.system.repository.CustomizerFactory;
-import com.newBig.system.repository.FuncionarioRepo;
 import com.newBig.system.service.Caixa;
+import com.newBig.system.service.DadosUsuario;
 import com.newBig.system.service.LogsDeCaixaService;
-import jakarta.persistence.EntityManager;
 
 import javax.swing.*;
 
@@ -16,12 +14,11 @@ import javax.swing.*;
  *
  * @author mourv
  */
-public class TelaCaixa extends JFrame {
+public class TelaCaixa extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaCaixa.class.getName());
     Caixa caixa = new Caixa();
-    EntityManager em = CustomizerFactory.getEntityManager(); /*Pegar objeto que conecta com o banco*/
-    FuncionarioRepo funcionarioRepo = new FuncionarioRepo(em);
+    DadosUsuario dadosUsuario = new DadosUsuario();
     /**
      * Creates new form TelaCaixa
      */
@@ -42,48 +39,46 @@ public class TelaCaixa extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        fundo = new JPanel();
-        titulo = new JLabel();
-        fundoValorAtual = new JPanel();
-        subtitulo = new JLabel();
-        valorAtual = new JLabel();
-        fundoAbertura = new JPanel();
-        valorAbertura = new JLabel();
-        subtitulo1 = new JLabel();
-        jPanel3 = new JPanel();
-        subtitulo2 = new JLabel();
-        valorEntrada = new JLabel();
-        jScrollPane1 = new JScrollPane();
-        logs = new JTextArea();
-        titulocaixa = new JLabel();
-        btnFechar = new JButton();
-        btnAbrir = new JButton();
-        logsDoCaixa = new JLabel();
-        fundoDados = new JPanel();
-        topicos = new JLabel();
-        txtdata = new JLabel();
-        topicos1 = new JLabel();
-        txthora = new JLabel();
-        topicos2 = new JLabel();
-        txtuser = new JLabel();
-        topicos3 = new JLabel();
-        txtsangria = new JLabel();
-        btnSangria = new JButton();
-        menuLateral = new JPanel();
-        Lgfundo = new JPanel();
-        LgNome = new JLabel();
-        LgAcesso = new JLabel();
-        logo = new JLabel();
-        NBLogo = new JLabel();
-        menuLTitulo = new JLabel();
-        btnClientes = new JButton();
-        btnFuncionarios = new JButton();
-        btnCaixa = new JButton();
-        jMenuBar1 = new JMenuBar();
-        jMenu1 = new JMenu();
-        jMenu2 = new JMenu();
-
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        fundo = new javax.swing.JPanel();
+        titulo = new javax.swing.JLabel();
+        fundoValorAtual = new javax.swing.JPanel();
+        subtitulo = new javax.swing.JLabel();
+        valorAtual = new javax.swing.JLabel();
+        fundoAbertura = new javax.swing.JPanel();
+        valorAbertura = new javax.swing.JLabel();
+        subtitulo1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        subtitulo2 = new javax.swing.JLabel();
+        valorEntrada = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        logs = new javax.swing.JTextArea();
+        titulocaixa = new javax.swing.JLabel();
+        btnFechar = new javax.swing.JButton();
+        btnAbrir = new javax.swing.JButton();
+        logsDoCaixa = new javax.swing.JLabel();
+        fundoDados = new javax.swing.JPanel();
+        topicos = new javax.swing.JLabel();
+        txtdata = new javax.swing.JLabel();
+        topicos1 = new javax.swing.JLabel();
+        txthora = new javax.swing.JLabel();
+        topicos2 = new javax.swing.JLabel();
+        txtuser = new javax.swing.JLabel();
+        topicos3 = new javax.swing.JLabel();
+        txtsangria = new javax.swing.JLabel();
+        btnSangria = new javax.swing.JButton();
+        menuLateral = new javax.swing.JPanel();
+        Lgfundo = new javax.swing.JPanel();
+        LgNome = new javax.swing.JLabel();
+        LgAcesso = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
+        NBLogo = new javax.swing.JLabel();
+        menuLTitulo = new javax.swing.JLabel();
+        btnClientes = new javax.swing.JButton();
+        btnFuncionarios = new javax.swing.JButton();
+        btnCaixa = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         fundo.setBackground(new java.awt.Color(255, 255, 255));
         fundo.setToolTipText("");
@@ -95,7 +90,7 @@ public class TelaCaixa extends JFrame {
         fundo.add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 0, 78, 54));
 
         fundoValorAtual.setBackground(new java.awt.Color(102, 153, 255));
-        fundoValorAtual.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        fundoValorAtual.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         fundoValorAtual.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         subtitulo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -103,18 +98,18 @@ public class TelaCaixa extends JFrame {
         fundoValorAtual.add(subtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 90, -1));
 
         valorAtual.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        valorAtual.setHorizontalAlignment(SwingConstants.RIGHT);
+        valorAtual.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         valorAtual.setText("R$10.009,00");
         fundoValorAtual.add(valorAtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 64));
 
         fundo.add(fundoValorAtual, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 225, 106));
 
         fundoAbertura.setBackground(new java.awt.Color(255, 255, 51));
-        fundoAbertura.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        fundoAbertura.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         fundoAbertura.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         valorAbertura.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        valorAbertura.setHorizontalAlignment(SwingConstants.RIGHT);
+        valorAbertura.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         valorAbertura.setText("R$10.009,00");
         fundoAbertura.add(valorAbertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 46, -1, 54));
 
@@ -125,7 +120,7 @@ public class TelaCaixa extends JFrame {
         fundo.add(fundoAbertura, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 225, 106));
 
         jPanel3.setBackground(new java.awt.Color(102, 255, 0));
-        jPanel3.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         subtitulo2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -169,7 +164,7 @@ public class TelaCaixa extends JFrame {
         logsDoCaixa.setText("Logs do Caixa");
         fundo.add(logsDoCaixa, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, -1, -1));
 
-        fundoDados.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        fundoDados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         topicos.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         topicos.setText("Data:");
@@ -201,56 +196,56 @@ public class TelaCaixa extends JFrame {
         btnSangria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSangria.addActionListener(this::btnSangriaActionPerformed);
 
-        GroupLayout fundoDadosLayout = new GroupLayout(fundoDados);
+        javax.swing.GroupLayout fundoDadosLayout = new javax.swing.GroupLayout(fundoDados);
         fundoDados.setLayout(fundoDadosLayout);
         fundoDadosLayout.setHorizontalGroup(
-            fundoDadosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            fundoDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fundoDadosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(fundoDadosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(fundoDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(fundoDadosLayout.createSequentialGroup()
-                        .addComponent(topicos, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(topicos, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(txtdata, GroupLayout.PREFERRED_SIZE, 272, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(fundoDadosLayout.createSequentialGroup()
                         .addComponent(topicos1)
                         .addGap(6, 6, 6)
-                        .addComponent(txthora, GroupLayout.PREFERRED_SIZE, 272, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txthora, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(fundoDadosLayout.createSequentialGroup()
                         .addComponent(topicos2)
                         .addGap(6, 6, 6)
-                        .addComponent(txtuser, GroupLayout.PREFERRED_SIZE, 244, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtuser, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(fundoDadosLayout.createSequentialGroup()
-                        .addComponent(topicos3, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(topicos3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(txtsangria, GroupLayout.PREFERRED_SIZE, 186, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtsangria, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnSangria))
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         fundoDadosLayout.setVerticalGroup(
-            fundoDadosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            fundoDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fundoDadosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(fundoDadosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(topicos, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                .addGroup(fundoDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(topicos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(fundoDadosLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(txtdata)))
                 .addGap(6, 6, 6)
-                .addGroup(fundoDadosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(topicos1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                .addGroup(fundoDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(topicos1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(fundoDadosLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(txthora)))
                 .addGap(6, 6, 6)
-                .addGroup(fundoDadosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(topicos2, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                .addGroup(fundoDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(topicos2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(fundoDadosLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(txtuser)))
                 .addGap(6, 6, 6)
-                .addGroup(fundoDadosLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(topicos3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                .addGroup(fundoDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(topicos3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(fundoDadosLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(txtsangria)))
@@ -264,7 +259,7 @@ public class TelaCaixa extends JFrame {
         menuLateral.setBackground(new java.awt.Color(248, 174, 176));
 
         Lgfundo.setBackground(new java.awt.Color(204, 204, 204));
-        Lgfundo.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Lgfundo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         LgNome.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         LgNome.setText("Mourvan");
@@ -272,37 +267,37 @@ public class TelaCaixa extends JFrame {
         LgAcesso.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         LgAcesso.setText("Administrador");
 
-        logo.setIcon(new ImageIcon(getClass().getResource("/images/avatar.png"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/avatar.png"))); // NOI18N
         logo.setMaximumSize(new java.awt.Dimension(40, 40));
         logo.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        GroupLayout LgfundoLayout = new GroupLayout(Lgfundo);
+        javax.swing.GroupLayout LgfundoLayout = new javax.swing.GroupLayout(Lgfundo);
         Lgfundo.setLayout(LgfundoLayout);
         LgfundoLayout.setHorizontalGroup(
-            LgfundoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, LgfundoLayout.createSequentialGroup()
+            LgfundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LgfundoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(logo, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(LgfundoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(LgAcesso, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LgNome, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(LgfundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LgAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LgNome, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         LgfundoLayout.setVerticalGroup(
-            LgfundoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, LgfundoLayout.createSequentialGroup()
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(LgfundoLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(logo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+            LgfundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LgfundoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(LgfundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(LgfundoLayout.createSequentialGroup()
-                        .addComponent(LgNome, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LgAcesso, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(LgNome, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LgAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
-        NBLogo.setIcon(new ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        NBLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
         NBLogo.setMaximumSize(new java.awt.Dimension(80, 80));
         NBLogo.setPreferredSize(new java.awt.Dimension(80, 80));
 
@@ -321,50 +316,50 @@ public class TelaCaixa extends JFrame {
         btnCaixa.setText("Caixa");
         btnCaixa.addActionListener(this::btnCaixaActionPerformed);
 
-        GroupLayout menuLateralLayout = new GroupLayout(menuLateral);
+        javax.swing.GroupLayout menuLateralLayout = new javax.swing.GroupLayout(menuLateral);
         menuLateral.setLayout(menuLateralLayout);
         menuLateralLayout.setHorizontalGroup(
-            menuLateralLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLateralLayout.createSequentialGroup()
-                .addGroup(menuLateralLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(menuLateralLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(Lgfundo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(Lgfundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(menuLateralLayout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addComponent(NBLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(NBLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
                 .addGap(0, 20, Short.MAX_VALUE)
-                .addGroup(menuLateralLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
+                .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
                         .addComponent(menuLTitulo)
                         .addGap(47, 47, 47))
-                    .addGroup(GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
-                        .addComponent(btnClientes, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
+                        .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19))
                     .addGroup(menuLateralLayout.createSequentialGroup()
-                        .addGroup(menuLateralLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                            .addComponent(btnFuncionarios, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCaixa, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19))))
         );
         menuLateralLayout.setVerticalGroup(
-            menuLateralLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
+            menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(NBLogo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NBLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(menuLTitulo)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnClientes, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnFuncionarios, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCaixa, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Lgfundo, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Lgfundo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -376,33 +371,41 @@ public class TelaCaixa extends JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        GroupLayout layout = new GroupLayout(getContentPane());
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(11, Short.MAX_VALUE)
-                .addComponent(menuLateral, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fundo, GroupLayout.PREFERRED_SIZE, 766, GroupLayout.PREFERRED_SIZE))
+                .addComponent(menuLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fundo, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(menuLateral, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(fundo, GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(menuLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(fundo, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
-        int resposta = JOptionPane.showConfirmDialog(
-                this,
-                "Deseja mesmo fechar o caixa?"
-        );
-        if(resposta == JOptionPane.YES_OPTION){
-            caixa.fechar(funcionarioRepo.SelecionarFuncionario(3L)); /*alterar depois de fazer o login*/
-            preencherValores();
+        if(caixa.verificarAbertura() == null){
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Não há caixa aberto!!!"
+            );
+        }
+        else{
+            int resposta = JOptionPane.showConfirmDialog(
+                    this,
+                    "Deseja mesmo fechar o caixa?"
+            );
+            if(resposta == JOptionPane.YES_OPTION){
+                caixa.fechar(dadosUsuario.dadosCompletosFuncionario(3L)); /*alterar depois de fazer o login*/
+                preencherValores();
+            }
         }
     }//GEN-LAST:event_btnFecharActionPerformed
 
@@ -418,29 +421,37 @@ public class TelaCaixa extends JFrame {
 
         if (opcao == JOptionPane.OK_OPTION) {
             double valor = (double) input.getValue();
-            caixa.abrirCaixa(funcionarioRepo.SelecionarFuncionario(3L), valor); /*Alterar depois de fazer o login*/
+            caixa.abrirCaixa(dadosUsuario.dadosCompletosFuncionario(3L), valor); /*Alterar depois de fazer o login*/
             preencherValores();
         }
     }//GEN-LAST:event_btnAbrirActionPerformed
 
     private void btnSangriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSangriaActionPerformed
-        JSpinner input = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 10000.0, 0.50));
-
-        int opcao = JOptionPane.showConfirmDialog(
-                null,
-                input,
-                "Digite o valor de Sangria",
-                JOptionPane.OK_CANCEL_OPTION
-        );
-
-        if (opcao == JOptionPane.OK_OPTION) {
-            double valor = (double) input.getValue();
-            caixa.sangria(valor);
+        if(caixa.verificarAbertura() == null){
             JOptionPane.showMessageDialog(
                     this,
-                    "Sangria de R$" + valor + "Concluida!!!"
+                    "Não há caixa aberto!!!"
             );
-            preencherValores();
+        }
+        else{
+            JSpinner input = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 10000.0, 0.50));
+
+            int opcao = JOptionPane.showConfirmDialog(
+                    null,
+                    input,
+                    "Digite o valor de Sangria",
+                    JOptionPane.OK_CANCEL_OPTION
+            );
+
+            if (opcao == JOptionPane.OK_OPTION) {
+                double valor = (double) input.getValue();
+                caixa.sangria(valor);
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Sangria de R$" + valor + "Concluida!!!"
+                );
+                preencherValores();
+            }
         }
     }//GEN-LAST:event_btnSangriaActionPerformed
 
@@ -504,13 +515,13 @@ public class TelaCaixa extends JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ReflectiveOperationException | UnsupportedLookAndFeelException ex) {
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -520,55 +531,45 @@ public class TelaCaixa extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JLabel LgAcesso;
-    private JLabel LgAcesso3;
-    private JLabel LgAcesso4;
-    private JLabel LgNome;
-    private JLabel LgNome3;
-    private JLabel LgNome4;
-    private JPanel Lgfundo;
-    private JPanel Lgfundo3;
-    private JPanel Lgfundo4;
-    private JLabel NBLogo;
-    private JButton btnAbrir;
-    private JButton btnCaixa;
-    private JButton btnClientes;
-    private JButton btnFechar;
-    private JButton btnFuncionarios;
-    private JButton btnSangria;
-    private JPanel fundo;
-    private JPanel fundoAbertura;
-    private JPanel fundoDados;
-    private JPanel fundoValorAtual;
-    private JMenu jMenu1;
-    private JMenu jMenu2;
-    private JMenuBar jMenuBar1;
-    private JPanel jPanel3;
-    private JScrollPane jScrollPane1;
-    private JLabel logo;
-    private JLabel logo3;
-    private JLabel logo4;
-    private JTextArea logs;
-    private JLabel logsDoCaixa;
-    private JLabel menuLTitulo;
-    private JPanel menuLateral;
-    private JPanel menuLateral3;
-    private JPanel menuLateral4;
-    private JLabel subtitulo;
-    private JLabel subtitulo1;
-    private JLabel subtitulo2;
-    private JLabel titulo;
-    private JLabel titulocaixa;
-    private JLabel topicos;
-    private JLabel topicos1;
-    private JLabel topicos2;
-    private JLabel topicos3;
-    private JLabel txtdata;
-    private JLabel txthora;
-    private JLabel txtsangria;
-    private JLabel txtuser;
-    private JLabel valorAbertura;
-    private JLabel valorAtual;
-    private JLabel valorEntrada;
+    private javax.swing.JLabel LgAcesso;
+    private javax.swing.JLabel LgNome;
+    private javax.swing.JPanel Lgfundo;
+    private javax.swing.JLabel NBLogo;
+    private javax.swing.JButton btnAbrir;
+    private javax.swing.JButton btnCaixa;
+    private javax.swing.JButton btnClientes;
+    private javax.swing.JButton btnFechar;
+    private javax.swing.JButton btnFuncionarios;
+    private javax.swing.JButton btnSangria;
+    private javax.swing.JPanel fundo;
+    private javax.swing.JPanel fundoAbertura;
+    private javax.swing.JPanel fundoDados;
+    private javax.swing.JPanel fundoValorAtual;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel logo;
+    private javax.swing.JTextArea logs;
+    private javax.swing.JLabel logsDoCaixa;
+    private javax.swing.JLabel menuLTitulo;
+    private javax.swing.JPanel menuLateral;
+    private javax.swing.JLabel subtitulo;
+    private javax.swing.JLabel subtitulo1;
+    private javax.swing.JLabel subtitulo2;
+    private javax.swing.JLabel titulo;
+    private javax.swing.JLabel titulocaixa;
+    private javax.swing.JLabel topicos;
+    private javax.swing.JLabel topicos1;
+    private javax.swing.JLabel topicos2;
+    private javax.swing.JLabel topicos3;
+    private javax.swing.JLabel txtdata;
+    private javax.swing.JLabel txthora;
+    private javax.swing.JLabel txtsangria;
+    private javax.swing.JLabel txtuser;
+    private javax.swing.JLabel valorAbertura;
+    private javax.swing.JLabel valorAtual;
+    private javax.swing.JLabel valorEntrada;
     // End of variables declaration//GEN-END:variables
 }

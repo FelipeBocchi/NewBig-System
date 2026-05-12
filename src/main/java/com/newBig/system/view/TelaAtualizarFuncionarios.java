@@ -12,7 +12,7 @@ import javax.swing.*;
  *
  * @author MH
  */
-public class TelaAtualizarFuncionarios extends JFrame {
+public class TelaAtualizarFuncionarios extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaAtualizarFuncionarios.class.getName());
     AtualizarUsuario atualizarUsuario = new AtualizarUsuario();
@@ -35,28 +35,28 @@ public class TelaAtualizarFuncionarios extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        acessoGroup = new ButtonGroup();
-        fundo = new JPanel();
-        lblNome = new JLabel();
-        txtNome = new JTextField();
-        txtCpf = new JTextField();
-        lblCpf = new JLabel();
-        txtLogin = new JTextField();
-        lblLogin = new JLabel();
-        divisa = new JPanel();
-        Titulo = new JLabel();
-        btnEnviar = new JButton();
-        btnCancelar = new JButton();
-        lblSenha = new JLabel();
-        lblId = new JLabel();
-        txtId = new JTextField();
-        txtSenha = new JPasswordField();
-        rdSem = new JRadioButton();
-        lblSenha1 = new JLabel();
-        rdAdm = new JRadioButton();
-        rdOperador = new JRadioButton();
+        acessoGroup = new javax.swing.ButtonGroup();
+        fundo = new javax.swing.JPanel();
+        lblNome = new javax.swing.JLabel();
+        txtNome = new javax.swing.JTextField();
+        txtCpf = new javax.swing.JTextField();
+        lblCpf = new javax.swing.JLabel();
+        txtLogin = new javax.swing.JTextField();
+        lblLogin = new javax.swing.JLabel();
+        divisa = new javax.swing.JPanel();
+        Titulo = new javax.swing.JLabel();
+        btnEnviar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        lblSenha = new javax.swing.JLabel();
+        lblId = new javax.swing.JLabel();
+        txtId = new javax.swing.JTextField();
+        txtSenha = new javax.swing.JPasswordField();
+        rdSem = new javax.swing.JRadioButton();
+        lblSenha1 = new javax.swing.JLabel();
+        rdAdm = new javax.swing.JRadioButton();
+        rdOperador = new javax.swing.JRadioButton();
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         fundo.setBackground(new java.awt.Color(255, 255, 255));
         fundo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -77,26 +77,26 @@ public class TelaAtualizarFuncionarios extends JFrame {
         fundo.add(lblLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, -1, -1));
 
         divisa.setBackground(new java.awt.Color(248, 174, 176));
-        divisa.setBorder(BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        divisa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         Titulo.setFont(new java.awt.Font("Unispace", 1, 18)); // NOI18N
         Titulo.setText("Atualizar Funcionario");
 
-        GroupLayout divisaLayout = new GroupLayout(divisa);
+        javax.swing.GroupLayout divisaLayout = new javax.swing.GroupLayout(divisa);
         divisa.setLayout(divisaLayout);
         divisaLayout.setHorizontalGroup(
-            divisaLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, divisaLayout.createSequentialGroup()
+            divisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, divisaLayout.createSequentialGroup()
                 .addContainerGap(268, Short.MAX_VALUE)
                 .addComponent(Titulo)
                 .addGap(283, 283, 283))
         );
         divisaLayout.setVerticalGroup(
-            divisaLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            divisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(divisaLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(Titulo)
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         fundo.add(divisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 790, 70));
@@ -153,15 +153,15 @@ public class TelaAtualizarFuncionarios extends JFrame {
         rdOperador.addActionListener(this::rdOperadorActionPerformed);
         fundo.add(rdOperador, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 240, 150, 40));
 
-        GroupLayout layout = new GroupLayout(getContentPane());
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(fundo, GroupLayout.DEFAULT_SIZE, 809, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(fundo, javax.swing.GroupLayout.DEFAULT_SIZE, 809, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addComponent(fundo, GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(fundo, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
         );
 
         pack();
@@ -245,13 +245,13 @@ public class TelaAtualizarFuncionarios extends JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ReflectiveOperationException | UnsupportedLookAndFeelException ex) {
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -261,25 +261,25 @@ public class TelaAtualizarFuncionarios extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JLabel Titulo;
-    private ButtonGroup acessoGroup;
-    private JButton btnCancelar;
-    private JButton btnEnviar;
-    private JPanel divisa;
-    private JPanel fundo;
-    private JLabel lblCpf;
-    private JLabel lblId;
-    private JLabel lblLogin;
-    private JLabel lblNome;
-    private JLabel lblSenha;
-    private JLabel lblSenha1;
-    private JRadioButton rdAdm;
-    private JRadioButton rdOperador;
-    private JRadioButton rdSem;
-    private JTextField txtCpf;
-    private JTextField txtId;
-    private JTextField txtLogin;
-    private JTextField txtNome;
-    private JPasswordField txtSenha;
+    private javax.swing.JLabel Titulo;
+    private javax.swing.ButtonGroup acessoGroup;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEnviar;
+    private javax.swing.JPanel divisa;
+    private javax.swing.JPanel fundo;
+    private javax.swing.JLabel lblCpf;
+    private javax.swing.JLabel lblId;
+    private javax.swing.JLabel lblLogin;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblSenha;
+    private javax.swing.JLabel lblSenha1;
+    private javax.swing.JRadioButton rdAdm;
+    private javax.swing.JRadioButton rdOperador;
+    private javax.swing.JRadioButton rdSem;
+    private javax.swing.JTextField txtCpf;
+    private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtLogin;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JPasswordField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

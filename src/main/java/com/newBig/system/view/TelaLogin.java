@@ -12,7 +12,7 @@ import javax.swing.*;
  *
  * @author MH
  */
-public class TelaLogin extends JFrame {
+public class TelaLogin extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaLogin.class.getName());
     Login loginService = new Login();
@@ -33,20 +33,20 @@ public class TelaLogin extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new JPanel();
-        fundoLogin = new JPanel();
-        subtitulo = new JLabel();
-        lLogin = new JLabel();
-        tLogin = new JTextField();
-        lSenha = new JLabel();
-        tSenha = new JPasswordField();
-        titulo = new JLabel();
-        btnEntrar = new JButton();
-        nome = new JLabel();
-        fundoEsquerda = new JPanel();
-        logo = new JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        fundoLogin = new javax.swing.JPanel();
+        subtitulo = new javax.swing.JLabel();
+        lLogin = new javax.swing.JLabel();
+        tLogin = new javax.swing.JTextField();
+        lSenha = new javax.swing.JLabel();
+        tSenha = new javax.swing.JPasswordField();
+        titulo = new javax.swing.JLabel();
+        btnEntrar = new javax.swing.JButton();
+        nome = new javax.swing.JLabel();
+        fundoEsquerda = new javax.swing.JPanel();
+        logo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("NewBig\n");
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -95,48 +95,48 @@ public class TelaLogin extends JFrame {
 
         fundoEsquerda.setBackground(new java.awt.Color(248, 174, 176));
 
-        logo.setIcon(new ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
 
-        GroupLayout fundoEsquerdaLayout = new GroupLayout(fundoEsquerda);
+        javax.swing.GroupLayout fundoEsquerdaLayout = new javax.swing.GroupLayout(fundoEsquerda);
         fundoEsquerda.setLayout(fundoEsquerdaLayout);
         fundoEsquerdaLayout.setHorizontalGroup(
-            fundoEsquerdaLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            fundoEsquerdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fundoEsquerdaLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(logo)
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         fundoEsquerdaLayout.setVerticalGroup(
-            fundoEsquerdaLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            fundoEsquerdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fundoEsquerdaLayout.createSequentialGroup()
                 .addGap(113, 113, 113)
                 .addComponent(logo)
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        GroupLayout layout = new GroupLayout(getContentPane());
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(fundoEsquerda, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fundoLogin, GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addComponent(fundoEsquerda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fundoLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(123, 123, 123)
-                .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(fundoLogin, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
-                    .addComponent(fundoEsquerda, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fundoLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                    .addComponent(fundoEsquerda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -182,13 +182,13 @@ public class TelaLogin extends JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ReflectiveOperationException | UnsupportedLookAndFeelException ex) {
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -198,17 +198,17 @@ public class TelaLogin extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JButton btnEntrar;
-    private JPanel fundoEsquerda;
-    private JPanel fundoLogin;
-    private JPanel jPanel1;
-    private JLabel lLogin;
-    private JLabel lSenha;
-    private JLabel logo;
-    private JLabel nome;
-    private JLabel subtitulo;
-    private JTextField tLogin;
-    private JPasswordField tSenha;
-    private JLabel titulo;
+    private javax.swing.JButton btnEntrar;
+    private javax.swing.JPanel fundoEsquerda;
+    private javax.swing.JPanel fundoLogin;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lLogin;
+    private javax.swing.JLabel lSenha;
+    private javax.swing.JLabel logo;
+    private javax.swing.JLabel nome;
+    private javax.swing.JLabel subtitulo;
+    private javax.swing.JTextField tLogin;
+    private javax.swing.JPasswordField tSenha;
+    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

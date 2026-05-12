@@ -10,7 +10,7 @@ public class Caixa {
     EntityManager em = CustomizerFactory.getEntityManager(); /*Pegar objeto que conecta com o banco*/
     CaixaRepo caixaRepo = new CaixaRepo(em);
     DadosCaixa dadosCaixa = new DadosCaixa();
-    private static double valorAtual = 0.0 ;
+    private static Double valorAtual = null;
     private static double sangria = 0.0;
 
     public void addValor(double n){
@@ -24,7 +24,7 @@ public class Caixa {
     }
 
     public void zerarValor(){
-        valorAtual = 0.0;
+        valorAtual = null;
         sangria = 0.0;
     }
 
@@ -66,6 +66,10 @@ public class Caixa {
         dadosFechamento.salvarFechamento(usuariofechamento, getValorAtual(), getSangria());
         caixaRepo.update(dadosFechamento);
         zerarValor();
+    }
+
+    public Double verificarAbertura(){
+        return valorAtual;
     }
 
 

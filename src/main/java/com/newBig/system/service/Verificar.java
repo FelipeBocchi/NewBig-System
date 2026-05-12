@@ -112,7 +112,7 @@ public class Verificar {
                 sc.nextLine();
                 return id;
             }
-            catch (InputMismatchException e){
+            catch (java.util.InputMismatchException e){
                 System.out.println("Digite apenas numeros!!");
                 sc.nextLine();
             }
