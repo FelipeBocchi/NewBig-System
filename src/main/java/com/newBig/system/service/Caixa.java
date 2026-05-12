@@ -44,4 +44,9 @@ public class Caixa {
         banco.setValorAtual(valorAtual);
         caixaRepo.update(banco);
     }
+
+    public double getValorAbertura(){
+        return caixaRepo.CaixaAberto().getValorAbertura();
+    }
+
 }

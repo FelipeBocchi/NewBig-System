@@ -26,10 +26,7 @@ public class OperacaoCaixa {
             System.out.println("Já tem um caixa aberto feche ele para continuar!!");
             Main.main(null);
         }
-        if(!verificar.acesso(verificar.login(), 2)){
-            Main.main(null);
-        }
-        else{
+        if(true){
             System.out.println("\n===============================");
             System.out.println("  🍦 NEW BIG SORVETERIA SYSTEM");
             System.out.println("===============================");
@@ -66,9 +63,6 @@ public class OperacaoCaixa {
     public void fechar(){
         if(caixaRepo.CaixaAberto() == null){
             System.out.println("Nenhum caixa foi aberto!!");
-            Main.main(null);
-        }
-        if(!verificar.acesso(verificar.login(), 2)){
             Main.main(null);
         }
         else{
