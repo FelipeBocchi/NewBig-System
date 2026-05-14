@@ -84,9 +84,13 @@ public class TelaCaixa extends javax.swing.JFrame {
         logo = new javax.swing.JLabel();
         NBLogo = new javax.swing.JLabel();
         menuLTitulo = new javax.swing.JLabel();
-        btnClientes = new javax.swing.JButton();
-        btnFuncionarios = new javax.swing.JButton();
         btnCaixa = new javax.swing.JButton();
+        btnFuncionarios = new javax.swing.JButton();
+        btnClientes1 = new javax.swing.JButton();
+        btnLote = new javax.swing.JButton();
+        btnProduto = new javax.swing.JButton();
+        btnVenda = new javax.swing.JButton();
+        btnInicio = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -360,18 +364,34 @@ public class TelaCaixa extends javax.swing.JFrame {
         menuLTitulo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         menuLTitulo.setText("NewBig-System");
 
-        btnClientes.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
-        btnClientes.setText("Clientes");
-        btnClientes.addActionListener(this::btnClientesActionPerformed);
+        btnCaixa.setBackground(new java.awt.Color(253, 238, 239));
+        btnCaixa.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnCaixa.setText("Caixa");
+        btnCaixa.addActionListener(this::btnCaixaActionPerformed);
 
         btnFuncionarios.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
         btnFuncionarios.setText("Funcionarios");
         btnFuncionarios.addActionListener(this::btnFuncionariosActionPerformed);
 
-        btnCaixa.setBackground(new java.awt.Color(253, 238, 239));
-        btnCaixa.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
-        btnCaixa.setText("Caixa");
-        btnCaixa.addActionListener(this::btnCaixaActionPerformed);
+        btnClientes1.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnClientes1.setText("Clientes");
+        btnClientes1.addActionListener(this::btnClientes1ActionPerformed);
+
+        btnLote.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnLote.setText("Lote");
+        btnLote.addActionListener(this::btnLoteActionPerformed);
+
+        btnProduto.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnProduto.setText("Produtos");
+        btnProduto.addActionListener(this::btnProdutoActionPerformed);
+
+        btnVenda.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnVenda.setText("Venda");
+        btnVenda.addActionListener(this::btnVendaActionPerformed);
+
+        btnInicio.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnInicio.setText("Inicio");
+        btnInicio.addActionListener(this::btnInicioActionPerformed);
 
         javax.swing.GroupLayout menuLateralLayout = new javax.swing.GroupLayout(menuLateral);
         menuLateral.setLayout(menuLateralLayout);
@@ -388,19 +408,20 @@ public class TelaCaixa extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
-                .addGap(0, 20, Short.MAX_VALUE)
+                .addGap(0, 53, Short.MAX_VALUE)
+                .addComponent(menuLTitulo)
+                .addGap(47, 47, 47))
+            .addGroup(menuLateralLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
-                        .addComponent(menuLTitulo)
-                        .addGap(47, 47, 47))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
-                        .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))
-                    .addGroup(menuLateralLayout.createSequentialGroup()
-                        .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19))))
+                    .addComponent(btnInicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFuncionarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCaixa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClientes1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVenda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLote, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         menuLateralLayout.setVerticalGroup(
             menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -409,13 +430,21 @@ public class TelaCaixa extends javax.swing.JFrame {
                 .addComponent(NBLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(menuLTitulo)
+                .addGap(18, 18, 18)
+                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLote, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnClientes1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 230, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Lgfundo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -433,10 +462,11 @@ public class TelaCaixa extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(menuLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fundo, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(fundo, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -447,78 +477,11 @@ public class TelaCaixa extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
-        if(caixa.verificarAbertura() == null){
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Não há caixa aberto!!!"
-            );
-        }
-        else{
-            int resposta = JOptionPane.showConfirmDialog(
-                    this,
-                    "Deseja mesmo fechar o caixa?"
-            );
-            if(resposta == JOptionPane.YES_OPTION){
-                caixa.fechar(dadosUsuario.dadosCompletosFuncionario(3L)); /*alterar depois de fazer o login*/
-                preencherValores();
-                preencherLog();
-            }
-        }
-    }//GEN-LAST:event_btnFecharActionPerformed
-
-    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
-        JSpinner input = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 10000.0, 0.50));
-
-        int opcao = JOptionPane.showConfirmDialog(
-                null,
-                input,
-                "Digite o valor de abertura",
-                JOptionPane.OK_CANCEL_OPTION
-        );
-
-        if (opcao == JOptionPane.OK_OPTION) {
-            double valor = (double) input.getValue();
-            caixa.abrirCaixa(dadosUsuario.dadosCompletosFuncionario(3L), valor); /*Alterar depois de fazer o login*/
-            preencherValores();
-            preencherLog();
-        }
-    }//GEN-LAST:event_btnAbrirActionPerformed
-
-    private void btnSangriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSangriaActionPerformed
-        if(caixa.verificarAbertura() == null){
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Não há caixa aberto!!!"
-            );
-        }
-        else{
-            JSpinner input = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 10000.0, 0.50));
-
-            int opcao = JOptionPane.showConfirmDialog(
-                    null,
-                    input,
-                    "Digite o valor de Sangria",
-                    JOptionPane.OK_CANCEL_OPTION
-            );
-
-            if (opcao == JOptionPane.OK_OPTION) {
-                double valor = (double) input.getValue();
-                caixa.sangria(valor);
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Sangria de R$" + valor + "Concluida!!!"
-                );
-                preencherValores();
-            }
-        }
-    }//GEN-LAST:event_btnSangriaActionPerformed
-
-    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        TelaCliente telaCliente = new TelaCliente();
+    private void btnCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixaActionPerformed
+        TelaCaixa telaCaixa = new TelaCaixa();
         dispose();
-        telaCliente.setVisible(true);
-    }//GEN-LAST:event_btnClientesActionPerformed
+        telaCaixa.setVisible(true);
+    }//GEN-LAST:event_btnCaixaActionPerformed
 
     private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
         TelaFuncionario telaFuncionario = new TelaFuncionario();
@@ -526,11 +489,94 @@ public class TelaCaixa extends javax.swing.JFrame {
         telaFuncionario.setVisible(true);
     }//GEN-LAST:event_btnFuncionariosActionPerformed
 
-    private void btnCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixaActionPerformed
-        TelaCaixa telaCaixa = new TelaCaixa();
+    private void btnClientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClientes1ActionPerformed
+
+    private void btnLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLoteActionPerformed
+
+    private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProdutoActionPerformed
+
+    private void btnVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVendaActionPerformed
+
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+        TelaCliente telaCliente = new TelaCliente();
         dispose();
-        telaCaixa.setVisible(true);
-    }//GEN-LAST:event_btnCaixaActionPerformed
+        telaCliente.setVisible(true);
+    }//GEN-LAST:event_btnInicioActionPerformed
+
+    private void btnSangriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSangriaActionPerformed
+        if(caixa.verificarAbertura() == null){
+            JOptionPane.showMessageDialog(
+                this,
+                "Não há caixa aberto!!!"
+            );
+        }
+        else{
+            JSpinner input = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 10000.0, 0.50));
+
+            int opcao = JOptionPane.showConfirmDialog(
+                null,
+                input,
+                "Digite o valor de Sangria",
+                JOptionPane.OK_CANCEL_OPTION
+            );
+
+            if (opcao == JOptionPane.OK_OPTION) {
+                double valor = (double) input.getValue();
+                caixa.sangria(valor);
+                JOptionPane.showMessageDialog(
+                    this,
+                    "Sangria de R$" + valor + "Concluida!!!"
+                );
+                preencherValores();
+            }
+        }
+    }//GEN-LAST:event_btnSangriaActionPerformed
+
+    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
+        JSpinner input = new JSpinner(new SpinnerNumberModel(0.0, 0.0, 10000.0, 0.50));
+
+        int opcao = JOptionPane.showConfirmDialog(
+            null,
+            input,
+            "Digite o valor de abertura",
+            JOptionPane.OK_CANCEL_OPTION
+        );
+
+        if (opcao == JOptionPane.OK_OPTION) {
+            double valor = (double) input.getValue();
+            caixa.abrirCaixa(dadosUsuario.dadosCompletosFuncionario(login.consultarFun()), valor);
+            preencherValores();
+            preencherLog();
+        }
+    }//GEN-LAST:event_btnAbrirActionPerformed
+
+    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
+        if(caixa.verificarAbertura() == null){
+            JOptionPane.showMessageDialog(
+                this,
+                "Não há caixa aberto!!!"
+            );
+        }
+        else{
+            int resposta = JOptionPane.showConfirmDialog(
+                this,
+                "Deseja mesmo fechar o caixa?"
+            );
+            if(resposta == JOptionPane.YES_OPTION){
+                caixa.fechar(dadosUsuario.dadosCompletosFuncionario(login.consultarFun()));
+                preencherValores();
+                preencherLog();
+            }
+        }
+    }//GEN-LAST:event_btnFecharActionPerformed
 
 
     public void preencherValores(){
@@ -609,10 +655,14 @@ public class TelaCaixa extends javax.swing.JFrame {
     private javax.swing.JLabel NBLogo;
     private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnCaixa;
-    private javax.swing.JButton btnClientes;
+    private javax.swing.JButton btnClientes1;
     private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnFuncionarios;
+    private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnLote;
+    private javax.swing.JButton btnProduto;
     private javax.swing.JButton btnSangria;
+    private javax.swing.JButton btnVenda;
     private javax.swing.JPanel fundo;
     private javax.swing.JPanel fundoAbertura;
     private javax.swing.JPanel fundoDados;

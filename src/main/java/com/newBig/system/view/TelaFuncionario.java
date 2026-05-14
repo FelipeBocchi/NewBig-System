@@ -62,9 +62,13 @@ public class TelaFuncionario extends javax.swing.JFrame {
         logo = new javax.swing.JLabel();
         NBLogo = new javax.swing.JLabel();
         menuLTitulo = new javax.swing.JLabel();
-        btnClientes = new javax.swing.JButton();
-        btnFuncionarios = new javax.swing.JButton();
         btnCaixa = new javax.swing.JButton();
+        btnFuncionarios = new javax.swing.JButton();
+        btnClientes1 = new javax.swing.JButton();
+        btnLote = new javax.swing.JButton();
+        btnProduto = new javax.swing.JButton();
+        btnVenda = new javax.swing.JButton();
+        btnInicio = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -218,18 +222,34 @@ public class TelaFuncionario extends javax.swing.JFrame {
         menuLTitulo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         menuLTitulo.setText("NewBig-System");
 
-        btnClientes.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
-        btnClientes.setText("Clientes");
-        btnClientes.addActionListener(this::btnClientesActionPerformed);
+        btnCaixa.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnCaixa.setText("Caixa");
+        btnCaixa.addActionListener(this::btnCaixaActionPerformed);
 
         btnFuncionarios.setBackground(new java.awt.Color(253, 238, 239));
         btnFuncionarios.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
         btnFuncionarios.setText("Funcionarios");
         btnFuncionarios.addActionListener(this::btnFuncionariosActionPerformed);
 
-        btnCaixa.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
-        btnCaixa.setText("Caixa");
-        btnCaixa.addActionListener(this::btnCaixaActionPerformed);
+        btnClientes1.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnClientes1.setText("Clientes");
+        btnClientes1.addActionListener(this::btnClientes1ActionPerformed);
+
+        btnLote.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnLote.setText("Lote");
+        btnLote.addActionListener(this::btnLoteActionPerformed);
+
+        btnProduto.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnProduto.setText("Produtos");
+        btnProduto.addActionListener(this::btnProdutoActionPerformed);
+
+        btnVenda.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnVenda.setText("Venda");
+        btnVenda.addActionListener(this::btnVendaActionPerformed);
+
+        btnInicio.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnInicio.setText("Inicio");
+        btnInicio.addActionListener(this::btnInicioActionPerformed);
 
         javax.swing.GroupLayout menuLateral3Layout = new javax.swing.GroupLayout(menuLateral3);
         menuLateral3.setLayout(menuLateral3Layout);
@@ -246,19 +266,20 @@ public class TelaFuncionario extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateral3Layout.createSequentialGroup()
-                .addGap(0, 20, Short.MAX_VALUE)
+                .addGap(0, 53, Short.MAX_VALUE)
+                .addComponent(menuLTitulo)
+                .addGap(47, 47, 47))
+            .addGroup(menuLateral3Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addGroup(menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateral3Layout.createSequentialGroup()
-                        .addComponent(menuLTitulo)
-                        .addGap(47, 47, 47))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateral3Layout.createSequentialGroup()
-                        .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))
-                    .addGroup(menuLateral3Layout.createSequentialGroup()
-                        .addGroup(menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19))))
+                    .addComponent(btnInicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFuncionarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCaixa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClientes1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVenda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLote, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         menuLateral3Layout.setVerticalGroup(
             menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,8 +288,16 @@ public class TelaFuncionario extends javax.swing.JFrame {
                 .addComponent(NBLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(menuLTitulo)
+                .addGap(18, 18, 18)
+                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLote, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnClientes1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -376,11 +405,11 @@ public class TelaFuncionario extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnDadosActionPerformed
 
-    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
-        TelaCliente telaCliente = new TelaCliente();
+    private void btnCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixaActionPerformed
+        TelaCaixa telaCaixa = new TelaCaixa();
         dispose();
-        telaCliente.setVisible(true);
-    }//GEN-LAST:event_btnClientesActionPerformed
+        telaCaixa.setVisible(true);
+    }//GEN-LAST:event_btnCaixaActionPerformed
 
     private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
         TelaFuncionario telaFuncionario = new TelaFuncionario();
@@ -388,11 +417,29 @@ public class TelaFuncionario extends javax.swing.JFrame {
         telaFuncionario.setVisible(true);
     }//GEN-LAST:event_btnFuncionariosActionPerformed
 
-    private void btnCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixaActionPerformed
-        TelaCaixa telaCaixa = new TelaCaixa();
+    private void btnClientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes1ActionPerformed
+        TelaCliente telaCliente = new TelaCliente();
         dispose();
-        telaCaixa.setVisible(true);
-    }//GEN-LAST:event_btnCaixaActionPerformed
+        telaCliente.setVisible(true);
+    }//GEN-LAST:event_btnClientes1ActionPerformed
+
+    private void btnLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLoteActionPerformed
+
+    private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProdutoActionPerformed
+
+    private void btnVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVendaActionPerformed
+
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+        TelaCliente telaCliente = new TelaCliente();
+        dispose();
+        telaCliente.setVisible(true);
+    }//GEN-LAST:event_btnInicioActionPerformed
 
 
     public void preencherTabela(){
@@ -510,11 +557,15 @@ public class TelaFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCaixa;
-    private javax.swing.JButton btnClientes;
+    private javax.swing.JButton btnClientes1;
     private javax.swing.JButton btnDados;
     private javax.swing.JButton btnDeletar;
     private javax.swing.JButton btnFuncionarios;
+    private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnLote;
     private javax.swing.JButton btnNovo;
+    private javax.swing.JButton btnProduto;
+    private javax.swing.JButton btnVenda;
     private javax.swing.JPanel fundo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

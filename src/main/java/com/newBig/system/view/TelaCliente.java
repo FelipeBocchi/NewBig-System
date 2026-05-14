@@ -57,9 +57,13 @@ public class TelaCliente extends javax.swing.JFrame {
         logo = new javax.swing.JLabel();
         NBLogo = new javax.swing.JLabel();
         menuLTitulo = new javax.swing.JLabel();
-        btnClientes = new javax.swing.JButton();
+        btnInicio = new javax.swing.JButton();
         btnFuncionarios = new javax.swing.JButton();
         btnCaixa = new javax.swing.JButton();
+        btnClientes1 = new javax.swing.JButton();
+        btnVenda = new javax.swing.JButton();
+        btnProduto = new javax.swing.JButton();
+        btnLote = new javax.swing.JButton();
         fundo = new javax.swing.JPanel();
         tituloclientes = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -127,10 +131,9 @@ public class TelaCliente extends javax.swing.JFrame {
         menuLTitulo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         menuLTitulo.setText("NewBig-System");
 
-        btnClientes.setBackground(new java.awt.Color(253, 238, 239));
-        btnClientes.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
-        btnClientes.setText("Clientes");
-        btnClientes.addActionListener(this::btnClientesActionPerformed);
+        btnInicio.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnInicio.setText("Inicio");
+        btnInicio.addActionListener(this::btnInicioActionPerformed);
 
         btnFuncionarios.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
         btnFuncionarios.setText("Funcionarios");
@@ -139,6 +142,23 @@ public class TelaCliente extends javax.swing.JFrame {
         btnCaixa.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
         btnCaixa.setText("Caixa");
         btnCaixa.addActionListener(this::btnCaixaActionPerformed);
+
+        btnClientes1.setBackground(new java.awt.Color(253, 238, 239));
+        btnClientes1.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnClientes1.setText("Clientes");
+        btnClientes1.addActionListener(this::btnClientes1ActionPerformed);
+
+        btnVenda.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnVenda.setText("Venda");
+        btnVenda.addActionListener(this::btnVendaActionPerformed);
+
+        btnProduto.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnProduto.setText("Produtos");
+        btnProduto.addActionListener(this::btnProdutoActionPerformed);
+
+        btnLote.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnLote.setText("Lote");
+        btnLote.addActionListener(this::btnLoteActionPerformed);
 
         javax.swing.GroupLayout menuLateralLayout = new javax.swing.GroupLayout(menuLateral);
         menuLateral.setLayout(menuLateralLayout);
@@ -155,19 +175,20 @@ public class TelaCliente extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
-                .addGap(0, 20, Short.MAX_VALUE)
+                .addGap(0, 53, Short.MAX_VALUE)
+                .addComponent(menuLTitulo)
+                .addGap(47, 47, 47))
+            .addGroup(menuLateralLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
-                        .addComponent(menuLTitulo)
-                        .addGap(47, 47, 47))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
-                        .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))
-                    .addGroup(menuLateralLayout.createSequentialGroup()
-                        .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19))))
+                    .addComponent(btnInicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFuncionarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCaixa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClientes1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVenda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLote, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         menuLateralLayout.setVerticalGroup(
             menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,8 +197,16 @@ public class TelaCliente extends javax.swing.JFrame {
                 .addComponent(NBLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(menuLTitulo)
+                .addGap(18, 18, 18)
+                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLote, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnClientes1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -402,11 +431,11 @@ public class TelaCliente extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         TelaCliente telaCliente = new TelaCliente();
         dispose();
         telaCliente.setVisible(true);
-    }//GEN-LAST:event_btnClientesActionPerformed
+    }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
         TelaFuncionario telaFuncionario = new TelaFuncionario();
@@ -419,6 +448,24 @@ public class TelaCliente extends javax.swing.JFrame {
         dispose();
         telaCaixa.setVisible(true);
     }//GEN-LAST:event_btnCaixaActionPerformed
+
+    private void btnClientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes1ActionPerformed
+        TelaCliente telaCliente = new TelaCliente();
+        dispose();
+        telaCliente.setVisible(true);
+    }//GEN-LAST:event_btnClientes1ActionPerformed
+
+    private void btnVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVendaActionPerformed
+
+    private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProdutoActionPerformed
+
+    private void btnLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLoteActionPerformed
 
 
     /*Funcões menu lateral*/
@@ -515,11 +562,15 @@ public class TelaCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCaixa;
-    private javax.swing.JButton btnClientes;
+    private javax.swing.JButton btnClientes1;
     private javax.swing.JButton btnDados;
     private javax.swing.JButton btnDeletar;
     private javax.swing.JButton btnFuncionarios;
+    private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnLote;
     private javax.swing.JButton btnNovo;
+    private javax.swing.JButton btnProduto;
+    private javax.swing.JButton btnVenda;
     private javax.swing.ButtonGroup clienteRadioGroup;
     private javax.swing.JPanel fundo;
     private javax.swing.JMenu jMenu1;

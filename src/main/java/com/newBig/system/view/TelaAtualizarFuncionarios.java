@@ -58,6 +58,7 @@ public class TelaAtualizarFuncionarios extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        fundo.setBackground(new java.awt.Color(255, 249, 249));
         fundo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblNome.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
