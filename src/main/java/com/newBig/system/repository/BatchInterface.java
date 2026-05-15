@@ -14,6 +14,8 @@ public interface BatchInterface {
 
     List<Batch> findById(Long productID);
 
+    Batch searchById(Long batchId);
+
     List<Batch> joinBatchAndProduct(Long productId);
 
 }

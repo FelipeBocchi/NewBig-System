@@ -4,34 +4,23 @@
  */
 package com.newBig.system.view;
 
-import com.newBig.system.model.Batch;
-import com.newBig.system.model.Product;
-import com.newBig.system.service.BatchService;
-import com.newBig.system.service.HelpService;
-import com.newBig.system.service.ProductService;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.List;
 
 /**
  *
  * @author bocchi
  */
-public class FormBatchDialog extends javax.swing.JDialog {
+public class FormBatchEditDialog extends javax.swing.JDialog {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormBatchDialog.class.getName());
-    private HelpService helpService;
-    public Batch newBatch;
-    /**
-     * Creates new form FormBatchDialog
-     */
-    public FormBatchDialog(java.awt.Frame parent, boolean modal, HelpService helpService) {
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormBatchEditDialog.class.getName());
+
+
+    public FormBatchEditDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.helpService = helpService;
     }
 
     @SuppressWarnings("unchecked")
@@ -53,17 +42,17 @@ public class FormBatchDialog extends javax.swing.JDialog {
         TxtValidatyBatch = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAutoRequestFocus(false);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(501, 490));
 
         jPanel1.setBackground(new java.awt.Color(255, 249, 249));
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         HeaderFormBatch.setBackground(new java.awt.Color(248, 174, 176));
 
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("ENTRADA DE LOTE");
+        jLabel1.setText("EDIÇÃO DE LOTE");
 
         javax.swing.GroupLayout HeaderFormBatchLayout = new javax.swing.GroupLayout(HeaderFormBatch);
         HeaderFormBatch.setLayout(HeaderFormBatchLayout);
@@ -128,63 +117,31 @@ public class FormBatchDialog extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void BtnSalveDialogBatchActionPerformed(java.awt.event.ActionEvent evt) {                                                    
+    public void preencherCampos( String serie, String product, String quatity, String validity) {
 
-        try {
-            //  = Coleta os dados da interface
-            Batch newBatch = new Batch();  //   = criamos um lote vazio para irmos preenchendo com base das informações o user
-            String textoSerie = TxtSerieBatch.getText();
-            if (!textoSerie.isEmpty()) {
-                newBatch.setSeries(textoSerie.charAt(0));
-            } else {
-                // Caso o usuário não digite nada, você pode definir um padrão
-                newBatch.setSeries('A');
-            }
+        TxtSerieBatch.setText(serie);
+        TxtProductBatch.setText(product);
+        TxtQuantityBatch.setText(quatity);
 
-            ProductService productService = helpService.getProductService();
-            List<Product> product = productService.searchByBarcode(Integer.parseInt(TxtProductBatch.getText()));
-            newBatch.setProduct(product.getFirst());
-            
-            newBatch.setAmount(Integer.parseInt(TxtQuantityBatch.getText()));
 
-            Date dataDoFront = TxtValidatyBatch.getDate();
-            if (dataDoFront == null) {
-                JOptionPane.showMessageDialog(null, "Por favor, selecione uma data!");
-                return;
-            }
-            LocalDate dataConvertida = dataDoFront.toInstant()
-                    .atZone(java.time.ZoneId.systemDefault())
-                    .toLocalDate();
-            newBatch.setValidity(dataConvertida);
+    }
 
-            // Chama CRUD
-            BatchService batchService = helpService.getBatchService();
-            batchService.arrivalBatch(newBatch.getProduct(), newBatch.getValidity(), newBatch.getAmount(), newBatch.getSeries());
-
-            this.newBatch = newBatch;
-            //  = Escreve na tabela para não precisar fazer outra chamada no banco
-            //DefaultTableModel tableModel = (DefaultTableModel)
-
-            JOptionPane.showMessageDialog(this, "Lote salvo com sucesso!");
-            this.dispose(); // Fecha apenas a janelinha de cadastro
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Erro ao salvar: " + e.getMessage());
-        }
+    private void BtnSalveDialogBatchActionPerformed(java.awt.event.ActionEvent evt) {
 
     }
 
@@ -213,7 +170,7 @@ public class FormBatchDialog extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                FormBatchDialog dialog = new FormBatchDialog(new javax.swing.JFrame(), true, null);
+                FormBatchEditDialog dialog = new FormBatchEditDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

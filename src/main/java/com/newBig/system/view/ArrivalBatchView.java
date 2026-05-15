@@ -31,6 +31,12 @@ public class ArrivalBatchView extends javax.swing.JFrame {
     public ArrivalBatchView(HelpService helpService) {
         initComponents();
         this.helpService = helpService;
+
+        // Inicia a configuração do filtro
+        setupTableFilter();
+
+        // Carrega os dados na tabela ao abrir a tela
+        loadBatchTable();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -45,7 +51,7 @@ public class ArrivalBatchView extends javax.swing.JFrame {
         MainPanel = new javax.swing.JPanel();
         Batch = new javax.swing.JPanel();
         filter = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        FilterBatch = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         TableBatch = new javax.swing.JScrollPane();
         TblBatch = new javax.swing.JTable();
@@ -101,7 +107,8 @@ public class ArrivalBatchView extends javax.swing.JFrame {
 
         filter.setBackground(new java.awt.Color(255, 249, 249));
 
-        jTextField1.setText("Search something");
+        FilterBatch.setText("Search something");
+        FilterBatch.addActionListener(this::FilterBatchActionPerformed);
 
         jLabel1.setFont(new java.awt.Font("FreeSerif", 0, 24)); // NOI18N
         jLabel1.setText("Lotes");
@@ -113,7 +120,7 @@ public class ArrivalBatchView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, filterLayout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 314, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(FilterBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         filterLayout.setVerticalGroup(
@@ -121,7 +128,7 @@ public class ArrivalBatchView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, filterLayout.createSequentialGroup()
                 .addContainerGap(30, Short.MAX_VALUE)
                 .addGroup(filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FilterBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(15, 15, 15))
         );
@@ -246,13 +253,60 @@ public class ArrivalBatchView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnBatchActionPerformed
 
-    private void BtnEditBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditBatchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnEditBatchActionPerformed
+    private void FilterBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterBatchActionPerformed
 
-    private void BtnDeleteBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeleteBatchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnDeleteBatchActionPerformed
+    }//GEN-LAST:event_FilterBatchActionPerformed
+
+    private void BtnEditBatchActionPerformed(java.awt.event.ActionEvent evt) {
+
+        int linhaSelecionada = TblBatch.getSelectedRow();
+
+        //  = Verificar se o usuário realmente selecionou algo (-1 significa que nada foi selecionado)
+        if (linhaSelecionada == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecione uma linha para editar.");
+            return;
+        }
+
+        //  = Pegar os dados da tabela (substitua os índices das colunas conforme o seu projeto)
+        int linhaModelo = TblBatch.convertRowIndexToModel(linhaSelecionada);
+        String id = TblBatch.getModel().getValueAt(linhaModelo, 0).toString();
+        String serie = TblBatch.getModel().getValueAt(linhaModelo, 1).toString();
+        String product = TblBatch.getModel().getValueAt(linhaModelo, 2).toString();
+        String quantity = TblBatch.getModel().getValueAt(linhaModelo, 3).toString();
+        String validity = TblBatch.getModel().getValueAt(linhaModelo, 4).toString();
+
+        //  = Abrir o Dialog passando esses dados
+        FormBatchEditDialog dialog = new FormBatchEditDialog(this, true);
+        dialog.setLocationRelativeTo(this);
+        dialog.preencherCampos(serie,product, quantity, validity);
+        dialog.setVisible(true);
+
+        loadBatchTable();
+
+    }
+
+    private void BtnDeleteBatchActionPerformed(java.awt.event.ActionEvent evt) {
+
+        int linhaSelecionada = TblBatch.getSelectedRow();
+
+        //  = Verificar se o usuário realmente selecionou algo (-1 significa que nada foi selecionado)
+        if (linhaSelecionada == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecione uma linha para deletar.");
+            return;
+        }
+
+        int linhaModelo = TblBatch.convertRowIndexToModel(linhaSelecionada);
+        Batch batch =  helpService.getBatchService().searchById(Long.valueOf(TblBatch.getModel().getValueAt(linhaModelo, 0).toString()));
+
+        //  = CRUD delete
+        if(batch.getAmount() != 0) {
+            JOptionPane.showMessageDialog(this, "Esse lote não está zerado! logo, não pode ser deletado.");
+        } else {
+            helpService.getBatchService().deleteZero(batch);
+            loadBatchTable();
+        }
+
+    }
 
     private void loadBatchTable() {
 
@@ -287,6 +341,36 @@ public class ArrivalBatchView extends javax.swing.JFrame {
         dialog.setVisible(true);
 
         loadBatchTable();
+    }
+
+    // Método para configurar o filtro na tabela
+    private void setupTableFilter() {
+        DefaultTableModel model = (DefaultTableModel) TblBatch.getModel();
+        javax.swing.table.TableRowSorter<DefaultTableModel> sorter = new javax.swing.table.TableRowSorter<>(model);
+        TblBatch.setRowSorter(sorter);
+
+        // Adiciona um ouvinte para filtrar enquanto o usuário digita
+        FilterBatch.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) { applyFilter(sorter); }
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) { applyFilter(sorter); }
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) { applyFilter(sorter); }
+        });
+    }
+
+    // Método que aplica a regra do texto digitado
+    private void applyFilter(javax.swing.table.TableRowSorter<DefaultTableModel> sorter) {
+        String text = FilterBatch.getText();
+
+        // Se o texto for igual ao placeholder padrão ou estiver vazio, remove o filtro
+        if (text.trim().isEmpty() || text.equals("Search something")) {
+            sorter.setRowFilter(null);
+        } else {
+            // O "(?i)" torna a busca case-insensitive (ignora maiúsculas e minúsculas)
+            sorter.setRowFilter(javax.swing.RowFilter.regexFilter("(?i)" + text));
+        }
     }
 
     /**
@@ -329,6 +413,9 @@ public class ArrivalBatchView extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new ArrivalBatchView(helpService).setVisible(true));
+
+        // tirar depois
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -342,12 +429,12 @@ public class ArrivalBatchView extends javax.swing.JFrame {
     private javax.swing.JButton BtnSale;
     private javax.swing.JPanel Button;
     private javax.swing.JButton Dashbaord;
+    private javax.swing.JTextField FilterBatch;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JPanel MenuBar;
     private javax.swing.JScrollPane TableBatch;
     private javax.swing.JTable TblBatch;
     private javax.swing.JPanel filter;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

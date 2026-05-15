@@ -69,4 +69,8 @@ public class BatchService {
         return repositoryBatch.findById(id);
     }
 
+    public Batch searchById(Long id) {
+        return repositoryBatch.searchById(id);
+    }
+
 }

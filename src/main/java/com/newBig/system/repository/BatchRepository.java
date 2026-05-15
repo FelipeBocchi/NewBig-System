@@ -1,6 +1,7 @@
 package com.newBig.system.repository;
 
 import com.newBig.system.model.Batch;
+import com.newBig.system.model.Product;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
@@ -45,6 +46,11 @@ public class BatchRepository implements BatchInterface {
                         Batch.class)
                 .setParameter("productID", productID)
                 .getResultList();
+    }
+
+    @Override
+    public Batch searchById(Long batchId) {
+        return em.find(Batch.class, batchId);
     }
 
     @Override
