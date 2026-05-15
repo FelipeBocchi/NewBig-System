@@ -123,6 +123,10 @@ public class Product {
         return barcode;
     }
 
+    public UnitType getUnit() {
+        return unit;
+    }
+
     public BigDecimal getSalePrice() { return salePrice; }
 
     public BigDecimal getCostPrice() { return salePrice; }
