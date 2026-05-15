@@ -1,6 +1,6 @@
 
 CREATE TABLE IF NOT EXISTS product (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id SERIAL PRIMARY KEY,
     product_name VARCHAR(100) NOT NULL,
     description VARCHAR(100) NOT NULL,
     department VARCHAR(100) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS product (
 
 
 CREATE TABLE batch (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id SERIAL PRIMARY KEY,
     series CHAR(1) NOT NULL,
     amount INT NOT NULL,
     validity DATE NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE batch (
 
 -- . Tabela de Movimentação de Estoque
 CREATE TABLE stock_movement (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id SERIAL PRIMARY KEY,
     type VARCHAR(50) NOT NULL,
     quantity INT NOT NULL,
     value DECIMAL(10,2) NOT NULL,

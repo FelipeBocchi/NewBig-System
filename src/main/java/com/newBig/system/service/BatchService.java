@@ -21,7 +21,7 @@ public class BatchService {
         this.repositoryStockMovement = repositoryStockMovement;
     }
 
-    public void arrivalBatch(Long idProduct, LocalDate validity, int amount, char series) {
+    public void arrivalBatch(Product product, LocalDate validity, int amount, char series) {
 
         List<Batch> findAllBatch = repositoryBatch.findAll();
         // stock
@@ -32,7 +32,7 @@ public class BatchService {
             if(b.getSeries() == series) { throw new IllegalArgumentException("Caractere já existe"); }
         }
 
-        Product product = repositoryProduct.searchById(idProduct);
+        //Product product = repositoryProduct.searchById(idProduct);
 
         Batch batch = new Batch(product, validity, amount, series);
         repositoryBatch.save(batch);
@@ -59,6 +59,10 @@ public class BatchService {
     public void deleteZero(Batch batch) {
 
         if (batch.getAmount() == 0) { delete(batch); }
+    }
+
+    public List<Batch> findAll() {
+        return repositoryBatch.findAll();
     }
 
     public List<Batch> findByProduct(Long id) {

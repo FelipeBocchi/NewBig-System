@@ -5,21 +5,21 @@ import com.newBig.system.model.Funcionario;
 import com.newBig.system.repository.ClienteRepo;
 import com.newBig.system.repository.CustomizerFactory;
 import com.newBig.system.repository.FuncionarioRepo;
-import com.newBig.system.presentation.view.ClienteView;
-import com.newBig.system.presentation.view.FuncionarioView;
+//import com.newBig.system.presentation.view.ClienteView;
+//import com.newBig.system.presentation.view.FuncionarioView;
 import jakarta.persistence.EntityManager;
 
 public class BuscarUsuarioVenda {
     EntityManager em = CustomizerFactory.getEntityManager(); /*Pegar objeto que conecta com o banco*/
-    ClienteView clienteView = new ClienteView();
+    //ClienteView clienteView = new ClienteView();
     Verificar verificar = new Verificar();
     ClienteRepo clienteRepo = new ClienteRepo(em);
     FuncionarioRepo funcionarioRepo = new FuncionarioRepo(em);
-    FuncionarioView funcionarioView = new FuncionarioView();
+    //FuncionarioView funcionarioView = new FuncionarioView();
 
     public Cliente cliente(){
         try {
-            clienteView.print();
+            //clienteView.print();
             Long id = verificar.id();
             return clienteRepo.SelecionarCliente(id);
         }
@@ -32,7 +32,7 @@ public class BuscarUsuarioVenda {
 
     public Funcionario funcionario(){
         try {
-            funcionarioView.print();
+            //funcionarioView.print();
             Long id = verificar.id();
             return funcionarioRepo.SelecionarFuncionario(id);
         }

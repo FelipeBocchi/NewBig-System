@@ -13,15 +13,15 @@
         <property name="hibernate.format_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">none</property> <!--none para usar o flyway update-->
 
-        <mapping class="com.newBig.system.domain.model.DadosCaixa"/>
-        <mapping class="com.newBig.system.domain.model.Funcionario"/>
-        <mapping class="com.newBig.system.domain.model.Cliente"/>
-        <mapping class="com.newBig.system.domain.model.Batch"/>
-        <mapping class="com.newBig.system.domain.model.Product"/>
-        <mapping class="com.newBig.system.domain.model.StockMovement"/>
-        <mapping class="com.newBig.system.domain.model.Sale"/>
-        <mapping class="com.newBig.system.domain.model.SalesMovement"/>
-        <mapping class="com.newBig.system.domain.model.LogCaixa"/>
-        <mapping class="com.newBig.system.domain.model.LogUsuario"/>
+        <mapping class="com.newBig.system.model.DadosCaixa"/>
+        <mapping class="com.newBig.system.model.Funcionario"/>
+        <mapping class="com.newBig.system.model.Cliente"/>
+        <mapping class="com.newBig.system.model.Batch"/>
+        <mapping class="com.newBig.system.model.Product"/>
+        <mapping class="com.newBig.system.model.StockMovement"/>
+        <mapping class="com.newBig.system.model.Sale"/>
+        <mapping class="com.newBig.system.model.SalesMovement"/>
+        <mapping class="com.newBig.system.model.LogCaixa"/>
+        <mapping class="com.newBig.system.model.LogUsuario"/>
     </session-factory>
 </hibernate-configuration>

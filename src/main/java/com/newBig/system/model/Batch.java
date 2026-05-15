@@ -29,7 +29,9 @@ public class Batch {
 
 
     //  = Construtor protegido para o JPA
-    protected Batch() {}
+    public Batch() {}
+
+
 
     public Batch(Product product, LocalDate validity, int amount, char series) {
         if( amount <= 0) throw new IllegalArgumentException("Quantidade de produtos não poder ser igual ou menor que zero!!!");
@@ -68,7 +70,19 @@ public class Batch {
 
     //  =
 
+    public void setSeries(char series) {
+        this.series = series;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public void setValidity(LocalDate validity) {
+        this.validity = validity;
     }
 }
