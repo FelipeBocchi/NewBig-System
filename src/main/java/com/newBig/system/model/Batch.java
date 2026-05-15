@@ -10,7 +10,7 @@ public class Batch {
 
     // id gerado automatico
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "series")
     private char series;

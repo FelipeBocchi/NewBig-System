@@ -147,7 +147,13 @@ public class FormBatchDialog extends javax.swing.JDialog {
         try {
             //  = Coleta os dados da interface
             Batch newBatch = new Batch();  //   = criamos um lote vazio para irmos preenchendo com base das informações o user
-            newBatch.setSeries(TxtSerieBatch.getFocusAccelerator());
+            String textoSerie = TxtSerieBatch.getText();
+            if (!textoSerie.isEmpty()) {
+                newBatch.setSeries(textoSerie.charAt(0));
+            } else {
+                // Caso o usuário não digite nada, você pode definir um padrão
+                newBatch.setSeries('A');
+            }
 
             ProductService productService = helpService.getProductService();
             List<Product> product = productService.searchByBarcode(Integer.parseInt(TxtProductBatch.getText()));

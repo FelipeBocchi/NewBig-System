@@ -311,7 +311,7 @@ public class ArrivalBatchView extends javax.swing.JFrame {
         //</editor-fold>
 
         // temporario
-        FlyWayConfig.migrate();
+        //FlyWayConfig.migrate();
         //  = Conecção com o banco e inicialização
         EntityManager em = CustomizerFactory.getEntityManager();
 
