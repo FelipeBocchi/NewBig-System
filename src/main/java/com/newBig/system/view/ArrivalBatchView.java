@@ -414,7 +414,6 @@ public class ArrivalBatchView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new ArrivalBatchView(helpService).setVisible(true));
 
-        // tirar depois
 
     }
 

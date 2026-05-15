@@ -1,5 +1,7 @@
 package com.newBig.system.service;
 
+import com.newBig.system.model.DadosCaixa;
+import com.newBig.system.model.Funcionario;
 import com.newBig.system.repository.CaixaRepo;
 import com.newBig.system.repository.CustomizerFactory;
 import jakarta.persistence.EntityManager;
@@ -7,7 +9,8 @@ import jakarta.persistence.EntityManager;
 public class Caixa {
     EntityManager em = CustomizerFactory.getEntityManager(); /*Pegar objeto que conecta com o banco*/
     CaixaRepo caixaRepo = new CaixaRepo(em);
-    private static double valorAtual = 0.0 ;
+    DadosCaixa dadosCaixa = new DadosCaixa();
+    private static Double valorAtual = null;
     private static double sangria = 0.0;
 
     public void addValor(double n){
@@ -21,7 +24,7 @@ public class Caixa {
     }
 
     public void zerarValor(){
-        valorAtual = 0.0;
+        valorAtual = null;
         sangria = 0.0;
     }
 
@@ -44,4 +47,30 @@ public class Caixa {
         banco.setValorAtual(valorAtual);
         caixaRepo.update(banco);
     }
+
+    public double getValorAbertura(){
+        return caixaRepo.CaixaAberto().getValorAbertura();
+    }
+
+    public DadosCaixa getObjeto(){
+        return caixaRepo.CaixaAberto();
+    }
+
+    public void abrirCaixa(Funcionario usuarioAbertura, double valor){
+        dadosCaixa.salvarAbertura(usuarioAbertura, valor);
+        caixaRepo.create(dadosCaixa);
+    }
+
+    public void fechar(Funcionario usuariofechamento){
+        DadosCaixa dadosFechamento = caixaRepo.CaixaAberto();
+        dadosFechamento.salvarFechamento(usuariofechamento, getValorAtual(), getSangria());
+        caixaRepo.update(dadosFechamento);
+        zerarValor();
+    }
+
+    public Double verificarAbertura(){
+        return valorAtual;
+    }
+
+
 }

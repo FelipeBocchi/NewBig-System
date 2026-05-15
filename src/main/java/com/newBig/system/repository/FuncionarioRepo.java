@@ -87,6 +87,12 @@ public class FuncionarioRepo {
                 .getResultList(); /*Retorna a lista*/
     }
 
+    public Long ultimoId(){
+        String id = "SELECT MAX(f.id) FROM Funcionario f";
+
+        return (Long) em.createQuery(id).getSingleResult();
+    }
+
     public boolean consultaId(Long id){
         return em.createQuery(
                 "SELECT COUNT(e) > 0 FROM Funcionario e WHERE e.id = :id", Boolean.class

@@ -10,10 +10,10 @@ import com.newBig.system.service.HelpService;
 import com.newBig.system.service.ProductService;
 import jakarta.persistence.EntityManager;
 
+import com.newBig.system.service.Caixa;
+import com.newBig.system.view.TelaLogin;
 
 public class Main {
-    static boolean aux;
-    static Long id = 0L;
 
     public static void main(String[] args) {
         FlyWayConfig.migrate();
@@ -30,6 +30,9 @@ public class Main {
         BatchService batchService = new BatchService(batchRepository, productRepository,stockMovementRepository);
 
         HelpService helpService = new HelpService(productService, batchService);
+
+        TelaLogin telaLogin = new TelaLogin();
+        telaLogin.setVisible(true);
 
     }
 }

@@ -81,6 +81,10 @@ public class DadosCaixa {
         return valorAtual;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
     public void salvarAbertura(Funcionario funcionario, double valor){
         this.usuarioAbertura = funcionario;
         this.valorAbertura= valor;
