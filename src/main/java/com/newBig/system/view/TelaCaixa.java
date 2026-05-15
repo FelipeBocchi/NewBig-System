@@ -78,10 +78,6 @@ public class TelaCaixa extends javax.swing.JFrame {
         txtsangria = new javax.swing.JLabel();
         btnSangria = new javax.swing.JButton();
         menuLateral = new javax.swing.JPanel();
-        Lgfundo = new javax.swing.JPanel();
-        LgNome = new javax.swing.JLabel();
-        LgAcesso = new javax.swing.JLabel();
-        logo = new javax.swing.JLabel();
         NBLogo = new javax.swing.JLabel();
         menuLTitulo = new javax.swing.JLabel();
         btnCaixa = new javax.swing.JButton();
@@ -91,9 +87,15 @@ public class TelaCaixa extends javax.swing.JFrame {
         btnProduto = new javax.swing.JButton();
         btnVenda = new javax.swing.JButton();
         btnInicio = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        LgNome = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
+        LgAcesso = new javax.swing.JLabel();
+        MenuBarra = new javax.swing.JMenuBar();
+        menuBar = new javax.swing.JMenu();
+        menuLogin = new javax.swing.JMenuItem();
+        menuSair = new javax.swing.JMenuItem();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         fundo.setBackground(new java.awt.Color(255, 249, 249));
         fundo.setToolTipText("");
@@ -319,44 +321,6 @@ public class TelaCaixa extends javax.swing.JFrame {
 
         menuLateral.setBackground(new java.awt.Color(251, 227, 228));
 
-        Lgfundo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        LgNome.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        LgNome.setText("Mourvan");
-
-        LgAcesso.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        LgAcesso.setText("Administrador");
-
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/avatar.png"))); // NOI18N
-        logo.setMaximumSize(new java.awt.Dimension(40, 40));
-        logo.setPreferredSize(new java.awt.Dimension(40, 40));
-
-        javax.swing.GroupLayout LgfundoLayout = new javax.swing.GroupLayout(Lgfundo);
-        Lgfundo.setLayout(LgfundoLayout);
-        LgfundoLayout.setHorizontalGroup(
-            LgfundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LgfundoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(LgfundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LgAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LgNome, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        LgfundoLayout.setVerticalGroup(
-            LgfundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LgfundoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(LgfundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(LgfundoLayout.createSequentialGroup()
-                        .addComponent(LgNome, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LgAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-
         NBLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
         NBLogo.setMaximumSize(new java.awt.Dimension(80, 80));
         NBLogo.setPreferredSize(new java.awt.Dimension(80, 80));
@@ -393,35 +357,47 @@ public class TelaCaixa extends javax.swing.JFrame {
         btnInicio.setText("Inicio");
         btnInicio.addActionListener(this::btnInicioActionPerformed);
 
+        LgNome.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        LgNome.setText("Mourvan");
+
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/avatar.png"))); // NOI18N
+        logo.setMaximumSize(new java.awt.Dimension(40, 40));
+        logo.setPreferredSize(new java.awt.Dimension(40, 40));
+
+        LgAcesso.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        LgAcesso.setText("Administrador");
+
         javax.swing.GroupLayout menuLateralLayout = new javax.swing.GroupLayout(menuLateral);
         menuLateral.setLayout(menuLateralLayout);
         menuLateralLayout.setHorizontalGroup(
             menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuLateralLayout.createSequentialGroup()
-                .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(menuLateralLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Lgfundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(menuLateralLayout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(NBLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
-                .addGap(0, 53, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(menuLTitulo)
                 .addGap(47, 47, 47))
             .addGroup(menuLateralLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
                 .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnInicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFuncionarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCaixa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClientes1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVenda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLote, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(menuLateralLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(NBLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(menuLateralLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(menuLateralLayout.createSequentialGroup()
+                                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(3, 3, 3)
+                                .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LgNome, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(LgAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnInicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnFuncionarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnCaixa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnClientes1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnVenda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnLote, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         menuLateralLayout.setVerticalGroup(
             menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -445,33 +421,43 @@ public class TelaCaixa extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Lgfundo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(menuLateralLayout.createSequentialGroup()
+                        .addComponent(LgNome)
+                        .addGap(13, 13, 13)
+                        .addComponent(LgAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        menuBar.setText("Menu");
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        menuLogin.setText("Login");
+        menuLogin.addActionListener(this::menuLoginActionPerformed);
+        menuBar.add(menuLogin);
 
-        setJMenuBar(jMenuBar1);
+        menuSair.setText("Sair");
+        menuSair.addActionListener(this::menuSairActionPerformed);
+        menuBar.add(menuSair);
+
+        MenuBarra.add(menuBar);
+
+        setJMenuBar(MenuBarra);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(menuLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(menuLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fundo, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fundo, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(menuLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(fundo, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+            .addComponent(fundo, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
         );
 
         pack();
@@ -490,7 +476,9 @@ public class TelaCaixa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFuncionariosActionPerformed
 
     private void btnClientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes1ActionPerformed
-        // TODO add your handling code here:
+        TelaCliente telaCliente = new TelaCliente();
+        dispose();
+        telaCliente.setVisible(true);
     }//GEN-LAST:event_btnClientes1ActionPerformed
 
     private void btnLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoteActionPerformed
@@ -506,9 +494,9 @@ public class TelaCaixa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVendaActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        TelaCliente telaCliente = new TelaCliente();
+        TelaInicio tela = new TelaInicio();
         dispose();
-        telaCliente.setVisible(true);
+        tela.setVisible(true);
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnSangriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSangriaActionPerformed
@@ -577,6 +565,51 @@ public class TelaCaixa extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnFecharActionPerformed
+
+    private void menuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLoginActionPerformed
+        Caixa caixa = new Caixa();
+        TelaLogin telaLogin = new TelaLogin();
+        if(caixa.verificarAbertura() != null){
+            int resposta = JOptionPane.showConfirmDialog(
+                this,
+                "Possui um caixa em aberto, deseja trocar de Login?"
+            );
+            if(resposta == JOptionPane.YES_OPTION){
+                dispose();
+                telaLogin.setVisible(true);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(
+                this,
+                "Encerrado login!!!"
+            );
+            dispose();
+            telaLogin.setVisible(true);
+        }
+    }//GEN-LAST:event_menuLoginActionPerformed
+
+    private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
+        Caixa caixa = new Caixa();
+        if(caixa.verificarAbertura() != null){
+            JOptionPane.showMessageDialog(
+                this,
+                "Não é possivel encerrar o sistema!! Caixa está aberto"
+            );
+            TelaCaixa telaCaixa = new TelaCaixa();
+            dispose();
+            telaCaixa.setVisible(true);
+        }
+        else{
+            int resposta = JOptionPane.showConfirmDialog(
+                this,
+                "Deseja mesmo encerrar o sistema?"
+            );
+            if(resposta == JOptionPane.YES_OPTION){
+                System.exit(0);
+            }
+        }
+    }//GEN-LAST:event_menuSairActionPerformed
 
 
     public void preencherValores(){
@@ -651,7 +684,7 @@ public class TelaCaixa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LgAcesso;
     private javax.swing.JLabel LgNome;
-    private javax.swing.JPanel Lgfundo;
+    private javax.swing.JMenuBar MenuBarra;
     private javax.swing.JLabel NBLogo;
     private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnCaixa;
@@ -667,9 +700,6 @@ public class TelaCaixa extends javax.swing.JFrame {
     private javax.swing.JPanel fundoAbertura;
     private javax.swing.JPanel fundoDados;
     private javax.swing.JPanel fundoValorAtual;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -678,8 +708,11 @@ public class TelaCaixa extends javax.swing.JFrame {
     private javax.swing.JLabel logo;
     private javax.swing.JTextArea logs;
     private javax.swing.JLabel logsDoCaixa;
+    private javax.swing.JMenu menuBar;
     private javax.swing.JLabel menuLTitulo;
     private javax.swing.JPanel menuLateral;
+    private javax.swing.JMenuItem menuLogin;
+    private javax.swing.JMenuItem menuSair;
     private javax.swing.JLabel subtitulo;
     private javax.swing.JLabel subtitulo1;
     private javax.swing.JLabel subtitulo2;

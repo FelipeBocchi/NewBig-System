@@ -46,7 +46,7 @@ public class TelaLogin extends javax.swing.JFrame {
         fundoEsquerda = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("NewBig\n");
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -65,14 +65,11 @@ public class TelaLogin extends javax.swing.JFrame {
         fundoLogin.add(lLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 145, -1, -1));
 
         tLogin.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tLogin.setText("Login");
         fundoLogin.add(tLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 164, 219, 33));
 
         lSenha.setFont(new java.awt.Font("Unispace", 0, 10)); // NOI18N
         lSenha.setText("Senha");
         fundoLogin.add(lSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 215, -1, -1));
-
-        tSenha.setText("1234");
         fundoLogin.add(tSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 234, 219, 33));
 
         titulo.setBackground(new java.awt.Color(0, 0, 0));
@@ -104,7 +101,7 @@ public class TelaLogin extends javax.swing.JFrame {
             .addGroup(fundoEsquerdaLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(logo)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         fundoEsquerdaLayout.setVerticalGroup(
             fundoEsquerdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,10 +116,9 @@ public class TelaLogin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(fundoEsquerda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fundoLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                .addComponent(fundoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -134,10 +130,9 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fundoLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
-                    .addComponent(fundoEsquerda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(fundoLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(fundoEsquerda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -164,10 +159,8 @@ public class TelaLogin extends javax.swing.JFrame {
             else{
                 loginService.salvar(id);
                 dispose();
-                /*Entra no sistema*/
-                /*teste na tela cliente deve ir para tela de abertura do sistema*/
-                TelaCliente telaCliente = new TelaCliente();
-                telaCliente.setVisible(true);
+                TelaInicio telaInicio = new TelaInicio();
+                telaInicio.setVisible(true);
             }
         }
     }
