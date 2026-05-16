@@ -135,6 +135,10 @@ public class Product {
 
     public Product.ProductType getType() { return type; }
 
+    public String getDescription() {
+        return description;
+    }
+
     //  =
 
     //  = Funções Setting =
