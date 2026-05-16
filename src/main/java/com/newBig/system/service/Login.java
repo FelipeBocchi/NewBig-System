@@ -44,4 +44,8 @@ public class Login {
         }
     }
 
+    public int acessoNivel(){
+        return funcionarioRepo.SelecionarFuncionario(funLog).getAcesso();
+    }
+
 }
