@@ -96,7 +96,7 @@ Main.java
 
 ---
 
-![banner NewBig System]([https://github.com/FelipeBocchi/NewBig-System/blob/main/src/main/resources/images/banner.png](https://github.com/FelipeBocchi/NewBig-System/blob/main/src/main/resources/images/logo.jpg))
+![banner NewBig System](https://github.com/FelipeBocchi/NewBig-System/blob/main/src/main/resources/images/logo.jpg)
 
 <div align="center">
 
