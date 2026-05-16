@@ -42,7 +42,7 @@ public class Product {
     private UnitType unit;
 
     //  = Construtor protegido para o JPA
-    protected Product() {}
+    public Product() {}
 
     public Product(String productName, String description, String department, String category, int barcode, BigDecimal costPrice, BigDecimal salePrice, int minimumStock, ProductType type, Product.UnitType unit) {
 
@@ -123,6 +123,10 @@ public class Product {
         return barcode;
     }
 
+    public UnitType getUnit() {
+        return unit;
+    }
+
     public BigDecimal getSalePrice() { return salePrice; }
 
     public BigDecimal getCostPrice() { return salePrice; }
@@ -130,6 +134,10 @@ public class Product {
     public int getMinimumStock() { return minimumStock; }
 
     public Product.ProductType getType() { return type; }
+
+    public String getDescription() {
+        return description;
+    }
 
     //  =
 
@@ -153,6 +161,10 @@ public class Product {
 
     public void setMinimumStock(int minimumStock) {
         this.minimumStock = minimumStock;
+    }
+
+    public void setBarcode(int Barcode) {
+        this.barcode = Barcode;
     }
 
     public void setCategory(String category) {

@@ -80,4 +80,8 @@ public class ProductService {
         return repository.findByUnit(unit);
     }
 
+    public Product findByBarcode(int barcode){
+        return repository.findByBarcode(barcode);
+    }
+
 }

@@ -125,4 +125,13 @@ public class ProductRepository implements ProductInterface {
                 .setParameter("unit", unit)
                 .getResultList();
     }
+
+    @Override
+    public Product findByBarcode(int barcode) {
+        return em.createQuery(
+                        "SELECT p FROM Product p WHERE p.barcode = :barcode",
+                        Product.class)
+                .setParameter("barcode", barcode)
+                .getSingleResult();
+    }
 }
