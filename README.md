@@ -94,6 +94,8 @@ Main.java
 ### - Não execute outros arquivos além do Main.java
 ### - Verifique se não possui dados no banco que possa gerar conflito
 
+---
+
 ![banner NewBig System](https://github.com/FelipeBocchi/NewBig-System/blob/main/src/main/resources/images/banner.png)
 
 <div align="center">
