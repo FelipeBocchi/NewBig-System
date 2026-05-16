@@ -173,7 +173,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
                         .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 34, Short.MAX_VALUE))
         );
 
         menuLateral3.setBackground(new java.awt.Color(251, 227, 228));

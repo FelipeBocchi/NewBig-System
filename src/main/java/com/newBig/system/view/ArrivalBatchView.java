@@ -504,7 +504,7 @@ public class ArrivalBatchView extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+/*
         // temporario
         //FlyWayConfig.migrate();
         //  = Conecção com o banco e inicialização
@@ -520,10 +520,10 @@ public class ArrivalBatchView extends javax.swing.JFrame {
         BatchService batchService = new BatchService(batchRepository, productRepository,stockMovementRepository);
 
         HelpService helpService = new HelpService(productService, batchService);
-
+*/
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ArrivalBatchView(helpService).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new ArrivalBatchView(new HelpService()).setVisible(true));
 
 
     }
