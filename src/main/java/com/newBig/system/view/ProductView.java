@@ -285,7 +285,35 @@ public class ProductView extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnBatchActionPerformed
 
     private void BtnEditBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditBatchActionPerformed
-        // TODO add your handling code here:
+        int linhaSelecionada = TblBatch.getSelectedRow();
+        
+        int linhaModelo = TblBatch.convertRowIndexToModel(linhaSelecionada);
+
+        // 1. Pegamos o código do produto (Barcode) que está na primeira coluna (índice 0) da tabela
+        int barcode = Integer.parseInt(TblBatch.getModel().getValueAt(linhaModelo, 0).toString());
+
+        // 2. Buscamos o produto usando o ProductService
+        Product product = helpService.getProductService().findByBarcode(barcode);
+        //  = Verificar se o usuário realmente selecionou algo (-1 significa que nada foi selecionado)
+        if (linhaSelecionada == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecione uma linha para editar.");
+            return;
+        }
+
+        String Code = TblBatch.getModel().getValueAt(linhaModelo, 0).toString();
+        String ProductName = TblBatch.getModel().getValueAt(linhaModelo, 1).toString();
+        String Category = TblBatch.getModel().getValueAt(linhaModelo, 2).toString();
+        String Price = TblBatch.getModel().getValueAt(linhaModelo, 3).toString();
+
+        //  = Abrir o Dialog passando esses dados
+        FormProductEdit dialog = new FormProductEdit(this, true,helpService,product);
+        dialog.setLocationRelativeTo(this);
+        dialog.preencherCampos(Code,ProductName, Category, Price);
+        dialog.setVisible(true);
+
+        loadBatchTable();
+
+    
     }//GEN-LAST:event_BtnEditBatchActionPerformed
 
     private void BtnDeleteBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeleteBatchActionPerformed
@@ -356,7 +384,7 @@ public class ProductView extends javax.swing.JFrame {
     }
 
     private void BtnAddBatchActionPerformed(java.awt.event.ActionEvent evt) {
-    FormProductDialog dialog = new FormProductDialog(this, true, helpService, null);
+    FormProductAdd dialog = new FormProductAdd(this, true, helpService, null);
     dialog.setLocationRelativeTo(this);
     dialog.setVisible(true);
     

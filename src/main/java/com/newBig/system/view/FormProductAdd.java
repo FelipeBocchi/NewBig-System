@@ -19,12 +19,12 @@ import java.util.Date;
  *
  * @author bocchi
  */
-public class FormProductDialog extends javax.swing.JDialog {
+public class FormProductAdd extends javax.swing.JDialog {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormProductDialog.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormProductAdd.class.getName());
 
 
-    public FormProductDialog(java.awt.Frame parent, boolean modal) {
+    public FormProductAdd(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -221,7 +221,7 @@ helpService.getProductService().save(
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                FormProductDialog dialog = new FormProductDialog(new javax.swing.JFrame(), true);
+                FormProductAdd dialog = new FormProductAdd(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -236,7 +236,7 @@ helpService.getProductService().save(
 private HelpService helpService;
 public Product product; // Nulo se for ADICIONAR, preenchido se for EDITAR
 
-public FormProductDialog(java.awt.Frame parent, boolean modal, HelpService helpService, Product product) {
+public FormProductAdd(java.awt.Frame parent, boolean modal, HelpService helpService, Product product) {
     super(parent, modal);
     initComponents();
     this.helpService = helpService;
