@@ -29,5 +29,6 @@ public interface ProductInterface {
     List<Product> findByCostPrice(BigDecimal price);
     List<Product> findByEqualPrice(BigDecimal price);
     List<Product> findByUnit(Product.UnitType unit);
+    Product findByBarcode(int barcode);
 
 }

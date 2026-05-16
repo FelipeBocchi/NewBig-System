@@ -289,7 +289,44 @@ public class ProductView extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnEditBatchActionPerformed
 
     private void BtnDeleteBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeleteBatchActionPerformed
-        // TODO add your handling code here:
+        int linhaSelecionada = TblBatch.getSelectedRow();
+
+        // = Verificar se o usuário realmente selecionou algo
+        if (linhaSelecionada == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecione um produto para deletar.");
+            return;
+        }
+
+        int linhaModelo = TblBatch.convertRowIndexToModel(linhaSelecionada);
+
+        // 1. Pegamos o código do produto (Barcode) que está na primeira coluna (índice 0) da tabela
+        int barcode = Integer.parseInt(TblBatch.getModel().getValueAt(linhaModelo, 0).toString());
+
+        // 2. Buscamos o produto usando o ProductService
+        Product product = helpService.getProductService().findByBarcode(barcode); 
+        // NOTA: Se o seu service buscar por ID em vez de Barcode, mude para:
+        // Product product = helpService.getProductService().searchById(Long.valueOf(...));
+
+        if (product == null) {
+            JOptionPane.showMessageDialog(this, "Produto não encontrado no sistema.");
+            return;
+        }
+
+        try {
+            // 4. Executa o delete através do ProductService
+            helpService.getProductService().delete(product); 
+            // NOTA: Se o seu método do service deletar por código/ID direto, use:
+            // helpService.getProductService().deleteByBarcode(barcode);
+
+            JOptionPane.showMessageDialog(this, "Produto deletado com sucesso!");
+
+            // 5. Atualiza a tabela de produtos para sumir com o registro deletado
+            loadProductTable(); 
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao deletar produto: " + e.getMessage());
+        }
+        
     }//GEN-LAST:event_BtnDeleteBatchActionPerformed
 
     private void loadBatchTable() {
@@ -319,14 +356,13 @@ public class ProductView extends javax.swing.JFrame {
     }
 
     private void BtnAddBatchActionPerformed(java.awt.event.ActionEvent evt) {
-    // REFATORADO: Aqui você chamaria o Form de Produto, não o de Batch
-    // FormProductDialog dialog = new FormProductDialog(this, true, helpService);
-    // dialog.setLocationRelativeTo(this);
-    // dialog.setVisible(true);
-
-    loadProductTable(); // Atualiza a lista de produtos
+    FormProductDialog dialog = new FormProductDialog(this, true, helpService, null);
+    dialog.setLocationRelativeTo(this);
+    dialog.setVisible(true);
+    
+    loadProductTable(); // Recarrega a tabela após fechar o dialog
 }
-
+    
     /**
      * @param args the command line arguments
      */
