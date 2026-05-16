@@ -4,10 +4,7 @@
  */
 package com.newBig.system.view;
 
-import com.newBig.system.service.Caixa;
-import com.newBig.system.service.DadosUsuario;
-import com.newBig.system.service.Login;
-import com.newBig.system.service.DeletarUsuario;
+import com.newBig.system.service.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -368,18 +365,27 @@ public class TelaCliente extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
-    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {
         int linha = TabelaClientes.getSelectedRow();
-        Long id = (Long) TabelaClientes.getValueAt(linha, 0);
-        String nome = (String) TabelaClientes.getValueAt(linha, 1);
-        int resposta = JOptionPane.showConfirmDialog(
-                this,
-                "Deseja mesmo apagar o cliente " + nome +"?"
-        );
-        if(resposta == JOptionPane.YES_OPTION){
-            deletarUsuario.deleteCliente(id);
-            preencherTabela();
+        if(linha == -1){
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Nenhum cliente selecionado!!"
 
+            );
+        }
+        else {
+            Long id = (Long) TabelaClientes.getValueAt(linha, 0);
+            String nome = (String) TabelaClientes.getValueAt(linha, 1);
+            int resposta = JOptionPane.showConfirmDialog(
+                    this,
+                    "Deseja mesmo apagar o cliente " + nome + "?"
+            );
+            if (resposta == JOptionPane.YES_OPTION) {
+                deletarUsuario.deleteCliente(id);
+                preencherTabela();
+
+            }
         }
     }
 
@@ -451,7 +457,7 @@ public class TelaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProdutoActionPerformed
 
     private void btnLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoteActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnLoteActionPerformed
 
     private void menuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLoginActionPerformed

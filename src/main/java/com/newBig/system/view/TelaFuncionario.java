@@ -321,40 +321,64 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-       telaCadastroFuncionario.setVisible(true);
+        if(login.acessoNivel() != 1){
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Funcionario sem acesso a esse serviço!!"
+            );
+        }
+        else {
+            telaCadastroFuncionario.setVisible(true);
+        }
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        int linha = TabelaFuncionarios.getSelectedRow();
-        if(linha == -1){
+        if(login.acessoNivel() != 1){
             JOptionPane.showMessageDialog(
                     this,
-                    "Nenhum Funcionario selecionado!!"
-
+                    "Funcionario sem acesso a esse serviço!!"
             );
         }
         else{
-            Long id = (Long) TabelaFuncionarios.getValueAt(linha, 0);
-            telaAtualizarFuncionarios.preencher(id);
-            telaAtualizarFuncionarios.setVisible(true);
-            preencherTabela();
+            int linha = TabelaFuncionarios.getSelectedRow();
+            if(linha == -1){
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Nenhum Funcionario selecionado!!"
+
+                );
+            }
+            else{
+                Long id = (Long) TabelaFuncionarios.getValueAt(linha, 0);
+                telaAtualizarFuncionarios.preencher(id);
+                telaAtualizarFuncionarios.setVisible(true);
+                preencherTabela();
+            }
         }
 
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-        int linha = TabelaFuncionarios.getSelectedRow();
-        Long id = (Long) TabelaFuncionarios.getValueAt(linha, 0);
-        String nome = (String) TabelaFuncionarios.getValueAt(linha, 1);
-        int resposta = JOptionPane.showConfirmDialog(
-                this,
-                "Deseja mesmo apagar o funcionario " + nome +"?"
-        );
-        if(resposta == JOptionPane.YES_OPTION){
-            DeletarUsuario deletarUsuario = new DeletarUsuario();
-            deletarUsuario.deleteFuncionario(id);
-            preencherTabela();
+        if(login.acessoNivel() != 1){
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Funcionario sem acesso a esse serviço!!"
+            );
+        }
+        else {
+            int linha = TabelaFuncionarios.getSelectedRow();
+            Long id = (Long) TabelaFuncionarios.getValueAt(linha, 0);
+            String nome = (String) TabelaFuncionarios.getValueAt(linha, 1);
+            int resposta = JOptionPane.showConfirmDialog(
+                    this,
+                    "Deseja mesmo apagar o funcionario " + nome + "?"
+            );
+            if (resposta == JOptionPane.YES_OPTION) {
+                DeletarUsuario deletarUsuario = new DeletarUsuario();
+                deletarUsuario.deleteFuncionario(id);
+                preencherTabela();
 
+            }
         }
     }//GEN-LAST:event_btnDeletarActionPerformed
 
@@ -367,27 +391,34 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDadosActionPerformed
-        DadosUsuario dadosUsuario = new DadosUsuario();
-        int linha = TabelaFuncionarios.getSelectedRow();
-        if(linha == -1){
+        if(login.acessoNivel() != 1){
             JOptionPane.showMessageDialog(
                     this,
-                    "Nenhum funcionario selecionado!!"
-
+                    "Funcionario sem acesso a esse serviço!!"
             );
         }
-        else{
-            Long id = (Long) TabelaFuncionarios.getValueAt(linha, 0);
-            var lista = dadosUsuario.dadosCompletosFuncionario(id);
-            JOptionPane.showMessageDialog(
-                    this,
-                    "ID: " + lista.getId() + "\n" +
-                            "Nome: " + lista.getNome()  + "\n" +
-                            "Cpf: " + lista.getCpf() + "\n" +
-                            "Login: " + lista.getLogin() + "\n" +
-                            "Senha: " + lista.getSenha()
+        else {
+            DadosUsuario dadosUsuario = new DadosUsuario();
+            int linha = TabelaFuncionarios.getSelectedRow();
+            if (linha == -1) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Nenhum funcionario selecionado!!"
 
-            );
+                );
+            } else {
+                Long id = (Long) TabelaFuncionarios.getValueAt(linha, 0);
+                var lista = dadosUsuario.dadosCompletosFuncionario(id);
+                JOptionPane.showMessageDialog(
+                        this,
+                        "ID: " + lista.getId() + "\n" +
+                                "Nome: " + lista.getNome() + "\n" +
+                                "Cpf: " + lista.getCpf() + "\n" +
+                                "Login: " + lista.getLogin() + "\n" +
+                                "Senha: " + lista.getSenha()
+
+                );
+            }
         }
 
     }//GEN-LAST:event_btnDadosActionPerformed
