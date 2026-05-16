@@ -31,7 +31,7 @@ public class Main {
 
         HelpService helpService = new HelpService(productService, batchService);
 
-        TelaLogin telaLogin = new TelaLogin();
+        TelaLogin telaLogin = new TelaLogin(helpService);
         telaLogin.setVisible(true);
 
     }

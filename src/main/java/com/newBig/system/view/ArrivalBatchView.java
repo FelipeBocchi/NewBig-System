@@ -24,7 +24,7 @@ import java.util.List;
  * @author bocchi
  */
 public class ArrivalBatchView extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ArrivalBatchView.class.getName());
     private HelpService helpService;
 
@@ -43,11 +43,19 @@ public class ArrivalBatchView extends javax.swing.JFrame {
     private void initComponents() {
 
         Background = new javax.swing.JPanel();
-        MenuBar = new javax.swing.JPanel();
-        Dashbaord = new javax.swing.JButton();
-        BtnSale = new javax.swing.JButton();
-        BtnProduct = new javax.swing.JButton();
-        BtnBatch = new javax.swing.JButton();
+        menuLateral = new javax.swing.JPanel();
+        NBLogo = new javax.swing.JLabel();
+        menuLTitulo = new javax.swing.JLabel();
+        btnInicio = new javax.swing.JButton();
+        btnFuncionarios = new javax.swing.JButton();
+        btnCaixa = new javax.swing.JButton();
+        btnClientes1 = new javax.swing.JButton();
+        btnVenda = new javax.swing.JButton();
+        btnProduto = new javax.swing.JButton();
+        btnLote = new javax.swing.JButton();
+        logo = new javax.swing.JLabel();
+        LgNome = new javax.swing.JLabel();
+        LgAcesso = new javax.swing.JLabel();
         MainPanel = new javax.swing.JPanel();
         Batch = new javax.swing.JPanel();
         filter = new javax.swing.JPanel();
@@ -65,39 +73,115 @@ public class ArrivalBatchView extends javax.swing.JFrame {
 
         Background.setBackground(new java.awt.Color(242, 242, 200));
 
-        Dashbaord.setText("Dashboard");
-        Dashbaord.addActionListener(this::DashbaordActionPerformed);
+        menuLateral.setBackground(new java.awt.Color(255, 249, 249));
 
-        BtnSale.setText("Sale");
-        BtnSale.addActionListener(this::BtnSaleActionPerformed);
+        NBLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        NBLogo.setMaximumSize(new java.awt.Dimension(80, 80));
+        NBLogo.setPreferredSize(new java.awt.Dimension(80, 80));
 
-        BtnProduct.setText("Product");
-        BtnProduct.addActionListener(this::BtnProductActionPerformed);
+        menuLTitulo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        menuLTitulo.setText("NewBig-System");
 
-        BtnBatch.setText("Batch");
-        BtnBatch.addActionListener(this::BtnBatchActionPerformed);
+        btnInicio.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnInicio.setText("Inicio");
+        btnInicio.addActionListener(this::btnInicioActionPerformed);
 
-        javax.swing.GroupLayout MenuBarLayout = new javax.swing.GroupLayout(MenuBar);
-        MenuBar.setLayout(MenuBarLayout);
-        MenuBarLayout.setHorizontalGroup(
-            MenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Dashbaord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(BtnSale, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-            .addComponent(BtnProduct, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-            .addComponent(BtnBatch, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-        );
-        MenuBarLayout.setVerticalGroup(
-            MenuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MenuBarLayout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(Dashbaord, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BtnSale, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BtnProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BtnBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+        btnFuncionarios.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnFuncionarios.setText("Funcionarios");
+        btnFuncionarios.addActionListener(this::btnFuncionariosActionPerformed);
+
+        btnCaixa.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnCaixa.setText("Caixa");
+        btnCaixa.addActionListener(this::btnCaixaActionPerformed);
+
+        btnClientes1.setBackground(new java.awt.Color(253, 238, 239));
+        btnClientes1.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnClientes1.setText("Clientes");
+        btnClientes1.addActionListener(this::btnClientes1ActionPerformed);
+
+        btnVenda.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnVenda.setText("Venda");
+        btnVenda.addActionListener(this::btnVendaActionPerformed);
+
+        btnProduto.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnProduto.setText("Produtos");
+        btnProduto.addActionListener(this::btnProdutoActionPerformed);
+
+        btnLote.setFont(new java.awt.Font("Bahnschrift", 1, 14)); // NOI18N
+        btnLote.setText("Lote");
+        btnLote.addActionListener(this::btnLoteActionPerformed);
+
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/avatar.png"))); // NOI18N
+        logo.setMaximumSize(new java.awt.Dimension(40, 40));
+        logo.setPreferredSize(new java.awt.Dimension(40, 40));
+
+        LgNome.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        LgNome.setText("Mourvan");
+
+        LgAcesso.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        LgAcesso.setText("Administrador");
+
+        javax.swing.GroupLayout menuLateralLayout = new javax.swing.GroupLayout(menuLateral);
+        menuLateral.setLayout(menuLateralLayout);
+        menuLateralLayout.setHorizontalGroup(
+            menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
+                .addGap(0, 53, Short.MAX_VALUE)
+                .addComponent(menuLTitulo)
+                .addGap(47, 47, 47))
+            .addGroup(menuLateralLayout.createSequentialGroup()
+                .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(menuLateralLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(NBLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(menuLateralLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(menuLateralLayout.createSequentialGroup()
+                                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LgAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(LgNome, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnInicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnFuncionarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnCaixa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnClientes1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnVenda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnLote, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        menuLateralLayout.setVerticalGroup(
+            menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateralLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(NBLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(menuLTitulo)
+                .addGap(18, 18, 18)
+                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLote, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnClientes1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(menuLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(menuLateralLayout.createSequentialGroup()
+                        .addComponent(LgNome, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LgAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         MainPanel.setBackground(new java.awt.Color(242, 200, 242));
@@ -182,7 +266,7 @@ public class ArrivalBatchView extends javax.swing.JFrame {
         BatchLayout.setHorizontalGroup(
             BatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BatchLayout.createSequentialGroup()
-                .addGap(0, 8, Short.MAX_VALUE)
+                .addGap(0, 2, Short.MAX_VALUE)
                 .addGroup(BatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(BatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -209,15 +293,16 @@ public class ArrivalBatchView extends javax.swing.JFrame {
         BackgroundLayout.setHorizontalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addComponent(MenuBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(menuLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MenuBar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menuLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -237,25 +322,51 @@ public class ArrivalBatchView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void DashbaordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DashbaordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DashbaordActionPerformed
 
-    private void BtnSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSaleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnSaleActionPerformed
-
-    private void BtnProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnProductActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnProductActionPerformed
-
-    private void BtnBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnBatchActionPerformed
 
     private void FilterBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterBatchActionPerformed
 
     }//GEN-LAST:event_FilterBatchActionPerformed
+
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+        TelaInicio tela = new TelaInicio(helpService);
+        dispose();
+        tela.setVisible(true);
+    }//GEN-LAST:event_btnInicioActionPerformed
+
+    private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
+        TelaFuncionario telaFuncionario = new TelaFuncionario(this.helpService);
+        dispose();
+        telaFuncionario.setVisible(true);
+    }//GEN-LAST:event_btnFuncionariosActionPerformed
+
+    private void btnCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixaActionPerformed
+        TelaCaixa telaCaixa = new TelaCaixa(this.helpService);
+        dispose();
+        telaCaixa.setVisible(true);
+    }//GEN-LAST:event_btnCaixaActionPerformed
+
+    private void btnClientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes1ActionPerformed
+        TelaCliente telaCliente = new TelaCliente(this.helpService);
+        dispose();
+        telaCliente.setVisible(true);
+    }//GEN-LAST:event_btnClientes1ActionPerformed
+
+    private void btnVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVendaActionPerformed
+
+    private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProdutoActionPerformed
+
+    private void btnLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoteActionPerformed
+
+        ArrivalBatchView arrivalBatchView = new ArrivalBatchView(helpService);
+        dispose();
+        arrivalBatchView.setVisible(true);
+
+    }//GEN-LAST:event_btnLoteActionPerformed
 
     private void BtnEditBatchActionPerformed(java.awt.event.ActionEvent evt) {
 
@@ -421,19 +532,27 @@ public class ArrivalBatchView extends javax.swing.JFrame {
     private javax.swing.JPanel Background;
     private javax.swing.JPanel Batch;
     private javax.swing.JButton BtnAddBatch;
-    private javax.swing.JButton BtnBatch;
     private javax.swing.JButton BtnDeleteBatch;
     private javax.swing.JButton BtnEditBatch;
-    private javax.swing.JButton BtnProduct;
-    private javax.swing.JButton BtnSale;
     private javax.swing.JPanel Button;
-    private javax.swing.JButton Dashbaord;
     private javax.swing.JTextField FilterBatch;
+    private javax.swing.JLabel LgAcesso;
+    private javax.swing.JLabel LgNome;
     private javax.swing.JPanel MainPanel;
-    private javax.swing.JPanel MenuBar;
+    private javax.swing.JLabel NBLogo;
     private javax.swing.JScrollPane TableBatch;
     private javax.swing.JTable TblBatch;
+    private javax.swing.JButton btnCaixa;
+    private javax.swing.JButton btnClientes1;
+    private javax.swing.JButton btnFuncionarios;
+    private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnLote;
+    private javax.swing.JButton btnProduto;
+    private javax.swing.JButton btnVenda;
     private javax.swing.JPanel filter;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel logo;
+    private javax.swing.JLabel menuLTitulo;
+    private javax.swing.JPanel menuLateral;
     // End of variables declaration//GEN-END:variables
 }

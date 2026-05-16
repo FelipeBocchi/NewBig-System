@@ -4,10 +4,7 @@
  */
 package com.newBig.system.view;
 
-import com.newBig.system.service.Caixa;
-import com.newBig.system.service.DadosUsuario;
-import com.newBig.system.service.Login;
-import com.newBig.system.service.LogsDeCaixaService;
+import com.newBig.system.service.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,11 +19,13 @@ public class TelaCaixa extends javax.swing.JFrame {
     Caixa caixa = new Caixa();
     DadosUsuario dadosUsuario = new DadosUsuario();
     Login login = new Login();
+    private HelpService helpService;
 
     /**
      * Creates new form TelaCaixa
      */
-    public TelaCaixa() {
+    public TelaCaixa(HelpService helpService) {
+        this.helpService = helpService;
         initComponents();
         logoUsuario();
         logoNewBig();
@@ -464,25 +463,29 @@ public class TelaCaixa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixaActionPerformed
-        TelaCaixa telaCaixa = new TelaCaixa();
+        TelaCaixa telaCaixa = new TelaCaixa(this.helpService);
         dispose();
         telaCaixa.setVisible(true);
     }//GEN-LAST:event_btnCaixaActionPerformed
 
     private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
-        TelaFuncionario telaFuncionario = new TelaFuncionario();
+        TelaFuncionario telaFuncionario = new TelaFuncionario(this.helpService);
         dispose();
         telaFuncionario.setVisible(true);
     }//GEN-LAST:event_btnFuncionariosActionPerformed
 
     private void btnClientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes1ActionPerformed
-        TelaCliente telaCliente = new TelaCliente();
+        TelaCliente telaCliente = new TelaCliente(this.helpService);
         dispose();
         telaCliente.setVisible(true);
     }//GEN-LAST:event_btnClientes1ActionPerformed
 
     private void btnLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoteActionPerformed
-        // TODO add your handling code here:
+
+        ArrivalBatchView arrivalBatchView = new ArrivalBatchView(helpService);
+        dispose();
+        arrivalBatchView.setVisible(true);
+
     }//GEN-LAST:event_btnLoteActionPerformed
 
     private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
@@ -494,7 +497,7 @@ public class TelaCaixa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVendaActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        TelaInicio tela = new TelaInicio();
+        TelaInicio tela = new TelaInicio(helpService);
         dispose();
         tela.setVisible(true);
     }//GEN-LAST:event_btnInicioActionPerformed
@@ -568,7 +571,7 @@ public class TelaCaixa extends javax.swing.JFrame {
 
     private void menuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLoginActionPerformed
         Caixa caixa = new Caixa();
-        TelaLogin telaLogin = new TelaLogin();
+        TelaLogin telaLogin = new TelaLogin(this.helpService);
         if(caixa.verificarAbertura() != null){
             int resposta = JOptionPane.showConfirmDialog(
                 this,
@@ -596,7 +599,7 @@ public class TelaCaixa extends javax.swing.JFrame {
                 this,
                 "Não é possivel encerrar o sistema!! Caixa está aberto"
             );
-            TelaCaixa telaCaixa = new TelaCaixa();
+            TelaCaixa telaCaixa = new TelaCaixa(this.helpService);
             dispose();
             telaCaixa.setVisible(true);
         }
@@ -678,7 +681,7 @@ public class TelaCaixa extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaCaixa().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaCaixa(new HelpService()).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

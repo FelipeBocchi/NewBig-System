@@ -4,7 +4,15 @@
  */
 package com.newBig.system.view;
 
+import com.newBig.system.repository.BatchRepository;
+import com.newBig.system.repository.CustomizerFactory;
+import com.newBig.system.repository.ProductRepository;
+import com.newBig.system.repository.StockMovementRepository;
+import com.newBig.system.service.BatchService;
+import com.newBig.system.service.HelpService;
 import com.newBig.system.service.Login;
+import com.newBig.system.service.ProductService;
+import jakarta.persistence.EntityManager;
 
 import javax.swing.*;
 
@@ -13,13 +21,16 @@ import javax.swing.*;
  * @author MH
  */
 public class TelaLogin extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaLogin.class.getName());
     Login loginService = new Login();
+
+    private HelpService helpService;
     /**
      * Creates new form TelaLogin
      */
-    public TelaLogin() {
+    public TelaLogin(HelpService helpService) {
+        this.helpService = helpService;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -159,7 +170,7 @@ public class TelaLogin extends javax.swing.JFrame {
             else{
                 loginService.salvar(id);
                 dispose();
-                TelaInicio telaInicio = new TelaInicio();
+                TelaInicio telaInicio = new TelaInicio(this.helpService);
                 telaInicio.setVisible(true);
             }
         }
@@ -172,7 +183,7 @@ public class TelaLogin extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -186,8 +197,23 @@ public class TelaLogin extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        //FlyWayConfig.migrate();
+        //  = Conecção com o banco e inicialização
+        EntityManager em = CustomizerFactory.getEntityManager();
+
+        //  = repository
+        ProductRepository productRepository = new ProductRepository(em);
+        BatchRepository batchRepository = new BatchRepository(em);
+        StockMovementRepository stockMovementRepository = new StockMovementRepository(em);
+
+        //  = service
+        ProductService productService = new ProductService(productRepository);
+        BatchService batchService = new BatchService(batchRepository, productRepository,stockMovementRepository);
+
+        HelpService helpService = new HelpService(productService, batchService);
+
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaLogin().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaLogin(helpService).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
