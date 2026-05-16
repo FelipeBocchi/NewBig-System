@@ -9,12 +9,18 @@ public class HelpService {
 
     private ProductService productService;
     private BatchService batchService;
+    private SaleService saleService;
+    private OpenSale openSale;
+    private AddItemToSale addItemToSale;
 
     public HelpService() { }
 
-    public HelpService(ProductService productService, BatchService batchService) {
+    public HelpService(ProductService productService, BatchService batchService, SaleService saleService, OpenSale openSale, AddItemToSale addItemToSale) {
         this.productService = productService;
         this.batchService = batchService;
+        this.saleService = saleService;
+        this.openSale = openSale;
+        this.addItemToSale = addItemToSale;
     }
 
     //  =   Gettings
@@ -25,5 +31,17 @@ public class HelpService {
 
     public BatchService getBatchService() {
         return batchService;
+    }
+
+    public SaleService getSaleService() {
+        return saleService;
+    }
+
+    public OpenSale getOpenSale() {
+        return openSale;
+    }
+
+    public AddItemToSale getAddItemToSale() {
+        return addItemToSale;
     }
 }

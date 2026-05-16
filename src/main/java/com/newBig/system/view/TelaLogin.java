@@ -4,14 +4,8 @@
  */
 package com.newBig.system.view;
 
-import com.newBig.system.repository.BatchRepository;
-import com.newBig.system.repository.CustomizerFactory;
-import com.newBig.system.repository.ProductRepository;
-import com.newBig.system.repository.StockMovementRepository;
-import com.newBig.system.service.BatchService;
-import com.newBig.system.service.HelpService;
-import com.newBig.system.service.Login;
-import com.newBig.system.service.ProductService;
+import com.newBig.system.repository.*;
+import com.newBig.system.service.*;
 import jakarta.persistence.EntityManager;
 
 import javax.swing.*;
@@ -205,12 +199,21 @@ public class TelaLogin extends javax.swing.JFrame {
         ProductRepository productRepository = new ProductRepository(em);
         BatchRepository batchRepository = new BatchRepository(em);
         StockMovementRepository stockMovementRepository = new StockMovementRepository(em);
+        SaleRepository saleRepository = new SaleRepository(em);
+        SalesMovementRepository salesMovementRepository = new SalesMovementRepository(em);
+        FuncionarioRepo funcionarioRepo = new FuncionarioRepo(em);
+        ClienteRepo clienteRepo = new ClienteRepo(em);
 
         //  = service
         ProductService productService = new ProductService(productRepository);
         BatchService batchService = new BatchService(batchRepository, productRepository,stockMovementRepository);
+        SaleService saleService = new SaleService(saleRepository);
+        SaleMovementService saleMovementService = new SaleMovementService(salesMovementRepository);
 
-        HelpService helpService = new HelpService(productService, batchService);
+        AddItemToSale addItemToSale = new AddItemToSale(saleRepository, batchRepository, stockMovementRepository, salesMovementRepository);
+        OpenSale openSale = new OpenSale(saleRepository, addItemToSale, clienteRepo, funcionarioRepo);
+
+        HelpService helpService = new HelpService(productService, batchService, saleService, openSale, addItemToSale);
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new TelaLogin(helpService).setVisible(true));
