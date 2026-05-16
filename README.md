@@ -96,7 +96,7 @@ Main.java
 
 ---
 
-![banner NewBig System](https://github.com/FelipeBocchi/NewBig-System/blob/main/src/main/resources/images/logo.jpg)
+[![Tela login newBig](https://github.com/FelipeBocchi/NewBig-System/blob/main/src/main/resources/images/telaLogin.png)
 
 <div align="center">
 
