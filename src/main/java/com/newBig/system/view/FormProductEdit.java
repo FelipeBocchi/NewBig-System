@@ -246,7 +246,6 @@ private void fillFields() {
     // Esse método serve para pegar os dados do "product" e colocar nos inputs quando for EDITAR
     txtProductName.setText(product.getProductName());
     txtPrice.setText(String.valueOf(product.getSalePrice()));
-    // Adicione os outros campos aqui depois...
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel HeaderFormBatch;
