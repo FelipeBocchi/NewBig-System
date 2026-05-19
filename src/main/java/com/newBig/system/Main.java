@@ -32,7 +32,7 @@ public class Main {
         AddItemToSale addItemToSale = new AddItemToSale(saleRepository, batchRepository, stockMovementRepository, salesMovementRepository);
         OpenSale openSale = new OpenSale(saleRepository, addItemToSale, clienteRepo, funcionarioRepo);
 
-        HelpService helpService = new HelpService(productService, batchService, saleService, openSale, addItemToSale);
+        HelpService helpService = new HelpService(productService, batchService, saleService, openSale, addItemToSale, saleMovementService);
 
         TelaLogin telaLogin = new TelaLogin(helpService);
         telaLogin.setVisible(true);

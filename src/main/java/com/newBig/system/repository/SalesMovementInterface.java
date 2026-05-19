@@ -12,4 +12,6 @@ public interface SalesMovementInterface {
     List<SalesMovement> findAll();
 
     Product searchById(Long id);
+
+    List<SalesMovement> findById(Long id);
 }

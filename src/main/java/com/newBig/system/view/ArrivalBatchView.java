@@ -12,11 +12,13 @@ import com.newBig.system.repository.ProductRepository;
 import com.newBig.system.repository.StockMovementRepository;
 import com.newBig.system.service.BatchService;
 import com.newBig.system.service.HelpService;
+import com.newBig.system.service.Login;
 import com.newBig.system.service.ProductService;
 import jakarta.persistence.EntityManager;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -26,11 +28,16 @@ import java.util.List;
 public class ArrivalBatchView extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ArrivalBatchView.class.getName());
+    Login login = new Login();
     private HelpService helpService;
 
     public ArrivalBatchView(HelpService helpService) {
         initComponents();
         this.helpService = helpService;
+        logoUsuario();
+        logoNewBig();
+        LgNome.setText(login.nomeLog());
+        LgAcesso.setText(login.acessoLog());
 
         // Inicia a configuração do filtro
         setupTableFilter();
@@ -65,15 +72,13 @@ public class ArrivalBatchView extends javax.swing.JFrame {
         TblBatch = new javax.swing.JTable();
         Button = new javax.swing.JPanel();
         BtnAddBatch = new javax.swing.JButton();
-        BtnEditBatch = new javax.swing.JButton();
-        BtnDeleteBatch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Batch");
 
         Background.setBackground(new java.awt.Color(242, 242, 200));
 
-        menuLateral.setBackground(new java.awt.Color(255, 249, 249));
+        menuLateral.setBackground(new java.awt.Color(251, 227, 228));
 
         NBLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
         NBLogo.setMaximumSize(new java.awt.Dimension(80, 80));
@@ -222,7 +227,7 @@ public class ArrivalBatchView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Serie", "Product", "Quantity", "Validity"
+                "ID", "Serie", "Produto", "Quantidade", "Validade"
             }
         ));
         TableBatch.setViewportView(TblBatch);
@@ -232,32 +237,19 @@ public class ArrivalBatchView extends javax.swing.JFrame {
         BtnAddBatch.setText("Add");
         BtnAddBatch.addActionListener(this::BtnAddBatchActionPerformed);
 
-        BtnEditBatch.setText("Edit");
-        BtnEditBatch.addActionListener(this::BtnEditBatchActionPerformed);
-
-        BtnDeleteBatch.setText("Delete");
-        BtnDeleteBatch.addActionListener(this::BtnDeleteBatchActionPerformed);
-
         javax.swing.GroupLayout ButtonLayout = new javax.swing.GroupLayout(Button);
         Button.setLayout(ButtonLayout);
         ButtonLayout.setHorizontalGroup(
             ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ButtonLayout.createSequentialGroup()
                 .addComponent(BtnAddBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BtnEditBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BtnDeleteBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ButtonLayout.setVerticalGroup(
             ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ButtonLayout.createSequentialGroup()
                 .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnAddBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnEditBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnDeleteBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(BtnAddBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
 
@@ -353,11 +345,15 @@ public class ArrivalBatchView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClientes1ActionPerformed
 
     private void btnVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaActionPerformed
-        // TODO add your handling code here:
+        SalesView salesView = new SalesView(this.helpService);
+        dispose();
+        salesView.setVisible(true);
     }//GEN-LAST:event_btnVendaActionPerformed
 
     private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
-        // TODO add your handling code here:
+        ProductView productView = new ProductView(this.helpService);
+        dispose();
+        productView.setVisible(true);
     }//GEN-LAST:event_btnProdutoActionPerformed
 
     private void btnLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoteActionPerformed
@@ -400,23 +396,33 @@ public class ArrivalBatchView extends javax.swing.JFrame {
 
         int linhaSelecionada = TblBatch.getSelectedRow();
 
-        //  = Verificar se o usuário realmente selecionou algo (-1 significa que nada foi selecionado)
         if (linhaSelecionada == -1) {
             JOptionPane.showMessageDialog(this, "Por favor, selecione uma linha para deletar.");
             return;
         }
 
-        int linhaModelo = TblBatch.convertRowIndexToModel(linhaSelecionada);
-        Batch batch =  helpService.getBatchService().searchById(Long.valueOf(TblBatch.getModel().getValueAt(linhaModelo, 0).toString()));
+        try {
+            int linhaModelo = TblBatch.convertRowIndexToModel(linhaSelecionada);
+            Long batchId = Long.valueOf(TblBatch.getModel().getValueAt(linhaModelo, 0).toString());
 
-        //  = CRUD delete
-        if(batch.getAmount() != 0) {
-            JOptionPane.showMessageDialog(this, "Esse lote não está zerado! logo, não pode ser deletado.");
-        } else {
-            helpService.getBatchService().deleteZero(batch);
-            loadBatchTable();
+            Batch batch = helpService.getBatchService().searchById(batchId);
+
+            if (batch.getAmount() != 0) {
+                JOptionPane.showMessageDialog(this, "Esse lote não está zerado! Logo, não pode ser deletado.");
+            } else {
+                helpService.getBatchService().deleteZero(batch);
+                JOptionPane.showMessageDialog(this, "Lote deletado com sucesso!");
+                loadBatchTable();
+            }
+
+        } catch (Exception e) {
+            // Se o JPA estourar um erro (como chave estrangeira), ele cai aqui!
+            e.printStackTrace(); // Mostra o erro vermelho no console do NetBeans/IDE
+            JOptionPane.showMessageDialog(this,
+                    "Não foi possível deletar o lote.\nMotivo: Pode haver movimentações de estoque vinculadas a ele.",
+                    "Erro de Exclusão",
+                    JOptionPane.ERROR_MESSAGE);
         }
-
     }
 
     private void loadBatchTable() {
@@ -484,6 +490,22 @@ public class ArrivalBatchView extends javax.swing.JFrame {
         }
     }
 
+
+    /*Funcões menu lateral*/
+
+    public void logoUsuario(){
+        ImageIcon icon = (ImageIcon) logo.getIcon();
+        Image imagem = icon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+        logo.setIcon(new ImageIcon(imagem));
+    }
+
+    public void logoNewBig(){
+        ImageIcon icon = (ImageIcon) NBLogo.getIcon();
+        Image imagem = icon.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        NBLogo.setIcon(new ImageIcon(imagem));
+    }
+
+
     /**
      * @param args the command line arguments
      */
@@ -532,8 +554,6 @@ public class ArrivalBatchView extends javax.swing.JFrame {
     private javax.swing.JPanel Background;
     private javax.swing.JPanel Batch;
     private javax.swing.JButton BtnAddBatch;
-    private javax.swing.JButton BtnDeleteBatch;
-    private javax.swing.JButton BtnEditBatch;
     private javax.swing.JPanel Button;
     private javax.swing.JTextField FilterBatch;
     private javax.swing.JLabel LgAcesso;

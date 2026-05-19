@@ -4,6 +4,19 @@
  */
 package com.newBig.system.view;
 
+import com.newBig.system.model.Batch;
+import com.newBig.system.model.Product;
+import com.newBig.system.model.Sale;
+import com.newBig.system.service.AddItemToSale;
+import com.newBig.system.service.BatchService;
+import com.newBig.system.service.HelpService;
+import com.newBig.system.service.ProductService;
+
+import javax.swing.*;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+
 /**
  *
  * @author bocchi
@@ -11,12 +24,16 @@ package com.newBig.system.view;
 public class FormSalesDialog extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormSalesDialog.class.getName());
+    private HelpService helpService;
+    private Long idSale;
 
     /**
      * Creates new form FormSalesDialog
      */
-    public FormSalesDialog(java.awt.Frame parent, boolean modal) {
+    public FormSalesDialog(java.awt.Frame parent, boolean modal, HelpService helpService, Long idSale) {
         super(parent, modal);
+        this.helpService = helpService;
+        this.idSale = idSale;
         initComponents();
     }
 
@@ -114,7 +131,30 @@ public class FormSalesDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BtnSalveDialogBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalveDialogBatchActionPerformed
-        // TODO add your handling code here:
+
+        try {
+            //  = Coleta os dados da interface
+            Long idProduct;
+            try {
+                idProduct = Long.parseLong(TxtProductBatch.getText());
+            } catch (NumberFormatException e) {
+                // Código caso o usuário digite algo inválido
+                JOptionPane.showMessageDialog(this, "Insira um ID com apenas números!");
+                idProduct = null; // ou trate o erro exibindo um alerta na tela
+            }
+
+            int quatity = Integer.parseInt(TxtQuantityBatch.getText());
+
+            // Chama CRUD
+            AddItemToSale addItemToSale = helpService.getAddItemToSale();
+            addItemToSale.logic(idSale, idProduct, quatity);
+
+            JOptionPane.showMessageDialog(this, "Lote salvo com sucesso!");
+            this.dispose(); // Fecha apenas a janelinha de cadastro
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao salvar: " + e.getMessage());
+        }
     }//GEN-LAST:event_BtnSalveDialogBatchActionPerformed
 
     /**
@@ -142,7 +182,8 @@ public class FormSalesDialog extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                FormSalesDialog dialog = new FormSalesDialog(new javax.swing.JFrame(), true);
+                Long id = 0L;
+                FormSalesDialog dialog = new FormSalesDialog(new javax.swing.JFrame(), true, new HelpService(), id);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

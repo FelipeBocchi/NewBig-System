@@ -36,6 +36,8 @@ public class AddItemToSale {
 
         Sale sale = repositorySale.searchById(saleId);
 
+        //  = transfor id em codebar
+
         List<Batch> batchs = repositoryBatch.joinBatchAndProduct(productId);
 
         List<Batch> batchSell = sell(batchs, productId, quantity);

@@ -18,4 +18,12 @@ public class SaleService {
         return saleRepository.findAll();
     }
 
+    public Sale editSale(Sale sale) {
+        return saleRepository.update(sale);
+    }
+
+    public Sale findById(Long id) {
+        return saleRepository.searchById(id);
+    }
+
 }
