@@ -5,12 +5,17 @@
 package com.newBig.system.view;
 
 import com.newBig.system.model.Batch;
+import com.newBig.system.model.Product;
 import com.newBig.system.model.Sale;
+import com.newBig.system.model.SalesMovement;
 import com.newBig.system.service.Caixa;
 import com.newBig.system.service.HelpService;
+import com.newBig.system.service.Login;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -21,7 +26,9 @@ import java.util.List;
 public class SalesView extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SalesView.class.getName());
+    Login login = new Login();
     private HelpService helpService;
+    private Long currentSaleId = null;
 
     /**
      * Creates new form SalesView
@@ -29,6 +36,14 @@ public class SalesView extends javax.swing.JFrame {
     public SalesView(HelpService helpService) {
         this.helpService = helpService;
         initComponents();
+
+        logoUsuario();
+        logoNewBig();
+        LgNome.setText(login.nomeLog());
+        LgAcesso.setText(login.acessoLog());
+
+        loadSalesTable(0L);
+        loadSaleInformation();
     }
 
     /**
@@ -69,6 +84,7 @@ public class SalesView extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         TxtTotal = new javax.swing.JLabel();
         TxtResultadoTotal = new javax.swing.JLabel();
+        btnFinalizarSale = new javax.swing.JButton();
         MenuBarra = new javax.swing.JMenuBar();
         menuBar = new javax.swing.JMenu();
         menuLogin = new javax.swing.JMenuItem();
@@ -219,7 +235,7 @@ public class SalesView extends javax.swing.JFrame {
         btnNovo.addActionListener(this::btnNovoActionPerformed);
 
         btnDeletar.setBackground(new java.awt.Color(255, 102, 102));
-        btnDeletar.setText("Deletar Item");
+        btnDeletar.setText("Deletar item");
         btnDeletar.addActionListener(this::btnDeletarActionPerformed);
 
         TxtSubtotal.setText("Subtotal:");
@@ -234,6 +250,11 @@ public class SalesView extends javax.swing.JFrame {
         TxtResultadoTotal.setFont(new java.awt.Font("Liberation Sans", 1, 20)); // NOI18N
         TxtResultadoTotal.setForeground(new java.awt.Color(255, 102, 102));
 
+        btnFinalizarSale.setBackground(new java.awt.Color(251, 227, 228));
+        btnFinalizarSale.setForeground(new java.awt.Color(51, 51, 51));
+        btnFinalizarSale.setText("Finalizar");
+        btnFinalizarSale.addActionListener(this::btnFinalizarSaleActionPerformed);
+
         javax.swing.GroupLayout fundoLayout = new javax.swing.GroupLayout(fundo);
         fundo.setLayout(fundoLayout);
         fundoLayout.setHorizontalGroup(
@@ -247,26 +268,28 @@ public class SalesView extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fundoLayout.createSequentialGroup()
                             .addComponent(TxtTotal)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TxtResultadoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TxtResultadoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(fundoLayout.createSequentialGroup()
+                            .addComponent(btnFinalizarSale, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
                             .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(40, 40, 40)
+                            .addGap(18, 18, 18)
                             .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(fundoLayout.createSequentialGroup()
-                            .addComponent(TxtTaxa)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TxtResulTaxa))
                         .addGroup(fundoLayout.createSequentialGroup()
                             .addComponent(TxtDisconto)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(TxtResultadoDesconto))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, fundoLayout.createSequentialGroup()
-                            .addComponent(TxtSubtotal)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(fundoLayout.createSequentialGroup()
+                            .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(TxtSubtotal)
+                                .addComponent(TxtTaxa))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TxtResultadoSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(TxtResulTaxa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TxtResultadoSubtotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
         fundoLayout.setVerticalGroup(
@@ -279,7 +302,8 @@ public class SalesView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFinalizarSale, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -291,16 +315,16 @@ public class SalesView extends javax.swing.JFrame {
                     .addComponent(TxtDisconto)
                     .addComponent(TxtResultadoDesconto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TxtTaxa)
-                    .addComponent(TxtResulTaxa))
+                    .addComponent(TxtResulTaxa, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtTotal)
                     .addComponent(TxtResultadoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 13, Short.MAX_VALUE))
         );
 
         menuBar.setText("Menu");
@@ -334,6 +358,7 @@ public class SalesView extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLoginActionPerformed
@@ -407,11 +432,15 @@ public class SalesView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoteActionPerformed
 
     private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
-        // TODO add your handling code here:
+        ProductView productView = new ProductView(this.helpService);
+        dispose();
+        productView.setVisible(true);
     }//GEN-LAST:event_btnProdutoActionPerformed
 
     private void btnVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaActionPerformed
-        // TODO add your handling code here:
+        SalesView salesView = new SalesView(this.helpService);
+        dispose();
+        salesView.setVisible(true);
     }//GEN-LAST:event_btnVendaActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
@@ -421,43 +450,142 @@ public class SalesView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInicioActionPerformed
 
 
-    private void loadSalesTable() {
+    private void loadSaleInformation() {
+        DefaultTableModel tableModel = (DefaultTableModel) TblSales.getModel();
+        BigDecimal subtotalAcumulado = BigDecimal.ZERO;
+
+        // 1. Percorre todas as linhas que estão atualmente na tabela
+        for (int i = 0; i < tableModel.getRowCount(); i++) {
+            // O total do item está na coluna 4 (ID=0, Nome=1, Qtd=2, Preço=3, Total=4)
+            Object valorColuna = tableModel.getValueAt(i, 4);
+
+            if (valorColuna instanceof BigDecimal) {
+                subtotalAcumulado = subtotalAcumulado.add((BigDecimal) valorColuna);
+            } else if (valorColuna != null) {
+                // Caso por algum motivo o valor venha como String ou Double, faz a conversão segura
+                try {
+                    subtotalAcumulado = subtotalAcumulado.add(new BigDecimal(valorColuna.toString()));
+                } catch (NumberFormatException e) {
+                    logger.warning("Não foi possível converter o valor da linha " + i + " para somar.");
+                }
+            }
+        }
+
+        // 2. Aplica as regras de negócio básicas (Desconto e Taxa)
+        // Por enquanto, vamos assumir que começam zerados, mas você pode mudar para pegar de campos da tela
+        BigDecimal desconto = BigDecimal.ZERO;
+        BigDecimal taxa = BigDecimal.ZERO;
+
+        // Total = Subtotal - Desconto + Taxa
+        BigDecimal totalFinal = subtotalAcumulado.subtract(desconto).add(taxa);
+
+        // 3. Atualiza os componentes visuais (Labels) formatando como moeda básica (R$)
+        TxtResultadoSubtotal.setText(String.format("R$ %.2f", subtotalAcumulado));
+        TxtResultadoDesconto.setText(String.format("R$ %.2f", desconto));
+        TxtResulTaxa.setText(String.format("R$ %.2f", taxa));
+        TxtResultadoTotal.setText(String.format("R$ %.2f", totalFinal));
+    }
+
+    private void loadSalesTable(Long idSale) {
 
         DefaultTableModel tableModel = (DefaultTableModel) TblSales.getModel();
         tableModel.setNumRows(0);
 
         try {
 
-            List<Sale> listSales = helpService.getSaleService().findAll();
+            List<SalesMovement> listSales = helpService.getSalesMovement().findById(idSale);
 
-            for (Sale s : listSales) {
-                tableModel.addRow( new Object[] {
+            for (SalesMovement s : listSales) {
+
+                // 1. Cria variáveis seguras com valores padrão
+                String nomeProduto = "Sem Produto";
+                BigDecimal precoUnitario = BigDecimal.ZERO;
+                int quantidade = 0;
+                BigDecimal valorTotal = BigDecimal.ZERO;
+
+                // 2. Faz a checagem defensiva passo a passo
+                if (s.getStockMovement() != null) {
+                    quantidade = s.getStockMovement().getQuantity();
+
+                    if (s.getStockMovement().getIdBatch() != null && s.getStockMovement().getIdBatch().getProduct() != null) {
+                        Product produto = s.getStockMovement().getIdBatch().getProduct();
+
+                        nomeProduto = produto.getProductName();
+                        precoUnitario = produto.getSalePrice(); // Assumindo que retorna double ou float
+
+                        // 3. Aqui acontece a sua multiplicação matemática!
+                        valorTotal = precoUnitario.multiply(BigDecimal.valueOf(quantidade));
+                    }
+                }
+
+                // 4. Adiciona na tabela usando as variáveis mastigadas
+                tableModel.addRow(new Object[] {
                         s.getId(),
-                        s.getMovements().getFirst().getStockMovement().getIdBatch().getProduct().getProductName(),
-                        s.getMovements().getFirst().getStockMovement().getQuantity(),
-                        s.getMovements().getFirst().getStockMovement().getIdBatch().getProduct().getSalePrice(),
-                        s.getMovements().getFirst().getStockMovement().getValue()
+                        nomeProduto,
+                        quantidade,
+                        precoUnitario,
+                        valorTotal // O resultado da sua multiplicação entra aqui
                 });
+
             }
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao carregar tabela: " + e.getMessage());
         }
-
-
     }
 
-    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        FormSalesDialog formSalesDialog = new FormSalesDialog(this, true);
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {
+
+        // 1. Só gera um novo ID no banco se a venda atual ainda não existir
+        if (this.currentSaleId == null) {
+            this.currentSaleId = helpService.getOpenSale().execute(1L, 1L, 1001L, 0, "INDEFINIDO");
+        }
+
+        // 2. Abre o formulário passando o ID que foi mantido salvo
+        FormSalesDialog formSalesDialog = new FormSalesDialog(this, true, this.helpService, this.currentSaleId);
         formSalesDialog.setLocationRelativeTo(this);
         formSalesDialog.setVisible(true);
 
-        loadSalesTable();
-    }//GEN-LAST:event_btnNovoActionPerformed
+        // 3. Atualiza a tabela sempre usando o ID da venda atual
+        loadSalesTable(this.currentSaleId);
+        loadSaleInformation();
+    }                                       
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
 
     }//GEN-LAST:event_btnDeletarActionPerformed
+
+    private void btnFinalizarSaleActionPerformed(java.awt.event.ActionEvent evt) {
+        // Verifica se existe uma venda aberta
+        if (this.currentSaleId == null) {
+            JOptionPane.showMessageDialog(this, "Nenhuma venda iniciada para finalizar!");
+            return;
+        }
+
+        // Chama o Dialog de Pagamento passando o service e o ID
+        FormSalePayDialog payDialog = new FormSalePayDialog(this, true, this.helpService, this.currentSaleId);
+        payDialog.setLocationRelativeTo(this);
+        payDialog.setVisible(true);
+
+        // Após o dialog fechar, você pode resetar a tela para uma nova venda
+        this.currentSaleId = null;
+        loadSalesTable(0L);
+        loadSaleInformation();
+    }
+
+    /*Funcões menu lateral*/
+
+    public void logoUsuario(){
+        ImageIcon icon = (ImageIcon) logo.getIcon();
+        Image imagem = icon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+        logo.setIcon(new ImageIcon(imagem));
+    }
+
+    public void logoNewBig(){
+        ImageIcon icon = (ImageIcon) NBLogo.getIcon();
+        Image imagem = icon.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+        NBLogo.setIcon(new ImageIcon(imagem));
+    }
 
     /**
      * @param args the command line arguments
@@ -501,6 +629,7 @@ public class SalesView extends javax.swing.JFrame {
     private javax.swing.JButton btnCaixa;
     private javax.swing.JButton btnClientes1;
     private javax.swing.JButton btnDeletar;
+    private javax.swing.JButton btnFinalizarSale;
     private javax.swing.JButton btnFuncionarios;
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnLote;

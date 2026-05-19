@@ -67,7 +67,7 @@
         <Container class="javax.swing.JPanel" name="menuLateral">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f9" green="f9" red="ff" type="rgb"/>
+              <Color blue="e4" green="e3" red="fb" type="rgb"/>
             </Property>
           </Properties>
 
@@ -392,9 +392,9 @@
                           <Table columnCount="5" rowCount="0">
                             <Column editable="true" title="ID" type="java.lang.Object"/>
                             <Column editable="true" title="Serie" type="java.lang.Object"/>
-                            <Column editable="true" title="Product" type="java.lang.Object"/>
-                            <Column editable="true" title="Quantity" type="java.lang.Object"/>
-                            <Column editable="true" title="Validity" type="java.lang.Object"/>
+                            <Column editable="true" title="Produto" type="java.lang.Object"/>
+                            <Column editable="true" title="Quantidade" type="java.lang.Object"/>
+                            <Column editable="true" title="Validade" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -445,10 +445,6 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="BtnAddBatch" min="-2" pref="112" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="BtnEditBatch" min="-2" pref="112" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="BtnDeleteBatch" min="-2" pref="112" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -457,11 +453,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace pref="21" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="BtnAddBatch" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                                  <Component id="BtnEditBatch" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                                  <Component id="BtnDeleteBatch" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="BtnAddBatch" min="-2" pref="42" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -474,22 +466,6 @@
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnAddBatchActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="BtnEditBatch">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Edit"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnEditBatchActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="BtnDeleteBatch">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Delete"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnDeleteBatchActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>

@@ -1,6 +1,9 @@
 package com.newBig.system.service;
 
+import com.newBig.system.model.SalesMovement;
 import com.newBig.system.repository.SalesMovementInterface;
+
+import java.util.List;
 
 public class SaleMovementService {
 
@@ -10,5 +13,11 @@ public class SaleMovementService {
         this.repository = repository;
     }
 
+    public List<SalesMovement> findAll() {
+        return repository.findAll();
+    }
 
+    public List<SalesMovement> findById(Long idSale) {
+        return repository.findById(idSale);
+    }
 }

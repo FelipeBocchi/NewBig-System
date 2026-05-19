@@ -33,4 +33,15 @@ public class SalesMovementRepository implements SalesMovementInterface {
     public Product searchById(Long id) {
         return em.find(Product.class, id);
     }
+
+    @Override
+    public List<SalesMovement> findById(Long id) {
+        return em.createQuery(
+                        "SELECT s FROM SalesMovement s WHERE s.sale.id = : id",
+                        SalesMovement.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
+
+    //b.product.id = : productID
 }

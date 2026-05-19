@@ -19,7 +19,7 @@ CREATE TABLE batch (
     series CHAR(1) NOT NULL,
     amount INT NOT NULL,
     validity DATE NOT NULL,
-    product_id UUID NOT NULL,
+    product_id BIGINT NOT NULL,
     CONSTRAINT fk_product FOREIGN KEY (product_id) REFERENCES product(id)
 );
 
@@ -30,7 +30,7 @@ CREATE TABLE stock_movement (
     quantity INT NOT NULL,
     value DECIMAL(10,2) NOT NULL,
     date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    id_batch UUID NOT NULL,
+    id_batch BIGINT NOT NULL,
     CONSTRAINT fk_batch FOREIGN KEY (id_batch) REFERENCES batch(id)
 );
 
@@ -51,7 +51,7 @@ CREATE TABLE sale (
 CREATE TABLE sale_movement (
     id SERIAL PRIMARY KEY,
     sale_id INT NOT NULL,
-    stock_movement_id UUID NOT NULL,
+    stock_movement_id BIGINT NOT NULL,
     CONSTRAINT fk_sale FOREIGN KEY (sale_id) REFERENCES sale(id),
     CONSTRAINT fk_stock_movement FOREIGN KEY (stock_movement_id) REFERENCES stock_movement(id)
 );

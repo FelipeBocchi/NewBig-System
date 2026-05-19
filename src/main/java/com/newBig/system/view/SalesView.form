@@ -36,7 +36,7 @@
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="MenuBarra"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -304,32 +304,35 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="TxtTotal" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="TxtResultadoTotal" min="-2" pref="81" max="-2" attributes="0"/>
+                              <Component id="TxtResultadoTotal" min="-2" pref="119" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jSeparator2" alignment="0" min="-2" pref="703" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
+                              <Component id="btnFinalizarSale" min="-2" pref="132" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnDeletar" min="-2" pref="132" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnNovo" min="-2" pref="132" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="TxtTaxa" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="TxtResulTaxa" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="TxtDisconto" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="TxtResultadoDesconto" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="TxtSubtotal" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="TxtResultadoSubtotal" min="-2" pref="56" max="-2" attributes="0"/>
-                          </Group>
                           <Component id="jSeparator1" alignment="0" min="-2" pref="703" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="TxtSubtotal" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TxtTaxa" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="TxtResulTaxa" alignment="1" min="-2" pref="65" max="-2" attributes="0"/>
+                                  <Component id="TxtResultadoSubtotal" alignment="1" min="-2" pref="81" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace pref="41" max="32767" attributes="0"/>
@@ -346,7 +349,8 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnNovo" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="btnDeletar" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="btnDeletar" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="btnFinalizarSale" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
@@ -361,9 +365,9 @@
                       <Component id="TxtResultadoDesconto" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="TxtTaxa" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="TxtResulTaxa" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="TxtTaxa" min="-2" max="-2" attributes="0"/>
+                      <Component id="TxtResulTaxa" min="-2" pref="0" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
@@ -372,7 +376,7 @@
                       <Component id="TxtTotal" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="TxtResultadoTotal" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="13" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -459,7 +463,7 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Deletar Item"/>
+            <Property name="text" type="java.lang.String" value="Deletar item"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeletarActionPerformed"/>
@@ -507,6 +511,20 @@
               <Color blue="66" green="66" red="ff" type="rgb"/>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnFinalizarSale">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="e4" green="e3" red="fb" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="33" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Finalizar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFinalizarSaleActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

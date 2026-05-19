@@ -40,7 +40,7 @@ public class Sale {
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SalesMovement> movements;
 
-    protected Sale() {}
+    public Sale() {}
 
     public Sale(LocalDateTime startTime, Cliente cliente, Funcionario funcionario, BigDecimal total, String paymentMethod, String status, List<SalesMovement> movements) {
         this.startTime = startTime;
@@ -82,5 +82,17 @@ public class Sale {
 
     public Long getId() {
         return id;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

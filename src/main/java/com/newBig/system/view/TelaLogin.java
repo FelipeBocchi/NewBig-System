@@ -190,7 +190,7 @@ public class TelaLogin extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+/*
         //FlyWayConfig.migrate();
         //  = Conecção com o banco e inicialização
         EntityManager em = CustomizerFactory.getEntityManager();
@@ -213,10 +213,10 @@ public class TelaLogin extends javax.swing.JFrame {
         AddItemToSale addItemToSale = new AddItemToSale(saleRepository, batchRepository, stockMovementRepository, salesMovementRepository);
         OpenSale openSale = new OpenSale(saleRepository, addItemToSale, clienteRepo, funcionarioRepo);
 
-        HelpService helpService = new HelpService(productService, batchService, saleService, openSale, addItemToSale);
-
+        HelpService helpService = new HelpService(productService, batchService, saleService, openSale, addItemToSale, saleMovementService);
+*/
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaLogin(helpService).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaLogin(new HelpService()).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
