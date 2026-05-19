@@ -20,10 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
-/**
- *
- * @author bocchi
- */
+
 public class ProductView extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ProductView.class.getName());
@@ -385,10 +382,10 @@ private void loadProductTable() {
         
         int linhaModelo = TblBatch.convertRowIndexToModel(linhaSelecionada);
 
-        // 1. Pegamos o código do produto (Barcode) que está na primeira coluna (índice 0) da tabela
+        //  Pegamos o código do produto (Barcode) que está na primeira coluna (índice 0) da tabela
         int barcode = Integer.parseInt(TblBatch.getModel().getValueAt(linhaModelo, 0).toString());
 
-        // 2. Buscamos o produto usando o ProductService
+        //  Buscamos o produto usando o ProductService
         Product product = helpService.getProductService().findByBarcode(barcode);
         //  = Verificar se o usuário realmente selecionou algo (-1 significa que nada foi selecionado)
         if (linhaSelecionada == -1) {
@@ -423,10 +420,10 @@ private void loadProductTable() {
 
         int linhaModelo = TblBatch.convertRowIndexToModel(linhaSelecionada);
 
-        // 1. Pegamos o código do produto (Barcode) que está na primeira coluna (índice 0) da tabela
+        //  Pegamos o código do produto (Barcode) que está na primeira coluna (índice 0) da tabela
         int barcode = Integer.parseInt(TblBatch.getModel().getValueAt(linhaModelo, 0).toString());
 
-        // 2. Buscamos o produto usando o ProductService
+        //  Buscamos o produto usando o ProductService
         Product product = helpService.getProductService().findByBarcode(barcode); 
         // NOTA: Se o seu service buscar por ID em vez de Barcode, mude para:
         // Product product = helpService.getProductService().searchById(Long.valueOf(...));
@@ -437,9 +434,8 @@ private void loadProductTable() {
         }
 
         try {
-            // 4. Executa o delete através do ProductService
-            helpService.getProductService().delete(product); 
-            // NOTA: Se o seu método do service deletar por código/ID direto, use:
+            //  Executa o delete através do ProductService
+            helpService.getProductService().delete(product);
             // helpService.getProductService().deleteByBarcode(barcode);
 
             JOptionPane.showMessageDialog(this, "Produto deletado com sucesso!");

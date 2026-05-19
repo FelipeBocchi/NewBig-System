@@ -188,7 +188,7 @@ public class FormSalePayDialog extends javax.swing.JDialog {
         try {
             String metodoPagamento = "";
 
-            // 1. Valida qual método foi escolhido
+            // Valida qual método foi escolhido
             if (rbCartao.isSelected()) {
                 if (rbCredito.isSelected()) metodoPagamento = "CARTAO_CREDITO";
                 else if (rbDebito.isSelected()) metodoPagamento = "CARTAO_DEBITO";
@@ -203,7 +203,6 @@ public class FormSalePayDialog extends javax.swing.JDialog {
                 if (valorStr.isEmpty()) throw new Exception("Informe o valor recebido em dinheiro!");
 
                 BigDecimal valorRecebido = new BigDecimal(valorStr);
-                // Aqui você pode adicionar lógica para verificar se o valor recebido >= total da venda
             }
             else {
                 throw new Exception("Selecione uma forma de pagamento!");
@@ -270,7 +269,6 @@ public class FormSalePayDialog extends javax.swing.JDialog {
         }
         //</editor-fold>
 
-        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
