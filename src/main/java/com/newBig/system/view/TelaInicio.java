@@ -38,6 +38,7 @@ public class TelaInicio extends javax.swing.JFrame {
         bannerFun();
         preencherNome();
         dataHora();
+        VendaDoDia();
         this.setLocationRelativeTo(null);
     }
 
@@ -209,7 +210,7 @@ public class TelaInicio extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         txtVendaDia.setFont(new java.awt.Font("Arial", 0, 120)); // NOI18N
-        txtVendaDia.setText("00");
+        txtVendaDia.setText("0");
 
         CardTitulo1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         CardTitulo1.setText("Vendas do Dia");
@@ -219,12 +220,13 @@ public class TelaInicio extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(txtVendaDia))
-                    .addComponent(CardTitulo1))
+                        .addGap(29, 29, 29)
+                        .addComponent(CardTitulo1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(txtVendaDia)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -365,6 +367,11 @@ public class TelaInicio extends javax.swing.JFrame {
             telaLogin.setVisible(true);
         }
     }//GEN-LAST:event_menuLoginActionPerformed
+
+    public void VendaDoDia(){
+        int n = VendasDia.getVendaDia();
+        txtVendaDia.setText(String.valueOf(n));
+    }
     /**
      * @param args the command line arguments
      */

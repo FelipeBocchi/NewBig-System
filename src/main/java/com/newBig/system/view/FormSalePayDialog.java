@@ -6,6 +6,7 @@ package com.newBig.system.view;
 
 import com.newBig.system.model.Sale;
 import com.newBig.system.service.HelpService;
+import com.newBig.system.service.VendasDia;
 
 import javax.swing.*;
 import java.math.BigDecimal;
@@ -215,6 +216,7 @@ public class FormSalePayDialog extends javax.swing.JDialog {
             Sale newSale = helpService.getSaleService().findById(saleId);
             newSale.setPaymentMethod(metodoPagamento);
             newSale.setStatus("PAGO");
+            VendasDia.setVendaDia();
             helpService.getSaleService().editSale(newSale);
 
             JOptionPane.showMessageDialog(this, "Pagamento confirmado e venda finalizada com sucesso!");

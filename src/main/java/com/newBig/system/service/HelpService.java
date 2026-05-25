@@ -27,6 +27,9 @@ public class HelpService {
         this.salesMovement = salesMovement;
     }
 
+    public HelpService(ProductService productService, BatchService batchService) {
+    }
+
     //  =   Gettings
 
     public ProductService getProductService() {

@@ -149,7 +149,7 @@ public class FormSalesDialog extends javax.swing.JDialog {
             AddItemToSale addItemToSale = helpService.getAddItemToSale();
             addItemToSale.logic(idSale, idProduct, quatity);
 
-            JOptionPane.showMessageDialog(this, "Lote salvo com sucesso!");
+            JOptionPane.showMessageDialog(this, "Produto adicionado com sucesso!");
             this.dispose(); // Fecha apenas a janelinha de cadastro
 
         } catch (Exception e) {
