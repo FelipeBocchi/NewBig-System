@@ -4,9 +4,12 @@
  */
 package com.newBig.system.view;
 
-import com.newBig.system.service.Caixa;
-import com.newBig.system.service.Login;
-import com.newBig.system.service.LogsDeCaixaService;
+import com.newBig.system.repository.BatchRepository;
+import com.newBig.system.repository.CustomizerFactory;
+import com.newBig.system.repository.ProductRepository;
+import com.newBig.system.repository.StockMovementRepository;
+import com.newBig.system.service.*;
+import jakarta.persistence.EntityManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,16 +26,19 @@ public class TelaInicio extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaInicio.class.getName());
     Login login = new Login();
+    private HelpService helpService;
     /**
      * Creates new form TelaInicio
      */
-    public TelaInicio() {
+    public TelaInicio(HelpService helpService) {
+        this.helpService = helpService;
         initComponents();
         logoUsuario();
         logoNewBig();
         bannerFun();
         preencherNome();
         dataHora();
+        VendaDoDia();
         this.setLocationRelativeTo(null);
     }
 
@@ -204,7 +210,7 @@ public class TelaInicio extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         txtVendaDia.setFont(new java.awt.Font("Arial", 0, 120)); // NOI18N
-        txtVendaDia.setText("00");
+        txtVendaDia.setText("0");
 
         CardTitulo1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         CardTitulo1.setText("Vendas do Dia");
@@ -214,12 +220,13 @@ public class TelaInicio extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(txtVendaDia))
-                    .addComponent(CardTitulo1))
+                        .addGap(29, 29, 29)
+                        .addComponent(CardTitulo1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(txtVendaDia)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -275,39 +282,45 @@ public class TelaInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        TelaInicio tela = new TelaInicio();
+        TelaInicio tela = new TelaInicio(this.helpService);
         dispose();
         tela.setVisible(true);
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
-        TelaFuncionario telaFuncionario = new TelaFuncionario();
+        TelaFuncionario telaFuncionario = new TelaFuncionario(this.helpService);
         dispose();
         telaFuncionario.setVisible(true);
     }//GEN-LAST:event_btnFuncionariosActionPerformed
 
     private void btnCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixaActionPerformed
-        TelaCaixa telaCaixa = new TelaCaixa();
+        TelaCaixa telaCaixa = new TelaCaixa(this.helpService);
         dispose();
         telaCaixa.setVisible(true);
     }//GEN-LAST:event_btnCaixaActionPerformed
 
     private void btnClientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes1ActionPerformed
-        TelaCliente telaCliente = new TelaCliente();
+        TelaCliente telaCliente = new TelaCliente(this.helpService);
         dispose();
         telaCliente.setVisible(true);
     }//GEN-LAST:event_btnClientes1ActionPerformed
 
     private void btnVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaActionPerformed
-        // TODO add your handling code here:
+        SalesView salesView = new SalesView(this.helpService);
+        dispose();
+        salesView.setVisible(true);
     }//GEN-LAST:event_btnVendaActionPerformed
 
     private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
-        // TODO add your handling code here:
+        ProductView productView = new ProductView(this.helpService);
+        dispose();
+        productView.setVisible(true);
     }//GEN-LAST:event_btnProdutoActionPerformed
 
     private void btnLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoteActionPerformed
-        // TODO add your handling code here:
+        ArrivalBatchView arrivalBatchView = new ArrivalBatchView(this.helpService);
+        dispose();
+        arrivalBatchView.setVisible(true);
     }//GEN-LAST:event_btnLoteActionPerformed
 
     private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
@@ -317,7 +330,7 @@ public class TelaInicio extends javax.swing.JFrame {
                     this,
                     "Não é possivel encerrar o sistema!! Caixa está aberto"
             );
-            TelaCaixa telaCaixa = new TelaCaixa();
+            TelaCaixa telaCaixa = new TelaCaixa(this.helpService);
             dispose();
             telaCaixa.setVisible(true);
         }
@@ -334,7 +347,7 @@ public class TelaInicio extends javax.swing.JFrame {
 
     private void menuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLoginActionPerformed
         Caixa caixa = new Caixa();
-        TelaLogin telaLogin = new TelaLogin();
+        TelaLogin telaLogin = new TelaLogin(this.helpService);
         if(caixa.verificarAbertura() != null){
             int resposta = JOptionPane.showConfirmDialog(
                     this,
@@ -354,6 +367,11 @@ public class TelaInicio extends javax.swing.JFrame {
             telaLogin.setVisible(true);
         }
     }//GEN-LAST:event_menuLoginActionPerformed
+
+    public void VendaDoDia(){
+        int n = VendasDia.getVendaDia();
+        txtVendaDia.setText(String.valueOf(n));
+    }
     /**
      * @param args the command line arguments
      */
@@ -375,8 +393,10 @@ public class TelaInicio extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        // temporario
+
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaInicio().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaInicio(new HelpService()).setVisible(true));
     }
 
     /*Funcões menu lateral*/

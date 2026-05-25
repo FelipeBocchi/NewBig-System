@@ -4,7 +4,9 @@
  */
 package com.newBig.system.view;
 
-import com.newBig.system.service.Login;
+import com.newBig.system.repository.*;
+import com.newBig.system.service.*;
+import jakarta.persistence.EntityManager;
 
 import javax.swing.*;
 
@@ -13,13 +15,16 @@ import javax.swing.*;
  * @author MH
  */
 public class TelaLogin extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaLogin.class.getName());
     Login loginService = new Login();
+
+    private HelpService helpService;
     /**
      * Creates new form TelaLogin
      */
-    public TelaLogin() {
+    public TelaLogin(HelpService helpService) {
+        this.helpService = helpService;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -159,7 +164,7 @@ public class TelaLogin extends javax.swing.JFrame {
             else{
                 loginService.salvar(id);
                 dispose();
-                TelaInicio telaInicio = new TelaInicio();
+                TelaInicio telaInicio = new TelaInicio(this.helpService);
                 telaInicio.setVisible(true);
             }
         }
@@ -172,7 +177,7 @@ public class TelaLogin extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -185,9 +190,33 @@ public class TelaLogin extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+/*
+        //FlyWayConfig.migrate();
+        //  = Conecção com o banco e inicialização
+        EntityManager em = CustomizerFactory.getEntityManager();
 
+        //  = repository
+        ProductRepository productRepository = new ProductRepository(em);
+        BatchRepository batchRepository = new BatchRepository(em);
+        StockMovementRepository stockMovementRepository = new StockMovementRepository(em);
+        SaleRepository saleRepository = new SaleRepository(em);
+        SalesMovementRepository salesMovementRepository = new SalesMovementRepository(em);
+        FuncionarioRepo funcionarioRepo = new FuncionarioRepo(em);
+        ClienteRepo clienteRepo = new ClienteRepo(em);
+
+        //  = service
+        ProductService productService = new ProductService(productRepository);
+        BatchService batchService = new BatchService(batchRepository, productRepository,stockMovementRepository);
+        SaleService saleService = new SaleService(saleRepository);
+        SaleMovementService saleMovementService = new SaleMovementService(salesMovementRepository);
+
+        AddItemToSale addItemToSale = new AddItemToSale(saleRepository, batchRepository, stockMovementRepository, salesMovementRepository);
+        OpenSale openSale = new OpenSale(saleRepository, addItemToSale, clienteRepo, funcionarioRepo);
+
+        HelpService helpService = new HelpService(productService, batchService, saleService, openSale, addItemToSale, saleMovementService);
+*/
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaLogin().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaLogin(new HelpService()).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

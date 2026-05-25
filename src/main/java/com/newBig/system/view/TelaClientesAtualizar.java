@@ -171,6 +171,9 @@ public class TelaClientesAtualizar extends javax.swing.JFrame {
             if(nome.isEmpty() || cpf.isEmpty() || cep.isEmpty() || rua.isEmpty() || numero <= 0|| bairro.isEmpty() || telefone.isEmpty()){
                 throw new Exception("Campo não preenchido!");
             }
+            if (cpf.matches(".*[\\p{L}].*")) {
+                throw new Exception("CPF contém letras");
+            }
             atualizarUsuario.cliente(id, nome,cpf,cep,rua,numero, bairro, telefone);
             JOptionPane.showMessageDialog(
                     this,

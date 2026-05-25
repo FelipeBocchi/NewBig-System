@@ -187,6 +187,9 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
             if(nome.isEmpty() || cpf.isEmpty() || login.isEmpty()){
                 throw new Exception("Campo não preenchido!");
             }
+            if (cpf.matches(".*[\\p{L}].*")) {
+                throw new Exception("CPF contém letras");
+            }
             cadastroUsuario.novoFuncionario(nome,cpf,acesso,login,senha);
             JOptionPane.showMessageDialog(
                     this,
