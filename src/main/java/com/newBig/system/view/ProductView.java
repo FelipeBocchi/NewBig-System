@@ -580,25 +580,9 @@ private void loadProductTable() {
         }
         //</editor-fold>
 
-        // temporario
-        //FlyWayConfig.migrate();
-        //  = Conecção com o banco e inicialização
-        EntityManager em = CustomizerFactory.getEntityManager();
-
-        //  = repository
-        ProductRepository productRepository = new ProductRepository(em);
-        BatchRepository batchRepository = new BatchRepository(em);
-        StockMovementRepository stockMovementRepository = new StockMovementRepository(em);
-
-        //  = service
-        ProductService productService = new ProductService(productRepository);
-        BatchService batchService = new BatchService(batchRepository, productRepository,stockMovementRepository);
-
-        HelpService helpService = new HelpService(productService, batchService);
-
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ProductView(helpService).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new ProductView(new HelpService()).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
