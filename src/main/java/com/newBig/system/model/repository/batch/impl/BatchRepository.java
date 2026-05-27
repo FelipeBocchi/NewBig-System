@@ -1,6 +1,7 @@
-package com.newBig.system.model.repository;
+package com.newBig.system.model.repository.batch.impl;
 
 import com.newBig.system.model.entity.Batch;
+import com.newBig.system.model.repository.batch.BatchInterface;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;

@@ -6,7 +6,7 @@ package com.newBig.system.view;
 
 import com.newBig.system.model.entity.Batch;
 import com.newBig.system.model.entity.Product;
-import com.newBig.system.model.service.BatchService;
+import com.newBig.system.model.service.batch.impl.BatchService;
 import com.newBig.system.model.service.HelpService;
 import com.newBig.system.model.service.ProductService;
 

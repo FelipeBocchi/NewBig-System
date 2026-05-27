@@ -1,4 +1,4 @@
-package com.newBig.system.model.repository;
+package com.newBig.system.model.repository.batch;
 
 import com.newBig.system.model.entity.Batch;
 

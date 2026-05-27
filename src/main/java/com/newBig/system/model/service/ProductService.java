@@ -1,7 +1,7 @@
 package com.newBig.system.model.service;
 
 import com.newBig.system.model.entity.Product;
-import com.newBig.system.model.repository.ProductInterface;
+import com.newBig.system.model.repository.product.ProductInterface;
 
 import java.math.BigDecimal;
 import java.util.List;

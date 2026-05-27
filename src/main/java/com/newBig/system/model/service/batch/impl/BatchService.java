@@ -1,15 +1,17 @@
-package com.newBig.system.model.service;
+package com.newBig.system.model.service.batch.impl;
 
 import com.newBig.system.model.entity.Batch;
 import com.newBig.system.model.entity.Product;
-import com.newBig.system.model.repository.BatchInterface;
-import com.newBig.system.model.repository.ProductInterface;
-import com.newBig.system.model.repository.StockMovementInterface;
+import com.newBig.system.model.repository.batch.BatchInterface;
+import com.newBig.system.model.repository.product.ProductInterface;
+import com.newBig.system.model.repository.stockMovement.StockMovementInterface;
+import com.newBig.system.model.service.CreateStockMovement;
+import com.newBig.system.model.service.batch.BatchServiceInterface;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class BatchService {
+public class BatchService implements BatchServiceInterface {
 
     private BatchInterface repositoryBatch;
     private ProductInterface repositoryProduct;

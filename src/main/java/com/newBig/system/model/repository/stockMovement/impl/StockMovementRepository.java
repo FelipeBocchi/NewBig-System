@@ -1,6 +1,7 @@
-package com.newBig.system.model.repository;
+package com.newBig.system.model.repository.stockMovement.impl;
 
 import com.newBig.system.model.entity.StockMovement;
+import com.newBig.system.model.repository.stockMovement.StockMovementInterface;
 import jakarta.persistence.EntityManager;
 
 import java.time.LocalDate;

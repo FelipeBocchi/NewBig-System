@@ -1,4 +1,4 @@
-package com.newBig.system.model.repository;
+package com.newBig.system.model.repository.saleMovement;
 
 import com.newBig.system.model.entity.Product;
 import com.newBig.system.model.entity.SalesMovement;

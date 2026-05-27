@@ -1,5 +1,7 @@
 package com.newBig.system.model.service;
 
+import com.newBig.system.model.service.batch.impl.BatchService;
+
 public class HelpService {
 
     /*

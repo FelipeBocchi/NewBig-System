@@ -2,7 +2,7 @@ package com.newBig.system.model.service;
 
 import com.newBig.system.model.entity.Batch;
 import com.newBig.system.model.entity.StockMovement;
-import com.newBig.system.model.repository.StockMovementInterface;
+import com.newBig.system.model.repository.stockMovement.StockMovementInterface;
 
 import java.math.BigDecimal;
 

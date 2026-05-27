@@ -1,6 +1,7 @@
-package com.newBig.system.model.repository;
+package com.newBig.system.model.repository.sale.impl;
 
 import com.newBig.system.model.entity.Sale;
+import com.newBig.system.model.repository.sale.SaleInterface;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;

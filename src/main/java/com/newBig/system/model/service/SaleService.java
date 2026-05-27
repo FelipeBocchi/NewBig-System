@@ -1,7 +1,7 @@
 package com.newBig.system.model.service;
 
 import com.newBig.system.model.entity.Sale;
-import com.newBig.system.model.repository.SaleInterface;
+import com.newBig.system.model.repository.sale.SaleInterface;
 
 import java.util.List;
 

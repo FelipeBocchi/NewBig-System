@@ -4,10 +4,10 @@ import com.newBig.system.model.entity.Batch;
 import com.newBig.system.model.entity.Sale;
 import com.newBig.system.model.entity.SalesMovement;
 import com.newBig.system.model.entity.StockMovement;
-import com.newBig.system.model.repository.BatchInterface;
-import com.newBig.system.model.repository.SaleInterface;
-import com.newBig.system.model.repository.SalesMovementInterface;
-import com.newBig.system.model.repository.StockMovementInterface;
+import com.newBig.system.model.repository.batch.BatchInterface;
+import com.newBig.system.model.repository.sale.SaleInterface;
+import com.newBig.system.model.repository.saleMovement.SalesMovementInterface;
+import com.newBig.system.model.repository.stockMovement.StockMovementInterface;
 
 import java.util.ArrayList;
 import java.util.Comparator;

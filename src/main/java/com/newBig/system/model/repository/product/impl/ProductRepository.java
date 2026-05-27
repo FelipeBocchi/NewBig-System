@@ -1,6 +1,7 @@
-package com.newBig.system.model.repository;
+package com.newBig.system.model.repository.product.impl;
 
 import com.newBig.system.model.entity.Product;
+import com.newBig.system.model.repository.product.ProductInterface;
 import jakarta.persistence.EntityManager;
 
 import java.math.BigDecimal;

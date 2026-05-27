@@ -1,4 +1,4 @@
-package com.newBig.system.model.repository;
+package com.newBig.system.model.repository.stockMovement;
 
 import com.newBig.system.model.entity.StockMovement;
 

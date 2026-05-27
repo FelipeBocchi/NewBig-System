@@ -5,7 +5,7 @@ import com.newBig.system.model.entity.Funcionario;
 import com.newBig.system.model.entity.Sale;
 import com.newBig.system.model.repository.ClienteRepo;
 import com.newBig.system.model.repository.FuncionarioRepo;
-import com.newBig.system.model.repository.SaleInterface;
+import com.newBig.system.model.repository.sale.SaleInterface;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

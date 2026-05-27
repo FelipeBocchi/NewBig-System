@@ -5,6 +5,8 @@
 package com.newBig.system.view;
 
 
+import com.newBig.system.controller.batch.BatchControllerInterface;
+import com.newBig.system.controller.batch.impl.BatchControllerImpl;
 import com.newBig.system.model.entity.Batch;
 import com.newBig.system.model.service.HelpService;
 import com.newBig.system.model.service.Login;
@@ -23,10 +25,13 @@ public class ArrivalBatchView extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ArrivalBatchView.class.getName());
     Login login = new Login();
     private HelpService helpService;
+    //teste
+    private final BatchControllerInterface batchController;
 
-    public ArrivalBatchView(HelpService helpService) {
+    public ArrivalBatchView(HelpService helpService, BatchControllerInterface batchController) {
         initComponents();
         this.helpService = helpService;
+        this.batchController = batchController;
         logoUsuario();
         logoNewBig();
         LgNome.setText(login.nomeLog());
@@ -65,6 +70,7 @@ public class ArrivalBatchView extends javax.swing.JFrame {
         TblBatch = new javax.swing.JTable();
         Button = new javax.swing.JPanel();
         BtnAddBatch = new javax.swing.JButton();
+        TxtTeste = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Batch");
@@ -236,13 +242,17 @@ public class ArrivalBatchView extends javax.swing.JFrame {
             ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ButtonLayout.createSequentialGroup()
                 .addComponent(BtnAddBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(201, 201, 201)
+                .addComponent(TxtTeste)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ButtonLayout.setVerticalGroup(
             ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ButtonLayout.createSequentialGroup()
                 .addContainerGap(21, Short.MAX_VALUE)
-                .addComponent(BtnAddBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnAddBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtTeste))
                 .addGap(18, 18, 18))
         );
 
@@ -314,44 +324,44 @@ public class ArrivalBatchView extends javax.swing.JFrame {
     }//GEN-LAST:event_FilterBatchActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        TelaInicio tela = new TelaInicio(helpService);
+        TelaInicio tela = new TelaInicio(helpService, this.batchController);
         dispose();
         tela.setVisible(true);
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
-        TelaFuncionario telaFuncionario = new TelaFuncionario(this.helpService);
+        TelaFuncionario telaFuncionario = new TelaFuncionario(this.helpService, this.batchController);
         dispose();
         telaFuncionario.setVisible(true);
     }//GEN-LAST:event_btnFuncionariosActionPerformed
 
     private void btnCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixaActionPerformed
-        TelaCaixa telaCaixa = new TelaCaixa(this.helpService);
+        TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController);
         dispose();
         telaCaixa.setVisible(true);
     }//GEN-LAST:event_btnCaixaActionPerformed
 
     private void btnClientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes1ActionPerformed
-        TelaCliente telaCliente = new TelaCliente(this.helpService);
+        TelaCliente telaCliente = new TelaCliente(this.helpService, this.batchController);
         dispose();
         telaCliente.setVisible(true);
     }//GEN-LAST:event_btnClientes1ActionPerformed
 
     private void btnVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaActionPerformed
-        SalesView salesView = new SalesView(this.helpService);
+        SalesView salesView = new SalesView(this.helpService, this.batchController);
         dispose();
         salesView.setVisible(true);
     }//GEN-LAST:event_btnVendaActionPerformed
 
     private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
-        ProductView productView = new ProductView(this.helpService);
+        ProductView productView = new ProductView(this.helpService, this.batchController);
         dispose();
         productView.setVisible(true);
     }//GEN-LAST:event_btnProdutoActionPerformed
 
     private void btnLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoteActionPerformed
 
-        ArrivalBatchView arrivalBatchView = new ArrivalBatchView(helpService);
+        ArrivalBatchView arrivalBatchView = new ArrivalBatchView(helpService, this.batchController);
         dispose();
         arrivalBatchView.setVisible(true);
 
@@ -436,6 +446,10 @@ public class ArrivalBatchView extends javax.swing.JFrame {
                         b.getValidity()
                 });
             }
+
+            // teste
+            var batch = batchController.retornaPoduto(1L);
+            TxtTeste.setText(batch.name() + batch.amont());
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao carregar tabela: " + e.getMessage());
@@ -538,7 +552,7 @@ public class ArrivalBatchView extends javax.swing.JFrame {
 */
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ArrivalBatchView(new HelpService()).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new ArrivalBatchView(new HelpService(), new BatchControllerImpl()).setVisible(true));
 
 
     }
@@ -555,6 +569,7 @@ public class ArrivalBatchView extends javax.swing.JFrame {
     private javax.swing.JLabel NBLogo;
     private javax.swing.JScrollPane TableBatch;
     private javax.swing.JTable TblBatch;
+    private javax.swing.JLabel TxtTeste;
     private javax.swing.JButton btnCaixa;
     private javax.swing.JButton btnClientes1;
     private javax.swing.JButton btnFuncionarios;

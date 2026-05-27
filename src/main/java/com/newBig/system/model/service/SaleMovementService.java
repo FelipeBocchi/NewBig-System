@@ -1,7 +1,7 @@
 package com.newBig.system.model.service;
 
 import com.newBig.system.model.entity.SalesMovement;
-import com.newBig.system.model.repository.SalesMovementInterface;
+import com.newBig.system.model.repository.saleMovement.SalesMovementInterface;
 
 import java.util.List;
 

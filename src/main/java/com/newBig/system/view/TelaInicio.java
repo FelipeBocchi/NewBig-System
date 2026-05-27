@@ -4,6 +4,8 @@
  */
 package com.newBig.system.view;
 
+import com.newBig.system.controller.batch.BatchControllerInterface;
+import com.newBig.system.controller.batch.impl.BatchControllerImpl;
 import com.newBig.system.model.service.Caixa;
 import com.newBig.system.model.service.HelpService;
 import com.newBig.system.model.service.Login;
@@ -25,11 +27,15 @@ public class TelaInicio extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaInicio.class.getName());
     Login login = new Login();
     private HelpService helpService;
+
+    // teste
+    private final BatchControllerInterface batchController;
     /**
      * Creates new form TelaInicio
      */
-    public TelaInicio(HelpService helpService) {
+    public TelaInicio(HelpService helpService, BatchControllerInterface batchController) {
         this.helpService = helpService;
+        this.batchController = batchController;
         initComponents();
         logoUsuario();
         logoNewBig();
@@ -280,43 +286,43 @@ public class TelaInicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        TelaInicio tela = new TelaInicio(this.helpService);
+        TelaInicio tela = new TelaInicio(this.helpService, this.batchController);
         dispose();
         tela.setVisible(true);
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
-        TelaFuncionario telaFuncionario = new TelaFuncionario(this.helpService);
+        TelaFuncionario telaFuncionario = new TelaFuncionario(this.helpService, this.batchController);
         dispose();
         telaFuncionario.setVisible(true);
     }//GEN-LAST:event_btnFuncionariosActionPerformed
 
     private void btnCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixaActionPerformed
-        TelaCaixa telaCaixa = new TelaCaixa(this.helpService);
+        TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController);
         dispose();
         telaCaixa.setVisible(true);
     }//GEN-LAST:event_btnCaixaActionPerformed
 
     private void btnClientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes1ActionPerformed
-        TelaCliente telaCliente = new TelaCliente(this.helpService);
+        TelaCliente telaCliente = new TelaCliente(this.helpService, this.batchController);
         dispose();
         telaCliente.setVisible(true);
     }//GEN-LAST:event_btnClientes1ActionPerformed
 
     private void btnVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaActionPerformed
-        SalesView salesView = new SalesView(this.helpService);
+        SalesView salesView = new SalesView(this.helpService, this.batchController);
         dispose();
         salesView.setVisible(true);
     }//GEN-LAST:event_btnVendaActionPerformed
 
     private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
-        ProductView productView = new ProductView(this.helpService);
+        ProductView productView = new ProductView(this.helpService, this.batchController);
         dispose();
         productView.setVisible(true);
     }//GEN-LAST:event_btnProdutoActionPerformed
 
     private void btnLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoteActionPerformed
-        ArrivalBatchView arrivalBatchView = new ArrivalBatchView(this.helpService);
+        ArrivalBatchView arrivalBatchView = new ArrivalBatchView(this.helpService, this.batchController);
         dispose();
         arrivalBatchView.setVisible(true);
     }//GEN-LAST:event_btnLoteActionPerformed
@@ -328,7 +334,7 @@ public class TelaInicio extends javax.swing.JFrame {
                     this,
                     "Não é possivel encerrar o sistema!! Caixa está aberto"
             );
-            TelaCaixa telaCaixa = new TelaCaixa(this.helpService);
+            TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController);
             dispose();
             telaCaixa.setVisible(true);
         }
@@ -345,7 +351,7 @@ public class TelaInicio extends javax.swing.JFrame {
 
     private void menuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLoginActionPerformed
         Caixa caixa = new Caixa();
-        TelaLogin telaLogin = new TelaLogin(this.helpService);
+        TelaLogin telaLogin = new TelaLogin(this.helpService, this.batchController);
         if(caixa.verificarAbertura() != null){
             int resposta = JOptionPane.showConfirmDialog(
                     this,
@@ -394,7 +400,7 @@ public class TelaInicio extends javax.swing.JFrame {
         // temporario
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaInicio(new HelpService()).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaInicio(new HelpService(), new BatchControllerImpl()).setVisible(true));
     }
 
     /*Funcões menu lateral*/

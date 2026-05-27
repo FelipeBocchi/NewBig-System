@@ -445,6 +445,8 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="BtnAddBatch" min="-2" pref="112" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
+                              <Component id="TxtTeste" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -453,7 +455,10 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace pref="21" max="32767" attributes="0"/>
-                              <Component id="BtnAddBatch" min="-2" pref="42" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="BtnAddBatch" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                                  <Component id="TxtTeste" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -467,6 +472,8 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnAddBatchActionPerformed"/>
                       </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="TxtTeste">
                     </Component>
                   </SubComponents>
                 </Container>
