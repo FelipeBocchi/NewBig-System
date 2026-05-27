@@ -5,15 +5,10 @@
 package com.newBig.system.view;
 
 
-import com.newBig.system.model.Product;
-import com.newBig.system.config.FlyWayConfig;
-import com.newBig.system.model.Batch;
-import com.newBig.system.repository.BatchRepository;
-import com.newBig.system.repository.CustomizerFactory;
-import com.newBig.system.repository.ProductRepository;
-import com.newBig.system.repository.StockMovementRepository;
-import com.newBig.system.service.*;
-import jakarta.persistence.EntityManager;
+import com.newBig.system.model.entity.Product;
+import com.newBig.system.model.service.Caixa;
+import com.newBig.system.model.service.HelpService;
+import com.newBig.system.model.service.Login;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

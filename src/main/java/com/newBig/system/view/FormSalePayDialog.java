@@ -4,9 +4,9 @@
  */
 package com.newBig.system.view;
 
-import com.newBig.system.model.Sale;
-import com.newBig.system.service.HelpService;
-import com.newBig.system.service.VendasDia;
+import com.newBig.system.model.entity.Sale;
+import com.newBig.system.model.service.HelpService;
+import com.newBig.system.model.service.VendasDia;
 
 import javax.swing.*;
 import java.math.BigDecimal;

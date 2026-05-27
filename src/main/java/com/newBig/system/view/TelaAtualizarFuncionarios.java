@@ -4,7 +4,7 @@
  */
 package com.newBig.system.view;
 
-import com.newBig.system.service.AtualizarUsuario;
+import com.newBig.system.model.service.AtualizarUsuario;
 
 import javax.swing.*;
 

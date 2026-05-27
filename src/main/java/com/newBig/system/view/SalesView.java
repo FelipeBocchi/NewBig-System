@@ -4,13 +4,11 @@
  */
 package com.newBig.system.view;
 
-import com.newBig.system.model.Batch;
-import com.newBig.system.model.Product;
-import com.newBig.system.model.Sale;
-import com.newBig.system.model.SalesMovement;
-import com.newBig.system.service.Caixa;
-import com.newBig.system.service.HelpService;
-import com.newBig.system.service.Login;
+import com.newBig.system.model.entity.Product;
+import com.newBig.system.model.entity.SalesMovement;
+import com.newBig.system.model.service.Caixa;
+import com.newBig.system.model.service.HelpService;
+import com.newBig.system.model.service.Login;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

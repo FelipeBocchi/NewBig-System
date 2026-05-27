@@ -1,8 +1,8 @@
 package com.newBig.system;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 
 import com.newBig.system.config.FlyWayConfig;
-import com.newBig.system.repository.*;
-import com.newBig.system.service.*;
+import com.newBig.system.model.repository.*;
+import com.newBig.system.model.service.*;
 import jakarta.persistence.EntityManager;
 
 import com.newBig.system.view.TelaLogin;

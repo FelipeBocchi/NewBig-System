@@ -4,7 +4,7 @@
  */
 package com.newBig.system.view;
 
-import com.newBig.system.service.*;
+import com.newBig.system.model.service.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

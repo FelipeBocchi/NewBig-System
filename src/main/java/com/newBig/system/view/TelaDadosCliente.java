@@ -4,8 +4,8 @@
  */
 package com.newBig.system.view;
 
-import com.newBig.system.model.Cliente;
-import com.newBig.system.service.AtualizarUsuario;
+import com.newBig.system.model.entity.Cliente;
+import com.newBig.system.model.service.AtualizarUsuario;
 
 /**
  *

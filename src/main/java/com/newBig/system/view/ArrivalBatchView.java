@@ -5,9 +5,9 @@
 package com.newBig.system.view;
 
 
-import com.newBig.system.model.Batch;
-import com.newBig.system.service.HelpService;
-import com.newBig.system.service.Login;
+import com.newBig.system.model.entity.Batch;
+import com.newBig.system.model.service.HelpService;
+import com.newBig.system.model.service.Login;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

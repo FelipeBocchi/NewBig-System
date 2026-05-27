@@ -4,18 +4,10 @@
  */
 package com.newBig.system.view;
 
-import com.newBig.system.model.Batch;
-import com.newBig.system.model.Product;
-import com.newBig.system.model.Sale;
-import com.newBig.system.service.AddItemToSale;
-import com.newBig.system.service.BatchService;
-import com.newBig.system.service.HelpService;
-import com.newBig.system.service.ProductService;
+import com.newBig.system.model.service.AddItemToSale;
+import com.newBig.system.model.service.HelpService;
 
 import javax.swing.*;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
 
 /**
  *

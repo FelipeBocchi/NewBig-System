@@ -4,16 +4,9 @@
  */
 package com.newBig.system.view;
 
-import java.text.SimpleDateFormat;
-import com.newBig.system.model.Product;
-import com.newBig.system.model.Product.ProductType;
-import com.newBig.system.model.Product.UnitType;
-import com.newBig.system.service.HelpService;
+import com.newBig.system.model.entity.Product;
+import com.newBig.system.model.service.HelpService;
 import javax.swing.JOptionPane;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 /**
  *

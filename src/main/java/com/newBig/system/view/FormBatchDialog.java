@@ -4,14 +4,13 @@
  */
 package com.newBig.system.view;
 
-import com.newBig.system.model.Batch;
-import com.newBig.system.model.Product;
-import com.newBig.system.service.BatchService;
-import com.newBig.system.service.HelpService;
-import com.newBig.system.service.ProductService;
+import com.newBig.system.model.entity.Batch;
+import com.newBig.system.model.entity.Product;
+import com.newBig.system.model.service.BatchService;
+import com.newBig.system.model.service.HelpService;
+import com.newBig.system.model.service.ProductService;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
