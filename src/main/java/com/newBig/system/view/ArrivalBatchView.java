@@ -5,7 +5,9 @@
 package com.newBig.system.view;
 
 
+import com.newBig.system.controller.HelpController;
 import com.newBig.system.controller.batch.BatchControllerInterface;
+import com.newBig.system.controller.batch.dto.BatchSummaryDto;
 import com.newBig.system.controller.batch.impl.BatchControllerImpl;
 import com.newBig.system.model.entity.Batch;
 import com.newBig.system.model.service.HelpService;
@@ -25,12 +27,14 @@ public class ArrivalBatchView extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ArrivalBatchView.class.getName());
     Login login = new Login();
     private HelpService helpService;
+    private final HelpController helpController;
     //teste
     private final BatchControllerInterface batchController;
 
-    public ArrivalBatchView(HelpService helpService, BatchControllerInterface batchController) {
+    public ArrivalBatchView(HelpService helpService, BatchControllerInterface batchController, HelpController helpController) {
         initComponents();
         this.helpService = helpService;
+        this.helpController = helpController;
         this.batchController = batchController;
         logoUsuario();
         logoNewBig();
@@ -324,44 +328,44 @@ public class ArrivalBatchView extends javax.swing.JFrame {
     }//GEN-LAST:event_FilterBatchActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        TelaInicio tela = new TelaInicio(helpService, this.batchController);
+        TelaInicio tela = new TelaInicio(helpService, this.batchController, this.helpController);
         dispose();
         tela.setVisible(true);
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
-        TelaFuncionario telaFuncionario = new TelaFuncionario(this.helpService, this.batchController);
+        TelaFuncionario telaFuncionario = new TelaFuncionario(this.helpService, this.batchController, this.helpController);
         dispose();
         telaFuncionario.setVisible(true);
     }//GEN-LAST:event_btnFuncionariosActionPerformed
 
     private void btnCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixaActionPerformed
-        TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController);
+        TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController, this.helpController);
         dispose();
         telaCaixa.setVisible(true);
     }//GEN-LAST:event_btnCaixaActionPerformed
 
     private void btnClientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes1ActionPerformed
-        TelaCliente telaCliente = new TelaCliente(this.helpService, this.batchController);
+        TelaCliente telaCliente = new TelaCliente(this.helpService, this.batchController, this.helpController);
         dispose();
         telaCliente.setVisible(true);
     }//GEN-LAST:event_btnClientes1ActionPerformed
 
     private void btnVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaActionPerformed
-        SalesView salesView = new SalesView(this.helpService, this.batchController);
+        SalesView salesView = new SalesView(this.helpService, this.batchController, this.helpController);
         dispose();
         salesView.setVisible(true);
     }//GEN-LAST:event_btnVendaActionPerformed
 
     private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
-        ProductView productView = new ProductView(this.helpService, this.batchController);
+        ProductView productView = new ProductView(this.helpService, this.batchController, this.helpController);
         dispose();
         productView.setVisible(true);
     }//GEN-LAST:event_btnProdutoActionPerformed
 
     private void btnLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoteActionPerformed
 
-        ArrivalBatchView arrivalBatchView = new ArrivalBatchView(helpService, this.batchController);
+        ArrivalBatchView arrivalBatchView = new ArrivalBatchView(helpService, this.batchController, this.helpController);
         dispose();
         arrivalBatchView.setVisible(true);
 
@@ -408,18 +412,20 @@ public class ArrivalBatchView extends javax.swing.JFrame {
             int linhaModelo = TblBatch.convertRowIndexToModel(linhaSelecionada);
             Long batchId = Long.valueOf(TblBatch.getModel().getValueAt(linhaModelo, 0).toString());
 
-            Batch batch = helpService.getBatchService().searchById(batchId);
+            //  = Antigo
+            //Batch batch = helpService.getBatchService().searchById(batchId);
 
-            if (batch.getAmount() != 0) {
-                JOptionPane.showMessageDialog(this, "Esse lote não está zerado! Logo, não pode ser deletado.");
-            } else {
-                helpService.getBatchService().deleteZero(batch);
-                JOptionPane.showMessageDialog(this, "Lote deletado com sucesso!");
-                loadBatchTable();
-            }
+            //  = Nova lógica de delete por controller
+            helpController.getBatchController().deleteBatch(batchId);
 
-        } catch (Exception e) {
-            // Se o JPA estourar um erro (como chave estrangeira), ele cai aqui!
+            JOptionPane.showMessageDialog(this, "Lote deletado com sucesso!");
+            loadBatchTable();
+
+        } catch (IllegalStateException e) {
+            //  = O Service lançou uma exceção avisando que o lote não está zerado
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Aviso", JOptionPane.WARNING_MESSAGE);
+        }catch (Exception e) {
+            //  = Se o JPA estourar um erro (como chave estrangeira), ele cai aqui!
             e.printStackTrace(); // Mostra o erro vermelho no console do NetBeans/IDE
             JOptionPane.showMessageDialog(this,
                     "Não foi possível deletar o lote.\nMotivo: Pode haver movimentações de estoque vinculadas a ele.",
@@ -435,15 +441,24 @@ public class ArrivalBatchView extends javax.swing.JFrame {
 
         try {
 
-            List<Batch> listBatch = helpService.getBatchService().findAll();
+            //  = Aqui incre
+            //List<Batch> listBatch = helpService.getBatchService().findAll();
+            List<BatchSummaryDto> dtoList = helpController.getBatchController().listAll();
 
-            for (Batch b : listBatch) {
+            for (BatchSummaryDto b : dtoList) {
                 tableModel.addRow( new Object[] {
+                        b.id(),
+                        b.series(),
+                        b.productName(),
+                        b.amount(),
+                        b.validity()
+                        /*
                         b.getId(),
                         b.getSeries(),
                         b.getProduct().getProductName(),
                         b.getAmount(),
                         b.getValidity()
+                        */
                 });
             }
 
@@ -533,26 +548,10 @@ public class ArrivalBatchView extends javax.swing.JFrame {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-/*
-        // temporario
-        //FlyWayConfig.migrate();
-        //  = Conecção com o banco e inicialização
-        EntityManager em = CustomizerFactory.getEntityManager();
 
-        //  = repository
-        ProductRepository productRepository = new ProductRepository(em);
-        BatchRepository batchRepository = new BatchRepository(em);
-        StockMovementRepository stockMovementRepository = new StockMovementRepository(em);
-
-        //  = service
-        ProductService productService = new ProductService(productRepository);
-        BatchService batchService = new BatchService(batchRepository, productRepository,stockMovementRepository);
-
-        HelpService helpService = new HelpService(productService, batchService);
-*/
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ArrivalBatchView(new HelpService(), new BatchControllerImpl()).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new ArrivalBatchView(new HelpService(), new BatchControllerImpl(), new HelpController()).setVisible(true));
 
 
     }

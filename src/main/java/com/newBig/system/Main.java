@@ -1,6 +1,7 @@
 package com.newBig.system;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 
 import com.newBig.system.config.FlyWayConfig;
+import com.newBig.system.controller.HelpController;
 import com.newBig.system.controller.batch.BatchControllerInterface;
 import com.newBig.system.controller.batch.dto.BatchResponse;
 import com.newBig.system.controller.batch.impl.BatchControllerImpl;
@@ -47,7 +48,8 @@ public class Main {
 
         HelpService helpService = new HelpService(productService, batchService, saleService, openSale, addItemToSale, saleMovementService);
 
-        TelaLogin telaLogin = new TelaLogin(helpService, batchController);
+        TelaLogin telaLogin = new TelaLogin(helpService, batchController, helpController
+        );
         telaLogin.setVisible(true);
 
     }

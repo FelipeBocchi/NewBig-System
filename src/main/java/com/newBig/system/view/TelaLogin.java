@@ -4,6 +4,7 @@
  */
 package com.newBig.system.view;
 
+import com.newBig.system.controller.HelpController;
 import com.newBig.system.controller.batch.BatchControllerInterface;
 import com.newBig.system.controller.batch.impl.BatchControllerImpl;
 import com.newBig.system.model.repository.ClienteRepo;
@@ -29,14 +30,15 @@ public class TelaLogin extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaLogin.class.getName());
     Login loginService = new Login();
     private final BatchControllerInterface batchController;
-
+    private final HelpController helpController;
     private HelpService helpService;
     /**
      * Creates new form TelaLogin
      */
-    public TelaLogin(HelpService helpService, BatchControllerInterface batchController) {
+    public TelaLogin(HelpService helpService, BatchControllerInterface batchController, HelpController helpController) {
         initComponents();
         this.helpService = helpService;
+        this.helpController = helpController;
         this.batchController = batchController;
         this.setLocationRelativeTo(null);
     }
@@ -176,7 +178,7 @@ public class TelaLogin extends javax.swing.JFrame {
             else{
                 loginService.salvar(id);
                 dispose();
-                TelaInicio telaInicio = new TelaInicio(this.helpService, this.batchController);
+                TelaInicio telaInicio = new TelaInicio(this.helpService, this.batchController, this.helpController);
                 telaInicio.setVisible(true);
             }
         }
@@ -231,7 +233,7 @@ public class TelaLogin extends javax.swing.JFrame {
         HelpService helpService = new HelpService(productService, batchService, saleService, openSale, addItemToSale, saleMovementService);
 */
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaLogin(new HelpService(), new BatchControllerImpl()).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaLogin(new HelpService(), new BatchControllerImpl(), new HelpController()).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
