@@ -10,12 +10,15 @@ import com.newBig.system.controller.batch.BatchControllerInterface;
 import com.newBig.system.controller.batch.dto.BatchSummaryDto;
 import com.newBig.system.controller.batch.impl.BatchControllerImpl;
 import com.newBig.system.model.entity.Batch;
+import com.newBig.system.model.service.Caixa;
 import com.newBig.system.model.service.HelpService;
 import com.newBig.system.model.service.Login;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.util.List;
 
 /**
@@ -75,6 +78,10 @@ public class ArrivalBatchView extends javax.swing.JFrame {
         Button = new javax.swing.JPanel();
         BtnAddBatch = new javax.swing.JButton();
         TxtTeste = new javax.swing.JLabel();
+        MenuBarra = new javax.swing.JMenuBar();
+        menuBar = new javax.swing.JMenu();
+        menuLogin = new javax.swing.JMenuItem();
+        menuSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Batch");
@@ -210,8 +217,9 @@ public class ArrivalBatchView extends javax.swing.JFrame {
         filterLayout.setHorizontalGroup(
             filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, filterLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 314, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
                 .addComponent(FilterBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -230,14 +238,15 @@ public class ArrivalBatchView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Serie", "Produto", "Quantidade", "Validade"
+                "Serie", "Produto", "Quantidade", "Validade"
             }
         ));
+        TblBatch.setPreferredSize(new java.awt.Dimension(452, 402));
         TableBatch.setViewportView(TblBatch);
 
         Button.setBackground(new java.awt.Color(255, 249, 249));
 
-        BtnAddBatch.setText("Add");
+        BtnAddBatch.setText("Novo");
         BtnAddBatch.addActionListener(this::BtnAddBatchActionPerformed);
 
         javax.swing.GroupLayout ButtonLayout = new javax.swing.GroupLayout(Button);
@@ -245,16 +254,17 @@ public class ArrivalBatchView extends javax.swing.JFrame {
         ButtonLayout.setHorizontalGroup(
             ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ButtonLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(BtnAddBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(201, 201, 201)
+                .addGap(195, 195, 195)
                 .addComponent(TxtTeste)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(364, Short.MAX_VALUE))
         );
         ButtonLayout.setVerticalGroup(
             ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ButtonLayout.createSequentialGroup()
                 .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BtnAddBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TxtTeste))
                 .addGap(18, 18, 18))
@@ -266,11 +276,12 @@ public class ArrivalBatchView extends javax.swing.JFrame {
             BatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BatchLayout.createSequentialGroup()
                 .addGap(0, 2, Short.MAX_VALUE)
-                .addGroup(BatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(BatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(BatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(TableBatch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
-                        .addComponent(Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(BatchLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(TableBatch)))
                 .addContainerGap())
         );
         BatchLayout.setVerticalGroup(
@@ -279,7 +290,7 @@ public class ArrivalBatchView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(TableBatch, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+                .addComponent(TableBatch, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9))
@@ -300,9 +311,23 @@ public class ArrivalBatchView extends javax.swing.JFrame {
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
             .addComponent(menuLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        menuBar.setText("Menu");
+
+        menuLogin.setText("Login");
+        menuLogin.addActionListener(this::menuLoginActionPerformed);
+        menuBar.add(menuLogin);
+
+        menuSair.setText("Sair");
+        menuSair.addActionListener(this::menuSairActionPerformed);
+        menuBar.add(menuSair);
+
+        MenuBarra.add(menuBar);
+
+        setJMenuBar(MenuBarra);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -324,7 +349,7 @@ public class ArrivalBatchView extends javax.swing.JFrame {
 
 
     private void FilterBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterBatchActionPerformed
-
+        
     }//GEN-LAST:event_FilterBatchActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
@@ -370,6 +395,51 @@ public class ArrivalBatchView extends javax.swing.JFrame {
         arrivalBatchView.setVisible(true);
 
     }//GEN-LAST:event_btnLoteActionPerformed
+
+    private void menuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLoginActionPerformed
+        Caixa caixa = new Caixa();
+        TelaLogin telaLogin = new TelaLogin(this.helpService, this.batchController, this.helpController);
+        if(caixa.verificarAbertura() != null){
+            int resposta = JOptionPane.showConfirmDialog(
+                this,
+                "Possui um caixa em aberto, deseja trocar de Login?"
+            );
+            if(resposta == JOptionPane.YES_OPTION){
+                dispose();
+                telaLogin.setVisible(true);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(
+                this,
+                "Encerrado login!!!"
+            );
+            dispose();
+            telaLogin.setVisible(true);
+        }
+    }//GEN-LAST:event_menuLoginActionPerformed
+
+    private void menuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSairActionPerformed
+        Caixa caixa = new Caixa();
+        if(caixa.verificarAbertura() != null){
+            JOptionPane.showMessageDialog(
+                this,
+                "Não é possivel encerrar o sistema!! Caixa está aberto"
+            );
+            TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController, this.helpController);
+            dispose();
+            telaCaixa.setVisible(true);
+        }
+        else{
+            int resposta = JOptionPane.showConfirmDialog(
+                this,
+                "Deseja mesmo encerrar o sistema?"
+            );
+            if(resposta == JOptionPane.YES_OPTION){
+                System.exit(0);
+            }
+        }
+    }//GEN-LAST:event_menuSairActionPerformed
 
     private void BtnEditBatchActionPerformed(java.awt.event.ActionEvent evt) {
 
@@ -447,7 +517,7 @@ public class ArrivalBatchView extends javax.swing.JFrame {
 
             for (BatchSummaryDto b : dtoList) {
                 tableModel.addRow( new Object[] {
-                        b.id(),
+                        //b.id(),
                         b.series(),
                         b.productName(),
                         b.amount(),
@@ -462,9 +532,6 @@ public class ArrivalBatchView extends javax.swing.JFrame {
                 });
             }
 
-            // teste
-            var batch = batchController.retornaPoduto(1L);
-            TxtTeste.setText(batch.name() + batch.amont());
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao carregar tabela: " + e.getMessage());
@@ -475,7 +542,7 @@ public class ArrivalBatchView extends javax.swing.JFrame {
 
     private void BtnAddBatchActionPerformed(java.awt.event.ActionEvent evt) {
 
-        FormBatchDialog dialog = new FormBatchDialog(this, true, helpService);
+        FormBatchDialog dialog = new FormBatchDialog(this, true, helpController);
         dialog.setLocationRelativeTo(this);
         dialog.setVisible(true);
 
@@ -488,7 +555,30 @@ public class ArrivalBatchView extends javax.swing.JFrame {
         javax.swing.table.TableRowSorter<DefaultTableModel> sorter = new javax.swing.table.TableRowSorter<>(model);
         TblBatch.setRowSorter(sorter);
 
-        // Adiciona um ouvinte para filtrar enquanto o usuário digita
+        //  = placehold em cinza
+        FilterBatch.setForeground(Color.gray);
+
+        FilterBatch.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                //  = Ao clicar, limpa se ainda for o placeholder
+                if (FilterBatch.getText().equals("Search something")) {
+                    FilterBatch.setText("");
+                    FilterBatch.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                //  = Ao sair sem digitar nada, restaura o placeholder
+                if (FilterBatch.getText().trim().isEmpty()) {
+                    FilterBatch.setText("Search something");
+                    FilterBatch.setForeground(Color.GRAY);
+                }
+            }
+        });
+
+        //  = Adiciona um ouvinte para filtrar enquanto o usuário digita
         FilterBatch.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
             @Override
             public void insertUpdate(javax.swing.event.DocumentEvent e) { applyFilter(sorter); }
@@ -565,6 +655,7 @@ public class ArrivalBatchView extends javax.swing.JFrame {
     private javax.swing.JLabel LgAcesso;
     private javax.swing.JLabel LgNome;
     private javax.swing.JPanel MainPanel;
+    private javax.swing.JMenuBar MenuBarra;
     private javax.swing.JLabel NBLogo;
     private javax.swing.JScrollPane TableBatch;
     private javax.swing.JTable TblBatch;
@@ -579,7 +670,10 @@ public class ArrivalBatchView extends javax.swing.JFrame {
     private javax.swing.JPanel filter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel logo;
+    private javax.swing.JMenu menuBar;
     private javax.swing.JLabel menuLTitulo;
     private javax.swing.JPanel menuLateral;
+    private javax.swing.JMenuItem menuLogin;
+    private javax.swing.JMenuItem menuSair;
     // End of variables declaration//GEN-END:variables
 }

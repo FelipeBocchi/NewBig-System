@@ -1,12 +1,13 @@
-package com.newBig.system.model.service;
+package com.newBig.system.model.service.product.impl;
 
 import com.newBig.system.model.entity.Product;
 import com.newBig.system.model.repository.product.ProductInterface;
+import com.newBig.system.model.service.product.ProductServiceInterface;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-public class ProductService {
+public class ProductService implements ProductServiceInterface {
 
     private ProductInterface repository;
 

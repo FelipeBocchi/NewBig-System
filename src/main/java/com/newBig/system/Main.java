@@ -3,8 +3,9 @@ package com.newBig.system;//TIP To <b>Run</b> code, press <shortcut actionId="Ru
 import com.newBig.system.config.FlyWayConfig;
 import com.newBig.system.controller.HelpController;
 import com.newBig.system.controller.batch.BatchControllerInterface;
-import com.newBig.system.controller.batch.dto.BatchResponse;
 import com.newBig.system.controller.batch.impl.BatchControllerImpl;
+import com.newBig.system.controller.product.ProductControllerInterface;
+import com.newBig.system.controller.product.impl.ProductControllerImpl;
 import com.newBig.system.model.repository.*;
 import com.newBig.system.model.repository.batch.impl.BatchRepository;
 import com.newBig.system.model.repository.product.impl.ProductRepository;
@@ -13,6 +14,7 @@ import com.newBig.system.model.repository.saleMovement.impl.SalesMovementReposit
 import com.newBig.system.model.repository.stockMovement.impl.StockMovementRepository;
 import com.newBig.system.model.service.*;
 import com.newBig.system.model.service.batch.impl.BatchService;
+import com.newBig.system.model.service.product.impl.ProductService;
 import jakarta.persistence.EntityManager;
 
 import com.newBig.system.view.TelaLogin;
@@ -40,8 +42,9 @@ public class Main {
         SaleMovementService saleMovementService = new SaleMovementService(salesMovementRepository);
 
         //teste controller
-        BatchControllerInterface batchController = new BatchControllerImpl(batchService);
-        HelpController helpController = new HelpController(batchController);
+        BatchControllerInterface batchController = new BatchControllerImpl(batchService, productService);
+        ProductControllerInterface productController = new ProductControllerImpl();
+        HelpController helpController = new HelpController(batchController, productController);
 
         AddItemToSale addItemToSale = new AddItemToSale(saleRepository, batchRepository, stockMovementRepository, salesMovementRepository);
         OpenSale openSale = new OpenSale(saleRepository, addItemToSale, clienteRepo, funcionarioRepo);

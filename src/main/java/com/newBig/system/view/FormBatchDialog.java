@@ -4,16 +4,13 @@
  */
 package com.newBig.system.view;
 
+import com.newBig.system.controller.HelpController;
+import com.newBig.system.controller.batch.dto.BatchSendDto;
 import com.newBig.system.model.entity.Batch;
-import com.newBig.system.model.entity.Product;
-import com.newBig.system.model.service.batch.impl.BatchService;
-import com.newBig.system.model.service.HelpService;
-import com.newBig.system.model.service.ProductService;
 
 import javax.swing.*;
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
 
 /**
  *
@@ -22,15 +19,15 @@ import java.util.List;
 public class FormBatchDialog extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormBatchDialog.class.getName());
-    private HelpService helpService;
+    private HelpController helpController;
     public Batch newBatch;
     /**
      * Creates new form FormBatchDialog
      */
-    public FormBatchDialog(java.awt.Frame parent, boolean modal, HelpService helpService) {
+    public FormBatchDialog(java.awt.Frame parent, boolean modal, HelpController helpController) {
         super(parent, modal);
         initComponents();
-        this.helpService = helpService;
+        this.helpController = helpController;
     }
 
     @SuppressWarnings("unchecked")
@@ -93,7 +90,7 @@ public class FormBatchDialog extends javax.swing.JDialog {
 
         jLabel3.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("ID Produto");
+        jLabel3.setText("Código Produto");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
         jPanel1.add(TxtProductBatch, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 430, 30));
 
@@ -113,14 +110,14 @@ public class FormBatchDialog extends javax.swing.JDialog {
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
         jButton1.setText("CANCELAR");
         jButton1.addActionListener(this::jButton1ActionPerformed);
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, 130, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 430, 140, 40));
 
         BtnSalveDialogBatch.setBackground(new java.awt.Color(248, 174, 176));
         BtnSalveDialogBatch.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         BtnSalveDialogBatch.setForeground(new java.awt.Color(255, 255, 255));
-        BtnSalveDialogBatch.setText("SALVAR");
+        BtnSalveDialogBatch.setText("CADASTRAR");
         BtnSalveDialogBatch.addActionListener(this::BtnSalveDialogBatchActionPerformed);
-        jPanel1.add(BtnSalveDialogBatch, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 130, 40));
+        jPanel1.add(BtnSalveDialogBatch, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 140, 40));
         jPanel1.add(TxtValidatyBatch, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 430, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -144,22 +141,28 @@ public class FormBatchDialog extends javax.swing.JDialog {
     private void BtnSalveDialogBatchActionPerformed(java.awt.event.ActionEvent evt) {                                                    
 
         try {
-            //  = Coleta os dados da interface
-            Batch newBatch = new Batch();  //   = criamos um lote vazio para irmos preenchendo com base das informações o user
+            /*
+                    Aqui vamos coletar as informações do usuário para fazer o cadastro do novo lote
+                 então vamos fazer um DTO e passar para o controller para que possa ser transforma em entidade
+             */
+
+            //  = Serie do lote
             String textoSerie = TxtSerieBatch.getText();
-            if (!textoSerie.isEmpty()) {
-                newBatch.setSeries(textoSerie.charAt(0));
-            } else {
-                // Caso o usuário não digite nada, você pode definir um padrão
-                newBatch.setSeries('A');
+            if (textoSerie.isEmpty())
+                textoSerie = "A";
+            char serie = textoSerie.charAt(0);
+
+            //  = Código do produto
+            int codBar = Integer.parseInt(TxtProductBatch.getText());
+
+            //  = Quantidade do produto
+            int amount = Integer.parseInt(TxtQuantityBatch.getText());
+            if (amount == 0 || amount <=0 ) {
+                JOptionPane.showMessageDialog(null, "Por favor, defina uma quantidade de produto!");
+                return;
             }
 
-            ProductService productService = helpService.getProductService();
-            List<Product> product = productService.searchByBarcode(Integer.parseInt(TxtProductBatch.getText()));
-            newBatch.setProduct(product.get(0));
-            
-            newBatch.setAmount(Integer.parseInt(TxtQuantityBatch.getText()));
-
+            //  = Data de vencimento
             Date dataDoFront = TxtValidatyBatch.getDate();
             if (dataDoFront == null) {
                 JOptionPane.showMessageDialog(null, "Por favor, selecione uma data!");
@@ -168,15 +171,13 @@ public class FormBatchDialog extends javax.swing.JDialog {
             LocalDate dataConvertida = dataDoFront.toInstant()
                     .atZone(java.time.ZoneId.systemDefault())
                     .toLocalDate();
-            newBatch.setValidity(dataConvertida);
 
-            // Chama CRUD
-            BatchService batchService = helpService.getBatchService();
-            batchService.arrivalBatch(newBatch.getProduct(), newBatch.getValidity(), newBatch.getAmount(), newBatch.getSeries());
+
+            //  = Criando o DTO para mandar essa informações para o controller
+            BatchSendDto batchSendDto = new BatchSendDto(serie, codBar, amount, dataConvertida);
+            helpController.getBatchController().arrivalBatch(batchSendDto);
 
             this.newBatch = newBatch;
-            //  = Escreve na tabela para não precisar fazer outra chamada no banco
-            //DefaultTableModel tableModel = (DefaultTableModel)
 
             JOptionPane.showMessageDialog(this, "Lote salvo com sucesso!");
             this.dispose(); // Fecha apenas a janelinha de cadastro

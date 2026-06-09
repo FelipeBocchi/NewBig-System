@@ -34,7 +34,6 @@ public class Batch {
 
 
     public Batch(Product product, LocalDate validity, int amount, char series) {
-        if( amount <= 0) throw new IllegalArgumentException("Quantidade de produtos não poder ser igual ou menor que zero!!!");
 
         this.series = series;
         this.product = product;

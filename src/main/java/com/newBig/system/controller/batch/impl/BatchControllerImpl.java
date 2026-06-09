@@ -1,9 +1,11 @@
 package com.newBig.system.controller.batch.impl;
 
 import com.newBig.system.controller.batch.BatchControllerInterface;
-import com.newBig.system.controller.batch.dto.BatchResponse;
+import com.newBig.system.controller.batch.dto.BatchSendDto;
 import com.newBig.system.controller.batch.dto.BatchSummaryDto;
 import com.newBig.system.model.entity.Batch;
+import com.newBig.system.model.entity.Product;
+import com.newBig.system.model.service.product.impl.ProductService;
 import com.newBig.system.model.service.batch.BatchServiceInterface;
 
 import java.util.ArrayList;
@@ -12,19 +14,21 @@ import java.util.List;
 public class BatchControllerImpl implements BatchControllerInterface {
 
     private BatchServiceInterface batchService;
+    private ProductService productService;
 
-    public BatchControllerImpl(BatchServiceInterface batchService) {
+    public BatchControllerImpl(BatchServiceInterface batchService, ProductService productService) {
         this.batchService = batchService;
+        this.productService = productService;
     }
 
     public BatchControllerImpl() {
     }
 
     @Override
-    public BatchResponse retornaPoduto(Long id) {
+    public void arrivalBatch(BatchSendDto batchSendDto) {
 
-        var batch = batchService.findByProduct(id);
-        return new BatchResponse(batch.get(0).getProduct().getProductName(), batch.get(0).getAmount());
+        Product product = productService.findByBarcode(batchSendDto.barCade());
+        batchService.arrivalBatch(product, batchSendDto.data(), batchSendDto.amount(), batchSendDto.serie());
 
     }
 
