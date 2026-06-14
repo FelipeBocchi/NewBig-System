@@ -4,11 +4,14 @@
  */
 package com.newBig.system.view;
 
+import com.newBig.system.controller.HelpController;
+import com.newBig.system.controller.product.dto.ProductEditSummaryDto;
 import com.newBig.system.model.entity.Product;
 import com.newBig.system.model.entity.Product.ProductType;
 import com.newBig.system.model.entity.Product.UnitType;
 import com.newBig.system.model.service.HelpService;
 import javax.swing.JOptionPane;
+import java.math.BigDecimal;
 
 /**
  *
@@ -17,11 +20,12 @@ import javax.swing.JOptionPane;
 public class FormProductAdd extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormProductAdd.class.getName());
+    private HelpController helpController;
 
-
-    public FormProductAdd(java.awt.Frame parent, boolean modal) {
+    public FormProductAdd(java.awt.Frame parent, boolean modal, HelpController helpController) {
         super(parent, modal);
         initComponents();
+        this.helpController = helpController;
     }
 
     @SuppressWarnings("unchecked")
@@ -146,40 +150,21 @@ public class FormProductAdd extends javax.swing.JDialog {
     }//GEN-LAST:event_txtCodeActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        if (product == null) {
-        product = new Product();
-    }
     
-    try {
-        // 1. Campos recebidos da interface gráfica (JTextFields)
-        product.setProductName(txtProductName.getText());
-        product.setCategory(txtCategory.getText());
-        product.setSalePrice(new java.math.BigDecimal(txtPrice.getText()));
-        
+        try {
 
-        product.setBarcode(Integer.parseInt(txtCode.getText()));
+            ProductEditSummaryDto summaryDto = new ProductEditSummaryDto(Integer.parseInt(txtCode.getText()), txtProductName.getText(), txtCategory.getText(), new BigDecimal(txtPrice.getText()));
 
-helpService.getProductService().save(
-    product.getProductName(),               // 1. String productName
-    "Produto cadastrado via sistema",        // 2. String description
-    "Geral",                                // 3. String department
-    product.getCategory(),                  // 4. String category
-    product.getBarcode(),                   // 5. int barcode
-    java.math.BigDecimal.ZERO,              // 6. BigDecimal costPrice
-    product.getSalePrice(),                 // 7. BigDecimal salePrice
-    10,                                     // 8. int minimumStock
-    ProductType.PRODUCT,                      // 9. ProductType type
-    UnitType.KG                             // 10. UnitType unit
-);
-        
-        JOptionPane.showMessageDialog(this, "Produto salvo com sucesso!");
-        dispose(); // Fecha o formulário dialog
-        
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Erro de validação: Verifique se o preço foi digitado corretamente.");
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Erro ao salvar no banco de dados: " + e.getMessage());
-    }
+            helpController.getProductController().salveProduct(summaryDto);
+
+            JOptionPane.showMessageDialog(this, "Produto salvo com sucesso!");
+            dispose(); // Fecha o formulário dialog
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Erro de validação: Verifique se o preço foi digitado corretamente.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao salvar no banco de dados: " + e.getMessage());
+        }
 
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -216,7 +201,7 @@ helpService.getProductService().save(
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                FormProductAdd dialog = new FormProductAdd(new javax.swing.JFrame(), true);
+                FormProductAdd dialog = new FormProductAdd(new javax.swing.JFrame(), true, new HelpController());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -228,26 +213,8 @@ helpService.getProductService().save(
         });
     }
 
-private HelpService helpService;
-public Product product; // Nulo se for ADICIONAR, preenchido se for EDITAR
 
-public FormProductAdd(java.awt.Frame parent, boolean modal, HelpService helpService, Product product) {
-    super(parent, modal);
-    initComponents();
-    this.helpService = helpService;
-    this.product = product;
 
-    if (product != null) {
-        fillFields(); // Método para colocar os dados do produto nos campos de texto
-    }
-}
-
-private void fillFields() {
-    // Esse método serve para pegar os dados do "product" e colocar nos inputs quando for EDITAR
-    txtProductName.setText(product.getProductName());
-    txtPrice.setText(String.valueOf(product.getSalePrice()));
-    // Adicione os outros campos aqui depois...
-}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel HeaderFormBatch;
     private javax.swing.JButton btnSaveActionPerformed;

@@ -43,7 +43,7 @@ public class Main {
 
         //teste controller
         BatchControllerInterface batchController = new BatchControllerImpl(batchService, productService);
-        ProductControllerInterface productController = new ProductControllerImpl();
+        ProductControllerInterface productController = new ProductControllerImpl(productService);
         HelpController helpController = new HelpController(batchController, productController);
 
         AddItemToSale addItemToSale = new AddItemToSale(saleRepository, batchRepository, stockMovementRepository, salesMovementRepository);

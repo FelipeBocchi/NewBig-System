@@ -8,7 +8,8 @@ package com.newBig.system.view;
 import com.newBig.system.controller.HelpController;
 import com.newBig.system.controller.batch.BatchControllerInterface;
 import com.newBig.system.controller.batch.impl.BatchControllerImpl;
-import com.newBig.system.model.entity.Product;
+import com.newBig.system.controller.product.dto.ProductEditSummaryDto;
+import com.newBig.system.controller.product.dto.ProductSummaryDto;
 import com.newBig.system.model.service.Caixa;
 import com.newBig.system.model.service.HelpService;
 import com.newBig.system.model.service.Login;
@@ -16,6 +17,9 @@ import com.newBig.system.model.service.Login;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -39,33 +43,55 @@ public class ProductView extends javax.swing.JFrame {
     LgNome.setText(login.nomeLog());
     LgAcesso.setText(login.acessoLog());
 
+    setupTableFilter();
+
     // Garante que os dados apareçam ao abrir a tela
     loadProductTable();
-}
-    
-private void loadProductTable() {
-    DefaultTableModel tableModel = (DefaultTableModel) TblBatch.getModel();
-    tableModel.setNumRows(0); 
-
-    try {
-        // REFATORADO: Agora chama getProductService()
-        List<Product> listProducts = helpService.getProductService().findAll();
-
-        for (Product p : listProducts) {
-            tableModel.addRow(new Object[] {
-                p.getBarcode(),        // Mudou de ID para Barcode
-                p.getProductName(),    // Nome do Produto
-                p.getCategory(),       // Categoria
-                p.getSalePrice(),      // Preço de Venda
-                p.getUnit(),           // Unidade (un, kg, etc)
-                p.getType()            // Status/Tipo
-            });
-        }
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Erro ao carregar produtos: " + e.getMessage());
     }
-}
-    
+
+    private void btnCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixaActionPerformed
+        TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController, this.helpController);
+        dispose();
+        telaCaixa.setVisible(true);
+    }//GEN-LAST:event_btnCaixaActionPerformed
+
+    private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
+        TelaFuncionario telaFuncionario = new TelaFuncionario(this.helpService, this.batchController, this.helpController);
+        dispose();
+        telaFuncionario.setVisible(true);
+    }//GEN-LAST:event_btnFuncionariosActionPerformed
+
+    private void btnClientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes1ActionPerformed
+        TelaCliente telaCliente = new TelaCliente(this.helpService, this.batchController, this.helpController);
+        dispose();
+        telaCliente.setVisible(true);
+    }//GEN-LAST:event_btnClientes1ActionPerformed
+
+    private void btnLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoteActionPerformed
+
+        ArrivalBatchView arrivalBatchView = new ArrivalBatchView(helpService, this.batchController, this.helpController);
+        dispose();
+        arrivalBatchView.setVisible(true);
+    }//GEN-LAST:event_btnLoteActionPerformed
+
+    private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
+        ProductView productView = new ProductView(this.helpService, this.batchController, this.helpController);
+        dispose();
+        productView.setVisible(true);
+    }//GEN-LAST:event_btnProdutoActionPerformed
+
+    private void btnVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaActionPerformed
+        SalesView salesView = new SalesView(this.helpService, this.batchController, this.helpController);
+        dispose();
+        salesView.setVisible(true);
+    }//GEN-LAST:event_btnVendaActionPerformed
+
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+        TelaInicio tela = new TelaInicio(this.helpService, this.batchController, this.helpController);
+        dispose();
+        tela.setVisible(true);
+    }//GEN-LAST:event_btnInicioActionPerformed
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -87,7 +113,7 @@ private void loadProductTable() {
         MainPanel = new javax.swing.JPanel();
         Batch = new javax.swing.JPanel();
         filter = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        FilterProduct = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         TableBatch = new javax.swing.JScrollPane();
         TblBatch = new javax.swing.JTable();
@@ -156,64 +182,64 @@ private void loadProductTable() {
         javax.swing.GroupLayout menuLateral3Layout = new javax.swing.GroupLayout(menuLateral3);
         menuLateral3.setLayout(menuLateral3Layout);
         menuLateral3Layout.setHorizontalGroup(
-            menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateral3Layout.createSequentialGroup()
-                .addGap(0, 53, Short.MAX_VALUE)
-                .addComponent(menuLTitulo)
-                .addGap(47, 47, 47))
-            .addGroup(menuLateral3Layout.createSequentialGroup()
-                .addGroup(menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(menuLateral3Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(NBLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(menuLateral3Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(menuLateral3Layout.createSequentialGroup()
-                                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateral3Layout.createSequentialGroup()
+                                .addGap(0, 53, Short.MAX_VALUE)
+                                .addComponent(menuLTitulo)
+                                .addGap(47, 47, 47))
+                        .addGroup(menuLateral3Layout.createSequentialGroup()
                                 .addGroup(menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LgAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LgNome, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnInicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnFuncionarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnCaixa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnClientes1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnVenda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnLote, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(menuLateral3Layout.createSequentialGroup()
+                                                .addGap(63, 63, 63)
+                                                .addComponent(NBLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(menuLateral3Layout.createSequentialGroup()
+                                                .addGap(19, 19, 19)
+                                                .addGroup(menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(menuLateral3Layout.createSequentialGroup()
+                                                                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addGroup(menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(LgAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(LgNome, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                        .addGroup(menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addComponent(btnInicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(btnFuncionarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(btnCaixa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(btnClientes1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(btnVenda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(btnProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(btnLote, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         menuLateral3Layout.setVerticalGroup(
-            menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateral3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(NBLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(menuLTitulo)
-                .addGap(18, 18, 18)
-                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnLote, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnClientes1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(menuLateral3Layout.createSequentialGroup()
-                        .addComponent(LgNome, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LgAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLateral3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(NBLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(menuLTitulo)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnLote, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnClientes1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(menuLateral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(menuLateral3Layout.createSequentialGroup()
+                                                .addComponent(LgNome, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(LgAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap())
         );
 
         MainPanel.setBackground(new java.awt.Color(242, 200, 242));
@@ -223,42 +249,43 @@ private void loadProductTable() {
 
         filter.setBackground(new java.awt.Color(255, 249, 249));
 
-        jTextField1.setText("Search product");
+        FilterProduct.setText("Search product");
+        FilterProduct.addActionListener(this::FilterProductActionPerformed);
 
         jLabel1.setFont(new java.awt.Font("FreeSerif", 0, 24)); // NOI18N
-        jLabel1.setText("Product");
+        jLabel1.setText("Produto");
 
         javax.swing.GroupLayout filterLayout = new javax.swing.GroupLayout(filter);
         filter.setLayout(filterLayout);
         filterLayout.setHorizontalGroup(
-            filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, filterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, filterLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 308, Short.MAX_VALUE)
+                                .addComponent(FilterProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
         );
         filterLayout.setVerticalGroup(
-            filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, filterLayout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
-                .addGroup(filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(15, 15, 15))
+                filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, filterLayout.createSequentialGroup()
+                                .addContainerGap(30, Short.MAX_VALUE)
+                                .addGroup(filterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(FilterProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel1))
+                                .addGap(15, 15, 15))
         );
 
         TblBatch.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object [][] {
 
-            },
-            new String [] {
-                "Code", "Produto Nome", "Categoria", "Preço", "Unit ", "Status"
-            }
+                },
+                new String [] {
+                        "Código", "Produto Nome", "Categoria", "Preço", "Unid. ", "Status"
+                }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Integer.class, java.lang.String.class
+                    java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Integer.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -269,63 +296,63 @@ private void loadProductTable() {
 
         Button.setBackground(new java.awt.Color(255, 249, 249));
 
-        BtnAddBatch.setText("Add");
+        BtnAddBatch.setText("Cadastrar");
         BtnAddBatch.addActionListener(this::BtnAddBatchActionPerformed);
 
-        BtnEditBatch.setText("Edit");
+        BtnEditBatch.setText("Editar");
         BtnEditBatch.addActionListener(this::BtnEditBatchActionPerformed);
 
-        BtnDeleteBatch.setText("Delete");
+        BtnDeleteBatch.setText("Deletar");
         BtnDeleteBatch.addActionListener(this::BtnDeleteBatchActionPerformed);
 
         javax.swing.GroupLayout ButtonLayout = new javax.swing.GroupLayout(Button);
         Button.setLayout(ButtonLayout);
         ButtonLayout.setHorizontalGroup(
-            ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ButtonLayout.createSequentialGroup()
-                .addComponent(BtnAddBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BtnEditBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BtnDeleteBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(305, Short.MAX_VALUE))
+                ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(ButtonLayout.createSequentialGroup()
+                                .addComponent(BtnAddBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BtnEditBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BtnDeleteBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(305, Short.MAX_VALUE))
         );
         ButtonLayout.setVerticalGroup(
-            ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ButtonLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnAddBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnEditBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnDeleteBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+                ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(ButtonLayout.createSequentialGroup()
+                                .addContainerGap(21, Short.MAX_VALUE)
+                                .addGroup(ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(BtnAddBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(BtnEditBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(BtnDeleteBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout BatchLayout = new javax.swing.GroupLayout(Batch);
         Batch.setLayout(BatchLayout);
         BatchLayout.setHorizontalGroup(
-            BatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BatchLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(TableBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
-            .addGroup(BatchLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(BatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                BatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BatchLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(TableBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34))
+                        .addGroup(BatchLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(BatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         BatchLayout.setVerticalGroup(
-            BatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BatchLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(TableBatch, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
-                .addGap(26, 26, 26)
-                .addComponent(Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                BatchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(BatchLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(filter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TableBatch, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                                .addGap(26, 26, 26)
+                                .addComponent(Button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
         );
 
         MainPanel.add(Batch, "Batch");
@@ -333,17 +360,17 @@ private void loadProductTable() {
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
         Background.setLayout(BackgroundLayout);
         BackgroundLayout.setHorizontalGroup(
-            BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BackgroundLayout.createSequentialGroup()
-                .addComponent(menuLateral3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(BackgroundLayout.createSequentialGroup()
+                                .addComponent(menuLateral3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
         );
         BackgroundLayout.setVerticalGroup(
-            BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(menuLateral3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(MainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(menuLateral3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         menuBar.setText("Menu");
@@ -363,53 +390,73 @@ private void loadProductTable() {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void loadProductTable() {
+        DefaultTableModel tableModel = (DefaultTableModel) TblBatch.getModel();
+        tableModel.setNumRows(0);
+
+        try {
+
+            //  = Aqui criamos uma lista de Dto de resumo que vai conter todos os dados da tabela
+            List<ProductSummaryDto> listProducts = helpController.getProductController().listAll();
+
+            for (ProductSummaryDto p : listProducts) {
+                tableModel.addRow(new Object[] {
+                        p.barcode(),
+                        p.productName(),
+                        p.category(),
+                        p.price(),
+                        p.unit(),
+                        p.status()
+                });
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao carregar produtos: " + e.getMessage());
+        }
+    }
+
     private void BtnEditBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditBatchActionPerformed
         int linhaSelecionada = TblBatch.getSelectedRow();
-        
+
         int linhaModelo = TblBatch.convertRowIndexToModel(linhaSelecionada);
 
-        //  Pegamos o código do produto (Barcode) que está na primeira coluna (índice 0) da tabela
-        int barcode = Integer.parseInt(TblBatch.getModel().getValueAt(linhaModelo, 0).toString());
-
-        //  Buscamos o produto usando o ProductService
-        Product product = helpService.getProductService().findByBarcode(barcode);
         //  = Verificar se o usuário realmente selecionou algo (-1 significa que nada foi selecionado)
         if (linhaSelecionada == -1) {
             JOptionPane.showMessageDialog(this, "Por favor, selecione uma linha para editar.");
             return;
         }
 
-        String Code = TblBatch.getModel().getValueAt(linhaModelo, 0).toString();
-        String ProductName = TblBatch.getModel().getValueAt(linhaModelo, 1).toString();
-        String Category = TblBatch.getModel().getValueAt(linhaModelo, 2).toString();
-        String Price = TblBatch.getModel().getValueAt(linhaModelo, 3).toString();
+        int barcode = Integer.parseInt(TblBatch.getModel().getValueAt(linhaModelo, 0).toString());
+        String productName = TblBatch.getModel().getValueAt(linhaModelo, 1).toString();
+        String category = TblBatch.getModel().getValueAt(linhaModelo, 2).toString();
+        BigDecimal price = new BigDecimal(TblBatch.getModel().getValueAt(linhaModelo, 3).toString());
+
+        ProductEditSummaryDto summaryDto = new ProductEditSummaryDto(barcode, productName, category, price);
 
         //  = Abrir o Dialog passando esses dados
-        FormProductEdit dialog = new FormProductEdit(this, true,helpService,product);
+        FormProductEdit dialog = new FormProductEdit(this, true, helpController, summaryDto);
         dialog.setLocationRelativeTo(this);
-        dialog.preencherCampos(Code,ProductName, Category, Price);
+        dialog.preencherCampos(String.valueOf(summaryDto.barCode()), summaryDto.productName(), summaryDto.category(), TblBatch.getModel().getValueAt(linhaModelo, 3).toString());
         dialog.setVisible(true);
 
-        //loadBatchTable();
+        loadProductTable();
 
-    
     }//GEN-LAST:event_BtnEditBatchActionPerformed
 
     private void BtnDeleteBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDeleteBatchActionPerformed
@@ -426,39 +473,37 @@ private void loadProductTable() {
         //  Pegamos o código do produto (Barcode) que está na primeira coluna (índice 0) da tabela
         int barcode = Integer.parseInt(TblBatch.getModel().getValueAt(linhaModelo, 0).toString());
 
-        //  Buscamos o produto usando o ProductService
-        Product product = helpService.getProductService().findByBarcode(barcode); 
-        // NOTA: Se o seu service buscar por ID em vez de Barcode, mude para:
-        // Product product = helpService.getProductService().searchById(Long.valueOf(...));
-
-        if (product == null) {
-            JOptionPane.showMessageDialog(this, "Produto não encontrado no sistema.");
-            return;
-        }
-
         try {
-            //  Executa o delete através do ProductService
-            helpService.getProductService().delete(product);
-            // helpService.getProductService().deleteByBarcode(barcode);
+            /*
+                    Futuramente temos que criar uma coluna na tabela produto para ATIVO || DESATIVADO
+             */
+            helpController.getProductController().deleteProduct(barcode);
 
             JOptionPane.showMessageDialog(this, "Produto deletado com sucesso!");
 
-            // 5. Atualiza a tabela de produtos para sumir com o registro deletado
-            loadProductTable(); 
+            loadProductTable();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao deletar produto: " + e.getMessage());
         }
-        
+
     }//GEN-LAST:event_BtnDeleteBatchActionPerformed
+
+    private void BtnAddBatchActionPerformed(java.awt.event.ActionEvent evt) {
+        FormProductAdd dialog = new FormProductAdd(this, true, this.helpController);
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+
+        loadProductTable(); // Recarrega a tabela após fechar o dialog
+    }
 
     private void menuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLoginActionPerformed
         Caixa caixa = new Caixa();
         TelaLogin telaLogin = new TelaLogin(this.helpService, this.batchController, this.helpController);
         if(caixa.verificarAbertura() != null){
             int resposta = JOptionPane.showConfirmDialog(
-                this,
-                "Possui um caixa em aberto, deseja trocar de Login?"
+                    this,
+                    "Possui um caixa em aberto, deseja trocar de Login?"
             );
             if(resposta == JOptionPane.YES_OPTION){
                 dispose();
@@ -467,8 +512,8 @@ private void loadProductTable() {
         }
         else{
             JOptionPane.showMessageDialog(
-                this,
-                "Encerrado login!!!"
+                    this,
+                    "Encerrado login!!!"
             );
             dispose();
             telaLogin.setVisible(true);
@@ -479,8 +524,8 @@ private void loadProductTable() {
         Caixa caixa = new Caixa();
         if(caixa.verificarAbertura() != null){
             JOptionPane.showMessageDialog(
-                this,
-                "Não é possivel encerrar o sistema!! Caixa está aberto"
+                    this,
+                    "Não é possivel encerrar o sistema!! Caixa está aberto"
             );
             TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController, this.helpController);
             dispose();
@@ -488,8 +533,8 @@ private void loadProductTable() {
         }
         else{
             int resposta = JOptionPane.showConfirmDialog(
-                this,
-                "Deseja mesmo encerrar o sistema?"
+                    this,
+                    "Deseja mesmo encerrar o sistema?"
             );
             if(resposta == JOptionPane.YES_OPTION){
                 System.exit(0);
@@ -497,56 +542,64 @@ private void loadProductTable() {
         }
     }//GEN-LAST:event_menuSairActionPerformed
 
-    private void btnCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixaActionPerformed
-        TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController, this.helpController);
-        dispose();
-        telaCaixa.setVisible(true);
-    }//GEN-LAST:event_btnCaixaActionPerformed
+    private void FilterProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FilterProductActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FilterProductActionPerformed
 
-    private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
-        TelaFuncionario telaFuncionario = new TelaFuncionario(this.helpService, this.batchController, this.helpController);
-        dispose();
-        telaFuncionario.setVisible(true);
-    }//GEN-LAST:event_btnFuncionariosActionPerformed
 
-    private void btnClientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes1ActionPerformed
-        TelaCliente telaCliente = new TelaCliente(this.helpService, this.batchController, this.helpController);
-        dispose();
-        telaCliente.setVisible(true);
-    }//GEN-LAST:event_btnClientes1ActionPerformed
+    // Método para configurar o filtro na tabela
+    private void setupTableFilter() {
+        DefaultTableModel model = (DefaultTableModel) TblBatch.getModel();
+        javax.swing.table.TableRowSorter<DefaultTableModel> sorter = new javax.swing.table.TableRowSorter<>(model);
+        TblBatch.setRowSorter(sorter);
 
-    private void btnLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoteActionPerformed
+        //  = placehold em cinza
+        FilterProduct.setForeground(Color.gray);
 
-        ArrivalBatchView arrivalBatchView = new ArrivalBatchView(helpService, this.batchController, this.helpController);
-        dispose();
-        arrivalBatchView.setVisible(true);
-    }//GEN-LAST:event_btnLoteActionPerformed
+        FilterProduct.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                //  = Ao clicar, limpa se ainda for o placeholder
+                if (FilterProduct.getText().equals("Search something")) {
+                    FilterProduct.setText("");
+                    FilterProduct.setForeground(Color.BLACK);
+                }
+            }
 
-    private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
-        ProductView productView = new ProductView(this.helpService, this.batchController, this.helpController);
-        dispose();
-        productView.setVisible(true);
-    }//GEN-LAST:event_btnProdutoActionPerformed
+            @Override
+            public void focusLost(FocusEvent e) {
+                //  = Ao sair sem digitar nada, restaura o placeholder
+                if (FilterProduct.getText().trim().isEmpty()) {
+                    FilterProduct.setText("Search something");
+                    FilterProduct.setForeground(Color.GRAY);
+                }
+            }
+        });
 
-    private void btnVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaActionPerformed
-        SalesView salesView = new SalesView(this.helpService, this.batchController, this.helpController);
-        dispose();
-        salesView.setVisible(true);
-    }//GEN-LAST:event_btnVendaActionPerformed
+        //  = Adiciona um ouvinte para filtrar enquanto o usuário digita
+        FilterProduct.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) { applyFilter(sorter); }
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) { applyFilter(sorter); }
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) { applyFilter(sorter); }
+        });
+    }
 
-    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        TelaInicio tela = new TelaInicio(this.helpService, this.batchController, this.helpController);
-        dispose();
-        tela.setVisible(true);
-    }//GEN-LAST:event_btnInicioActionPerformed
+    // Método que aplica a regra do texto digitado
+    private void applyFilter(javax.swing.table.TableRowSorter<DefaultTableModel> sorter) {
+        String text = FilterProduct.getText();
 
-    private void BtnAddBatchActionPerformed(java.awt.event.ActionEvent evt) {
-    FormProductAdd dialog = new FormProductAdd(this, true, helpService, null);
-    dialog.setLocationRelativeTo(this);
-    dialog.setVisible(true);
-    
-    loadProductTable(); // Recarrega a tabela após fechar o dialog
-}
+        // Se o texto for igual ao placeholder padrão ou estiver vazio, remove o filtro
+        if (text.trim().isEmpty() || text.equals("Search something")) {
+            sorter.setRowFilter(null);
+        } else {
+            // O "(?i)" torna a busca case-insensitive (ignora maiúsculas e minúsculas)
+            sorter.setRowFilter(javax.swing.RowFilter.regexFilter("(?i)" + text));
+        }
+    }
+
 
     /*Funcões menu lateral*/
 
@@ -595,6 +648,7 @@ private void loadProductTable() {
     private javax.swing.JButton BtnDeleteBatch;
     private javax.swing.JButton BtnEditBatch;
     private javax.swing.JPanel Button;
+    private javax.swing.JTextField FilterProduct;
     private javax.swing.JLabel LgAcesso;
     private javax.swing.JLabel LgNome;
     private javax.swing.JPanel MainPanel;
@@ -611,7 +665,6 @@ private void loadProductTable() {
     private javax.swing.JButton btnVenda;
     private javax.swing.JPanel filter;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel logo;
     private javax.swing.JMenu menuBar;
     private javax.swing.JLabel menuLTitulo;

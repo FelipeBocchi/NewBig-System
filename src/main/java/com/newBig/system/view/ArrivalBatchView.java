@@ -511,8 +511,7 @@ public class ArrivalBatchView extends javax.swing.JFrame {
 
         try {
 
-            //  = Aqui incre
-            //List<Batch> listBatch = helpService.getBatchService().findAll();
+            //  = Aqui criamos uma lista de Dto de resumo que vai conter todos os dados da tabela
             List<BatchSummaryDto> dtoList = helpController.getBatchController().listAll();
 
             for (BatchSummaryDto b : dtoList) {
@@ -522,13 +521,6 @@ public class ArrivalBatchView extends javax.swing.JFrame {
                         b.productName(),
                         b.amount(),
                         b.validity()
-                        /*
-                        b.getId(),
-                        b.getSeries(),
-                        b.getProduct().getProductName(),
-                        b.getAmount(),
-                        b.getValidity()
-                        */
                 });
             }
 
