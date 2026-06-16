@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.newBig.system.view;
+package com.newBig.system.view.funcionario;
 
-import com.newBig.system.model.service.CadastroUsuario;
+import com.newBig.system.model.service.AtualizarUsuario;
 
 import javax.swing.*;
 
@@ -12,20 +12,18 @@ import javax.swing.*;
  *
  * @author MH
  */
-public class TelaCadastroFuncionario extends javax.swing.JFrame {
+public class TelaAtualizarFuncionarios extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaCadastroFuncionario.class.getName());
-    CadastroUsuario cadastroUsuario = new CadastroUsuario();
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaAtualizarFuncionarios.class.getName());
+    AtualizarUsuario atualizarUsuario = new AtualizarUsuario();
     /**
-     * Creates new form TelaCadastroFuncionario
+     * Creates new form TelaAtualizarFuncionarios
      */
-    public TelaCadastroFuncionario() {
+    public TelaAtualizarFuncionarios() {
         initComponents();
-        this.setLocationRelativeTo(null);
-        Long id = cadastroUsuario.ultimoIdFun();
-        txtId.setText(String.valueOf(id + 1));
         txtId.setEnabled(false);
-        rdSem.setSelected(true);
+        this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -37,8 +35,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPasswordField1 = new javax.swing.JPasswordField();
-        Acesso = new javax.swing.ButtonGroup();
+        acessoGroup = new javax.swing.ButtonGroup();
         fundo = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
@@ -58,8 +55,6 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         lblSenha1 = new javax.swing.JLabel();
         rdAdm = new javax.swing.JRadioButton();
         rdOperador = new javax.swing.JRadioButton();
-
-        jPasswordField1.setText("jPasswordField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -85,16 +80,16 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         divisa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         Titulo.setFont(new java.awt.Font("Unispace", 1, 18)); // NOI18N
-        Titulo.setText("Cadastro Funcionario");
+        Titulo.setText("Atualizar Funcionario");
 
         javax.swing.GroupLayout divisaLayout = new javax.swing.GroupLayout(divisa);
         divisa.setLayout(divisaLayout);
         divisaLayout.setHorizontalGroup(
             divisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, divisaLayout.createSequentialGroup()
-                .addContainerGap(300, Short.MAX_VALUE)
+                .addContainerGap(297, Short.MAX_VALUE)
                 .addComponent(Titulo)
-                .addGap(292, 292, 292))
+                .addGap(295, 295, 295))
         );
         divisaLayout.setVerticalGroup(
             divisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +130,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         txtSenha.addActionListener(this::txtSenhaActionPerformed);
         fundo.add(txtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 260, 30));
 
-        Acesso.add(rdSem);
+        acessoGroup.add(rdSem);
         rdSem.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         rdSem.setText("Sem acesso");
         rdSem.addActionListener(this::rdSemActionPerformed);
@@ -145,13 +140,13 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         lblSenha1.setText("Senha");
         fundo.add(lblSenha1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, -1, -1));
 
-        Acesso.add(rdAdm);
+        acessoGroup.add(rdAdm);
         rdAdm.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         rdAdm.setText("Administrador");
         rdAdm.addActionListener(this::rdAdmActionPerformed);
         fundo.add(rdAdm, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 150, 40));
 
-        Acesso.add(rdOperador);
+        acessoGroup.add(rdOperador);
         rdOperador.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         rdOperador.setSelected(true);
         rdOperador.setText("Operador");
@@ -174,6 +169,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         try{
+            Long id = Long.parseLong(txtId.getText());
             String nome = txtNome.getText();
             String cpf = txtCpf.getText();
             String login = txtLogin.getText();
@@ -184,23 +180,23 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
             } else if (rdOperador.isSelected()) {
                 acesso = 2;
             }
+            atualizarUsuario.funcionario(id,nome,cpf,login,senha,acesso);
             if(nome.isEmpty() || cpf.isEmpty() || login.isEmpty()){
                 throw new Exception("Campo não preenchido!");
             }
             if (cpf.matches(".*[\\p{L}].*")) {
                 throw new Exception("CPF contém letras");
             }
-            cadastroUsuario.novoFuncionario(nome,cpf,acesso,login,senha);
             JOptionPane.showMessageDialog(
                     this,
-                    "Funcionario cadastrado com sucesso!!"
+                    "Funcionario Atualizado com sucesso!!"
             );
             dispose();
         }
         catch (Exception e){
             JOptionPane.showMessageDialog(
                     this,
-                    "Erro ao cadastrar Funcionario confira os dados!!!! " + e.getMessage()
+                    "Erro ao atualizar Funcionario confira os dados!!!! " + e.getMessage()
             );
         }
     }//GEN-LAST:event_btnEnviarActionPerformed
@@ -225,6 +221,23 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rdOperadorActionPerformed
 
+
+
+    public void preencher(Long id){
+        var dados = atualizarUsuario.dadosFuncionario(id);
+        txtId.setText(dados.getId().toString());
+        txtNome.setText(dados.getNome());
+        txtCpf.setText(dados.getCpf());
+        txtLogin.setText(dados.getLogin());
+        txtSenha.setText(String.valueOf(dados.getSenha()));
+        if(dados.getAcesso() == 1){
+            rdAdm.setSelected(true);
+        } else if (dados.getAcesso() == 2){
+            rdOperador.setSelected(true);
+        } else if (dados.getAcesso() == 3) {
+            rdSem.setSelected(true);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -247,17 +260,16 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaCadastroFuncionario().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaAtualizarFuncionarios().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup Acesso;
     private javax.swing.JLabel Titulo;
+    private javax.swing.ButtonGroup acessoGroup;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEnviar;
     private javax.swing.JPanel divisa;
     private javax.swing.JPanel fundo;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblLogin;

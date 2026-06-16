@@ -17,7 +17,7 @@ import com.newBig.system.model.service.batch.impl.BatchService;
 import com.newBig.system.model.service.product.impl.ProductService;
 import jakarta.persistence.EntityManager;
 
-import com.newBig.system.view.TelaLogin;
+import com.newBig.system.view.login.TelaLogin;
 
 public class Main {
 

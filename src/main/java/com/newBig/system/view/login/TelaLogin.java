@@ -2,22 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.newBig.system.view;
+package com.newBig.system.view.login;
 
 import com.newBig.system.controller.HelpController;
 import com.newBig.system.controller.batch.BatchControllerInterface;
 import com.newBig.system.controller.batch.impl.BatchControllerImpl;
-import com.newBig.system.model.repository.ClienteRepo;
-import com.newBig.system.model.repository.CustomizerFactory;
-import com.newBig.system.model.repository.FuncionarioRepo;
-import com.newBig.system.model.repository.batch.impl.BatchRepository;
-import com.newBig.system.model.repository.product.impl.ProductRepository;
-import com.newBig.system.model.repository.sale.impl.SaleRepository;
-import com.newBig.system.model.repository.saleMovement.impl.SalesMovementRepository;
-import com.newBig.system.model.repository.stockMovement.impl.StockMovementRepository;
 import com.newBig.system.model.service.*;
-import com.newBig.system.model.service.batch.impl.BatchService;
-import jakarta.persistence.EntityManager;
+import com.newBig.system.view.inicio.TelaInicio;
 
 import javax.swing.*;
 

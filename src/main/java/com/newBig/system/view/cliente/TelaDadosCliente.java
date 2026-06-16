@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.newBig.system.view;
+package com.newBig.system.view.cliente;
 
 import com.newBig.system.model.entity.Cliente;
 import com.newBig.system.model.service.AtualizarUsuario;

@@ -2,17 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.newBig.system.view;
+package com.newBig.system.view.batch;
 
 
 import com.newBig.system.controller.HelpController;
 import com.newBig.system.controller.batch.BatchControllerInterface;
 import com.newBig.system.controller.batch.dto.BatchSummaryDto;
 import com.newBig.system.controller.batch.impl.BatchControllerImpl;
-import com.newBig.system.model.entity.Batch;
 import com.newBig.system.model.service.Caixa;
 import com.newBig.system.model.service.HelpService;
 import com.newBig.system.model.service.Login;
+import com.newBig.system.view.caixa.TelaCaixa;
+import com.newBig.system.view.cliente.TelaCliente;
+import com.newBig.system.view.funcionario.TelaFuncionario;
+import com.newBig.system.view.inicio.TelaInicio;
+import com.newBig.system.view.login.TelaLogin;
+import com.newBig.system.view.product.ProductView;
+import com.newBig.system.view.sale.SalesView;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

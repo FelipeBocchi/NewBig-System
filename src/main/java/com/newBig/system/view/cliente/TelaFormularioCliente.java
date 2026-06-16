@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.newBig.system.view;
+package com.newBig.system.view.cliente;
 
-import com.newBig.system.model.service.AtualizarUsuario;
+import com.newBig.system.model.service.CadastroUsuario;
 
 import javax.swing.*;
 
@@ -12,16 +12,19 @@ import javax.swing.*;
  *
  * @author MH
  */
-public class TelaClientesAtualizar extends javax.swing.JFrame {
+public class TelaFormularioCliente extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaClientesAtualizar.class.getName());
-    AtualizarUsuario atualizarUsuario = new AtualizarUsuario();
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaFormularioCliente.class.getName());
+    CadastroUsuario cadastroUsuario = new CadastroUsuario();
     /**
-     * Creates new form TelaClientesAtualizar
+     * Creates new form TelaFormularioCliente
      */
-    public TelaClientesAtualizar() {
+    public TelaFormularioCliente() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Long id = cadastroUsuario.ultimoId();
+        txtId.setText(String.valueOf(id + 1));
+        txtId.setEnabled(false);
     }
 
     /**
@@ -56,7 +59,7 @@ public class TelaClientesAtualizar extends javax.swing.JFrame {
         txtId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Atualizar-Clientes");
+        setTitle("Formulario-Clientes");
 
         jPanel1.setBackground(new java.awt.Color(255, 249, 249));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -80,16 +83,16 @@ public class TelaClientesAtualizar extends javax.swing.JFrame {
         divisa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         Titulo.setFont(new java.awt.Font("Unispace", 1, 18)); // NOI18N
-        Titulo.setText("Atualizar Clientes");
+        Titulo.setText("Formulario Clientes");
 
         javax.swing.GroupLayout divisaLayout = new javax.swing.GroupLayout(divisa);
         divisa.setLayout(divisaLayout);
         divisaLayout.setHorizontalGroup(
             divisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(divisaLayout.createSequentialGroup()
-                .addGap(308, 308, 308)
+                .addGap(304, 304, 304)
                 .addComponent(Titulo)
-                .addContainerGap(318, Short.MAX_VALUE))
+                .addContainerGap(306, Short.MAX_VALUE))
         );
         divisaLayout.setVerticalGroup(
             divisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,7 +150,7 @@ public class TelaClientesAtualizar extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 809, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,9 +160,12 @@ public class TelaClientesAtualizar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        dispose();
+    }
+
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         try{
-            Long id = Long.parseLong(txtId.getText());
             String nome = txtNome.getText();
             String cpf = txtCpf.getText();
             String cep = txtCep.getText();
@@ -173,37 +179,21 @@ public class TelaClientesAtualizar extends javax.swing.JFrame {
             if (cpf.matches(".*[\\p{L}].*")) {
                 throw new Exception("CPF contém letras");
             }
-            atualizarUsuario.cliente(id, nome,cpf,cep,rua,numero, bairro, telefone);
+            cadastroUsuario.novoCliente(nome,cpf,cep,rua,numero, bairro, telefone);
             JOptionPane.showMessageDialog(
                     this,
-                    "Cliente Atualizado com sucesso!!"
+                    "Cliente cadastrado com sucesso!!"
             );
             dispose();
         }
         catch (Exception e){
             JOptionPane.showMessageDialog(
                     this,
-                    "Erro ao atualizar cliente confira os dados!!!! " + e.getMessage()
+                    "Erro ao cadastrar cliente confira os dados!!!! " + e.getMessage()
             );
         }
-    }//GEN-LAST:event_btnEnviarActionPerformed
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
-    public void preencher(Long id){
-        var dados = atualizarUsuario.dadosCliente(id);
-        txtId.setText(dados.getId().toString());
-        txtId.setEnabled(false);
-        txtNome.setText(dados.getNome());
-        txtCpf.setText(dados.getCpf());
-        txtCep.setText(dados.getCep());
-        txtRua.setText(dados.getRua());
-        txtBairro.setText(dados.getBairro());
-        txtTelefone.setText(dados.getTelefone());
-        spiNumero.setValue(dados.getNumero());
     }
+
     /**
      * @param args the command line arguments
      */
@@ -226,7 +216,7 @@ public class TelaClientesAtualizar extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaClientesAtualizar().setVisible(false));
+        java.awt.EventQueue.invokeLater(() -> new TelaFormularioCliente().setVisible(false));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

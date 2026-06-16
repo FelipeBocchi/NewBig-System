@@ -2,31 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package com.newBig.system.view;
+package com.newBig.system.view.product;
 
 import com.newBig.system.controller.HelpController;
 import com.newBig.system.controller.product.dto.ProductEditSummaryDto;
-import com.newBig.system.model.entity.Product;
-import com.newBig.system.model.service.HelpService;
+
 import javax.swing.JOptionPane;
 import java.math.BigDecimal;
 
 /**
  *
- * 
+ * @author bocchi
  */
-public class FormProductEdit extends javax.swing.JDialog {
+public class FormProductAdd extends javax.swing.JDialog {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormProductEdit.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormProductAdd.class.getName());
     private HelpController helpController;
-    private ProductEditSummaryDto summaryDto;
 
-    public FormProductEdit(java.awt.Frame parent, boolean modal, HelpController helpController, ProductEditSummaryDto summaryDto) {
+    public FormProductAdd(java.awt.Frame parent, boolean modal, HelpController helpController) {
         super(parent, modal);
         initComponents();
         this.helpController = helpController;
-        this.summaryDto = summaryDto;
-        //this.product = productEdit;
     }
 
     @SuppressWarnings("unchecked")
@@ -57,7 +53,7 @@ public class FormProductEdit extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("EDIT PRODUCT");
+        jLabel1.setText("ADD PRODUCT");
 
         javax.swing.GroupLayout HeaderFormBatchLayout = new javax.swing.GroupLayout(HeaderFormBatch);
         HeaderFormBatch.setLayout(HeaderFormBatchLayout);
@@ -119,8 +115,6 @@ public class FormProductEdit extends javax.swing.JDialog {
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setText("CATEGORY");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
-
-        txtCategory.addActionListener(this::txtCategoryActionPerformed);
         jPanel1.add(txtCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 430, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -156,12 +150,11 @@ public class FormProductEdit extends javax.swing.JDialog {
     
         try {
 
-            ProductEditSummaryDto editSummaryDto = new ProductEditSummaryDto(Integer.parseInt(txtCode.getText()), txtProductName.getText(), txtCategory.getText(), new BigDecimal(txtPrice.getText()));
+            ProductEditSummaryDto summaryDto = new ProductEditSummaryDto(Integer.parseInt(txtCode.getText()), txtProductName.getText(), txtCategory.getText(), new BigDecimal(txtPrice.getText()));
 
-            //  = mandamos o DTO como os dados modificados para o controller fazer a conversão
-            helpController.getProductController().editProduct(editSummaryDto);
+            helpController.getProductController().salveProduct(summaryDto);
 
-            JOptionPane.showMessageDialog(this, "Produto editado com sucesso!");
+            JOptionPane.showMessageDialog(this, "Produto salvo com sucesso!");
             dispose(); // Fecha o formulário dialog
 
         } catch (NumberFormatException e) {
@@ -172,15 +165,10 @@ public class FormProductEdit extends javax.swing.JDialog {
 
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void txtCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCategoryActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCategoryActionPerformed
+    public void preencherCampos( String serie, String product, String quatity, String validity) {
 
-    public void preencherCampos( String barcode, String productName, String category, String price) {
-        txtCode.setText(barcode);
-        txtProductName.setText(productName);
-        txtCategory.setText(category);
-        txtPrice.setText(price);
+        txtProductName.setText(serie);
+        txtCode.setText(product);
 
     }
 
@@ -210,7 +198,7 @@ public class FormProductEdit extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                FormProductEdit dialog = new FormProductEdit(new javax.swing.JFrame(), true, new HelpController(), new ProductEditSummaryDto(1, "", "", new BigDecimal(1)));
+                FormProductAdd dialog = new FormProductAdd(new javax.swing.JFrame(), true, new HelpController());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -221,7 +209,6 @@ public class FormProductEdit extends javax.swing.JDialog {
             }
         });
     }
-
 
 
 
