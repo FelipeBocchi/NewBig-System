@@ -7,7 +7,7 @@ package com.newBig.system.view.inicio;
 import com.newBig.system.controller.HelpController;
 import com.newBig.system.controller.batch.BatchControllerInterface;
 import com.newBig.system.controller.batch.impl.BatchControllerImpl;
-import com.newBig.system.model.service.Caixa;
+import com.newBig.system.model.service.caixa.Caixa;
 import com.newBig.system.model.service.HelpService;
 import com.newBig.system.model.service.Login;
 import com.newBig.system.model.service.VendasDia;

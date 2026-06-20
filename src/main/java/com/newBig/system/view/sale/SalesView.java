@@ -9,7 +9,7 @@ import com.newBig.system.controller.batch.BatchControllerInterface;
 import com.newBig.system.controller.batch.impl.BatchControllerImpl;
 import com.newBig.system.model.entity.Product;
 import com.newBig.system.model.entity.SalesMovement;
-import com.newBig.system.model.service.Caixa;
+import com.newBig.system.model.service.caixa.Caixa;
 import com.newBig.system.model.service.HelpService;
 import com.newBig.system.model.service.Login;
 import com.newBig.system.view.caixa.TelaCaixa;

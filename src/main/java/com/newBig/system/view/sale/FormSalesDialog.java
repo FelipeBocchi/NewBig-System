@@ -4,7 +4,7 @@
  */
 package com.newBig.system.view.sale;
 
-import com.newBig.system.model.service.AddItemToSale;
+import com.newBig.system.model.service.sale.AddItemToSale;
 import com.newBig.system.model.service.HelpService;
 
 import javax.swing.*;

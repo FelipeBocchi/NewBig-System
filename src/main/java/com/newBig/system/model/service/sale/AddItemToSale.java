@@ -1,4 +1,4 @@
-package com.newBig.system.model.service;
+package com.newBig.system.model.service.sale;
 
 import com.newBig.system.model.entity.Batch;
 import com.newBig.system.model.entity.Sale;

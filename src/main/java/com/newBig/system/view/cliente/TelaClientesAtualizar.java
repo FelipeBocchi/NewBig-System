@@ -4,7 +4,9 @@
  */
 package com.newBig.system.view.cliente;
 
-import com.newBig.system.model.service.AtualizarUsuario;
+import com.newBig.system.controller.HelpController;
+import com.newBig.system.controller.usuario.dto.ClientSummaryDto;
+import com.newBig.system.model.service.usuario.impl.AtualizarUsuario;
 
 import javax.swing.*;
 
@@ -15,12 +17,14 @@ import javax.swing.*;
 public class TelaClientesAtualizar extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaClientesAtualizar.class.getName());
+    HelpController helpController;
     AtualizarUsuario atualizarUsuario = new AtualizarUsuario();
     /**
      * Creates new form TelaClientesAtualizar
      */
-    public TelaClientesAtualizar() {
+    public TelaClientesAtualizar(HelpController helpController) {
         initComponents();
+        this.helpController = helpController;
         this.setLocationRelativeTo(null);
     }
 
@@ -173,7 +177,9 @@ public class TelaClientesAtualizar extends javax.swing.JFrame {
             if (cpf.matches(".*[\\p{L}].*")) {
                 throw new Exception("CPF contém letras");
             }
-            atualizarUsuario.cliente(id, nome,cpf,cep,rua,numero, bairro, telefone);
+
+            helpController.getUsuarioController().updateUser(id, nome,cpf,cep,rua,numero, bairro, telefone);
+
             JOptionPane.showMessageDialog(
                     this,
                     "Cliente Atualizado com sucesso!!"
@@ -193,16 +199,16 @@ public class TelaClientesAtualizar extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     public void preencher(Long id){
-        var dados = atualizarUsuario.dadosCliente(id);
-        txtId.setText(dados.getId().toString());
+        ClientSummaryDto clientDto = helpController.getUsuarioController().clientDateId(id);
+        txtId.setText(clientDto.id().toString());
         txtId.setEnabled(false);
-        txtNome.setText(dados.getNome());
-        txtCpf.setText(dados.getCpf());
-        txtCep.setText(dados.getCep());
-        txtRua.setText(dados.getRua());
-        txtBairro.setText(dados.getBairro());
-        txtTelefone.setText(dados.getTelefone());
-        spiNumero.setValue(dados.getNumero());
+        txtNome.setText(clientDto.name());
+        txtCpf.setText(clientDto.cpf());
+        txtCep.setText(clientDto.cep());
+        txtRua.setText(clientDto.rua());
+        txtBairro.setText(clientDto.bairro());
+        txtTelefone.setText(clientDto.telefone());
+        spiNumero.setValue(clientDto.numero());
     }
     /**
      * @param args the command line arguments
@@ -226,7 +232,7 @@ public class TelaClientesAtualizar extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaClientesAtualizar().setVisible(false));
+        java.awt.EventQueue.invokeLater(() -> new TelaClientesAtualizar(new HelpController()).setVisible(false));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

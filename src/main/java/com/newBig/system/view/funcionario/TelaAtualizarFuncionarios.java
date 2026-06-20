@@ -4,7 +4,7 @@
  */
 package com.newBig.system.view.funcionario;
 
-import com.newBig.system.model.service.AtualizarUsuario;
+import com.newBig.system.model.service.usuario.impl.AtualizarUsuario;
 
 import javax.swing.*;
 

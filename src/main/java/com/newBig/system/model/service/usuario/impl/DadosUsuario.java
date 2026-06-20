@@ -1,15 +1,16 @@
-package com.newBig.system.model.service;
+package com.newBig.system.model.service.usuario.impl;
 
 import com.newBig.system.model.entity.Cliente;
 import com.newBig.system.model.entity.Funcionario;
 import com.newBig.system.model.repository.ClienteRepo;
 import com.newBig.system.model.repository.CustomizerFactory;
 import com.newBig.system.model.repository.FuncionarioRepo;
+import com.newBig.system.model.service.usuario.DadosUsuarioServiceItf;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
-public class DadosUsuario {
+public class DadosUsuario implements DadosUsuarioServiceItf {
 
     public List<Funcionario> dadosFuncionario(){
         EntityManager em = CustomizerFactory.getEntityManager(); /*Pegar objeto que conecta com o banco*/

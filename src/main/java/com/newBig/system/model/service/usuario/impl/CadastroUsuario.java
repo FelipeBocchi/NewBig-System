@@ -1,15 +1,16 @@
-package com.newBig.system.model.service;
+package com.newBig.system.model.service.usuario.impl;
 
 import com.newBig.system.model.entity.Cliente;
 import com.newBig.system.model.entity.Funcionario;
 import com.newBig.system.model.repository.ClienteRepo;
 import com.newBig.system.model.repository.CustomizerFactory;
 import com.newBig.system.model.repository.FuncionarioRepo;
+import com.newBig.system.model.service.usuario.CadastroUsuarioServiceItf;
 import jakarta.persistence.EntityManager;
 
 import java.util.Scanner;
 
-public class CadastroUsuario {
+public class CadastroUsuario implements CadastroUsuarioServiceItf {
     Scanner sc = new Scanner(System.in);
     EntityManager em = CustomizerFactory.getEntityManager();
     FuncionarioRepo funRepo = new FuncionarioRepo(em);

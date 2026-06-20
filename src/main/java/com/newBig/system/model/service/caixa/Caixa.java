@@ -1,4 +1,4 @@
-package com.newBig.system.model.service;
+package com.newBig.system.model.service.caixa;
 
 import com.newBig.system.model.entity.DadosCaixa;
 import com.newBig.system.model.entity.Funcionario;

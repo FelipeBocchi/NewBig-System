@@ -7,7 +7,9 @@ package com.newBig.system.view.cliente;
 import com.newBig.system.controller.HelpController;
 import com.newBig.system.controller.batch.BatchControllerInterface;
 import com.newBig.system.controller.batch.impl.BatchControllerImpl;
+import com.newBig.system.controller.usuario.dto.ClientDateDto;
 import com.newBig.system.model.service.*;
+import com.newBig.system.model.service.caixa.Caixa;
 import com.newBig.system.view.batch.ArrivalBatchView;
 import com.newBig.system.view.caixa.TelaCaixa;
 import com.newBig.system.view.funcionario.TelaFuncionario;
@@ -19,6 +21,7 @@ import com.newBig.system.view.sale.SalesView;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.List;
 
 /**
  *
@@ -27,11 +30,8 @@ import java.awt.*;
 public class TelaCliente extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaCliente.class.getName());
-    TelaClientesAtualizar telaClientesAtualizar = new TelaClientesAtualizar();
     TelaFormularioCliente telaFormularioCliente = new TelaFormularioCliente();
-    TelaDadosCliente telaDadosCliente = new TelaDadosCliente();
     Login login = new Login();
-    DeletarUsuario deletarUsuario = new DeletarUsuario();
     private HelpService helpService;
     private final HelpController helpController;
     //teste
@@ -374,6 +374,7 @@ public class TelaCliente extends javax.swing.JFrame {
             );
         }
         else{
+            TelaClientesAtualizar telaClientesAtualizar = new TelaClientesAtualizar(this.helpController);
             Long id = (Long) TabelaClientes.getValueAt(linha, 0);
             telaClientesAtualizar.preencher(id);
             telaClientesAtualizar.setVisible(true);
@@ -399,7 +400,10 @@ public class TelaCliente extends javax.swing.JFrame {
                     "Deseja mesmo apagar o cliente " + nome + "?"
             );
             if (resposta == JOptionPane.YES_OPTION) {
-                deletarUsuario.deleteCliente(id);
+                //  = novo
+                helpController.getUsuarioController().deleteUser(id);
+                //  = velho
+                //deletarUsuario.deleteCliente(id);
                 preencherTabela();
 
             }
@@ -421,6 +425,7 @@ public class TelaCliente extends javax.swing.JFrame {
             );
         }
         else{
+            TelaDadosCliente telaDadosCliente = new TelaDadosCliente(this.helpController);
             Long id = (Long) TabelaClientes.getValueAt(linha, 0);
             telaDadosCliente.setVisible(true);
             telaDadosCliente.dadosCliente(id);
@@ -571,45 +576,42 @@ public class TelaCliente extends javax.swing.JFrame {
     }
 
     public void preencherTabela(){
-        DadosUsuario dados = new DadosUsuario();
         DefaultTableModel linha = (DefaultTableModel) TabelaClientes.getModel();
         linha.setRowCount(0);
-        var lista = dados.dadosCliente();
-        for (int i = 0; i < lista.size() ; i++) {
+        List<ClientDateDto> list = helpController.getUsuarioController().clientDateAll();
+        for (ClientDateDto client : list) {
             linha.addRow(new Object[]{
-                    lista.get(i).getId(),
-                    lista.get(i).getNome(),
-                    lista.get(i).getCpf(),
+                   client.id(),
+                    client.name(),
+                    client.cpf()
             });
         }
     }
 
     public void preencherNome(){
-        DadosUsuario dados = new DadosUsuario();
         DefaultTableModel linha = (DefaultTableModel) TabelaClientes.getModel();
         linha.setRowCount(0);
         String nome = TxtBuscar.getText();
-        var lista = dados.dadosClienteNome(nome);
-        for (int i = 0; i < lista.size() ; i++) {
+        List<ClientDateDto> list = helpController.getUsuarioController().clientDateName(nome);
+        for (ClientDateDto client : list) {
             linha.addRow(new Object[]{
-                    lista.get(i).getId(),
-                    lista.get(i).getNome(),
-                    lista.get(i).getCpf(),
+                    client.id(),
+                    client.name(),
+                    client.cpf()
             });
         }
     }
 
     public void preencherCpf(){
-        DadosUsuario dados = new DadosUsuario();
         DefaultTableModel linha = (DefaultTableModel) TabelaClientes.getModel();
         linha.setRowCount(0);
         String cpf = TxtBuscar.getText();
-        var lista = dados.dadosClienteCpf(cpf);
-        for (int i = 0; i < lista.size() ; i++) {
+        List<ClientDateDto> list = helpController.getUsuarioController().clientDateCpf(cpf);
+        for (ClientDateDto client : list) {
             linha.addRow(new Object[]{
-                    lista.get(i).getId(),
-                    lista.get(i).getNome(),
-                    lista.get(i).getCpf(),
+                    client.id(),
+                    client.name(),
+                    client.cpf()
             });
         }
     }

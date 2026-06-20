@@ -4,7 +4,7 @@
  */
 package com.newBig.system.view.cliente;
 
-import com.newBig.system.model.service.CadastroUsuario;
+import com.newBig.system.model.service.usuario.impl.CadastroUsuario;
 
 import javax.swing.*;
 

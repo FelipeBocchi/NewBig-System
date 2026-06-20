@@ -1,4 +1,4 @@
-package com.newBig.system.model.service;
+package com.newBig.system.model.service.sale;
 
 import com.newBig.system.model.entity.Cliente;
 import com.newBig.system.model.entity.Funcionario;

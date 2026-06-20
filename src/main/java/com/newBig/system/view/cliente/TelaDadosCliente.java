@@ -4,8 +4,10 @@
  */
 package com.newBig.system.view.cliente;
 
+import com.newBig.system.controller.HelpController;
+import com.newBig.system.controller.usuario.dto.ClientSummaryDto;
 import com.newBig.system.model.entity.Cliente;
-import com.newBig.system.model.service.AtualizarUsuario;
+import com.newBig.system.model.service.usuario.impl.AtualizarUsuario;
 
 /**
  *
@@ -15,12 +17,13 @@ public class TelaDadosCliente extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaDadosCliente.class.getName());
     AtualizarUsuario atualizarUsuario = new AtualizarUsuario();
-    Cliente dados;
+    HelpController helpController;
     /**
      * Creates new form TelaDadosCliente
      */
-    public TelaDadosCliente() {
+    public TelaDadosCliente(HelpController helpController) {
         initComponents();
+        this.helpController = helpController;
         this.setLocationRelativeTo(null);
     }
 
@@ -174,18 +177,18 @@ public class TelaDadosCliente extends javax.swing.JFrame {
 
 
     public void dadosCliente(Long id){
-        dados = atualizarUsuario.dadosCliente(id);
-        completar();
+        ClientSummaryDto clientDto = helpController.getUsuarioController().clientDateId(id);
+        completar(clientDto);
     }
-    public void completar(){
-        lblId.setText("-ID:" + dados.getId().toString());
-        lblNome.setText("-Nome: " + dados.getNome());
-        lblCpf.setText("-CPF: " + dados.getCpf());
-        lblCep.setText("-Cep: " + dados.getCep());
-        lblRua.setText("-Rua: " + dados.getRua());
-        lblNumero.setText("-Numero: " + String.valueOf(dados.getNumero()));
-        lblBairro.setText("-Bairro: " + dados.getBairro());
-        lblTelefone.setText("-Telefone: " + dados.getTelefone());
+    public void completar(ClientSummaryDto clientDto){
+        lblId.setText("-ID:" + clientDto.id().toString());
+        lblNome.setText("-Nome: " + clientDto.name());
+        lblCpf.setText("-CPF: " + clientDto.cpf());
+        lblCep.setText("-Cep: " + clientDto.cep());
+        lblRua.setText("-Rua: " + clientDto.rua());
+        lblNumero.setText("-Numero: " + String.valueOf(clientDto.numero()));
+        lblBairro.setText("-Bairro: " + clientDto.bairro());
+        lblTelefone.setText("-Telefone: " + clientDto.telefone());
     }
 
 
@@ -211,7 +214,7 @@ public class TelaDadosCliente extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaDadosCliente().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaDadosCliente(new HelpController()).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
