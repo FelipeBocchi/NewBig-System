@@ -2,6 +2,9 @@ package com.newBig.system.model.service;
 
 import com.newBig.system.model.service.batch.impl.BatchService;
 import com.newBig.system.model.service.product.impl.ProductService;
+import com.newBig.system.model.service.sale.AddItemToSale;
+import com.newBig.system.model.service.sale.OpenSale;
+import com.newBig.system.model.service.sale.SaleService;
 
 public class HelpService {
 
