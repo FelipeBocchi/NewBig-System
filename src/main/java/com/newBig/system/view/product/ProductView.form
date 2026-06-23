@@ -489,9 +489,7 @@
                               <Component id="BtnAddBatch" min="-2" pref="112" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="BtnEditBatch" min="-2" pref="112" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="BtnDeleteBatch" min="-2" pref="112" max="-2" attributes="0"/>
-                              <EmptySpace pref="305" max="32767" attributes="0"/>
+                              <EmptySpace pref="435" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -502,7 +500,6 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="BtnAddBatch" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                                   <Component id="BtnEditBatch" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
-                                  <Component id="BtnDeleteBatch" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           </Group>
@@ -524,14 +521,6 @@
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnEditBatchActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="BtnDeleteBatch">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Deletar"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnDeleteBatchActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
