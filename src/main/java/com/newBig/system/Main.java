@@ -4,8 +4,12 @@ import com.newBig.system.config.FlyWayConfig;
 import com.newBig.system.controller.HelpController;
 import com.newBig.system.controller.batch.BatchControllerInterface;
 import com.newBig.system.controller.batch.impl.BatchControllerImpl;
+import com.newBig.system.controller.caixa.CaixaControllerInterface;
+import com.newBig.system.controller.caixa.impl.CaixaControllerImpl;
 import com.newBig.system.controller.product.ProductControllerInterface;
 import com.newBig.system.controller.product.impl.ProductControllerImpl;
+import com.newBig.system.controller.sale.SaleControllerInterface;
+import com.newBig.system.controller.sale.impl.SaleControllerImpl;
 import com.newBig.system.controller.usuario.UsuarioControllerInterface;
 import com.newBig.system.controller.usuario.impl.UsuarioControllerImpl;
 import com.newBig.system.model.repository.*;
@@ -16,6 +20,7 @@ import com.newBig.system.model.repository.saleMovement.impl.SalesMovementReposit
 import com.newBig.system.model.repository.stockMovement.impl.StockMovementRepository;
 import com.newBig.system.model.service.*;
 import com.newBig.system.model.service.batch.impl.BatchService;
+import com.newBig.system.model.service.caixa.Caixa;
 import com.newBig.system.model.service.product.impl.ProductService;
 import com.newBig.system.model.service.sale.AddItemToSale;
 import com.newBig.system.model.service.sale.OpenSale;
@@ -57,20 +62,22 @@ public class Main {
         CadastroUsuarioServiceItf cadastroUsuario = new CadastroUsuario();
         DadosUsuarioServiceItf dadosUsuario = new DadosUsuario();
         DeletarUsuarioServiceItf deletarUsuario = new DeletarUsuario();
+        AddItemToSale addItemToSale = new AddItemToSale(saleRepository, batchRepository, stockMovementRepository, salesMovementRepository);
+        OpenSale openSale = new OpenSale(saleRepository, addItemToSale, clienteRepo, funcionarioRepo);
+        Caixa caixaService = new Caixa();
 
-        //teste controller
+        //  = controller
         BatchControllerInterface batchController = new BatchControllerImpl(batchService, productService);
         ProductControllerInterface productController = new ProductControllerImpl(productService);
         UsuarioControllerInterface usuarioController = new UsuarioControllerImpl(atualizarUsuario, cadastroUsuario, dadosUsuario, deletarUsuario);
-        HelpController helpController = new HelpController(batchController, productController, usuarioController);
+        SaleControllerInterface saleController = new SaleControllerImpl(saleService, openSale, addItemToSale, saleMovementService);
+        CaixaControllerInterface caixaController = new CaixaControllerImpl(caixaService);
+        HelpController helpController = new HelpController(batchController, productController, usuarioController, saleController, caixaController);
 
-        AddItemToSale addItemToSale = new AddItemToSale(saleRepository, batchRepository, stockMovementRepository, salesMovementRepository);
-        OpenSale openSale = new OpenSale(saleRepository, addItemToSale, clienteRepo, funcionarioRepo);
 
         HelpService helpService = new HelpService(productService, batchService, saleService, openSale, addItemToSale, saleMovementService);
 
-        TelaLogin telaLogin = new TelaLogin(helpService, batchController, helpController
-        );
+        TelaLogin telaLogin = new TelaLogin(helpService, batchController, helpController, caixaService);
         telaLogin.setVisible(true);
 
     }

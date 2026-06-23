@@ -37,14 +37,16 @@ public class ArrivalBatchView extends javax.swing.JFrame {
     Login login = new Login();
     private HelpService helpService;
     private final HelpController helpController;
+    private Caixa caixa;
     //teste
     private final BatchControllerInterface batchController;
 
-    public ArrivalBatchView(HelpService helpService, BatchControllerInterface batchController, HelpController helpController) {
+    public ArrivalBatchView(HelpService helpService, BatchControllerInterface batchController, HelpController helpController, Caixa caixa) {
         initComponents();
         this.helpService = helpService;
         this.helpController = helpController;
         this.batchController = batchController;
+        this.caixa = caixa;
         logoUsuario();
         logoNewBig();
         LgNome.setText(login.nomeLog());
@@ -359,44 +361,44 @@ public class ArrivalBatchView extends javax.swing.JFrame {
     }//GEN-LAST:event_FilterBatchActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        TelaInicio tela = new TelaInicio(helpService, this.batchController, this.helpController);
+        TelaInicio tela = new TelaInicio(helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         tela.setVisible(true);
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
-        TelaFuncionario telaFuncionario = new TelaFuncionario(this.helpService, this.batchController, this.helpController);
+        TelaFuncionario telaFuncionario = new TelaFuncionario(this.helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         telaFuncionario.setVisible(true);
     }//GEN-LAST:event_btnFuncionariosActionPerformed
 
     private void btnCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixaActionPerformed
-        TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController, this.helpController);
+        TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         telaCaixa.setVisible(true);
     }//GEN-LAST:event_btnCaixaActionPerformed
 
     private void btnClientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes1ActionPerformed
-        TelaCliente telaCliente = new TelaCliente(this.helpService, this.batchController, this.helpController);
+        TelaCliente telaCliente = new TelaCliente(this.helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         telaCliente.setVisible(true);
     }//GEN-LAST:event_btnClientes1ActionPerformed
 
     private void btnVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaActionPerformed
-        SalesView salesView = new SalesView(this.helpService, this.batchController, this.helpController);
+        SalesView salesView = new SalesView(this.helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         salesView.setVisible(true);
     }//GEN-LAST:event_btnVendaActionPerformed
 
     private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
-        ProductView productView = new ProductView(this.helpService, this.batchController, this.helpController);
+        ProductView productView = new ProductView(this.helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         productView.setVisible(true);
     }//GEN-LAST:event_btnProdutoActionPerformed
 
     private void btnLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoteActionPerformed
 
-        ArrivalBatchView arrivalBatchView = new ArrivalBatchView(helpService, this.batchController, this.helpController);
+        ArrivalBatchView arrivalBatchView = new ArrivalBatchView(helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         arrivalBatchView.setVisible(true);
 
@@ -404,7 +406,7 @@ public class ArrivalBatchView extends javax.swing.JFrame {
 
     private void menuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLoginActionPerformed
         Caixa caixa = new Caixa();
-        TelaLogin telaLogin = new TelaLogin(this.helpService, this.batchController, this.helpController);
+        TelaLogin telaLogin = new TelaLogin(this.helpService, this.batchController, this.helpController, this.caixa);
         if(caixa.verificarAbertura() != null){
             int resposta = JOptionPane.showConfirmDialog(
                 this,
@@ -432,7 +434,7 @@ public class ArrivalBatchView extends javax.swing.JFrame {
                 this,
                 "Não é possivel encerrar o sistema!! Caixa está aberto"
             );
-            TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController, this.helpController);
+            TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController, this.helpController, this.caixa);
             dispose();
             telaCaixa.setVisible(true);
         }
@@ -639,7 +641,7 @@ public class ArrivalBatchView extends javax.swing.JFrame {
 
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ArrivalBatchView(new HelpService(), new BatchControllerImpl(), new HelpController()).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new ArrivalBatchView(new HelpService(), new BatchControllerImpl(), new HelpController(), new Caixa()).setVisible(true));
 
 
     }

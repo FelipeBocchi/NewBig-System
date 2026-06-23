@@ -7,6 +7,7 @@ package com.newBig.system.view.sale;
 import com.newBig.system.controller.HelpController;
 import com.newBig.system.controller.batch.BatchControllerInterface;
 import com.newBig.system.controller.batch.impl.BatchControllerImpl;
+import com.newBig.system.controller.sale.dto.SaleSummaryDto;
 import com.newBig.system.model.entity.Product;
 import com.newBig.system.model.entity.SalesMovement;
 import com.newBig.system.model.service.caixa.Caixa;
@@ -38,16 +39,18 @@ public class SalesView extends javax.swing.JFrame {
     private HelpService helpService;
     private final HelpController helpController;
     private Long currentSaleId = null;
+    private Caixa caixa;
     //teste
     private final BatchControllerInterface batchController;
 
     /**
      * Creates new form SalesView
      */
-    public SalesView(HelpService helpService, BatchControllerInterface batchController, HelpController helpController) {
+    public SalesView(HelpService helpService, BatchControllerInterface batchController, HelpController helpController, Caixa caixa) {
         this.helpService = helpService;
         this.helpController = helpController;
         this.batchController = batchController;
+        this.caixa = caixa;
         initComponents();
 
         logoUsuario();
@@ -376,7 +379,7 @@ public class SalesView extends javax.swing.JFrame {
 
     private void menuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLoginActionPerformed
         Caixa caixa = new Caixa();
-        TelaLogin telaLogin = new TelaLogin(this.helpService, this.batchController, this.helpController);
+        TelaLogin telaLogin = new TelaLogin(this.helpService, this.batchController, this.helpController, this.caixa);
         if(caixa.verificarAbertura() != null){
             int resposta = JOptionPane.showConfirmDialog(
                 this,
@@ -404,7 +407,7 @@ public class SalesView extends javax.swing.JFrame {
                 this,
                 "Não é possivel encerrar o sistema!! Caixa está aberto"
             );
-            TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController, this.helpController);
+            TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController, this.helpController, this.caixa);
             dispose();
             telaCaixa.setVisible(true);
         }
@@ -420,44 +423,44 @@ public class SalesView extends javax.swing.JFrame {
     }//GEN-LAST:event_menuSairActionPerformed
 
     private void btnCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixaActionPerformed
-        TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController, this.helpController);
+        TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         telaCaixa.setVisible(true);
     }//GEN-LAST:event_btnCaixaActionPerformed
 
     private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
-        TelaFuncionario telaFuncionario = new TelaFuncionario(this.helpService, this.batchController, this.helpController);
+        TelaFuncionario telaFuncionario = new TelaFuncionario(this.helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         telaFuncionario.setVisible(true);
     }//GEN-LAST:event_btnFuncionariosActionPerformed
 
     private void btnClientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes1ActionPerformed
-        TelaCliente telaCliente = new TelaCliente(this.helpService, this.batchController, this.helpController);
+        TelaCliente telaCliente = new TelaCliente(this.helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         telaCliente.setVisible(true);
     }//GEN-LAST:event_btnClientes1ActionPerformed
 
     private void btnLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoteActionPerformed
 
-        ArrivalBatchView arrivalBatchView = new ArrivalBatchView(helpService, this.batchController, this.helpController);
+        ArrivalBatchView arrivalBatchView = new ArrivalBatchView(helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         arrivalBatchView.setVisible(true);
     }//GEN-LAST:event_btnLoteActionPerformed
 
     private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
-        ProductView productView = new ProductView(this.helpService, this.batchController, this.helpController);
+        ProductView productView = new ProductView(this.helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         productView.setVisible(true);
     }//GEN-LAST:event_btnProdutoActionPerformed
 
     private void btnVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaActionPerformed
-        SalesView salesView = new SalesView(this.helpService, this.batchController, this.helpController);
+        SalesView salesView = new SalesView(this.helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         salesView.setVisible(true);
     }//GEN-LAST:event_btnVendaActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        TelaInicio tela = new TelaInicio(this.helpService, this.batchController, this.helpController);
+        TelaInicio tela = new TelaInicio(this.helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         tela.setVisible(true);
     }//GEN-LAST:event_btnInicioActionPerformed
@@ -467,15 +470,15 @@ public class SalesView extends javax.swing.JFrame {
         DefaultTableModel tableModel = (DefaultTableModel) TblSales.getModel();
         BigDecimal subtotalAcumulado = BigDecimal.ZERO;
 
-        // 1. Percorre todas as linhas que estão atualmente na tabela
+        //  = Percorre todas as linhas que estão atualmente na tabela
         for (int i = 0; i < tableModel.getRowCount(); i++) {
-            // O total do item está na coluna 4 (ID=0, Nome=1, Qtd=2, Preço=3, Total=4)
+
             Object valorColuna = tableModel.getValueAt(i, 4);
 
             if (valorColuna instanceof BigDecimal) {
                 subtotalAcumulado = subtotalAcumulado.add((BigDecimal) valorColuna);
             } else if (valorColuna != null) {
-                // Caso por algum motivo o valor venha como String ou Double, faz a conversão segura
+                //  = Caso por algum motivo o valor venha como String ou Double, faz a conversão segura
                 try {
                     subtotalAcumulado = subtotalAcumulado.add(new BigDecimal(valorColuna.toString()));
                 } catch (NumberFormatException e) {
@@ -484,15 +487,14 @@ public class SalesView extends javax.swing.JFrame {
             }
         }
 
-        // 2. Aplica as regras de negócio básicas (Desconto e Taxa)
-        // Por enquanto, vamos assumir que começam zerados, mas você pode mudar para pegar de campos da tela
+        //  = Aplica as regras de negócio básicas (Desconto e Taxa)
         BigDecimal desconto = BigDecimal.ZERO;
         BigDecimal taxa = BigDecimal.ZERO;
 
-        // Total = Subtotal - Desconto + Taxa
+        //  = Total = Subtotal - Desconto + Taxa
         BigDecimal totalFinal = subtotalAcumulado.subtract(desconto).add(taxa);
 
-        // 3. Atualiza os componentes visuais (Labels) formatando como moeda básica (R$)
+        //  = Atualiza os componentes visuais
         TxtResultadoSubtotal.setText(String.format("R$ %.2f", subtotalAcumulado));
         TxtResultadoDesconto.setText(String.format("R$ %.2f", desconto));
         TxtResulTaxa.setText(String.format("R$ %.2f", taxa));
@@ -506,38 +508,35 @@ public class SalesView extends javax.swing.JFrame {
 
         try {
 
-            List<SalesMovement> listSales = helpService.getSalesMovement().findById(idSale);
+            List<SaleSummaryDto> listDto = helpController.getSaleController().listSale(idSale);
 
-            for (SalesMovement s : listSales) {
+            for (SaleSummaryDto s : listDto) {
 
-                // 1. Cria variáveis seguras com valores padrão
+                //  = Criamos variáveis seguras com valores padrão
                 String nomeProduto = "Sem Produto";
                 BigDecimal precoUnitario = BigDecimal.ZERO;
                 int quantidade = 0;
                 BigDecimal valorTotal = BigDecimal.ZERO;
 
-                // 2. Faz a checagem defensiva passo a passo
-                if (s.getStockMovement() != null) {
-                    quantidade = s.getStockMovement().getQuantity();
+                //  = Validações
+                if (s.id() != null) {
+                    quantidade = s.quantityItens();
 
-                    if (s.getStockMovement().getIdBatch() != null && s.getStockMovement().getIdBatch().getProduct() != null) {
-                        Product produto = s.getStockMovement().getIdBatch().getProduct();
+                    if (s.idBatch() != null && s.nameProduct() != null) {
 
-                        nomeProduto = produto.getProductName();
-                        precoUnitario = produto.getSalePrice(); // Assumindo que retorna double ou float
+                        nomeProduto = s.nameProduct();
+                        precoUnitario = s.unitPrice();
 
-                        // 3. Aqui acontece a sua multiplicação matemática!
                         valorTotal = precoUnitario.multiply(BigDecimal.valueOf(quantidade));
                     }
                 }
 
-                // 4. Adiciona na tabela usando as variáveis mastigadas
                 tableModel.addRow(new Object[] {
-                        s.getId(),
+                        s.id(),
                         nomeProduto,
                         quantidade,
                         precoUnitario,
-                        valorTotal // O resultado da sua multiplicação entra aqui
+                        valorTotal
                 });
 
             }
@@ -549,17 +548,24 @@ public class SalesView extends javax.swing.JFrame {
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {
 
-        // 1. Só gera um novo ID no banco se a venda atual ainda não existir
-        if (this.currentSaleId == null) {
-            this.currentSaleId = helpService.getOpenSale().execute(1L, 1L, 1001L, 0, "INDEFINIDO");
+        if (caixa.verificarAbertura() == null) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Caixa ainda não foi aberto!!!"
+            );
+            return;
         }
 
-        // 2. Abre o formulário passando o ID que foi mantido salvo
-        FormSalesDialog formSalesDialog = new FormSalesDialog(this, true, this.helpService, this.currentSaleId);
+        //  = Primeira lógica da venda, se não tiver uma venda inicializada vai criar a primeira e retornar o id dela
+        if (this.currentSaleId == null) {
+            this.currentSaleId = helpController.getSaleController().openSale();
+        }
+
+        FormSalesDialog formSalesDialog = new FormSalesDialog(this, true, this.helpService, this.currentSaleId, this.helpController);
         formSalesDialog.setLocationRelativeTo(this);
         formSalesDialog.setVisible(true);
 
-        // 3. Atualiza a tabela sempre usando o ID da venda atual
+        //  = Atualizamos a tabela sempe como o id da venda para pegar o itens dessa venda
         loadSalesTable(this.currentSaleId);
         loadSaleInformation();
     }                                       
@@ -576,7 +582,7 @@ public class SalesView extends javax.swing.JFrame {
         }
 
         // Chama o Dialog de Pagamento passando o service e o ID
-        FormSalePayDialog payDialog = new FormSalePayDialog(this, true, this.helpService, this.currentSaleId);
+        FormSalePayDialog payDialog = new FormSalePayDialog(this, true, this.helpService, this.currentSaleId, this.helpController, this.caixa);
         payDialog.setLocationRelativeTo(this);
         payDialog.setVisible(true);
 
@@ -622,7 +628,7 @@ public class SalesView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new SalesView(new HelpService(), new BatchControllerImpl(), new HelpController()).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new SalesView(new HelpService(), new BatchControllerImpl(), new HelpController(), new Caixa()).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

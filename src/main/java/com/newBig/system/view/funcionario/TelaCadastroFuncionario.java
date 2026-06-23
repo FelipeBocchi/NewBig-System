@@ -4,6 +4,7 @@
  */
 package com.newBig.system.view.funcionario;
 
+import com.newBig.system.controller.HelpController;
 import com.newBig.system.model.service.usuario.impl.CadastroUsuario;
 
 import javax.swing.*;
@@ -15,14 +16,15 @@ import javax.swing.*;
 public class TelaCadastroFuncionario extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaCadastroFuncionario.class.getName());
-    CadastroUsuario cadastroUsuario = new CadastroUsuario();
+    HelpController helpController;
     /**
      * Creates new form TelaCadastroFuncionario
      */
-    public TelaCadastroFuncionario() {
+    public TelaCadastroFuncionario(HelpController helpController) {
         initComponents();
+        this.helpController = helpController;
         this.setLocationRelativeTo(null);
-        Long id = cadastroUsuario.ultimoIdFun();
+        Long id = helpController.getUsuarioController().lastIdFun();
         txtId.setText(String.valueOf(id + 1));
         txtId.setEnabled(false);
         rdSem.setSelected(true);
@@ -190,7 +192,9 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
             if (cpf.matches(".*[\\p{L}].*")) {
                 throw new Exception("CPF contém letras");
             }
-            cadastroUsuario.novoFuncionario(nome,cpf,acesso,login,senha);
+
+            helpController.getUsuarioController().registerNewFuncionario(nome, cpf, acesso, login, senha);
+
             JOptionPane.showMessageDialog(
                     this,
                     "Funcionario cadastrado com sucesso!!"
@@ -247,7 +251,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaCadastroFuncionario().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaCadastroFuncionario(new HelpController()).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -4,12 +4,21 @@
  */
 package com.newBig.system.view.sale;
 
+import com.newBig.system.controller.HelpController;
+import com.newBig.system.controller.sale.dto.SaleMovementDto;
+import com.newBig.system.model.entity.DadosCaixa;
 import com.newBig.system.model.entity.Sale;
+import com.newBig.system.model.entity.SalesMovement;
+import com.newBig.system.model.entity.StockMovement;
+import com.newBig.system.model.repository.CaixaRepo;
 import com.newBig.system.model.service.HelpService;
 import com.newBig.system.model.service.VendasDia;
+import com.newBig.system.model.service.caixa.Caixa;
+import com.newBig.system.view.caixa.TelaCaixa;
 
 import javax.swing.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 
 /**
@@ -19,16 +28,20 @@ import java.math.BigDecimal;
 public class FormSalePayDialog extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormSalePayDialog.class.getName());
+    private HelpController helpController;
+    private Caixa caixa;
     private HelpService helpService;
     private Long saleId;
 
     /**
      * Creates new form FormSaleDialog
      */
-    public FormSalePayDialog(java.awt.Frame parent, boolean modal, HelpService helpService, Long saleId) {
+    public FormSalePayDialog(java.awt.Frame parent, boolean modal, HelpService helpService, Long saleId, HelpController helpController, Caixa caixa) {
         super(parent, modal);
+        this.helpController = helpController;
         this.helpService = helpService;
         this.saleId = saleId;
+        this.caixa = caixa;
         initComponents();
         configurarAcoesDosBotoes();
         esconderOpcoes();
@@ -209,17 +222,48 @@ public class FormSalePayDialog extends javax.swing.JDialog {
                 throw new Exception("Selecione uma forma de pagamento!");
             }
 
+            // --- Calcula o total da venda somando todos os itens ---
+            //List<SalesMovement> itensVenda = helpService.getSalesMovement().findById(saleId);   // dto
+            BigDecimal totalVenda = BigDecimal.ZERO;
+            //for (SalesMovement item : itensVenda) {
+                //StockMovement mov = item.getStockMovement();
+                //if (mov != null && mov.getValue() != null) {
+                    //BigDecimal valorItem = mov.getValue().multiply(BigDecimal.valueOf(mov.getQuantity()));
+                    //totalVenda = totalVenda.add(valorItem);
+               // }
+            //}
+
+            List<SaleMovementDto> listDto = helpController.getSaleController().calculateTotalSale(saleId);
+            for (SaleMovementDto mov : listDto) {
+                if (mov != null && mov.value() != null) {
+                    BigDecimal valorItem = mov.value().multiply(BigDecimal.valueOf(mov.quantity()));
+                    totalVenda = totalVenda.add(valorItem);
+                }
+            }
+
+            // --- Atualiza a venda com o total e método de pagamento ---
+            //Sale newSale = helpService.getSaleService().findById(saleId);
+            //newSale.setPaymentMethod(metodoPagamento);
+            //newSale.setStatus("PAGO");
+            //newSale.setTotal(totalVenda);
+            //helpService.getSaleService().editSale(newSale);
+
+            helpController.getSaleController().editSalePay(saleId, metodoPagamento, "PAGO", totalVenda);
+
+            // --- Atualiza o caixa com o valor da venda ---
+            if (caixa.verificarAbertura() != null) {
+                caixa.addValor(totalVenda.doubleValue());
+            }
+
+            // --- Incrementa o contador de vendas do dia ---
+            VendasDia.setVendaDia();
+
             // Atualiza o status visualmente
             lblStatus.setText("Status: FINALIZADO");
             lblStatus.setForeground(new java.awt.Color(0, 153, 51)); // Verde
 
-            Sale newSale = helpService.getSaleService().findById(saleId);
-            newSale.setPaymentMethod(metodoPagamento);
-            newSale.setStatus("PAGO");
-            VendasDia.setVendaDia();
-            helpService.getSaleService().editSale(newSale);
-
-            JOptionPane.showMessageDialog(this, "Pagamento confirmado e venda finalizada com sucesso!");
+            JOptionPane.showMessageDialog(this,
+                    "Pagamento confirmado!\nTotal da venda: R$" + String.format("%.2f", totalVenda) + "\nVenda finalizada com sucesso!");
             dispose();
 
         } catch (NumberFormatException e) {
@@ -274,7 +318,7 @@ public class FormSalePayDialog extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                FormSalePayDialog dialog = new FormSalePayDialog(new javax.swing.JFrame(), true, new HelpService(), 0L);
+                FormSalePayDialog dialog = new FormSalePayDialog(new javax.swing.JFrame(), true, new HelpService(), 0L, new HelpController(), new Caixa());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

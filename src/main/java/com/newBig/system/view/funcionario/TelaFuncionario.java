@@ -30,22 +30,22 @@ import java.awt.*;
 public class TelaFuncionario extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaFuncionario.class.getName());
-    TelaCadastroFuncionario telaCadastroFuncionario = new TelaCadastroFuncionario();
-    TelaAtualizarFuncionarios telaAtualizarFuncionarios = new TelaAtualizarFuncionarios();
     Login login = new Login();
     private HelpService helpService;
     private final HelpController helpController;
+    private Caixa caixa;
     //teste
     private final BatchControllerInterface batchController;
 
     /**
      * Creates new form TelaFuncionario
      */
-    public TelaFuncionario(HelpService helpService, BatchControllerInterface batchController,HelpController helpController) {
+    public TelaFuncionario(HelpService helpService, BatchControllerInterface batchController,HelpController helpController, Caixa caixa) {
+        initComponents();
         this.helpService = helpService;
         this.helpController =helpController;
         this.batchController = batchController;
-        initComponents();
+        this.caixa = caixa;
         logoUsuario();
         logoNewBig();
         LgNome.setText(login.nomeLog());
@@ -345,6 +345,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
             );
         }
         else {
+            TelaCadastroFuncionario telaCadastroFuncionario = new TelaCadastroFuncionario(this.helpController);
             telaCadastroFuncionario.setVisible(true);
         }
     }//GEN-LAST:event_btnNovoActionPerformed
@@ -366,6 +367,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
                 );
             }
             else{
+                TelaAtualizarFuncionarios telaAtualizarFuncionarios = new TelaAtualizarFuncionarios(this.helpController);
                 Long id = (Long) TabelaFuncionarios.getValueAt(linha, 0);
                 telaAtualizarFuncionarios.preencher(id);
                 telaAtualizarFuncionarios.setVisible(true);
@@ -391,8 +393,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
                     "Deseja mesmo apagar o funcionario " + nome + "?"
             );
             if (resposta == JOptionPane.YES_OPTION) {
-                DeletarUsuario deletarUsuario = new DeletarUsuario();
-                deletarUsuario.deleteFuncionario(id);
+                helpController.getUsuarioController().deleteFuncionario(id);
                 preencherTabela();
 
             }
@@ -415,7 +416,6 @@ public class TelaFuncionario extends javax.swing.JFrame {
             );
         }
         else {
-            DadosUsuario dadosUsuario = new DadosUsuario();
             int linha = TabelaFuncionarios.getSelectedRow();
             if (linha == -1) {
                 JOptionPane.showMessageDialog(
@@ -425,14 +425,14 @@ public class TelaFuncionario extends javax.swing.JFrame {
                 );
             } else {
                 Long id = (Long) TabelaFuncionarios.getValueAt(linha, 0);
-                var lista = dadosUsuario.dadosCompletosFuncionario(id);
+                var funcionario = helpController.getUsuarioController().funcionarioDateId(id);
                 JOptionPane.showMessageDialog(
                         this,
-                        "ID: " + lista.getId() + "\n" +
-                                "Nome: " + lista.getNome() + "\n" +
-                                "Cpf: " + lista.getCpf() + "\n" +
-                                "Login: " + lista.getLogin() + "\n" +
-                                "Senha: " + lista.getSenha()
+                        "ID: " + funcionario.id()+ "\n" +
+                                "Nome: " + funcionario.name() + "\n" +
+                                "Cpf: " + funcionario.cpf() + "\n" +
+                                "Login: " + funcionario.login() + "\n" +
+                                "Senha: " + funcionario.senha()
 
                 );
             }
@@ -441,50 +441,50 @@ public class TelaFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDadosActionPerformed
 
     private void btnCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCaixaActionPerformed
-        TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController, this.helpController);
+        TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         telaCaixa.setVisible(true);
     }//GEN-LAST:event_btnCaixaActionPerformed
 
     private void btnFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFuncionariosActionPerformed
-        TelaFuncionario telaFuncionario = new TelaFuncionario(this.helpService, this.batchController, this.helpController);
+        TelaFuncionario telaFuncionario = new TelaFuncionario(this.helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         telaFuncionario.setVisible(true);
     }//GEN-LAST:event_btnFuncionariosActionPerformed
 
     private void btnClientes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientes1ActionPerformed
-        TelaCliente telaCliente = new TelaCliente(this.helpService, this.batchController, this.helpController);
+        TelaCliente telaCliente = new TelaCliente(this.helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         telaCliente.setVisible(true);
     }//GEN-LAST:event_btnClientes1ActionPerformed
 
     private void btnLoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoteActionPerformed
-        ArrivalBatchView arrivalBatchView = new ArrivalBatchView(this.helpService, this.batchController, this.helpController);
+        ArrivalBatchView arrivalBatchView = new ArrivalBatchView(this.helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         arrivalBatchView.setVisible(true);
     }//GEN-LAST:event_btnLoteActionPerformed
 
     private void btnProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutoActionPerformed
-        ProductView productView = new ProductView(this.helpService, this.batchController, this.helpController);
+        ProductView productView = new ProductView(this.helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         productView.setVisible(true);
     }//GEN-LAST:event_btnProdutoActionPerformed
 
     private void btnVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaActionPerformed
-        SalesView salesView = new SalesView(this.helpService, this.batchController, this.helpController);
+        SalesView salesView = new SalesView(this.helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         salesView.setVisible(true);
     }//GEN-LAST:event_btnVendaActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        TelaInicio tela = new TelaInicio(this.helpService, this.batchController, this.helpController);
+        TelaInicio tela = new TelaInicio(this.helpService, this.batchController, this.helpController, this.caixa);
         dispose();
         tela.setVisible(true);
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void menuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuLoginActionPerformed
         Caixa caixa = new Caixa();
-        TelaLogin telaLogin = new TelaLogin(this.helpService, this.batchController, this.helpController);
+        TelaLogin telaLogin = new TelaLogin(this.helpService, this.batchController, this.helpController, this.caixa);
         if(caixa.verificarAbertura() != null){
             int resposta = JOptionPane.showConfirmDialog(
                     this,
@@ -512,7 +512,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
                     this,
                     "Não é possivel encerrar o sistema!! Caixa está aberto"
             );
-            TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController, this.helpController);
+            TelaCaixa telaCaixa = new TelaCaixa(this.helpService, this.batchController, this.helpController, this.caixa);
             dispose();
             telaCaixa.setVisible(true);
         }
@@ -630,7 +630,7 @@ public class TelaFuncionario extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaFuncionario(new HelpService(), new BatchControllerImpl(), new HelpController()).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaFuncionario(new HelpService(), new BatchControllerImpl(), new HelpController(), new Caixa()).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

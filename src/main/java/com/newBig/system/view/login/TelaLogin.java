@@ -8,6 +8,7 @@ import com.newBig.system.controller.HelpController;
 import com.newBig.system.controller.batch.BatchControllerInterface;
 import com.newBig.system.controller.batch.impl.BatchControllerImpl;
 import com.newBig.system.model.service.*;
+import com.newBig.system.model.service.caixa.Caixa;
 import com.newBig.system.view.inicio.TelaInicio;
 
 import javax.swing.*;
@@ -23,14 +24,16 @@ public class TelaLogin extends javax.swing.JFrame {
     private final BatchControllerInterface batchController;
     private final HelpController helpController;
     private HelpService helpService;
+    private Caixa caixa;
     /**
      * Creates new form TelaLogin
      */
-    public TelaLogin(HelpService helpService, BatchControllerInterface batchController, HelpController helpController) {
+    public TelaLogin(HelpService helpService, BatchControllerInterface batchController, HelpController helpController, Caixa caixa) {
         initComponents();
         this.helpService = helpService;
         this.helpController = helpController;
         this.batchController = batchController;
+        this.caixa = caixa;
         this.setLocationRelativeTo(null);
     }
 
@@ -169,7 +172,7 @@ public class TelaLogin extends javax.swing.JFrame {
             else{
                 loginService.salvar(id);
                 dispose();
-                TelaInicio telaInicio = new TelaInicio(this.helpService, this.batchController, this.helpController);
+                TelaInicio telaInicio = new TelaInicio(this.helpService, this.batchController, this.helpController, this.caixa);
                 telaInicio.setVisible(true);
             }
         }
@@ -224,7 +227,7 @@ public class TelaLogin extends javax.swing.JFrame {
         HelpService helpService = new HelpService(productService, batchService, saleService, openSale, addItemToSale, saleMovementService);
 */
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaLogin(new HelpService(), new BatchControllerImpl(), new HelpController()).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaLogin(new HelpService(), new BatchControllerImpl(), new HelpController(), new Caixa()).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

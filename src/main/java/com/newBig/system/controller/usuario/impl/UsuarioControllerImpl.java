@@ -3,7 +3,9 @@ package com.newBig.system.controller.usuario.impl;
 import com.newBig.system.controller.usuario.UsuarioControllerInterface;
 import com.newBig.system.controller.usuario.dto.ClientDateDto;
 import com.newBig.system.controller.usuario.dto.ClientSummaryDto;
+import com.newBig.system.controller.usuario.dto.FuncionarioDateDto;
 import com.newBig.system.model.entity.Cliente;
+import com.newBig.system.model.entity.Funcionario;
 import com.newBig.system.model.service.usuario.AtualizarUsuarioServiceItf;
 import com.newBig.system.model.service.usuario.CadastroUsuarioServiceItf;
 import com.newBig.system.model.service.usuario.DadosUsuarioServiceItf;
@@ -26,6 +28,11 @@ public class UsuarioControllerImpl implements UsuarioControllerInterface {
         this.deletarUsuario = deletarUsuario;
     }
 
+
+    @Override
+    public void registerNewUser(String name, String cpf, String cep, String rua, int numero, String bairro, String telefone) {
+        cadastroUsuario.novoCliente(name, cpf, cep, rua, numero, bairro, telefone);
+    }
 
     @Override
     public void deleteUser(Long id) {
@@ -76,7 +83,41 @@ public class UsuarioControllerImpl implements UsuarioControllerInterface {
     }
 
     @Override
+    public Long lastId() {
+        return cadastroUsuario.ultimoId();
+    }
+
+    @Override
     public void updateUser(Long id, String name, String cpf, String cep, String rua, int numero, String bairro, String telefone) {
         atualizarUsario.cliente(id, name, cpf, cep, rua, numero, bairro, telefone);
+    }
+
+    @Override
+    public void registerNewFuncionario(String name, String cpf, int acesso, String login, int senha) {
+        cadastroUsuario.novoFuncionario(name, cpf, acesso, login, senha);
+    }
+
+    //  = Funcionario
+
+    @Override
+    public void deleteFuncionario(Long id) {
+        deletarUsuario.deleteFuncionario(id);
+    }
+
+    @Override
+    public void updateFuncionario(Long id, String nome, String cpf, String login, int senha, int acesso) {
+        atualizarUsario.funcionario(id, nome, cpf, login, senha, acesso);
+    }
+
+    @Override
+    public FuncionarioDateDto funcionarioDateId(Long id) {
+        Funcionario funcionario = atualizarUsario.dadosFuncionario(id);
+
+        return new FuncionarioDateDto(funcionario.getId(), funcionario.getNome(), funcionario.getCpf(), funcionario.getAcesso(), funcionario.getLogin(), funcionario.getSenha());
+    }
+
+    @Override
+    public Long lastIdFun() {
+        return cadastroUsuario.ultimoIdFun();
     }
 }

@@ -4,6 +4,7 @@
  */
 package com.newBig.system.view.cliente;
 
+import com.newBig.system.controller.HelpController;
 import com.newBig.system.model.service.usuario.impl.CadastroUsuario;
 
 import javax.swing.*;
@@ -15,14 +16,15 @@ import javax.swing.*;
 public class TelaFormularioCliente extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaFormularioCliente.class.getName());
-    CadastroUsuario cadastroUsuario = new CadastroUsuario();
+    HelpController helpController;
     /**
      * Creates new form TelaFormularioCliente
      */
-    public TelaFormularioCliente() {
+    public TelaFormularioCliente(HelpController helpController) {
         initComponents();
+        this.helpController = helpController;
         this.setLocationRelativeTo(null);
-        Long id = cadastroUsuario.ultimoId();
+        Long id = helpController.getUsuarioController().lastId();
         txtId.setText(String.valueOf(id + 1));
         txtId.setEnabled(false);
     }
@@ -179,7 +181,9 @@ public class TelaFormularioCliente extends javax.swing.JFrame {
             if (cpf.matches(".*[\\p{L}].*")) {
                 throw new Exception("CPF contém letras");
             }
-            cadastroUsuario.novoCliente(nome,cpf,cep,rua,numero, bairro, telefone);
+
+            helpController.getUsuarioController().registerNewUser(nome,cpf,cep,rua,numero, bairro, telefone);
+
             JOptionPane.showMessageDialog(
                     this,
                     "Cliente cadastrado com sucesso!!"
@@ -216,7 +220,7 @@ public class TelaFormularioCliente extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaFormularioCliente().setVisible(false));
+        java.awt.EventQueue.invokeLater(() -> new TelaFormularioCliente(new HelpController()).setVisible(false));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

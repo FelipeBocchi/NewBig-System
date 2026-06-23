@@ -4,6 +4,8 @@
  */
 package com.newBig.system.view.funcionario;
 
+import com.newBig.system.controller.HelpController;
+import com.newBig.system.controller.usuario.dto.FuncionarioDateDto;
 import com.newBig.system.model.service.usuario.impl.AtualizarUsuario;
 
 import javax.swing.*;
@@ -15,12 +17,13 @@ import javax.swing.*;
 public class TelaAtualizarFuncionarios extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaAtualizarFuncionarios.class.getName());
-    AtualizarUsuario atualizarUsuario = new AtualizarUsuario();
+    HelpController helpController;
     /**
      * Creates new form TelaAtualizarFuncionarios
      */
-    public TelaAtualizarFuncionarios() {
+    public TelaAtualizarFuncionarios(HelpController helpController) {
         initComponents();
+        this.helpController = helpController;
         txtId.setEnabled(false);
         this.setLocationRelativeTo(null);
 
@@ -180,7 +183,9 @@ public class TelaAtualizarFuncionarios extends javax.swing.JFrame {
             } else if (rdOperador.isSelected()) {
                 acesso = 2;
             }
-            atualizarUsuario.funcionario(id,nome,cpf,login,senha,acesso);
+
+            helpController.getUsuarioController().updateFuncionario(id, nome, cpf, login, senha, acesso);
+
             if(nome.isEmpty() || cpf.isEmpty() || login.isEmpty()){
                 throw new Exception("Campo não preenchido!");
             }
@@ -224,17 +229,17 @@ public class TelaAtualizarFuncionarios extends javax.swing.JFrame {
 
 
     public void preencher(Long id){
-        var dados = atualizarUsuario.dadosFuncionario(id);
-        txtId.setText(dados.getId().toString());
-        txtNome.setText(dados.getNome());
-        txtCpf.setText(dados.getCpf());
-        txtLogin.setText(dados.getLogin());
-        txtSenha.setText(String.valueOf(dados.getSenha()));
-        if(dados.getAcesso() == 1){
+        FuncionarioDateDto funcionarioDto = helpController.getUsuarioController().funcionarioDateId(id);
+        txtId.setText(funcionarioDto.id().toString());
+        txtNome.setText(funcionarioDto.name());
+        txtCpf.setText(funcionarioDto.cpf());
+        txtLogin.setText(funcionarioDto.login());
+        txtSenha.setText(String.valueOf(funcionarioDto.senha()));
+        if(funcionarioDto.acesso() == 1){
             rdAdm.setSelected(true);
-        } else if (dados.getAcesso() == 2){
+        } else if (funcionarioDto.acesso() == 2){
             rdOperador.setSelected(true);
-        } else if (dados.getAcesso() == 3) {
+        } else if (funcionarioDto.acesso() == 3) {
             rdSem.setSelected(true);
         }
     }
@@ -260,7 +265,7 @@ public class TelaAtualizarFuncionarios extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new TelaAtualizarFuncionarios().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaAtualizarFuncionarios(new HelpController()).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

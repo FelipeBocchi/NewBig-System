@@ -48,6 +48,10 @@ public class Caixa {
         caixaRepo.update(banco);
     }
 
+    public void update(DadosCaixa dadosCaixa) {
+        caixaRepo.update(dadosCaixa);
+    }
+
     public double getValorAbertura(){
         return caixaRepo.CaixaAberto().getValorAbertura();
     }

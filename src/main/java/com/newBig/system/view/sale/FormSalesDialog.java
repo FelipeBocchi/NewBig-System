@@ -4,6 +4,7 @@
  */
 package com.newBig.system.view.sale;
 
+import com.newBig.system.controller.HelpController;
 import com.newBig.system.model.service.sale.AddItemToSale;
 import com.newBig.system.model.service.HelpService;
 
@@ -16,14 +17,16 @@ import javax.swing.*;
 public class FormSalesDialog extends javax.swing.JDialog {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FormSalesDialog.class.getName());
+    private HelpController helpController;
     private HelpService helpService;
     private Long idSale;
 
     /**
      * Creates new form FormSalesDialog
      */
-    public FormSalesDialog(java.awt.Frame parent, boolean modal, HelpService helpService, Long idSale) {
+    public FormSalesDialog(java.awt.Frame parent, boolean modal, HelpService helpService, Long idSale, HelpController helpController) {
         super(parent, modal);
+        this.helpController = helpController;
         this.helpService = helpService;
         this.idSale = idSale;
         initComponents();
@@ -137,9 +140,7 @@ public class FormSalesDialog extends javax.swing.JDialog {
 
             int quatity = Integer.parseInt(TxtQuantityBatch.getText());
 
-            // Chama CRUD
-            AddItemToSale addItemToSale = helpService.getAddItemToSale();
-            addItemToSale.logic(idSale, idProduct, quatity);
+            helpController.getSaleController().addItensToSale(idSale, idProduct, quatity);
 
             JOptionPane.showMessageDialog(this, "Produto adicionado com sucesso!");
             this.dispose(); // Fecha apenas a janelinha de cadastro
@@ -175,7 +176,7 @@ public class FormSalesDialog extends javax.swing.JDialog {
             @Override
             public void run() {
                 Long id = 0L;
-                FormSalesDialog dialog = new FormSalesDialog(new javax.swing.JFrame(), true, new HelpService(), id);
+                FormSalesDialog dialog = new FormSalesDialog(new javax.swing.JFrame(), true, new HelpService(), id, new HelpController());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
