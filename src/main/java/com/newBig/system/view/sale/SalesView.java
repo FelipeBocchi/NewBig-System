@@ -89,7 +89,6 @@ public class SalesView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TblSales = new javax.swing.JTable();
         btnNovo = new javax.swing.JButton();
-        btnDeletar = new javax.swing.JButton();
         TxtSubtotal = new javax.swing.JLabel();
         TxtDisconto = new javax.swing.JLabel();
         TxtTaxa = new javax.swing.JLabel();
@@ -250,10 +249,6 @@ public class SalesView extends javax.swing.JFrame {
         btnNovo.setText("Add item");
         btnNovo.addActionListener(this::btnNovoActionPerformed);
 
-        btnDeletar.setBackground(new java.awt.Color(255, 102, 102));
-        btnDeletar.setText("Deletar item");
-        btnDeletar.addActionListener(this::btnDeletarActionPerformed);
-
         TxtSubtotal.setText("Subtotal:");
 
         TxtDisconto.setText("Desconto:");
@@ -290,8 +285,6 @@ public class SalesView extends javax.swing.JFrame {
                         .addGroup(fundoLayout.createSequentialGroup()
                             .addComponent(btnFinalizarSale, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
                             .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(fundoLayout.createSequentialGroup()
                             .addComponent(TxtDisconto)
@@ -318,7 +311,6 @@ public class SalesView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(fundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFinalizarSale, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -570,10 +562,6 @@ public class SalesView extends javax.swing.JFrame {
         loadSaleInformation();
     }                                       
 
-    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-
-    }//GEN-LAST:event_btnDeletarActionPerformed
-
     private void btnFinalizarSaleActionPerformed(java.awt.event.ActionEvent evt) {
         // Verifica se existe uma venda aberta
         if (this.currentSaleId == null) {
@@ -647,7 +635,6 @@ public class SalesView extends javax.swing.JFrame {
     private javax.swing.JLabel TxtTotal;
     private javax.swing.JButton btnCaixa;
     private javax.swing.JButton btnClientes1;
-    private javax.swing.JButton btnDeletar;
     private javax.swing.JButton btnFinalizarSale;
     private javax.swing.JButton btnFuncionarios;
     private javax.swing.JButton btnInicio;

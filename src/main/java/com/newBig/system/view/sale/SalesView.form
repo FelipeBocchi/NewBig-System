@@ -312,8 +312,6 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="btnFinalizarSale" min="-2" pref="132" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnDeletar" min="-2" pref="132" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnNovo" min="-2" pref="132" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -349,7 +347,6 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnNovo" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="btnDeletar" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="btnFinalizarSale" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -456,17 +453,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNovoActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnDeletar">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="66" green="66" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Deletar item"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeletarActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="TxtSubtotal">
